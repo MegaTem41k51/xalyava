@@ -20,7 +20,6 @@
 
     h1 { margin-bottom: 20px; font-size: 24px; text-align: center; }
 
-    /* ===== ГЛАВНЫЕ ВКЛАДКИ ===== */
     .tabs {
         display: flex;
         gap: 8px;
@@ -29,6 +28,8 @@
         padding: 6px;
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .tab-btn {
@@ -60,7 +61,6 @@
 
     .tab-content.active { display: flex; }
 
-    /* ===== КНОПКИ ===== */
     .toolbar {
         margin-bottom: 15px;
         display: flex;
@@ -84,7 +84,6 @@
     button.danger { background: #c62828; }
     button.danger:hover { background: #9b1f1f; }
 
-    /* ===== ТАБЛИЦА УЧЁТА ===== */
     table.acc-table {
         border-collapse: collapse;
         background: #2a2a3e;
@@ -276,7 +275,7 @@
         background: #2a2a3e;
         border-radius: 10px;
         padding: 8px;
-        min-height: 220px;
+        min-height: 240px;
         border: 1px solid #3a3a52;
         display: flex;
         flex-direction: column;
@@ -306,7 +305,6 @@
         align-self: flex-end;
     }
 
-    /* ===== БЛОК ИМЕНИ И СКИНА (как на скрине) ===== */
     .cal-person {
         background: #35354d;
         border-radius: 8px;
@@ -345,6 +343,7 @@
     }
 
     .skin-box:hover { border-color: #a78bfa; background: #25253a; }
+    .skin-box.pending { border: 2px solid #f9a825; }
 
     .skin-box img {
         max-width: 100%;
@@ -385,7 +384,120 @@
 
     .skin-box.has-image .skin-remove { display: block; }
 
-    /* ===== ПОДСКАЗКА ===== */
+    .skin-save {
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #f9a825;
+        color: #000;
+        border: none;
+        border-radius: 6px;
+        padding: 3px 10px;
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+        display: none;
+        z-index: 6;
+        white-space: nowrap;
+    }
+
+    .skin-save:hover { background: #ffb300; }
+    .skin-box.pending .skin-save { display: block; }
+
+    /* ===== ЧАТ ===== */
+    .chat-container {
+        width: 100%;
+        max-width: 600px;
+        background: #2a2a3e;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 70vh;
+    }
+
+    .chat-header {
+        background: #764ba2;
+        padding: 15px 20px;
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .chat-msg {
+        background: #35354d;
+        padding: 10px 14px;
+        border-radius: 12px;
+        max-width: 80%;
+        word-wrap: break-word;
+        align-self: flex-start;
+    }
+
+    .chat-msg.own {
+        background: #764ba2;
+        align-self: flex-end;
+    }
+
+    .chat-msg .msg-author {
+        font-size: 11px;
+        font-weight: 700;
+        margin-bottom: 4px;
+        color: #a78bfa;
+    }
+
+    .chat-msg.own .msg-author { color: #e0d4ff; }
+
+    .chat-msg .msg-text {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .chat-msg .msg-time {
+        font-size: 10px;
+        color: #888;
+        margin-top: 4px;
+        text-align: right;
+    }
+
+    .chat-input-area {
+        display: flex;
+        gap: 8px;
+        padding: 12px;
+        background: #35354d;
+        border-top: 1px solid #444;
+    }
+
+    .chat-input-area input {
+        flex: 1;
+        padding: 12px 16px;
+        border: none;
+        border-radius: 8px;
+        background: #1e1e2e;
+        color: #fff;
+        font-size: 14px;
+        outline: none;
+    }
+
+    .chat-input-area input::placeholder { color: #666; }
+
+    .chat-input-area button {
+        padding: 12px 20px;
+        background: #764ba2;
+        border-radius: 8px;
+    }
+
+    .chat-input-area button:hover { background: #5a3a7d; }
+
     .hint {
         margin-top: 20px;
         color: #888;
@@ -395,7 +507,6 @@
         line-height: 1.6;
     }
 
-    /* ===== МОДАЛКА ===== */
     .modal {
         display: none;
         position: fixed;
@@ -436,14 +547,14 @@
 
 <h1>MEGATEM41K vs Sergo Bulkin</h1>
 
-<!-- ===== ГЛАВНЫЕ ВКЛАДКИ ===== -->
 <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('accounting', this)">📊 Учёт халявы</button>
-    <button class="tab-btn" onclick="switchTab('calendar', this)">📅 Календарь скинов</button>
+    <button class="tab-btn" data-tab="accounting" onclick="switchTab('accounting', this)">📊 Учёт халявы</button>
+    <button class="tab-btn" data-tab="calendar" onclick="switchTab('calendar', this)">📅 Календарь скинов</button>
+    <button class="tab-btn" data-tab="chat" onclick="switchTab('chat', this)">💬 Чат</button>
 </div>
 
-<!-- ===== ВКЛАДКА 1: УЧЁТ ===== -->
-<div id="tab-accounting" class="tab-content active">
+<!-- ===== УЧЁТ ===== -->
+<div id="tab-accounting" class="tab-content">
     <div class="toolbar">
         <button onclick="addRow()">➕ Добавить день</button>
         <button onclick="addCol()">➕ Добавить человека</button>
@@ -500,21 +611,19 @@
     <p class="hint">👆 Кликай на ячейку и пиши сумму. Всё сохраняется автоматически.</p>
 </div>
 
-<!-- ===== ВКЛАДКА 2: КАЛЕНДАРЬ ===== -->
+<!-- ===== КАЛЕНДАРЬ ===== -->
 <div id="tab-calendar" class="tab-content">
 
-    <!-- Вкладки игроков -->
     <div class="player-tabs">
-        <button class="player-btn mega active" onclick="switchPlayer('mega', this)">
+        <button class="player-btn mega" data-player="mega" onclick="switchPlayer('mega', this)">
             <span class="dot"></span> MEGATEM41K
         </button>
-        <button class="player-btn sergo" onclick="switchPlayer('sergo', this)">
+        <button class="player-btn sergo" data-player="sergo" onclick="switchPlayer('sergo', this)">
             <span class="dot"></span> Sergo Bulkin
         </button>
     </div>
 
-    <!-- Календарь MEGATEM41K -->
-    <div id="player-mega" class="player-view active">
+    <div id="player-mega" class="player-view">
         <div class="cal-header">
             <button onclick="changeMonth('mega', -1)">◀</button>
             <div class="cal-title" id="calTitle-mega"></div>
@@ -523,7 +632,6 @@
         <div class="calendar" id="calendar-mega"></div>
     </div>
 
-    <!-- Календарь Sergo Bulkin -->
     <div id="player-sergo" class="player-view">
         <div class="cal-header">
             <button onclick="changeMonth('sergo', -1)">◀</button>
@@ -534,12 +642,24 @@
     </div>
 
     <p class="hint">
-        📸 Кликни на квадрат под <b>Аликом</b> или <b>Жидким</b> — загрузится PNG или JPG.<br>
-        У <b>MEGATEM41K</b> и <b>Sergo Bulkin</b> — отдельные календари и отдельные скины.
+        📸 Кликни на квадрат → выбери PNG/JPG → нажми <b>💾 Сохранить</b>.<br>
+        Пока не нажал «Сохранить» — картинка в браузере, но не в общем хранилище.
     </p>
 </div>
 
-<!-- ===== МОДАЛКА ===== -->
+<!-- ===== ЧАТ ===== -->
+<div id="tab-chat" class="tab-content">
+    <div class="chat-container">
+        <div class="chat-header">💬 Общий чат</div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Напиши сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+    <p class="hint">👆 Чат сохраняется в браузере. У каждого — свой.</p>
+</div>
+
 <div class="modal" id="modal" onclick="closeModal(event)">
     <button class="modal-close" onclick="closeModal(event)">×</button>
     <img id="modalImg" src="" alt="">
@@ -547,19 +667,34 @@
 
 <script>
     // ==================================================
-    // ===== ГЛАВНЫЕ ВКЛАДКИ =====
+    // ===== 1. ЗАПОМИНАНИЕ АКТИВНОЙ ВКЛАДКИ =====
     // ==================================================
+    const ACTIVE_TAB_KEY = 'activeTab';
+
     function switchTab(name, btn) {
         document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById('tab-' + name).classList.add('active');
-        btn.classList.add('active');
+        if (btn) btn.classList.add('active');
+
+        localStorage.setItem(ACTIVE_TAB_KEY, name);
+
+        if (name === 'chat') {
+            const cm = document.getElementById('chatMessages');
+            if (cm) cm.scrollTop = cm.scrollHeight;
+        }
+    }
+
+    function restoreActiveTab() {
+        const saved = localStorage.getItem(ACTIVE_TAB_KEY) || 'accounting';
+        const btn = document.querySelector(`.tab-btn[data-tab="${saved}"]`);
+        if (btn) switchTab(saved, btn);
     }
 
     // ==================================================
-    // ===== УЧЁТ ХАЛЯВЫ =====
+    // ===== 2. УЧЁТ ХАЛЯВЫ =====
     // ==================================================
-    const STORAGE_KEY = 'halyava_table_v2';
+    const STORAGE_KEY = 'halyava_table_v3';
 
     function saveTable() {
         const table = document.getElementById('myTable');
@@ -609,6 +744,7 @@
                 });
                 tbody.appendChild(tr);
             });
+            attachDeleteButtons();
         } catch (e) {
             console.warn('Ошибка загрузки', e);
         }
@@ -632,6 +768,7 @@
         }
 
         tbody.appendChild(tr);
+        attachDeleteButtons();
         saveTable();
     }
 
@@ -679,21 +816,14 @@
     }
 
     // ==================================================
-    // ===== КАЛЕНДАРЬ =====
+    // ===== 3. КАЛЕНДАРЬ =====
     // ==================================================
-    const SKIN_STORAGE_KEY = 'skins_v3';
+    const SKIN_STORAGE_KEY = 'skins_v4';
 
-    // Структура:
-    // {
-    //   mega:  { "2025-01-15": { alik: "data:image...", zhidkiy: "data:image..." } },
-    //   sergo: { "2025-01-15": { alik: "data:image...", zhidkiy: "data:image..." } }
-    // }
     let skins = { mega: {}, sergo: {} };
+    let pendingSkins = {}; // несохранённые картинки
 
-    let currentDate = {
-        mega: new Date(),
-        sergo: new Date()
-    };
+    let currentDate = { mega: new Date(), sergo: new Date() };
     currentDate.mega.setDate(1);
     currentDate.sergo.setDate(1);
 
@@ -704,7 +834,6 @@
     function switchPlayer(playerKey, btn) {
         document.querySelectorAll('.player-view').forEach(v => v.classList.remove('active'));
         document.querySelectorAll('.player-btn').forEach(b => b.classList.remove('active'));
-
         document.getElementById('player-' + playerKey).classList.add('active');
         btn.classList.add('active');
     }
@@ -726,12 +855,16 @@
         try {
             localStorage.setItem(SKIN_STORAGE_KEY, JSON.stringify(skins));
         } catch(e) {
-            alert('Не хватило места в хранилище. Удали старые картинки.');
+            alert('Не хватило места. Удали старые картинки.');
         }
     }
 
     function dateKey(y, m, d) {
         return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    }
+
+    function pendingKey(playerKey, dateKeyStr, personKey) {
+        return playerKey + '|' + dateKeyStr + '|' + personKey;
     }
 
     function renderCalendar(playerKey) {
@@ -743,7 +876,6 @@
         const cal = document.getElementById('calendar-' + playerKey);
         cal.innerHTML = '';
 
-        // Дни недели
         DAYS.forEach(d => {
             const el = document.createElement('div');
             el.className = 'cal-dayname';
@@ -778,9 +910,7 @@
 
             const key = dateKey(y, m, d);
 
-            // Блок Алика
             cell.appendChild(createPersonBlock(playerKey, 'alik', 'Алик', key));
-            // Блок Жидкого
             cell.appendChild(createPersonBlock(playerKey, 'zhidkiy', 'Жидкий', key));
 
             cal.appendChild(cell);
@@ -799,7 +929,10 @@
         const box = document.createElement('div');
         box.className = 'skin-box';
 
-        const imgSrc = skins[playerKey][dateKeyStr] && skins[playerKey][dateKeyStr][personKey];
+        const pKey = pendingKey(playerKey, dateKeyStr, personKey);
+        const savedSrc = skins[playerKey][dateKeyStr] && skins[playerKey][dateKeyStr][personKey];
+        const pendingSrc = pendingSkins[pKey];
+        const imgSrc = pendingSrc || savedSrc;
 
         if (imgSrc) {
             box.classList.add('has-image');
@@ -812,22 +945,43 @@
             };
             box.appendChild(img);
 
-            const removeBtn = document.createElement('button');
-            removeBtn.className = 'skin-remove';
-            removeBtn.innerHTML = '×';
-            removeBtn.title = 'Удалить скин';
-            removeBtn.onclick = (e) => {
-                e.stopPropagation();
-                if (confirm('Удалить скин?')) {
-                    delete skins[playerKey][dateKeyStr][personKey];
-                    if (Object.keys(skins[playerKey][dateKeyStr]).length === 0) {
-                        delete skins[playerKey][dateKeyStr];
+            // Кнопка удаления — только для сохранённых
+            if (savedSrc) {
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'skin-remove';
+                removeBtn.innerHTML = '×';
+                removeBtn.title = 'Удалить скин';
+                removeBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (confirm('Удалить скин?')) {
+                        delete skins[playerKey][dateKeyStr][personKey];
+                        if (Object.keys(skins[playerKey][dateKeyStr]).length === 0) {
+                            delete skins[playerKey][dateKeyStr];
+                        }
+                        saveSkins();
+                        renderCalendar(playerKey);
                     }
+                };
+                box.appendChild(removeBtn);
+            }
+
+            // Кнопка Сохранить — если pending
+            if (pendingSrc) {
+                box.classList.add('pending');
+
+                const saveBtn = document.createElement('button');
+                saveBtn.className = 'skin-save';
+                saveBtn.innerHTML = '💾 Сохранить';
+                saveBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (!skins[playerKey][dateKeyStr]) skins[playerKey][dateKeyStr] = {};
+                    skins[playerKey][dateKeyStr][personKey] = pendingSrc;
+                    delete pendingSkins[pKey];
                     saveSkins();
                     renderCalendar(playerKey);
-                }
-            };
-            box.appendChild(removeBtn);
+                };
+                box.appendChild(saveBtn);
+            }
         } else {
             const ph = document.createElement('div');
             ph.className = 'placeholder';
@@ -842,7 +996,9 @@
         box.appendChild(input);
 
         box.onclick = (e) => {
-            if (e.target.tagName === 'IMG' || e.target.classList.contains('skin-remove')) return;
+            if (e.target.tagName === 'IMG' ||
+                e.target.classList.contains('skin-remove') ||
+                e.target.classList.contains('skin-save')) return;
             input.click();
         };
 
@@ -861,9 +1017,8 @@
 
         const reader = new FileReader();
         reader.onload = (e) => {
-            if (!skins[playerKey][dateKeyStr]) skins[playerKey][dateKeyStr] = {};
-            skins[playerKey][dateKeyStr][personKey] = e.target.result;
-            saveSkins();
+            const pKey = pendingKey(playerKey, dateKeyStr, personKey);
+            pendingSkins[pKey] = e.target.result;
             renderCalendar(playerKey);
         };
         reader.readAsDataURL(file);
@@ -889,19 +1044,113 @@
     });
 
     // ==================================================
-    // ===== ИНИЦИАЛИЗАЦИЯ =====
+    // ===== 4. ЧАТ =====
+    // ==================================================
+    const CHAT_STORAGE_KEY = 'chat_messages_v1';
+
+    let currentUser = localStorage.getItem('chatUser') || '';
+    if (!currentUser) {
+        currentUser = prompt('Как тебя зовут? (для чата)') || 'Гость';
+        localStorage.setItem('chatUser', currentUser);
+    }
+
+    let chatMessages = [];
+
+    function loadChat() {
+        const saved = localStorage.getItem(CHAT_STORAGE_KEY);
+        if (saved) {
+            try { chatMessages = JSON.parse(saved); } catch(e) { chatMessages = []; }
+        }
+        renderChat();
+    }
+
+    function saveChat() {
+        localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(chatMessages));
+    }
+
+    function renderChat() {
+        const container = document.getElementById('chatMessages');
+        container.innerHTML = '';
+
+        chatMessages.forEach(msg => {
+            const div = document.createElement('div');
+            div.className = 'chat-msg' + (msg.author === currentUser ? ' own' : '');
+
+            const author = document.createElement('div');
+            author.className = 'msg-author';
+            author.innerText = msg.author;
+
+            const text = document.createElement('div');
+            text.className = 'msg-text';
+            text.innerText = msg.text;
+
+            const time = document.createElement('div');
+            time.className = 'msg-time';
+            time.innerText = msg.time;
+
+            div.appendChild(author);
+            div.appendChild(text);
+            div.appendChild(time);
+            container.appendChild(div);
+        });
+
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('chatInput');
+        const text = input.value.trim();
+        if (!text) return;
+
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+
+        chatMessages.push({
+            author: currentUser,
+            text: text,
+            time: timeStr
+        });
+
+        input.value = '';
+        saveChat();
+        renderChat();
+    }
+
+    // ==================================================
+    // ===== 5. ИНИЦИАЛИЗАЦИЯ =====
     // ==================================================
     loadTable();
     attachDeleteButtons();
     loadSkins();
     renderCalendar('mega');
     renderCalendar('sergo');
+    loadChat();
+    restoreActiveTab();
 
-    document.getElementById('myTable').addEventListener('input', saveTable);
+    // Автосохранение таблицы с задержкой
+    let saveTimeout;
+    document.getElementById('myTable').addEventListener('input', () => {
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(saveTable, 500);
+    });
 
+    // Наблюдаем за изменениями в tbody
     const observer = new MutationObserver(() => attachDeleteButtons());
     observer.observe(document.getElementById('myTable').querySelector('tbody'), {
         childList: true
+    });
+
+    // Восстанавливаем выбранного игрока в календаре
+    const savedPlayer = localStorage.getItem('currentPlayer') || 'mega';
+    const playerBtn = document.querySelector(`.player-btn[data-player="${savedPlayer}"]`);
+    if (playerBtn) switchPlayer(savedPlayer, playerBtn);
+    else switchPlayer('mega', document.querySelector('.player-btn[data-player="mega"]'));
+
+    // Запоминаем выбранного игрока
+    document.querySelectorAll('.player-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            localStorage.setItem('currentPlayer', btn.dataset.player);
+        });
     });
 </script>
 
