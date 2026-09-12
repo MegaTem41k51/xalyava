@@ -20,7 +20,7 @@
 
     h1 { margin-bottom: 20px; font-size: 24px; text-align: center; }
 
-    /* ===== МОДАЛКА ВХОДА ===== */
+    /* ===== ЛОГИН ===== */
     .login-overlay {
         position: fixed;
         inset: 0;
@@ -31,9 +31,7 @@
         align-items: center;
         padding: 20px;
     }
-
     .login-overlay.hidden { display: none; }
-
     .login-box {
         background: #2a2a3e;
         border-radius: 16px;
@@ -43,10 +41,8 @@
         box-shadow: 0 20px 60px rgba(0,0,0,0.6);
         text-align: center;
     }
-
     .login-box h2 { font-size: 22px; margin-bottom: 8px; }
     .login-box p { color: #888; font-size: 14px; margin-bottom: 25px; }
-
     .login-box input {
         width: 100%;
         padding: 14px 16px;
@@ -57,14 +53,11 @@
         color: #fff;
         font-size: 15px;
         outline: none;
-        transition: 0.2s;
     }
-
     .login-box input:focus {
         border-color: #a78bfa;
         box-shadow: 0 0 0 3px rgba(167,139,250,0.2);
     }
-
     .login-box button {
         width: 100%;
         padding: 14px;
@@ -76,11 +69,8 @@
         font-weight: 700;
         cursor: pointer;
         margin-top: 8px;
-        transition: 0.2s;
     }
-
     .login-box button:hover { background: #5a3a7d; }
-
     .login-error {
         color: #ff6b6b;
         font-size: 13px;
@@ -88,7 +78,7 @@
         min-height: 18px;
     }
 
-    /* ===== ИНФО О ЮЗЕРЕ ===== */
+    /* ===== ЮЗЕР ===== */
     .user-bar {
         display: flex;
         align-items: center;
@@ -99,7 +89,6 @@
         margin-bottom: 15px;
         font-size: 14px;
     }
-
     .user-bar .avatar {
         width: 30px;
         height: 30px;
@@ -111,17 +100,14 @@
         font-size: 13px;
         color: #fff;
     }
-
     .user-bar .avatar.mega { background: linear-gradient(135deg, #ff6b6b, #c62828); }
     .user-bar .avatar.sergo { background: linear-gradient(135deg, #4fc3f7, #0288d1); }
-
     .user-bar .logout {
         padding: 5px 12px;
         font-size: 12px;
         background: #c62828;
         border-radius: 6px;
     }
-
     .user-bar .logout:hover { background: #9b1f1f; }
 
     /* ===== ВКЛАДКИ ===== */
@@ -136,7 +122,6 @@
         flex-wrap: wrap;
         justify-content: center;
     }
-
     .tab-btn {
         padding: 10px 24px;
         border: none;
@@ -148,22 +133,18 @@
         cursor: pointer;
         transition: 0.2s;
     }
-
     .tab-btn:hover { color: #fff; background: #35354d; }
-
     .tab-btn.active {
         background: #764ba2;
         color: #fff;
         box-shadow: 0 4px 12px rgba(118, 75, 162, 0.5);
     }
-
     .tab-content {
         display: none;
         width: 100%;
         flex-direction: column;
         align-items: center;
     }
-
     .tab-content.active { display: flex; }
 
     button {
@@ -179,7 +160,7 @@
     }
     button:hover { background: #5a3a7d; }
 
-    /* ===== ТАБЛИЦА УЧЁТА ===== */
+    /* ===== ТАБЛИЦА ===== */
     table.acc-table {
         border-collapse: collapse;
         background: #2a2a3e;
@@ -187,26 +168,21 @@
         border-radius: 8px;
         overflow: hidden;
     }
-
     table.acc-table th,
     table.acc-table td {
         border: 1px solid #444;
-        padding: 10px 12px;
-        min-width: 180px;
-        height: 60px;
-        vertical-align: top;
-        position: relative;
+        padding: 14px 18px;
+        min-width: 240px;
+        vertical-align: middle;
+        font-size: 15px;
     }
-
     table.acc-table th {
-        background: #764ba2;
         color: #fff;
         font-weight: 700;
         text-align: center;
         font-size: 15px;
-        padding: 14px 12px;
+        padding: 16px;
     }
-
     table.acc-table th:first-child { background: #5a3a7d; }
 
     table.acc-table th[data-owner="mega"] {
@@ -221,49 +197,75 @@
         font-weight: 700;
         color: #fff;
         text-align: center;
-        vertical-align: middle;
-        font-size: 15px;
-        min-width: 110px;
     }
 
-    table.acc-table td[contenteditable="true"] {
+    /* Редактируемая ячейка — с подписью и полем */
+    .cell-edit {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+    .cell-edit .label {
+        color: #a78bfa;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+    .cell-edit .label.alik { color: #4fc3f7; }
+    .cell-edit .label.zhidkiy { color: #81c784; }
+    .cell-edit .label.total { color: #f9a825; }
+
+    .price-input {
+        flex: 1;
+        background: transparent;
+        border: none;
         outline: none;
-        cursor: text;
-        font-size: 14px;
-        color: #e0e0e0;
-        white-space: pre-wrap;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 4px 6px;
+        border-radius: 4px;
         transition: background 0.15s;
+        min-width: 60px;
     }
-
-    table.acc-table td[contenteditable="true"]:hover { background: #35354d; }
-
-    table.acc-table td[contenteditable="true"]:focus {
+    .price-input:focus {
         background: #3d3d5c;
         box-shadow: inset 0 0 0 2px #a78bfa;
     }
-
-    table.acc-table td[contenteditable="true"]:empty::before {
-        content: attr(data-placeholder);
+    .price-input:disabled {
         color: #666;
+        cursor: not-allowed;
+    }
+    .price-input::placeholder {
+        color: #555;
         font-style: italic;
-        font-size: 12px;
+        font-weight: 400;
     }
 
-    table.acc-table td.locked {
+    td.locked-cell {
         background: #25253a !important;
-        color: #888 !important;
-        cursor: not-allowed !important;
+        opacity: 0.7;
+    }
+    td.locked-cell .label {
+        color: #555 !important;
     }
 
-    table.acc-table td.mine {
-        background: #2f2f4a;
+    /* Строка суммы */
+    tr.total-row td {
+        background: #3d3d5c !important;
+        border-top: 3px solid #f9a825;
     }
-    table.acc-table td.mine:focus {
-        background: #3d3d5c;
-        box-shadow: inset 0 0 0 2px #a78bfa;
+    tr.total-row td:first-child {
+        background: #4a3a6b !important;
     }
+    .total-value {
+        font-size: 20px;
+        font-weight: 800;
+        color: #f9a825;
+    }
+    .total-value.mega { color: #ff6b6b; }
+    .total-value.sergo { color: #4fc3f7; }
 
-    /* ===== ПЛАВАЮЩАЯ КНОПКА СОХРАНИТЬ ===== */
+    /* ===== КНОПКА СОХРАНИТЬ ===== */
     .save-float {
         position: fixed;
         bottom: 20px;
@@ -281,17 +283,10 @@
         display: none;
         transition: 0.2s;
     }
-
     .save-float:hover {
         background: linear-gradient(135deg, #ffb300, #f57c00);
         transform: translateY(-2px);
-        box-shadow: 0 12px 30px rgba(245, 124, 0, 0.7);
     }
-
-    .save-float:active {
-        transform: translateY(0);
-    }
-
     .save-float.visible { display: block; }
 
     .save-toast {
@@ -308,12 +303,10 @@
         display: none;
         box-shadow: 0 8px 25px rgba(0,0,0,0.5);
     }
-
     .save-toast.visible {
         display: block;
         animation: slideIn 0.3s ease;
     }
-
     @keyframes slideIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -329,7 +322,6 @@
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     }
-
     .player-btn {
         padding: 12px 28px;
         border: none;
@@ -344,37 +336,22 @@
         align-items: center;
         gap: 8px;
     }
-
     .player-btn:hover { color: #fff; background: #35354d; }
-
     .player-btn.active.mega {
         background: linear-gradient(135deg, #ff6b6b, #c62828);
         color: #fff;
-        box-shadow: 0 4px 15px rgba(198, 40, 40, 0.5);
     }
-
     .player-btn.active.sergo {
         background: linear-gradient(135deg, #4fc3f7, #0288d1);
         color: #fff;
-        box-shadow: 0 4px 15px rgba(2, 136, 209, 0.5);
     }
-
     .player-btn .dot {
-        width: 10px;
-        height: 10px;
+        width: 10px; height: 10px;
         border-radius: 50%;
         background: #ff6b6b;
     }
-
     .player-btn.sergo .dot { background: #4fc3f7; }
-
-    .player-view {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
+    .player-view { display: none; flex-direction: column; align-items: center; width: 100%; }
     .player-view.active { display: flex; }
 
     .cal-header {
@@ -385,25 +362,19 @@
         background: #2a2a3e;
         padding: 12px 20px;
         border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     }
-
     .cal-header button {
         padding: 8px 14px;
         font-size: 18px;
         background: #5a3a7d;
     }
-
     .cal-header button:hover { background: #764ba2; }
-
     .cal-title {
         font-size: 20px;
         font-weight: 700;
         min-width: 220px;
         text-align: center;
-        color: #fff;
     }
-
     .calendar {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
@@ -411,7 +382,6 @@
         width: 100%;
         max-width: 1100px;
     }
-
     .cal-dayname {
         text-align: center;
         font-weight: 700;
@@ -420,7 +390,6 @@
         font-size: 14px;
         text-transform: uppercase;
     }
-
     .cal-cell {
         background: #2a2a3e;
         border-radius: 10px;
@@ -429,13 +398,9 @@
         border: 1px solid #3a3a52;
         display: flex;
         flex-direction: column;
-        transition: 0.2s;
     }
-
-    .cal-cell:hover { border-color: #764ba2; }
     .cal-cell.empty { background: transparent; border: none; }
     .cal-cell.today { border: 2px solid #a78bfa; box-shadow: 0 0 15px rgba(167,139,250,0.4); }
-
     .cal-date {
         font-size: 14px;
         font-weight: 700;
@@ -443,7 +408,6 @@
         margin-bottom: 6px;
         text-align: right;
     }
-
     .cal-cell.today .cal-date {
         color: #fff;
         background: #764ba2;
@@ -454,7 +418,6 @@
         text-align: center;
         align-self: flex-end;
     }
-
     .cal-person {
         background: #35354d;
         border-radius: 8px;
@@ -464,19 +427,15 @@
         display: flex;
         flex-direction: column;
     }
-
     .cal-person:last-child { margin-bottom: 0; }
-
     .cal-person-name {
         font-size: 12px;
         font-weight: 700;
         margin-bottom: 4px;
         text-align: center;
     }
-
     .cal-person-name.alik { color: #4fc3f7; }
     .cal-person-name.zhidkiy { color: #81c784; }
-
     .skin-box {
         flex: 1;
         background: #1e1e2e;
@@ -489,53 +448,33 @@
         position: relative;
         overflow: hidden;
         min-height: 60px;
-        transition: 0.2s;
     }
-
     .skin-box:hover { border-color: #a78bfa; background: #25253a; }
-    .skin-box.pending { border: 2px solid #f9a825; }
-
-    .skin-box img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-        display: block;
-    }
-
+    .skin-box img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
     .skin-box .placeholder {
-        font-size: 10px;
-        color: #666;
-        text-align: center;
-        padding: 4px;
+        font-size: 10px; color: #666;
+        text-align: center; padding: 4px;
         pointer-events: none;
     }
-
     .skin-box input[type="file"] { display: none; }
-
     .skin-remove {
         position: absolute;
-        top: 2px;
-        right: 2px;
+        top: 2px; right: 2px;
         background: #c62828;
         color: #fff;
         border: none;
         border-radius: 50%;
-        width: 18px;
-        height: 18px;
+        width: 18px; height: 18px;
         font-size: 12px;
-        line-height: 1;
         cursor: pointer;
         padding: 0;
         z-index: 5;
         display: none;
     }
-
     .skin-box.has-image .skin-remove { display: block; }
-
     .skin-save {
         position: absolute;
-        bottom: 2px;
-        left: 50%;
+        bottom: 2px; left: 50%;
         transform: translateX(-50%);
         background: #f9a825;
         color: #000;
@@ -547,19 +486,12 @@
         cursor: pointer;
         display: none;
         z-index: 6;
-        white-space: nowrap;
     }
-
-    .skin-save:hover { background: #ffb300; }
+    .skin-box.pending { border: 2px solid #f9a825; }
     .skin-box.pending .skin-save { display: block; }
-
     .cal-cell.locked .skin-box {
         cursor: not-allowed;
         opacity: 0.7;
-    }
-    .cal-cell.locked .skin-box:hover {
-        border-color: #555;
-        background: #1e1e2e;
     }
 
     /* ===== ЧАТ ===== */
@@ -568,13 +500,12 @@
         max-width: 600px;
         background: #2a2a3e;
         border-radius: 12px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         overflow: hidden;
         display: flex;
         flex-direction: column;
         height: 70vh;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     }
-
     .chat-header {
         background: #764ba2;
         padding: 15px 20px;
@@ -584,9 +515,7 @@
         justify-content: space-between;
         align-items: center;
     }
-
     .chat-status { font-size: 12px; color: #e0d4ff; }
-
     .chat-messages {
         flex: 1;
         overflow-y: auto;
@@ -595,7 +524,6 @@
         flex-direction: column;
         gap: 10px;
     }
-
     .chat-msg {
         background: #35354d;
         padding: 10px 14px;
@@ -604,33 +532,17 @@
         word-wrap: break-word;
         align-self: flex-start;
     }
-
-    .chat-msg.own {
-        background: #764ba2;
-        align-self: flex-end;
-    }
-
+    .chat-msg.own { background: #764ba2; align-self: flex-end; }
     .chat-msg .msg-author {
-        font-size: 11px;
-        font-weight: 700;
-        margin-bottom: 4px;
-        color: #a78bfa;
+        font-size: 11px; font-weight: 700;
+        margin-bottom: 4px; color: #a78bfa;
     }
-
     .chat-msg.own .msg-author { color: #e0d4ff; }
-
-    .chat-msg .msg-text {
-        font-size: 14px;
-        line-height: 1.4;
-    }
-
+    .chat-msg .msg-text { font-size: 14px; line-height: 1.4; }
     .chat-msg .msg-time {
-        font-size: 10px;
-        color: #888;
-        margin-top: 4px;
-        text-align: right;
+        font-size: 10px; color: #888;
+        margin-top: 4px; text-align: right;
     }
-
     .chat-input-area {
         display: flex;
         gap: 8px;
@@ -638,7 +550,6 @@
         background: #35354d;
         border-top: 1px solid #444;
     }
-
     .chat-input-area input {
         flex: 1;
         padding: 12px 16px;
@@ -649,16 +560,12 @@
         font-size: 14px;
         outline: none;
     }
-
     .chat-input-area input::placeholder { color: #666; }
-
     .chat-input-area button {
         padding: 12px 20px;
         background: #764ba2;
         border-radius: 8px;
     }
-
-    .chat-input-area button:hover { background: #5a3a7d; }
 
     .hint {
         margin-top: 20px;
@@ -679,35 +586,26 @@
         align-items: center;
         padding: 20px;
     }
-
     .modal.active { display: flex; }
-
     .modal img {
         max-width: 90vw;
         max-height: 90vh;
         border-radius: 12px;
-        box-shadow: 0 0 40px rgba(167,139,250,0.5);
     }
-
     .modal-close {
         position: absolute;
-        top: 20px;
-        right: 30px;
-        font-size: 36px;
-        color: #fff;
+        top: 20px; right: 30px;
+        font-size: 36px; color: #fff;
         cursor: pointer;
-        background: none;
-        border: none;
-        padding: 0;
-        line-height: 1;
+        background: none; border: none;
+        padding: 0; line-height: 1;
     }
-
     .modal-close:hover { color: #a78bfa; }
 </style>
 </head>
 <body>
 
-<!-- МОДАЛКА ВХОДА -->
+<!-- ЛОГИН -->
 <div class="login-overlay" id="loginOverlay">
     <div class="login-box">
         <h2>🔒 Вход</h2>
@@ -719,7 +617,7 @@
     </div>
 </div>
 
-<!-- ОСНОВНОЙ САЙТ -->
+<!-- САЙТ -->
 <div id="mainSite" style="display:none; width:100%; flex-direction:column; align-items:center;">
 
 <h1>MEGATEM41K vs Sergo Bulkin</h1>
@@ -737,23 +635,31 @@
     <table id="myTable" class="acc-table">
         <thead>
             <tr>
-                <th>День / Кто</th>
+                <th>Кто</th>
                 <th data-owner="mega">MEGATEM41K</th>
                 <th data-owner="sergo">Sergo Bulkin</th>
             </tr>
         </thead>
         <tbody>
-            <tr><td>Пн</td><td contenteditable="true" data-placeholder="сумма"></td><td contenteditable="true" data-placeholder="сумма"></td></tr>
-            <tr><td>Вт</td><td contenteditable="true" data-placeholder="сумма"></td><td contenteditable="true" data-placeholder="сумма"></td></tr>
-            <tr><td>Ср</td><td contenteditable="true" data-placeholder="сумма"></td><td contenteditable="true" data-placeholder="сумма"></td></tr>
-            <tr><td>Чт</td><td contenteditable="true" data-placeholder="сумма"></td><td contenteditable="true" data-placeholder="сумма"></td></tr>
-            <tr><td>Пт</td><td contenteditable="true" data-placeholder="сумма"></td><td contenteditable="true" data-placeholder="сумма"></td></tr>
-            <tr><td>Сб</td><td contenteditable="true" data-placeholder="сумма"></td><td contenteditable="true" data-placeholder="сумма"></td></tr>
-            <tr><td>Вс</td><td contenteditable="true" data-placeholder="сумма"></td><td contenteditable="true" data-placeholder="сумма"></td></tr>
+            <tr data-row="alik">
+                <td>Алик</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr data-row="zhidkiy">
+                <td>Жидкий</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="total-row">
+                <td>Сумма</td>
+                <td><span class="total-value mega" id="total-mega">0 ₽</span></td>
+                <td><span class="total-value sergo" id="total-sergo">0 ₽</span></td>
+            </tr>
         </tbody>
     </table>
 
-    <p class="hint">👆 Пиши в свою колонку. Чужую видишь, но менять не можешь.</p>
+    <p class="hint">👆 Пиши свою цену после тире. Чужое видишь, но менять не можешь. Сумма считается автоматически.</p>
 </div>
 
 <!-- КАЛЕНДАРЬ -->
@@ -785,9 +691,7 @@
         <div class="calendar" id="calendar-sergo"></div>
     </div>
 
-    <p class="hint">
-        📸 Свой календарь — можно менять. Чужой — только смотреть.
-    </p>
+    <p class="hint">📸 Свой календарь — можно менять. Чужой — только смотреть.</p>
 </div>
 
 <!-- ЧАТ -->
@@ -813,7 +717,7 @@
 
 </div>
 
-<!-- ПЛАВАЮЩАЯ КНОПКА СОХРАНИТЬ -->
+<!-- КНОПКА СОХРАНИТЬ -->
 <button class="save-float" id="saveFloat" onclick="manualSave()">💾 Сохранить</button>
 <div class="save-toast" id="saveToast">✅ Сохранено!</div>
 
@@ -854,23 +758,18 @@
         const errEl = document.getElementById('loginError');
 
         const acc = ACCOUNTS[login];
-
         if (!acc) { errEl.innerText = 'Неверный логин'; return; }
         if (acc.password !== password) { errEl.innerText = 'Неверный пароль'; return; }
 
         currentUser = { login: login, key: acc.key };
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
         errEl.innerText = '';
         showMainSite();
     };
 
     window.logout = function() {
-        if (hasUnsavedChanges) {
-            if (!confirm('У тебя есть несохранённые изменения. Выйти?')) return;
-        } else {
-            if (!confirm('Выйти?')) return;
-        }
+        const msg = hasUnsavedChanges ? 'Есть несохранённые изменения. Выйти?' : 'Выйти?';
+        if (!confirm(msg)) return;
         localStorage.removeItem('currentUser');
         location.reload();
     };
@@ -927,9 +826,7 @@
         document.getElementById('tab-' + name).classList.add('active');
         if (btn) btn.classList.add('active');
         localStorage.setItem(ACTIVE_TAB_KEY, name);
-
         updateSaveButtonVisibility();
-
         if (name === 'chat') {
             const cm = document.getElementById('chatMessages');
             if (cm) cm.scrollTop = cm.scrollHeight;
@@ -945,7 +842,6 @@
     function updateSaveButtonVisibility() {
         const saveFloat = document.getElementById('saveFloat');
         const activeTab = localStorage.getItem(ACTIVE_TAB_KEY) || 'accounting';
-
         if (activeTab === 'accounting' && hasUnsavedChanges) {
             saveFloat.classList.add('visible');
         } else {
@@ -954,170 +850,150 @@
     }
 
     // ==================================================
-    // ПРАВА ДОСТУПА В ТАБЛИЦЕ
+    // УЧЁТ — новая структура
     // ==================================================
-    function applyPermissionsToTable() {
-        const table = document.getElementById('myTable');
-        if (!currentUser) return;
-        const myKey = currentUser.key;
+    // Структура данных:
+    // {
+    //   mega: { alik: "500", zhidkiy: "300" },
+    //   sergo: { alik: "200", zhidkiy: "" }
+    // }
 
-        const headers = table.querySelectorAll('thead th');
-
-        table.querySelectorAll('tbody tr').forEach(tr => {
-            const cells = tr.querySelectorAll('td');
-            cells.forEach((td, i) => {
-                if (i === 0) return;
-                const header = headers[i];
-                if (!header) return;
-                const owner = header.dataset.owner;
-
-                if (owner === myKey) {
-                    td.classList.add('mine');
-                    td.classList.remove('locked');
-                    td.contentEditable = "true";
-                    td.setAttribute('data-placeholder', 'сумма');
-                } else if (owner) {
-                    td.classList.add('locked');
-                    td.classList.remove('mine');
-                    td.contentEditable = "false";
-                    td.removeAttribute('data-placeholder');
-                }
-            });
-        });
-    }
-
-    // ==================================================
-    // УЧЁТ
-    // ==================================================
     const ACC_DOC = 'accounting';
-    const ACC_FIELD = 'table';
+    const ACC_FIELD = 'prices';
 
-    const DEFAULT_HEAD = ['День / Кто', 'MEGATEM41K', 'Sergo Bulkin'];
-    const DEFAULT_BODY = [
-        ['Пн', '', ''],
-        ['Вт', '', ''],
-        ['Ср', '', ''],
-        ['Чт', '', ''],
-        ['Пт', '', ''],
-        ['Сб', '', ''],
-        ['Вс', '', '']
-    ];
+    let tableData = {
+        mega: { alik: '', zhidkiy: '' },
+        sergo: { alik: '', zhidkiy: '' }
+    };
 
-    function isTableValid(data) {
-        if (!data || !data.head || !data.body) return false;
-        if (!Array.isArray(data.head) || !Array.isArray(data.body)) return false;
-        if (data.head.length < 3) return false;
-        if (data.body.length < 7) return false;
-        // Проверяем что каждый row — массив с хотя бы 3 элементами
-        for (const row of data.body) {
-            if (!Array.isArray(row) || row.length < 3) return false;
-        }
-        return true;
+    function renderTable() {
+        const table = document.getElementById('myTable');
+
+        // Проходим по 2 строкам: alik, zhidkiy
+        ['alik', 'zhidkiy'].forEach(personKey => {
+            const tr = table.querySelector(`tr[data-row="${personKey}"]`);
+            ['mega', 'sergo'].forEach((ownerKey, idx) => {
+                const td = tr.cells[idx + 1]; // 0 — день, 1 — mega, 2 — sergo
+                const canEdit = currentUser && currentUser.key === ownerKey;
+                const value = tableData[ownerKey][personKey] || '';
+
+                td.innerHTML = '';
+                td.classList.toggle('locked-cell', !canEdit);
+
+                const wrap = document.createElement('div');
+                wrap.className = 'cell-edit';
+
+                const label = document.createElement('span');
+                label.className = 'label ' + personKey;
+                label.innerText = (personKey === 'alik' ? 'Алик' : 'Жидкий') + ' — ';
+                wrap.appendChild(label);
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'price-input';
+                input.placeholder = 'цена';
+                input.value = value;
+                input.disabled = !canEdit;
+                input.dataset.owner = ownerKey;
+                input.dataset.person = personKey;
+                input.addEventListener('input', onPriceInput);
+                wrap.appendChild(input);
+
+                td.appendChild(wrap);
+            });
+        });
+
+        updateTotals();
     }
 
-    function renderTable(data) {
-        const table = document.getElementById('myTable');
-        const thead = table.querySelector('thead tr');
-        thead.innerHTML = '';
-        data.head.forEach((text, i) => {
-            const th = document.createElement('th');
-            th.innerText = text;
-            if (i === 1) th.dataset.owner = 'mega';
-            if (i === 2) th.dataset.owner = 'sergo';
-            thead.appendChild(th);
-        });
+    function onPriceInput(e) {
+        const input = e.target;
+        const ownerKey = input.dataset.owner;
+        const personKey = input.dataset.person;
 
-        const tbody = table.querySelector('tbody');
-        tbody.innerHTML = '';
-        data.body.forEach(rowData => {
-            const tr = document.createElement('tr');
-            rowData.forEach((text, i) => {
-                const td = document.createElement('td');
-                td.innerText = text;
-                tr.appendChild(td);
-            });
-            tbody.appendChild(tr);
-        });
+        // Обновляем локальные данные
+        tableData[ownerKey][personKey] = input.value;
 
-        applyPermissionsToTable();
+        updateTotals();
+
+        // Отмечаем, что есть несохранённые изменения (только если правим свою колонку)
+        if (currentUser && currentUser.key === ownerKey) {
+            hasUnsavedChanges = true;
+            updateSaveButtonVisibility();
+        }
+    }
+
+    function parsePrice(str) {
+        if (!str) return 0;
+        // Убираем всё кроме цифр, точки, запятой, минуса
+        const cleaned = String(str).replace(/[^\d.,-]/g, '').replace(',', '.');
+        const n = parseFloat(cleaned);
+        return isNaN(n) ? 0 : n;
+    }
+
+    function updateTotals() {
+        const totalMega = parsePrice(tableData.mega.alik) + parsePrice(tableData.mega.zhidkiy);
+        const totalSergo = parsePrice(tableData.sergo.alik) + parsePrice(tableData.sergo.zhidkiy);
+
+        document.getElementById('total-mega').innerText = totalMega + ' ₽';
+        document.getElementById('total-sergo').innerText = totalSergo + ' ₽';
     }
 
     async function loadTable() {
-        let data = { head: [...DEFAULT_HEAD], body: DEFAULT_BODY.map(r => [...r]) };
-
         try {
             const docRef = doc(db, 'data', ACC_DOC);
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists() && docSnap.data()[ACC_FIELD]) {
                 const cloud = docSnap.data()[ACC_FIELD];
-
-                if (isTableValid(cloud)) {
-                    data = cloud;
-                } else {
-                    console.warn('Данные в облаке битые — восстанавливаю дефолт');
-                    await setDoc(doc(db, 'data', ACC_DOC), { [ACC_FIELD]: data }, { merge: true });
+                // Проверка структуры
+                if (cloud && cloud.mega && cloud.sergo) {
+                    tableData.mega = {
+                        alik: cloud.mega.alik || '',
+                        zhidkiy: cloud.mega.zhidkiy || ''
+                    };
+                    tableData.sergo = {
+                        alik: cloud.sergo.alik || '',
+                        zhidkiy: cloud.sergo.zhidkiy || ''
+                    };
                 }
-            } else {
-                // Пусто — записываем дефолт
-                await setDoc(doc(db, 'data', ACC_DOC), { [ACC_FIELD]: data }, { merge: true });
             }
         } catch (e) {
-            console.warn('Ошибка загрузки, использую дефолт', e);
+            console.warn('Ошибка загрузки', e);
         }
 
-        renderTable(data);
+        renderTable();
     }
 
     async function saveTable() {
-        const table = document.getElementById('myTable');
         if (!currentUser) return;
-        const myKey = currentUser.key;
 
-        // Читаем облако
-        let cloudData = null;
+        // Читаем облако, обновляем только свою часть
+        let cloud = {
+            mega: { alik: '', zhidkiy: '' },
+            sergo: { alik: '', zhidkiy: '' }
+        };
+
         try {
             const docRef = doc(db, 'data', ACC_DOC);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists() && docSnap.data()[ACC_FIELD]) {
-                cloudData = docSnap.data()[ACC_FIELD];
+                const c = docSnap.data()[ACC_FIELD];
+                if (c && c.mega && c.sergo) {
+                    cloud.mega = { alik: c.mega.alik || '', zhidkiy: c.mega.zhidkiy || '' };
+                    cloud.sergo = { alik: c.sergo.alik || '', zhidkiy: c.sergo.zhidkiy || '' };
+                }
             }
         } catch(e) {}
 
-        // Локальные данные
-        const localData = { head: [], body: [] };
-        table.querySelectorAll('thead th').forEach(th => localData.head.push(th.innerText));
-        table.querySelectorAll('tbody tr').forEach(tr => {
-            const row = [];
-            tr.querySelectorAll('td').forEach(td => row.push(td.innerText));
-            localData.body.push(row);
-        });
-
-        // Индекс моей колонки
-        const headers = table.querySelectorAll('thead th');
-        let myColIndex = -1;
-        headers.forEach((th, i) => {
-            if (th.dataset.owner === myKey) myColIndex = i;
-        });
-
-        if (myColIndex === -1) return;
-
-        let finalData = { head: [], body: [] };
-
-        if (isTableValid(cloudData) && cloudData.body.length === localData.body.length) {
-            finalData.head = localData.head;
-            finalData.body = cloudData.body.map((row, ri) => {
-                const newRow = [...row];
-                newRow[myColIndex] = localData.body[ri][myColIndex];
-                newRow[0] = localData.body[ri][0];
-                return newRow;
-            });
-        } else {
-            finalData = localData;
-        }
+        // Обновляем только свою колонку
+        cloud[currentUser.key] = {
+            alik: tableData[currentUser.key].alik,
+            zhidkiy: tableData[currentUser.key].zhidkiy
+        };
 
         try {
-            await setDoc(doc(db, 'data', ACC_DOC), { [ACC_FIELD]: finalData }, { merge: true });
+            await setDoc(doc(db, 'data', ACC_DOC), { [ACC_FIELD]: cloud }, { merge: true });
         } catch (e) {
             console.warn('Ошибка сохранения', e);
         }
@@ -1267,20 +1143,15 @@
 
         if (imgSrc) {
             box.classList.add('has-image');
-
             const img = document.createElement('img');
             img.src = imgSrc;
-            img.onclick = (e) => {
-                e.stopPropagation();
-                openModal(img.src);
-            };
+            img.onclick = (e) => { e.stopPropagation(); openModal(img.src); };
             box.appendChild(img);
 
             if (savedSrc && canEdit) {
                 const removeBtn = document.createElement('button');
                 removeBtn.className = 'skin-remove';
                 removeBtn.innerHTML = '×';
-                removeBtn.title = 'Удалить скин';
                 removeBtn.onclick = (e) => {
                     e.stopPropagation();
                     if (confirm('Удалить скин?')) {
@@ -1296,7 +1167,6 @@
 
             if (pendingSrc && canEdit) {
                 box.classList.add('pending');
-
                 const saveBtn = document.createElement('button');
                 saveBtn.className = 'skin-save';
                 saveBtn.innerHTML = '💾 Сохранить';
@@ -1346,27 +1216,14 @@
                 img.onload = () => {
                     const canvas = document.createElement('canvas');
                     let w = img.width, h = img.height;
-
-                    if (w > h && w > maxSize) {
-                        h = Math.round(h * maxSize / w);
-                        w = maxSize;
-                    } else if (h > maxSize) {
-                        w = Math.round(w * maxSize / h);
-                        h = maxSize;
-                    }
-
-                    canvas.width = w;
-                    canvas.height = h;
+                    if (w > h && w > maxSize) { h = Math.round(h * maxSize / w); w = maxSize; }
+                    else if (h > maxSize) { w = Math.round(w * maxSize / h); h = maxSize; }
+                    canvas.width = w; canvas.height = h;
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, w, h);
-
-                    let result;
-                    if (file.type === 'image/png') {
-                        result = canvas.toDataURL('image/png');
-                    } else {
-                        result = canvas.toDataURL('image/jpeg', quality);
-                    }
-
+                    let result = (file.type === 'image/png')
+                        ? canvas.toDataURL('image/png')
+                        : canvas.toDataURL('image/jpeg', quality);
                     resolve(result);
                 };
                 img.src = e.target.result;
@@ -1378,14 +1235,8 @@
     async function handleFileUpload(event, playerKey, personKey, dateKeyStr) {
         const file = event.target.files[0];
         if (!file) return;
-
-        if (!file.type.startsWith('image/')) {
-            alert('Только картинки (PNG, JPG)');
-            return;
-        }
-
+        if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
         const compressed = await compressImage(file, 512, 0.8);
-
         const pKey = pendingKey(playerKey, dateKeyStr, personKey);
         pendingSkins[pKey] = compressed;
         renderCalendar(playerKey);
@@ -1406,9 +1257,7 @@
         document.getElementById('modal').classList.remove('active');
     };
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
-    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
     // ==================================================
     // ЧАТ
@@ -1421,10 +1270,7 @@
         const q = query(collection(db, 'chat'), orderBy('timestamp', 'asc'));
         onSnapshot(q, (snapshot) => {
             chatMessages.innerHTML = '';
-            snapshot.forEach((d) => {
-                const msg = d.data();
-                addMessageToDOM(msg);
-            });
+            snapshot.forEach((d) => addMessageToDOM(d.data()));
             chatMessages.scrollTop = chatMessages.scrollHeight;
             chatStatus.innerText = '🟢 онлайн';
         }, (error) => {
@@ -1436,72 +1282,39 @@
     function addMessageToDOM(msg) {
         const div = document.createElement('div');
         div.className = 'chat-msg' + (currentUser && msg.author === currentUser.login ? ' own' : '');
-
         const author = document.createElement('div');
         author.className = 'msg-author';
         author.innerText = msg.author;
-
         const text = document.createElement('div');
         text.className = 'msg-text';
         text.innerText = msg.text;
-
         const time = document.createElement('div');
         time.className = 'msg-time';
         if (msg.timestamp && msg.timestamp.toDate) {
             const t = msg.timestamp.toDate();
             time.innerText = t.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
         }
-
-        div.appendChild(author);
-        div.appendChild(text);
-        div.appendChild(time);
+        div.appendChild(author); div.appendChild(text); div.appendChild(time);
         chatMessages.appendChild(div);
     }
 
     window.sendMessage = async function() {
         const text = chatInput.value.trim();
         if (!text || !currentUser) return;
-
         chatInput.value = '';
-
         try {
             await addDoc(collection(db, 'chat'), {
                 author: currentUser.login,
                 text: text,
                 timestamp: serverTimestamp()
             });
-        } catch (e) {
-            console.warn('Ошибка отправки', e);
-        }
+        } catch (e) { console.warn('Ошибка отправки', e); }
     };
 
     // ==================================================
     // ИНИЦИАЛИЗАЦИЯ
     // ==================================================
     restoreSession();
-
-    document.getElementById('myTable').addEventListener('input', () => {
-        const table = document.getElementById('myTable');
-        if (!currentUser) return;
-        const myKey = currentUser.key;
-
-        const headers = table.querySelectorAll('thead th');
-        let myColIndex = -1;
-        headers.forEach((th, i) => {
-            if (th.dataset.owner === myKey) myColIndex = i;
-        });
-
-        if (myColIndex === -1) return;
-
-        let hasContent = false;
-        table.querySelectorAll('tbody tr').forEach(tr => {
-            const td = tr.cells[myColIndex];
-            if (td && td.innerText.trim() !== '') hasContent = true;
-        });
-
-        hasUnsavedChanges = hasContent;
-        updateSaveButtonVisibility();
-    });
 
     window.addEventListener('beforeunload', (e) => {
         if (hasUnsavedChanges) {
