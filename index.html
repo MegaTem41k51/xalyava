@@ -348,6 +348,7 @@
         background: #2a2a3e; border-radius: 12px;
         overflow: hidden; display: flex; flex-direction: column;
         height: 70vh; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        position: relative;
     }
     .chat-header {
         background: #764ba2; padding: 15px 20px;
@@ -386,7 +387,17 @@
         margin-bottom: 4px; color: #a78bfa;
     }
     .chat-msg.own .msg-author { color: #e0d4ff; }
-    .chat-msg .msg-text { font-size: 14px; line-height: 1.4; }
+    .chat-msg .msg-text { font-size: 14px; line-height: 1.4; word-break: break-word; }
+
+    /* Стикер в чате */
+    .chat-msg .msg-sticker {
+        max-width: 160px;
+        max-height: 160px;
+        display: block;
+        margin-top: 4px;
+        border-radius: 8px;
+    }
+
     .chat-msg .msg-time {
         font-size: 10px; color: #888;
         margin-top: 4px; text-align: right;
@@ -412,6 +423,7 @@
     .chat-input-area {
         display: flex; gap: 8px; padding: 12px;
         background: #35354d; border-top: 1px solid #444;
+        align-items: center;
     }
     .chat-input-area input {
         flex: 1; padding: 12px 16px;
@@ -420,14 +432,100 @@
         font-size: 14px; outline: none;
     }
     .chat-input-area input::placeholder { color: #666; }
-    .chat-input-area button {
-        padding: 12px 20px; background: #764ba2; border-radius: 8px;
+
+    .sticker-btn {
+        width: 44px; height: 44px;
+        border-radius: 50%;
+        background: #4a3a6b;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: 0;
+        transition: 0.2s;
+    }
+    .sticker-btn:hover { background: #5a3a7d; transform: scale(1.05); }
+
+    /* ===== ПАНЕЛЬ СТИКЕРОВ ===== */
+    .sticker-panel {
+        position: absolute;
+        bottom: 76px;
+        left: 12px;
+        right: 12px;
+        max-height: 320px;
+        background: #2f2f44;
+        border: 1px solid #4a4a66;
+        border-radius: 12px;
+        padding: 12px;
+        z-index: 50;
+        display: none;
+        flex-direction: column;
+        box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+    }
+    .sticker-panel.open { display: flex; }
+
+    .sticker-panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+        font-size: 13px;
+        color: #888;
+        font-weight: 600;
+    }
+    .sticker-panel-close {
+        background: transparent;
+        border: none;
+        color: #aaa;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 0;
+        width: 24px;
+        height: 24px;
+    }
+    .sticker-panel-close:hover { color: #fff; }
+
+    .sticker-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 8px;
+        overflow-y: auto;
+        padding: 4px;
+        flex: 1;
     }
 
-    .hint {
-        margin-top: 20px; color: #888;
-        font-size: 13px; text-align: center;
-        max-width: 700px; line-height: 1.6;
+    .sticker-item {
+        width: 100%;
+        aspect-ratio: 1;
+        background: #1e1e2e;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border: 2px solid transparent;
+        transition: 0.15s;
+    }
+    .sticker-item:hover {
+        border-color: #a78bfa;
+        transform: scale(1.05);
+    }
+    .sticker-item img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .sticker-empty {
+        color: #666;
+        text-align: center;
+        padding: 30px 10px;
+        font-size: 13px;
+        grid-column: 1 / -1;
     }
 
     /* ===== АДМИНКА ===== */
@@ -490,9 +588,7 @@
         transition: 0.2s;
     }
     .admin-btn:hover { background: #5a3a7d; }
-    .admin-btn.danger {
-        background: #c62828;
-    }
+    .admin-btn.danger { background: #c62828; }
     .admin-btn.danger:hover { background: #9b1f1f; }
 
     .admin-msg {
@@ -503,7 +599,6 @@
     .admin-msg.ok { color: #81c784; }
     .admin-msg.err { color: #ff6b6b; }
 
-    /* Аватарки в админке */
     .avatar-edit {
         display: flex;
         align-items: center;
@@ -521,6 +616,51 @@
         border: 3px solid #444;
     }
     .avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ===== СТИКЕРЫ В АДМИНКЕ ===== */
+    .sticker-admin-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 10px;
+        margin-top: 12px;
+    }
+    .sticker-admin-item {
+        position: relative;
+        aspect-ratio: 1;
+        background: #1e1e2e;
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #3a3a52;
+    }
+    .sticker-admin-item img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    .sticker-admin-remove {
+        position: absolute;
+        top: 3px; right: 3px;
+        background: #c62828;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 22px; height: 22px;
+        font-size: 13px;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+        z-index: 2;
+    }
+    .sticker-admin-remove:hover { background: #9b1f1f; }
+
+    .sticker-count {
+        font-size: 12px;
+        color: #888;
+        margin-top: 6px;
+    }
 
     .modal {
         display: none; position: fixed; inset: 0;
@@ -559,11 +699,10 @@
 <div class="user-bar" id="userBar"></div>
 
 <div class="tabs">
-    <button class="tab-btn active" data-tab="accounting" onclick="switchTab('accounting', this)">📊 Учёт халявы</button>
-    <button class="tab-btn" data-tab="calendar" onclick="switchTab('calendar', this)">📅 Календарь скинов</button>
-    <button class="tab-btn" data-tab="chat" onclick="switchTab('chat', this)">💬 Чат</button>
-    <!-- Кнопка админки показывается только для mega -->
-    <button class="tab-btn admin-tab" data-tab="admin" id="adminTabBtn" style="display:none;" onclick="switchTab('admin', this)">🛠 Админка</button>
+    <button class="tab-btn active" data-tab="accounting" onclick="switchTab('accounting', this)">Учёт халявы</button>
+    <button class="tab-btn" data-tab="calendar" onclick="switchTab('calendar', this)">Календарь скинов</button>
+    <button class="tab-btn" data-tab="chat" onclick="switchTab('chat', this)">Чат</button>
+    <button class="tab-btn admin-tab" data-tab="admin" id="adminTabBtn" style="display:none;" onclick="switchTab('admin', this)">Админка</button>
 </div>
 
 <!-- УЧЁТ -->
@@ -578,7 +717,7 @@
         </thead>
         <tbody id="tableBody"></tbody>
     </table>
-    <p class="hint">👆 Пиши цену Алика и Жидкого. Чужое видишь, но менять не можешь. Сумма считается автоматически.</p>
+    <p class="hint">Сумма считается автоматически.</p>
 </div>
 
 <!-- КАЛЕНДАРЬ -->
@@ -607,7 +746,7 @@
         </div>
         <div class="calendar" id="calendar-sergo"></div>
     </div>
-    <p class="hint">📸 Свой календарь — можно менять. Чужой — только смотреть.</p>
+    <p class="hint"></p>
 </div>
 
 <!-- ЧАТ -->
@@ -618,12 +757,23 @@
             <span class="chat-status" id="chatStatus">подключение...</span>
         </div>
         <div class="chat-messages" id="chatMessages"></div>
+
+        <!-- Панель стикеров -->
+        <div class="sticker-panel" id="stickerPanel">
+            <div class="sticker-panel-header">
+                <span>Стикеры</span>
+                <button class="sticker-panel-close" onclick="toggleStickerPanel()">×</button>
+            </div>
+            <div class="sticker-grid" id="stickerGrid"></div>
+        </div>
+
         <div class="chat-input-area">
+            <button class="sticker-btn" onclick="toggleStickerPanel()" title="Стикеры">😀</button>
             <input type="text" id="chatInput" placeholder="Напиши сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
             <button onclick="sendMessage()">➤</button>
         </div>
     </div>
-    <p class="hint">👆 Чат общий. Все сообщения видны обоим.</p>
+    <p class="hint"></p>
 </div>
 
 <!-- АДМИНКА -->
@@ -692,6 +842,23 @@
             </p>
         </div>
 
+        <!-- Управление стикерами -->
+        <div class="admin-card">
+            <h3>😀 Стикеры</h3>
+            <p style="font-size:13px;color:#888;margin-bottom:12px;">
+                Загружай PNG или JPG — до 30 штук. Стикеры будут доступны в чате по кнопке 😀 рядом с полем ввода.
+            </p>
+
+            <div class="admin-btn-row">
+                <button class="admin-btn" onclick="document.getElementById('stickerFile').click()">📷 Загрузить стикер</button>
+                <input type="file" id="stickerFile" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none;" onchange="uploadSticker(event)">
+            </div>
+
+            <div class="sticker-count" id="stickerCount"></div>
+
+            <div class="sticker-admin-grid" id="stickerAdminGrid"></div>
+        </div>
+
     </div>
 </div>
 
@@ -726,18 +893,15 @@
     const db = getFirestore(app);
 
     // ==================================================
-    // АККАУНТЫ — грузятся из Firebase (чтобы можно было менять)
+    // АККАУНТЫ
     // ==================================================
-    // Резервная копия на случай если Firebase недоступен
     let ACCOUNTS = {
         'Sergo Bulkin': { password: 'sosyXUI322', key: 'sergo' },
         'MEGATEM41K':    { password: '322sosyXUI322', key: 'mega' }
     };
-
-    // Аватары: { mega: "data:image...", sergo: "data:image..." }
     let AVATARS = { mega: '', sergo: '' };
+    let STICKERS = []; // массив data:image строк
 
-    // Загрузка аккаунтов и аватаров из Firebase
     async function loadAccounts() {
         try {
             const docRef = doc(db, 'data', 'accounts');
@@ -746,9 +910,9 @@
                 const data = docSnap.data();
                 if (data.accounts) ACCOUNTS = data.accounts;
                 if (data.avatars) AVATARS = data.avatars;
+                if (data.stickers) STICKERS = data.stickers;
             } else {
-                // Первый запуск — сохраняем дефолтные
-                await setDoc(docRef, { accounts: ACCOUNTS, avatars: AVATARS });
+                await setDoc(docRef, { accounts: ACCOUNTS, avatars: AVATARS, stickers: [] });
             }
         } catch(e) {
             console.warn('Не удалось загрузить аккаунты, использую дефолт', e);
@@ -759,11 +923,27 @@
         try {
             await setDoc(doc(db, 'data', 'accounts'), {
                 accounts: ACCOUNTS,
-                avatars: AVATARS
+                avatars: AVATARS,
+                stickers: STICKERS
             });
         } catch(e) {
             console.warn('Ошибка сохранения аккаунтов', e);
         }
+    }
+
+    // Подписка на стикеры в реальном времени
+    function subscribeStickers() {
+        const docRef = doc(db, 'data', 'accounts');
+        onSnapshot(docRef, (docSnap) => {
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                if (data.stickers) {
+                    STICKERS = data.stickers;
+                    renderStickerAdminGrid();
+                    renderStickerPanel();
+                }
+            }
+        });
     }
 
     // ==================================================
@@ -802,9 +982,7 @@
         document.getElementById('mainSite').style.display = 'flex';
 
         renderUserBar();
-        updateChatAvatarsInDOM();
 
-        // Показать вкладку админки только для mega
         if (currentUser.key === 'mega') {
             document.getElementById('adminTabBtn').style.display = '';
             loadAdminFields();
@@ -818,6 +996,10 @@
         restoreActiveTab();
         renderCalendar('mega');
         renderCalendar('sergo');
+
+        // Стикеры
+        renderStickerAdminGrid();
+        renderStickerPanel();
     }
 
     function renderUserBar() {
@@ -836,20 +1018,6 @@
             <span>${currentUser.login}</span>
             <button class="logout" onclick="logout()">Выйти</button>
         `;
-    }
-
-    function updateChatAvatarsInDOM() {
-        // При смене аватара обновляет все иконки в чате
-        document.querySelectorAll('.chat-msg .msg-avatar').forEach(el => {
-            const author = el.dataset.author;
-            const key = findUserKeyByLogin(author);
-            if (!key) return;
-            const av = AVATARS[key];
-            if (av) {
-                el.innerHTML = `<img src="${av}">`;
-                el.style.background = 'none';
-            }
-        });
     }
 
     function findUserKeyByLogin(login) {
@@ -894,6 +1062,10 @@
         localStorage.setItem(ACTIVE_TAB_KEY, name);
         updateSaveButtonVisibility();
 
+        // Закрываем панель стикеров при переключении
+        const sp = document.getElementById('stickerPanel');
+        if (sp) sp.classList.remove('open');
+
         if (name === 'admin') loadAdminFields();
 
         if (name === 'chat') {
@@ -904,7 +1076,6 @@
 
     function restoreActiveTab() {
         const saved = localStorage.getItem(ACTIVE_TAB_KEY) || 'accounting';
-        // Защита: если сохранилась admin, но мы не mega
         if (saved === 'admin' && (!currentUser || currentUser.key !== 'mega')) {
             const btn = document.querySelector('.tab-btn[data-tab="accounting"]');
             if (btn) switchTab('accounting', btn);
@@ -916,7 +1087,7 @@
 
     function updateSaveButtonVisibility() {
         const saveFloat = document.getElementById('saveFloat');
-        const activeTab = localStorage.getItem('ACTIVE_TAB_KEY') || 'accounting';
+        const activeTab = localStorage.getItem(ACTIVE_TAB_KEY) || 'accounting';
         if (activeTab === 'accounting' && hasUnsavedChanges) {
             saveFloat.classList.add('visible');
         } else {
@@ -1369,11 +1540,9 @@
         const div = document.createElement('div');
         div.className = 'chat-msg' + (currentUser && msg.author === currentUser.login ? ' own' : '');
 
-        // Кто автор — находим его key
         const authorKey = findUserKeyByLogin(msg.author) || '';
         const avatar = AVATARS[authorKey] || '';
 
-        // Аватар
         const av = document.createElement('div');
         av.className = 'msg-avatar' + (avatar ? '' : ' ' + authorKey);
         av.dataset.author = msg.author;
@@ -1386,7 +1555,6 @@
         }
         div.appendChild(av);
 
-        // Тело сообщения
         const body = document.createElement('div');
         body.className = 'msg-body';
 
@@ -1394,9 +1562,21 @@
         authorEl.className = 'msg-author';
         authorEl.innerText = msg.author;
 
-        const textEl = document.createElement('div');
-        textEl.className = 'msg-text';
-        textEl.innerText = msg.text;
+        body.appendChild(authorEl);
+
+        // Если это стикер — рендерим картинку
+        if (msg.type === 'sticker' && msg.sticker) {
+            const stk = document.createElement('img');
+            stk.className = 'msg-sticker';
+            stk.src = msg.sticker;
+            stk.onclick = (e) => { e.stopPropagation(); openModal(msg.sticker); };
+            body.appendChild(stk);
+        } else {
+            const textEl = document.createElement('div');
+            textEl.className = 'msg-text';
+            textEl.innerText = msg.text || '';
+            body.appendChild(textEl);
+        }
 
         const timeEl = document.createElement('div');
         timeEl.className = 'msg-time';
@@ -1404,13 +1584,10 @@
             const t = msg.timestamp.toDate();
             timeEl.innerText = t.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
         }
-
-        body.appendChild(authorEl);
-        body.appendChild(textEl);
         body.appendChild(timeEl);
         div.appendChild(body);
 
-        // Кнопка удаления — если админ (mega) или своё сообщение
+        // Удаление: админ — все, обычный — только свои
         const isAdmin = currentUser && currentUser.key === 'mega';
         const isOwn = currentUser && msg.author === currentUser.login;
 
@@ -1418,7 +1595,7 @@
             const delBtn = document.createElement('button');
             delBtn.className = 'msg-delete';
             delBtn.innerHTML = '×';
-            delBtn.title = 'Удалить сообщение';
+            delBtn.title = 'Удалить';
             delBtn.onclick = (e) => {
                 e.stopPropagation();
                 if (confirm('Удалить сообщение?')) {
@@ -1438,6 +1615,7 @@
         try {
             await addDoc(collection(db, 'chat'), {
                 author: currentUser.login,
+                type: 'text',
                 text: text,
                 timestamp: serverTimestamp()
             });
@@ -1445,12 +1623,64 @@
     };
 
     // ==================================================
+    // СТИКЕРЫ
+    // ==================================================
+    window.toggleStickerPanel = function() {
+        const panel = document.getElementById('stickerPanel');
+        panel.classList.toggle('open');
+        if (panel.classList.contains('open')) {
+            renderStickerPanel();
+        }
+    };
+
+    function renderStickerPanel() {
+        const grid = document.getElementById('stickerGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+
+        if (!STICKERS || STICKERS.length === 0) {
+            const empty = document.createElement('div');
+            empty.className = 'sticker-empty';
+            empty.innerText = 'Стикеров пока нет. Загрузи их в админке.';
+            grid.appendChild(empty);
+            return;
+        }
+
+        STICKERS.forEach((stickerSrc, idx) => {
+            const item = document.createElement('div');
+            item.className = 'sticker-item';
+            const img = document.createElement('img');
+            img.src = stickerSrc;
+            item.appendChild(img);
+            item.onclick = () => {
+                sendSticker(stickerSrc);
+                // Не закрываем панель, чтобы можно было отправить ещё
+            };
+            grid.appendChild(item);
+        });
+    }
+
+    async function sendSticker(stickerSrc) {
+        if (!currentUser) return;
+        try {
+            await addDoc(collection(db, 'chat'), {
+                author: currentUser.login,
+                type: 'sticker',
+                sticker: stickerSrc,
+                timestamp: serverTimestamp()
+            });
+            // Скролл вниз
+            const cm = document.getElementById('chatMessages');
+            setTimeout(() => { cm.scrollTop = cm.scrollHeight; }, 100);
+        } catch (e) { console.warn('Ошибка отправки стикера', e); }
+    }
+
+    // ==================================================
     // АДМИНКА
     // ==================================================
     function loadAdminFields() {
         if (!currentUser || currentUser.key !== 'mega') return;
 
-        // Находим логины по ключам
         let megaLogin = 'MEGATEM41K', sergoLogin = 'Sergo Bulkin';
         for (const [lg, acc] of Object.entries(ACCOUNTS)) {
             if (acc.key === 'mega') megaLogin = lg;
@@ -1462,9 +1692,9 @@
         document.getElementById('password-mega').value = '';
         document.getElementById('password-sergo').value = '';
 
-        // Аватары
         updateAvatarPreview('mega');
         updateAvatarPreview('sergo');
+        renderStickerAdminGrid();
     }
 
     function updateAvatarPreview(key) {
@@ -1476,7 +1706,6 @@
         } else {
             el.innerHTML = key === 'mega' ? 'M' : 'S';
             el.className = 'avatar-preview ' + (key === 'mega' ? 'mega' : 'sergo');
-            // Ставим цветной фон
             if (key === 'mega') el.style.background = 'linear-gradient(135deg, #ff6b6b, #c62828)';
             else el.style.background = 'linear-gradient(135deg, #4fc3f7, #0288d1)';
         }
@@ -1489,15 +1718,10 @@
 
         const compressed = await compressImage(file, 200, 0.85);
         AVATARS[key] = compressed;
-
         await saveAccounts();
 
         updateAvatarPreview(key);
-        // Если это мой аватар — обновить user-bar и чат
-        if (currentUser && currentUser.key === key) {
-            renderUserBar();
-        }
-        // Обновить все аватары в чате
+        if (currentUser && currentUser.key === key) renderUserBar();
         setTimeout(() => {
             document.querySelectorAll('.chat-msg .msg-avatar').forEach(el => {
                 const author = el.dataset.author;
@@ -1544,20 +1768,17 @@
             return;
         }
 
-        // Находим старый логин
         let oldLogin = null;
         for (const [lg, acc] of Object.entries(ACCOUNTS)) {
             if (acc.key === key) oldLogin = lg;
         }
 
-        // Проверка: не занят ли логин другим
         if (newLogin !== oldLogin && ACCOUNTS[newLogin]) {
             msgEl.className = 'admin-msg err';
             msgEl.innerText = 'Логин уже занят';
             return;
         }
 
-        // Собираем новый объект ACCOUNTS
         const newAccounts = {};
         for (const [lg, acc] of Object.entries(ACCOUNTS)) {
             if (acc.key === key) {
@@ -1573,7 +1794,6 @@
 
         await saveAccounts();
 
-        // Если менял свой логин — обновляем текущую сессию
         if (currentUser && currentUser.key === key) {
             currentUser.login = newLogin;
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
@@ -1586,11 +1806,69 @@
         setTimeout(() => { msgEl.innerText = ''; }, 2000);
     };
 
+    // ===== СТИКЕРЫ В АДМИНКЕ =====
+    window.uploadSticker = async function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
+
+        if (STICKERS.length >= 30) {
+            alert('Максимум 30 стикеров');
+            event.target.value = '';
+            return;
+        }
+
+        // Стикеры — квадратные 256px
+        const compressed = await compressImage(file, 256, 0.85);
+        STICKERS.push(compressed);
+        await saveAccounts();
+
+        renderStickerAdminGrid();
+        renderStickerPanel();
+
+        event.target.value = '';
+    };
+
+    window.removeSticker = async function(idx) {
+        if (!confirm('Удалить стикер?')) return;
+        STICKERS.splice(idx, 1);
+        await saveAccounts();
+        renderStickerAdminGrid();
+        renderStickerPanel();
+    };
+
+    function renderStickerAdminGrid() {
+        const grid = document.getElementById('stickerAdminGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+
+        STICKERS.forEach((src, idx) => {
+            const item = document.createElement('div');
+            item.className = 'sticker-admin-item';
+
+            const img = document.createElement('img');
+            img.src = src;
+            item.appendChild(img);
+
+            const rm = document.createElement('button');
+            rm.className = 'sticker-admin-remove';
+            rm.innerHTML = '×';
+            rm.onclick = () => removeSticker(idx);
+            item.appendChild(rm);
+
+            grid.appendChild(item);
+        });
+
+        const count = document.getElementById('stickerCount');
+        if (count) count.innerText = `Загружено: ${STICKERS.length} / 30`;
+    }
+
     // ==================================================
     // ИНИЦИАЛИЗАЦИЯ
     // ==================================================
     async function init() {
         await loadAccounts();
+        subscribeStickers();
         restoreSession();
     }
     init();
