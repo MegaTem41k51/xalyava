@@ -214,11 +214,11 @@
         font-weight: 700;
         text-align: center;
         font-size: 15px;
+        padding: 14px 12px;
     }
 
     table.acc-table th:first-child { background: #5a3a7d; }
 
-    /* Заголовки с цветом игрока */
     table.acc-table th[data-owner="mega"] {
         background: linear-gradient(135deg, #ff6b6b, #c62828);
     }
@@ -259,21 +259,12 @@
         font-size: 12px;
     }
 
-    /* Заблокированные ячейки (чужая колонка) */
     table.acc-table td.locked {
         background: #25253a !important;
-        color: #555 !important;
+        color: #888 !important;
         cursor: not-allowed !important;
-        font-style: italic;
     }
 
-    table.acc-table td.locked:empty::before {
-        content: '🔒 только своё';
-        color: #444;
-        font-size: 11px;
-    }
-
-    /* Подсветка своей колонки */
     table.acc-table td.mine {
         background: #2f2f4a;
     }
@@ -282,29 +273,61 @@
         box-shadow: inset 0 0 0 2px #a78bfa;
     }
 
-    tr { position: relative; }
-
-    .row-delete {
-        position: absolute;
-        left: -30px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #c62828;
-        color: #fff;
+    /* ===== КНОПКА СОХРАНИТЬ (плавающая) ===== */
+    .save-float {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 14px 24px;
+        background: linear-gradient(135deg, #f9a825, #f57c00);
+        color: #000;
         border: none;
-        border-radius: 50%;
-        width: 22px;
-        height: 22px;
-        font-size: 14px;
-        line-height: 1;
+        border-radius: 50px;
+        font-size: 15px;
+        font-weight: 800;
         cursor: pointer;
-        opacity: 0;
+        box-shadow: 0 8px 25px rgba(245, 124, 0, 0.5);
+        z-index: 100;
+        display: none;
         transition: 0.2s;
-        padding: 0;
-        z-index: 10;
     }
-    tr:hover .row-delete { opacity: 1; }
-    .row-delete:hover { background: #9b1f1f; }
+
+    .save-float:hover {
+        background: linear-gradient(135deg, #ffb300, #f57c00);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(245, 124, 0, 0.7);
+    }
+
+    .save-float:active {
+        transform: translateY(0);
+    }
+
+    .save-float.visible { display: block; }
+
+    .save-toast {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        background: #2e7d32;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        z-index: 101;
+        display: none;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    .save-toast.visible {
+        display: block;
+        animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
     /* ===== КАЛЕНДАРЬ ===== */
     .player-tabs {
@@ -354,12 +377,6 @@
     }
 
     .player-btn.sergo .dot { background: #4fc3f7; }
-
-    /* Кнопка чужого игрока — заблокирована */
-    .player-btn.disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
-    }
 
     .player-view {
         display: none;
@@ -546,7 +563,6 @@
     .skin-save:hover { background: #ffb300; }
     .skin-box.pending .skin-save { display: block; }
 
-    /* Чужой календарь — read only */
     .cal-cell.locked .skin-box {
         cursor: not-allowed;
         opacity: 0.7;
@@ -730,16 +746,15 @@
 <div id="tab-accounting" class="tab-content active">
     <div class="toolbar">
         <button onclick="addRow()">➕ Добавить день</button>
-        <button onclick="addCol()">➕ Добавить человека</button>
-        <button class="danger" onclick="clearTable()">🗑 Очистить всё</button>
+        <button class="danger" onclick="clearMyColumn()">🗑 Очистить мою колонку</button>
     </div>
 
     <table id="myTable" class="acc-table">
         <thead>
             <tr>
                 <th>День / Кто</th>
-                <th data-owner="mega" contenteditable="true">MEGATEM41K</th>
-                <th data-owner="sergo" contenteditable="true">Sergo Bulkin</th>
+                <th data-owner="mega">MEGATEM41K</th>
+                <th data-owner="sergo">Sergo Bulkin</th>
             </tr>
         </thead>
         <tbody>
@@ -753,10 +768,7 @@
         </tbody>
     </table>
 
-    <p class="hint">
-        🔒 Ты можешь редактировать <b>только свою колонку</b>. Чужая — заблокирована.<br>
-        Всё сохраняется в облаке и видно обоим.
-    </p>
+    <p class="hint">👆 Пиши в свою колонку. Чужую видишь, но менять не можешь.</p>
 </div>
 
 <!-- КАЛЕНДАРЬ -->
@@ -789,8 +801,7 @@
     </div>
 
     <p class="hint">
-        📸 Свой календарь — можно менять. Чужой — только смотреть.<br>
-        Скины автоматически сжимаются и сохраняются в облаке.
+        📸 Свой календарь — можно менять. Чужой — только смотреть.
     </p>
 </div>
 
@@ -816,6 +827,10 @@
 </div>
 
 </div>
+
+<!-- ПЛАВАЮЩАЯ КНОПКА СОХРАНИТЬ -->
+<button class="save-float" id="saveFloat" onclick="manualSave()">💾 Сохранить</button>
+<div class="save-toast" id="saveToast">✅ Сохранено!</div>
 
 <script type="module">
     // ==================================================
@@ -885,11 +900,13 @@
         attachDeleteButtons();
         applyPermissionsToTable();
         loadSkins();
-        applyPermissionsToPlayerTabs();
         renderCalendar('mega');
         renderCalendar('sergo');
         initChat();
         restoreActiveTab();
+
+        // Показываем плавающую кнопку сохранения
+        document.getElementById('saveFloat').classList.add('visible');
     }
 
     function restoreSession() {
@@ -925,6 +942,15 @@
         document.getElementById('tab-' + name).classList.add('active');
         if (btn) btn.classList.add('active');
         localStorage.setItem(ACTIVE_TAB_KEY, name);
+
+        // Показываем плавающую кнопку только на вкладке Учёта
+        const saveFloat = document.getElementById('saveFloat');
+        if (name === 'accounting') {
+            saveFloat.classList.add('visible');
+        } else {
+            saveFloat.classList.remove('visible');
+        }
+
         if (name === 'chat') {
             const cm = document.getElementById('chatMessages');
             if (cm) cm.scrollTop = cm.scrollHeight;
@@ -944,33 +970,24 @@
         const table = document.getElementById('myTable');
         const myKey = currentUser.key;
 
-        // Заголовки
-        table.querySelectorAll('thead th').forEach((th, i) => {
-            if (i === 0) return;
-            const owner = th.dataset.owner;
-            if (owner && owner !== myKey) {
-                th.contentEditable = "false";
-                th.style.opacity = "0.6";
-                th.title = "Чужая колонка — только просмотр";
-            }
-        });
+        const headers = table.querySelectorAll('thead th');
 
-        // Ячейки
         table.querySelectorAll('tbody tr').forEach(tr => {
             const cells = tr.querySelectorAll('td');
-            // Находим индекс чужой и своей колонки
-            const headers = table.querySelectorAll('thead th');
             cells.forEach((td, i) => {
-                if (i === 0) return; // первая ячейка — день
+                if (i === 0) return;
                 const header = headers[i];
-                const owner = header ? header.dataset.owner : null;
+                if (!header) return;
+                const owner = header.dataset.owner;
 
                 if (owner === myKey) {
                     td.classList.add('mine');
+                    td.classList.remove('locked');
                     td.contentEditable = "true";
                     td.setAttribute('data-placeholder', 'сумма');
                 } else if (owner) {
                     td.classList.add('locked');
+                    td.classList.remove('mine');
                     td.contentEditable = "false";
                     td.removeAttribute('data-placeholder');
                 }
@@ -979,7 +996,7 @@
     }
 
     // ==================================================
-    // УЧЁТ (Firebase)
+    // УЧЁТ
     // ==================================================
     const ACC_DOC = 'accounting';
     const ACC_FIELD = 'table';
@@ -998,11 +1015,8 @@
                 data.head.forEach((text, i) => {
                     const th = document.createElement('th');
                     th.innerText = text;
-                    if (i > 0) {
-                        // восстанавливаем data-owner из старого ключа
-                        if (text.toLowerCase().includes('megatem')) th.dataset.owner = 'mega';
-                        else if (text.toLowerCase().includes('sergo')) th.dataset.owner = 'sergo';
-                    }
+                    if (i === 1) th.dataset.owner = 'mega';
+                    if (i === 2) th.dataset.owner = 'sergo';
                     thead.appendChild(th);
                 });
 
@@ -1012,11 +1026,7 @@
                     const tr = document.createElement('tr');
                     rowData.forEach((text, i) => {
                         const td = document.createElement('td');
-                        if (i === 0) {
-                            td.innerText = text;
-                        } else {
-                            td.innerText = text;
-                        }
+                        td.innerText = text;
                         tr.appendChild(td);
                     });
                     tbody.appendChild(tr);
@@ -1029,23 +1039,83 @@
         }
     }
 
+    // Сохранение таблицы (только свою колонку)
     async function saveTable() {
         const table = document.getElementById('myTable');
-        const data = { head: [], body: [] };
+        const myKey = currentUser.key;
 
-        table.querySelectorAll('thead th').forEach(th => data.head.push(th.innerText));
+        // Читаем текущее состояние из облака
+        let cloudData = null;
+        try {
+            const docRef = doc(db, 'data', ACC_DOC);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists() && docSnap.data()[ACC_FIELD]) {
+                cloudData = docSnap.data()[ACC_FIELD];
+            }
+        } catch(e) {}
+
+        // Собираем локальные данные
+        const localData = { head: [], body: [] };
+        table.querySelectorAll('thead th').forEach(th => localData.head.push(th.innerText));
         table.querySelectorAll('tbody tr').forEach(tr => {
             const row = [];
             tr.querySelectorAll('td').forEach(td => row.push(td.innerText));
-            data.body.push(row);
+            localData.body.push(row);
         });
 
+        // Определяем индекс моей колонки
+        const headers = table.querySelectorAll('thead th');
+        let myColIndex = -1;
+        headers.forEach((th, i) => {
+            if (th.dataset.owner === myKey) myColIndex = i;
+        });
+
+        if (myColIndex === -1) {
+            console.warn('Не найдена моя колонка');
+            return;
+        }
+
+        // Формируем итог: берём облако, и в моей колонке обновляем значения
+        let finalData = { head: [], body: [] };
+
+        if (cloudData && cloudData.body && cloudData.body.length === localData.body.length) {
+            // Структура совпадает — обновляем только мою колонку
+            finalData.head = localData.head;
+            finalData.body = cloudData.body.map((row, ri) => {
+                const newRow = [...row];
+                // Копируем все колонки из локала, кроме моей — они нам не важны
+                // Мою колонку берём из локала
+                newRow[myColIndex] = localData.body[ri][myColIndex];
+                // Первую ячейку (день) тоже из локала
+                newRow[0] = localData.body[ri][0];
+                return newRow;
+            });
+        } else {
+            // Нет облачных данных — сохраняем как есть (только моя колонка заполнена)
+            finalData = localData;
+        }
+
         try {
-            await setDoc(doc(db, 'data', ACC_DOC), { [ACC_FIELD]: data }, { merge: true });
+            await setDoc(doc(db, 'data', ACC_DOC), { [ACC_FIELD]: finalData }, { merge: true });
         } catch (e) {
             console.warn('Ошибка сохранения', e);
         }
     }
+
+    // Ручное сохранение с уведомлением
+    window.manualSave = async function() {
+        const btn = document.getElementById('saveFloat');
+        btn.innerHTML = '⏳ Сохранение...';
+
+        await saveTable();
+
+        btn.innerHTML = '💾 Сохранить';
+
+        // Показываем тост
+        const toast = document.getElementById('saveToast');
+        toast.classList.add('visible');
+        setTimeout(() => toast.classList.remove('visible'), 2000);
+    };
 
     window.addRow = function() {
         const tbody = document.getElementById('myTable').querySelector('tbody');
@@ -1065,27 +1135,9 @@
         tbody.appendChild(tr);
         attachDeleteButtons();
         applyPermissionsToTable();
-        saveTable();
     };
 
-    window.addCol = function() {
-        if (!confirm('Добавить новую колонку? Она не будет привязана к игроку.')) return;
-        const table = document.getElementById('myTable');
-
-        const th = document.createElement('th');
-        th.innerText = 'Новый';
-        table.querySelector('thead tr').appendChild(th);
-
-        table.querySelectorAll('tbody tr').forEach(tr => {
-            const td = document.createElement('td');
-            tr.appendChild(td);
-        });
-
-        applyPermissionsToTable();
-        saveTable();
-    };
-
-    window.clearTable = function() {
+    window.clearMyColumn = function() {
         if (!confirm("Очистить только СВОЮ колонку?")) return;
         const table = document.getElementById('myTable');
         const headers = table.querySelectorAll('thead th');
@@ -1124,33 +1176,6 @@
     }
 
     // ==================================================
-    // ПРАВА В КАЛЕНДАРЕ
-    // ==================================================
-    function applyPermissionsToPlayerTabs() {
-        const myKey = currentUser.key;
-
-        document.querySelectorAll('.player-btn').forEach(btn => {
-            const playerKey = btn.dataset.player;
-            if (playerKey !== myKey) {
-                btn.classList.add('disabled');
-                btn.title = 'Чужой календарь — только просмотр';
-            } else {
-                btn.classList.remove('disabled');
-                btn.title = 'Твой календарь';
-            }
-        });
-
-        // Автоматически переключаемся на свой календарь
-        const myBtn = document.querySelector(`.player-btn[data-player="${myKey}"]`);
-        if (myBtn) {
-            document.querySelectorAll('.player-view').forEach(v => v.classList.remove('active'));
-            document.querySelectorAll('.player-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('player-' + myKey).classList.add('active');
-            myBtn.classList.add('active');
-        }
-    }
-
-    // ==================================================
     // КАЛЕНДАРЬ
     // ==================================================
     let skins = { mega: {}, sergo: {} };
@@ -1165,7 +1190,6 @@
     const DAYS = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
 
     window.switchPlayer = function(playerKey, btn) {
-        // Разрешаем смотреть чужой, но не редактировать
         document.querySelectorAll('.player-view').forEach(v => v.classList.remove('active'));
         document.querySelectorAll('.player-btn').forEach(b => b.classList.remove('active'));
         document.getElementById('player-' + playerKey).classList.add('active');
@@ -1237,7 +1261,6 @@
             const cell = document.createElement('div');
             cell.className = 'cal-cell';
 
-            // Если это чужой календарь — блокируем
             if (currentUser && playerKey !== currentUser.key) {
                 cell.classList.add('locked');
             }
@@ -1277,7 +1300,6 @@
         const pendingSrc = pendingSkins[pKey];
         const imgSrc = pendingSrc || savedSrc;
 
-        // Может ли текущий юзер редактировать этот календарь?
         const canEdit = currentUser && playerKey === currentUser.key;
 
         if (imgSrc) {
@@ -1353,7 +1375,6 @@
         return wrap;
     }
 
-    // ===== СЖАТИЕ КАРТИНКИ ПЕРЕД СОХРАНЕНИЕМ =====
     function compressImage(file, maxSize = 512, quality = 0.8) {
         return new Promise((resolve) => {
             const reader = new FileReader();
@@ -1363,7 +1384,6 @@
                     const canvas = document.createElement('canvas');
                     let w = img.width, h = img.height;
 
-                    // Уменьшаем до maxSize по большей стороне
                     if (w > h && w > maxSize) {
                         h = Math.round(h * maxSize / w);
                         w = maxSize;
@@ -1377,7 +1397,6 @@
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, w, h);
 
-                    // PNG без потерь маленький, JPG с потерями
                     let result;
                     if (file.type === 'image/png') {
                         result = canvas.toDataURL('image/png');
@@ -1402,7 +1421,6 @@
             return;
         }
 
-        // Сжимаем перед сохранением
         const compressed = await compressImage(file, 512, 0.8);
 
         const pKey = pendingKey(playerKey, dateKeyStr, personKey);
@@ -1499,10 +1517,11 @@
     // ==================================================
     restoreSession();
 
+    // Автосохранение при вводе (с задержкой) — тоже оставим, на всякий случай
     let saveTimeout;
     document.getElementById('myTable').addEventListener('input', () => {
         clearTimeout(saveTimeout);
-        saveTimeout = setTimeout(saveTable, 500);
+        saveTimeout = setTimeout(saveTable, 1000);
     });
 
     const observer = new MutationObserver(() => {
