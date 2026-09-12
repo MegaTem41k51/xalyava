@@ -20,170 +20,116 @@
 
     h1 { margin-bottom: 20px; font-size: 24px; text-align: center; }
 
-    /* ===== ЛОГИН ===== */
+    /* ЛОГИН */
     .login-overlay {
-        position: fixed;
-        inset: 0;
+        position: fixed; inset: 0;
         background: rgba(0,0,0,0.9);
         z-index: 2000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        display: flex; justify-content: center; align-items: center;
         padding: 20px;
     }
     .login-overlay.hidden { display: none; }
     .login-box {
-        background: #2a2a3e;
-        border-radius: 16px;
-        padding: 40px;
-        width: 100%;
-        max-width: 400px;
+        background: #2a2a3e; border-radius: 16px;
+        padding: 40px; width: 100%; max-width: 400px;
         box-shadow: 0 20px 60px rgba(0,0,0,0.6);
         text-align: center;
     }
     .login-box h2 { font-size: 22px; margin-bottom: 8px; }
     .login-box p { color: #888; font-size: 14px; margin-bottom: 25px; }
     .login-box input {
-        width: 100%;
-        padding: 14px 16px;
-        margin-bottom: 12px;
-        border: 1px solid #444;
-        border-radius: 8px;
-        background: #1e1e2e;
-        color: #fff;
-        font-size: 15px;
-        outline: none;
+        width: 100%; padding: 14px 16px; margin-bottom: 12px;
+        border: 1px solid #444; border-radius: 8px;
+        background: #1e1e2e; color: #fff; font-size: 15px; outline: none;
     }
     .login-box input:focus {
         border-color: #a78bfa;
         box-shadow: 0 0 0 3px rgba(167,139,250,0.2);
     }
     .login-box button {
-        width: 100%;
-        padding: 14px;
-        background: #764ba2;
-        border: none;
-        border-radius: 8px;
-        color: #fff;
-        font-size: 15px;
-        font-weight: 700;
-        cursor: pointer;
-        margin-top: 8px;
+        width: 100%; padding: 14px;
+        background: #764ba2; border: none; border-radius: 8px;
+        color: #fff; font-size: 15px; font-weight: 700;
+        cursor: pointer; margin-top: 8px;
     }
     .login-box button:hover { background: #5a3a7d; }
     .login-error {
-        color: #ff6b6b;
-        font-size: 13px;
-        margin-top: 12px;
-        min-height: 18px;
+        color: #ff6b6b; font-size: 13px;
+        margin-top: 12px; min-height: 18px;
     }
 
-    /* ===== ЮЗЕР ===== */
+    /* ЮЗЕР */
     .user-bar {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        background: #2a2a3e;
-        padding: 8px 16px;
-        border-radius: 10px;
-        margin-bottom: 15px;
-        font-size: 14px;
+        display: flex; align-items: center; gap: 12px;
+        background: #2a2a3e; padding: 8px 16px;
+        border-radius: 10px; margin-bottom: 15px; font-size: 14px;
     }
     .user-bar .avatar {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        font-size: 13px;
-        color: #fff;
+        width: 30px; height: 30px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 700; font-size: 13px; color: #fff;
     }
     .user-bar .avatar.mega { background: linear-gradient(135deg, #ff6b6b, #c62828); }
     .user-bar .avatar.sergo { background: linear-gradient(135deg, #4fc3f7, #0288d1); }
     .user-bar .logout {
-        padding: 5px 12px;
-        font-size: 12px;
-        background: #c62828;
-        border-radius: 6px;
+        padding: 5px 12px; font-size: 12px;
+        background: #c62828; border-radius: 6px;
     }
     .user-bar .logout:hover { background: #9b1f1f; }
 
-    /* ===== ВКЛАДКИ ===== */
+    /* ВКЛАДКИ */
     .tabs {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 20px;
-        background: #2a2a3e;
-        padding: 6px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        flex-wrap: wrap;
-        justify-content: center;
+        display: flex; gap: 8px; margin-bottom: 20px;
+        background: #2a2a3e; padding: 6px;
+        border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        flex-wrap: wrap; justify-content: center;
     }
     .tab-btn {
-        padding: 10px 24px;
-        border: none;
-        border-radius: 8px;
-        background: transparent;
-        color: #aaa;
-        font-size: 15px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: 0.2s;
+        padding: 10px 24px; border: none; border-radius: 8px;
+        background: transparent; color: #aaa;
+        font-size: 15px; font-weight: 600;
+        cursor: pointer; transition: 0.2s;
     }
     .tab-btn:hover { color: #fff; background: #35354d; }
     .tab-btn.active {
-        background: #764ba2;
-        color: #fff;
+        background: #764ba2; color: #fff;
         box-shadow: 0 4px 12px rgba(118, 75, 162, 0.5);
     }
     .tab-content {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
+        display: none; width: 100%;
+        flex-direction: column; align-items: center;
     }
     .tab-content.active { display: flex; }
 
     button {
-        padding: 10px 18px;
-        border: none;
-        border-radius: 8px;
-        background: #764ba2;
-        color: #fff;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: 0.2s;
+        padding: 10px 18px; border: none; border-radius: 8px;
+        background: #764ba2; color: #fff;
+        font-size: 14px; font-weight: 600;
+        cursor: pointer; transition: 0.2s;
     }
     button:hover { background: #5a3a7d; }
 
-    /* ===== ТАБЛИЦА ===== */
+    /* ТАБЛИЦА */
     table.acc-table {
         border-collapse: collapse;
         background: #2a2a3e;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        border-radius: 8px;
-        overflow: hidden;
+        border-radius: 8px; overflow: hidden;
     }
     table.acc-table th,
     table.acc-table td {
         border: 1px solid #444;
-        padding: 14px 18px;
-        min-width: 240px;
+        padding: 12px 16px;
+        min-width: 260px;
         vertical-align: middle;
         font-size: 15px;
     }
     table.acc-table th {
-        color: #fff;
-        font-weight: 700;
-        text-align: center;
-        font-size: 15px;
-        padding: 16px;
+        color: #fff; font-weight: 700;
+        text-align: center; font-size: 15px;
+        padding: 16px 12px;
     }
-    table.acc-table th:first-child { background: #5a3a7d; }
+    table.acc-table th:first-child { background: #5a3a7d; min-width: 100px; }
 
     table.acc-table th[data-owner="mega"] {
         background: linear-gradient(135deg, #ff6b6b, #c62828);
@@ -193,47 +139,53 @@
     }
 
     table.acc-table td:first-child {
-        background: #3a3a52;
-        font-weight: 700;
-        color: #fff;
-        text-align: center;
+        background: #3a3a52; font-weight: 700;
+        color: #fff; text-align: center;
+        font-size: 15px; min-width: 100px;
     }
 
-    /* Редактируемая ячейка — с подписью и полем */
-    .cell-edit {
+    /* Ячейка с двумя полями */
+    .cell-pair {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .cell-row {
         display: flex;
         align-items: center;
-        gap: 4px;
+        gap: 6px;
     }
-    .cell-edit .label {
-        color: #a78bfa;
+    .cell-row .label {
         font-weight: 700;
+        font-size: 14px;
         white-space: nowrap;
+        min-width: 60px;
     }
-    .cell-edit .label.alik { color: #4fc3f7; }
-    .cell-edit .label.zhidkiy { color: #81c784; }
-    .cell-edit .label.total { color: #f9a825; }
+    .cell-row .label.alik { color: #4fc3f7; }
+    .cell-row .label.zhidkiy { color: #81c784; }
 
     .price-input {
         flex: 1;
-        background: transparent;
-        border: none;
+        background: #1e1e2e;
+        border: 1px solid #444;
         outline: none;
         color: #fff;
         font-size: 15px;
         font-weight: 600;
-        padding: 4px 6px;
-        border-radius: 4px;
-        transition: background 0.15s;
+        padding: 6px 10px;
+        border-radius: 6px;
+        transition: 0.15s;
         min-width: 60px;
     }
     .price-input:focus {
-        background: #3d3d5c;
-        box-shadow: inset 0 0 0 2px #a78bfa;
+        border-color: #a78bfa;
+        box-shadow: 0 0 0 2px rgba(167,139,250,0.3);
     }
     .price-input:disabled {
-        color: #666;
+        color: #e0e0e0;
         cursor: not-allowed;
+        background: #23233a;
+        border-color: #3a3a52;
     }
     .price-input::placeholder {
         color: #555;
@@ -241,47 +193,35 @@
         font-weight: 400;
     }
 
-    td.locked-cell {
-        background: #25253a !important;
-        opacity: 0.7;
-    }
-    td.locked-cell .label {
-        color: #555 !important;
-    }
-
     /* Строка суммы */
     tr.total-row td {
-        background: #3d3d5c !important;
         border-top: 3px solid #f9a825;
+        padding: 16px;
     }
     tr.total-row td:first-child {
         background: #4a3a6b !important;
+        font-size: 16px;
     }
     .total-value {
-        font-size: 20px;
+        font-size: 22px;
         font-weight: 800;
         color: #f9a825;
+        display: block;
+        text-align: center;
     }
     .total-value.mega { color: #ff6b6b; }
     .total-value.sergo { color: #4fc3f7; }
 
-    /* ===== КНОПКА СОХРАНИТЬ ===== */
+    /* КНОПКА СОХРАНИТЬ */
     .save-float {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
+        position: fixed; bottom: 20px; right: 20px;
         padding: 14px 24px;
         background: linear-gradient(135deg, #f9a825, #f57c00);
-        color: #000;
-        border: none;
-        border-radius: 50px;
-        font-size: 15px;
-        font-weight: 800;
+        color: #000; border: none; border-radius: 50px;
+        font-size: 15px; font-weight: 800;
         cursor: pointer;
         box-shadow: 0 8px 25px rgba(245, 124, 0, 0.5);
-        z-index: 100;
-        display: none;
-        transition: 0.2s;
+        z-index: 100; display: none; transition: 0.2s;
     }
     .save-float:hover {
         background: linear-gradient(135deg, #ffb300, #f57c00);
@@ -290,17 +230,11 @@
     .save-float.visible { display: block; }
 
     .save-toast {
-        position: fixed;
-        bottom: 90px;
-        right: 20px;
-        background: #2e7d32;
-        color: #fff;
-        padding: 12px 20px;
-        border-radius: 10px;
-        font-size: 14px;
-        font-weight: 600;
-        z-index: 101;
-        display: none;
+        position: fixed; bottom: 90px; right: 20px;
+        background: #2e7d32; color: #fff;
+        padding: 12px 20px; border-radius: 10px;
+        font-size: 14px; font-weight: 600;
+        z-index: 101; display: none;
         box-shadow: 0 8px 25px rgba(0,0,0,0.5);
     }
     .save-toast.visible {
@@ -312,141 +246,86 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ===== КАЛЕНДАРЬ ===== */
+    /* КАЛЕНДАРЬ */
     .player-tabs {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 20px;
-        background: #2a2a3e;
-        padding: 6px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        display: flex; gap: 10px; margin-bottom: 20px;
+        background: #2a2a3e; padding: 6px; border-radius: 12px;
     }
     .player-btn {
-        padding: 12px 28px;
-        border: none;
-        border-radius: 8px;
-        background: transparent;
-        color: #aaa;
-        font-size: 15px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        padding: 12px 28px; border: none; border-radius: 8px;
+        background: transparent; color: #aaa;
+        font-size: 15px; font-weight: 700; cursor: pointer;
+        display: flex; align-items: center; gap: 8px;
     }
     .player-btn:hover { color: #fff; background: #35354d; }
     .player-btn.active.mega {
-        background: linear-gradient(135deg, #ff6b6b, #c62828);
-        color: #fff;
+        background: linear-gradient(135deg, #ff6b6b, #c62828); color: #fff;
     }
     .player-btn.active.sergo {
-        background: linear-gradient(135deg, #4fc3f7, #0288d1);
-        color: #fff;
+        background: linear-gradient(135deg, #4fc3f7, #0288d1); color: #fff;
     }
     .player-btn .dot {
         width: 10px; height: 10px;
-        border-radius: 50%;
-        background: #ff6b6b;
+        border-radius: 50%; background: #ff6b6b;
     }
     .player-btn.sergo .dot { background: #4fc3f7; }
     .player-view { display: none; flex-direction: column; align-items: center; width: 100%; }
     .player-view.active { display: flex; }
 
     .cal-header {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 20px;
-        background: #2a2a3e;
-        padding: 12px 20px;
-        border-radius: 12px;
+        display: flex; align-items: center; gap: 15px;
+        margin-bottom: 20px; background: #2a2a3e;
+        padding: 12px 20px; border-radius: 12px;
     }
-    .cal-header button {
-        padding: 8px 14px;
-        font-size: 18px;
-        background: #5a3a7d;
-    }
+    .cal-header button { padding: 8px 14px; font-size: 18px; background: #5a3a7d; }
     .cal-header button:hover { background: #764ba2; }
     .cal-title {
-        font-size: 20px;
-        font-weight: 700;
-        min-width: 220px;
-        text-align: center;
+        font-size: 20px; font-weight: 700;
+        min-width: 220px; text-align: center;
     }
     .calendar {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 8px;
-        width: 100%;
-        max-width: 1100px;
+        display: grid; grid-template-columns: repeat(7, 1fr);
+        gap: 8px; width: 100%; max-width: 1100px;
     }
     .cal-dayname {
-        text-align: center;
-        font-weight: 700;
-        color: #a78bfa;
-        padding: 8px 0;
-        font-size: 14px;
-        text-transform: uppercase;
+        text-align: center; font-weight: 700;
+        color: #a78bfa; padding: 8px 0;
+        font-size: 14px; text-transform: uppercase;
     }
     .cal-cell {
-        background: #2a2a3e;
-        border-radius: 10px;
-        padding: 8px;
-        min-height: 240px;
+        background: #2a2a3e; border-radius: 10px;
+        padding: 8px; min-height: 240px;
         border: 1px solid #3a3a52;
-        display: flex;
-        flex-direction: column;
+        display: flex; flex-direction: column;
     }
     .cal-cell.empty { background: transparent; border: none; }
     .cal-cell.today { border: 2px solid #a78bfa; box-shadow: 0 0 15px rgba(167,139,250,0.4); }
     .cal-date {
-        font-size: 14px;
-        font-weight: 700;
-        color: #a78bfa;
-        margin-bottom: 6px;
-        text-align: right;
+        font-size: 14px; font-weight: 700;
+        color: #a78bfa; margin-bottom: 6px; text-align: right;
     }
     .cal-cell.today .cal-date {
-        color: #fff;
-        background: #764ba2;
-        border-radius: 50%;
-        width: 26px;
-        height: 26px;
-        line-height: 26px;
-        text-align: center;
-        align-self: flex-end;
+        color: #fff; background: #764ba2;
+        border-radius: 50%; width: 26px; height: 26px;
+        line-height: 26px; text-align: center; align-self: flex-end;
     }
     .cal-person {
-        background: #35354d;
-        border-radius: 8px;
-        padding: 6px;
-        margin-bottom: 6px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+        background: #35354d; border-radius: 8px;
+        padding: 6px; margin-bottom: 6px;
+        flex: 1; display: flex; flex-direction: column;
     }
     .cal-person:last-child { margin-bottom: 0; }
     .cal-person-name {
-        font-size: 12px;
-        font-weight: 700;
-        margin-bottom: 4px;
-        text-align: center;
+        font-size: 12px; font-weight: 700;
+        margin-bottom: 4px; text-align: center;
     }
     .cal-person-name.alik { color: #4fc3f7; }
     .cal-person-name.zhidkiy { color: #81c784; }
     .skin-box {
-        flex: 1;
-        background: #1e1e2e;
-        border: 1px dashed #555;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
+        flex: 1; background: #1e1e2e;
+        border: 1px dashed #555; border-radius: 6px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; position: relative; overflow: hidden;
         min-height: 60px;
     }
     .skin-box:hover { border-color: #a78bfa; background: #25253a; }
@@ -458,79 +337,47 @@
     }
     .skin-box input[type="file"] { display: none; }
     .skin-remove {
-        position: absolute;
-        top: 2px; right: 2px;
-        background: #c62828;
-        color: #fff;
-        border: none;
-        border-radius: 50%;
-        width: 18px; height: 18px;
-        font-size: 12px;
-        cursor: pointer;
-        padding: 0;
-        z-index: 5;
-        display: none;
+        position: absolute; top: 2px; right: 2px;
+        background: #c62828; color: #fff;
+        border: none; border-radius: 50%;
+        width: 18px; height: 18px; font-size: 12px;
+        cursor: pointer; padding: 0; z-index: 5; display: none;
     }
     .skin-box.has-image .skin-remove { display: block; }
     .skin-save {
-        position: absolute;
-        bottom: 2px; left: 50%;
+        position: absolute; bottom: 2px; left: 50%;
         transform: translateX(-50%);
-        background: #f9a825;
-        color: #000;
-        border: none;
-        border-radius: 6px;
-        padding: 3px 10px;
-        font-size: 11px;
-        font-weight: 700;
-        cursor: pointer;
-        display: none;
-        z-index: 6;
+        background: #f9a825; color: #000;
+        border: none; border-radius: 6px;
+        padding: 3px 10px; font-size: 11px;
+        font-weight: 700; cursor: pointer;
+        display: none; z-index: 6;
     }
     .skin-box.pending { border: 2px solid #f9a825; }
     .skin-box.pending .skin-save { display: block; }
-    .cal-cell.locked .skin-box {
-        cursor: not-allowed;
-        opacity: 0.7;
-    }
+    .cal-cell.locked .skin-box { cursor: not-allowed; opacity: 0.85; }
 
-    /* ===== ЧАТ ===== */
+    /* ЧАТ */
     .chat-container {
-        width: 100%;
-        max-width: 600px;
-        background: #2a2a3e;
-        border-radius: 12px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        height: 70vh;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        width: 100%; max-width: 600px;
+        background: #2a2a3e; border-radius: 12px;
+        overflow: hidden; display: flex; flex-direction: column;
+        height: 70vh; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     }
     .chat-header {
-        background: #764ba2;
-        padding: 15px 20px;
-        font-weight: 700;
-        font-size: 16px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        background: #764ba2; padding: 15px 20px;
+        font-weight: 700; font-size: 16px;
+        display: flex; justify-content: space-between; align-items: center;
     }
     .chat-status { font-size: 12px; color: #e0d4ff; }
     .chat-messages {
-        flex: 1;
-        overflow-y: auto;
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+        flex: 1; overflow-y: auto; padding: 15px;
+        display: flex; flex-direction: column; gap: 10px;
     }
     .chat-msg {
-        background: #35354d;
-        padding: 10px 14px;
-        border-radius: 12px;
-        max-width: 80%;
-        word-wrap: break-word;
-        align-self: flex-start;
+        background: #35354d; padding: 10px 14px;
+        border-radius: 12px; max-width: 80%;
+        word-wrap: break-word; align-self: flex-start;
     }
     .chat-msg.own { background: #764ba2; align-self: flex-end; }
     .chat-msg .msg-author {
@@ -544,60 +391,37 @@
         margin-top: 4px; text-align: right;
     }
     .chat-input-area {
-        display: flex;
-        gap: 8px;
-        padding: 12px;
-        background: #35354d;
-        border-top: 1px solid #444;
+        display: flex; gap: 8px; padding: 12px;
+        background: #35354d; border-top: 1px solid #444;
     }
     .chat-input-area input {
-        flex: 1;
-        padding: 12px 16px;
-        border: none;
-        border-radius: 8px;
-        background: #1e1e2e;
-        color: #fff;
-        font-size: 14px;
-        outline: none;
+        flex: 1; padding: 12px 16px;
+        border: none; border-radius: 8px;
+        background: #1e1e2e; color: #fff;
+        font-size: 14px; outline: none;
     }
     .chat-input-area input::placeholder { color: #666; }
     .chat-input-area button {
-        padding: 12px 20px;
-        background: #764ba2;
-        border-radius: 8px;
+        padding: 12px 20px; background: #764ba2; border-radius: 8px;
     }
 
     .hint {
-        margin-top: 20px;
-        color: #888;
-        font-size: 13px;
-        text-align: center;
-        max-width: 700px;
-        line-height: 1.6;
+        margin-top: 20px; color: #888;
+        font-size: 13px; text-align: center;
+        max-width: 700px; line-height: 1.6;
     }
 
     .modal {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.85);
-        z-index: 1000;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
+        display: none; position: fixed; inset: 0;
+        background: rgba(0,0,0,0.85); z-index: 1000;
+        justify-content: center; align-items: center; padding: 20px;
     }
     .modal.active { display: flex; }
-    .modal img {
-        max-width: 90vw;
-        max-height: 90vh;
-        border-radius: 12px;
-    }
+    .modal img { max-width: 90vw; max-height: 90vh; border-radius: 12px; }
     .modal-close {
-        position: absolute;
-        top: 20px; right: 30px;
+        position: absolute; top: 20px; right: 30px;
         font-size: 36px; color: #fff;
-        cursor: pointer;
-        background: none; border: none;
+        cursor: pointer; background: none; border: none;
         padding: 0; line-height: 1;
     }
     .modal-close:hover { color: #a78bfa; }
@@ -605,7 +429,6 @@
 </head>
 <body>
 
-<!-- ЛОГИН -->
 <div class="login-overlay" id="loginOverlay">
     <div class="login-box">
         <h2>🔒 Вход</h2>
@@ -617,7 +440,6 @@
     </div>
 </div>
 
-<!-- САЙТ -->
 <div id="mainSite" style="display:none; width:100%; flex-direction:column; align-items:center;">
 
 <h1>MEGATEM41K vs Sergo Bulkin</h1>
@@ -635,31 +457,17 @@
     <table id="myTable" class="acc-table">
         <thead>
             <tr>
-                <th>Кто</th>
+                <th>День / Кто</th>
                 <th data-owner="mega">MEGATEM41K</th>
                 <th data-owner="sergo">Sergo Bulkin</th>
             </tr>
         </thead>
-        <tbody>
-            <tr data-row="alik">
-                <td>Алик</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr data-row="zhidkiy">
-                <td>Жидкий</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr class="total-row">
-                <td>Сумма</td>
-                <td><span class="total-value mega" id="total-mega">0 ₽</span></td>
-                <td><span class="total-value sergo" id="total-sergo">0 ₽</span></td>
-            </tr>
+        <tbody id="tableBody">
+            <!-- Заполняется JS -->
         </tbody>
     </table>
 
-    <p class="hint">👆 Пиши свою цену после тире. Чужое видишь, но менять не можешь. Сумма считается автоматически.</p>
+    <p class="hint">👆 Пиши цену Алика и Жидкого. Чужое видишь, но менять не можешь. Сумма считается автоматически.</p>
 </div>
 
 <!-- КАЛЕНДАРЬ -->
@@ -672,7 +480,6 @@
             <span class="dot"></span> Sergo Bulkin
         </button>
     </div>
-
     <div id="player-mega" class="player-view">
         <div class="cal-header">
             <button onclick="changeMonth('mega', -1)">◀</button>
@@ -681,7 +488,6 @@
         </div>
         <div class="calendar" id="calendar-mega"></div>
     </div>
-
     <div id="player-sergo" class="player-view">
         <div class="cal-header">
             <button onclick="changeMonth('sergo', -1)">◀</button>
@@ -690,7 +496,6 @@
         </div>
         <div class="calendar" id="calendar-sergo"></div>
     </div>
-
     <p class="hint">📸 Свой календарь — можно менять. Чужой — только смотреть.</p>
 </div>
 
@@ -717,7 +522,6 @@
 
 </div>
 
-<!-- КНОПКА СОХРАНИТЬ -->
 <button class="save-float" id="saveFloat" onclick="manualSave()">💾 Сохранить</button>
 <div class="save-toast" id="saveToast">✅ Сохранено!</div>
 
@@ -850,73 +654,123 @@
     }
 
     // ==================================================
-    // УЧЁТ — новая структура
+    // УЧЁТ — 7 дней × 2 человека × 2 поля (Алик/Жидкий)
     // ==================================================
-    // Структура данных:
+    // Структура в Firebase:
     // {
-    //   mega: { alik: "500", zhidkiy: "300" },
-    //   sergo: { alik: "200", zhidkiy: "" }
+    //   mega: { "Пн": { alik: "500", zhidkiy: "300" }, "Вт": {...}, ... },
+    //   sergo: { ... }
     // }
 
     const ACC_DOC = 'accounting';
-    const ACC_FIELD = 'prices';
+    const ACC_FIELD = 'prices_v2';
+    const DAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
+    // Локальная модель
     let tableData = {
-        mega: { alik: '', zhidkiy: '' },
-        sergo: { alik: '', zhidkiy: '' }
+        mega: {},
+        sergo: {}
     };
+    DAYS.forEach(d => {
+        tableData.mega[d] = { alik: '', zhidkiy: '' };
+        tableData.sergo[d] = { alik: '', zhidkiy: '' };
+    });
 
     function renderTable() {
-        const table = document.getElementById('myTable');
+        const tbody = document.getElementById('tableBody');
+        tbody.innerHTML = '';
 
-        // Проходим по 2 строкам: alik, zhidkiy
-        ['alik', 'zhidkiy'].forEach(personKey => {
-            const tr = table.querySelector(`tr[data-row="${personKey}"]`);
-            ['mega', 'sergo'].forEach((ownerKey, idx) => {
-                const td = tr.cells[idx + 1]; // 0 — день, 1 — mega, 2 — sergo
+        DAYS.forEach(day => {
+            const tr = document.createElement('tr');
+
+            // Ячейка дня
+            const dayTd = document.createElement('td');
+            dayTd.innerText = day;
+            tr.appendChild(dayTd);
+
+            // Ячейки для mega и sergo
+            ['mega', 'sergo'].forEach(ownerKey => {
+                const td = document.createElement('td');
                 const canEdit = currentUser && currentUser.key === ownerKey;
-                const value = tableData[ownerKey][personKey] || '';
 
-                td.innerHTML = '';
-                td.classList.toggle('locked-cell', !canEdit);
+                const pair = document.createElement('div');
+                pair.className = 'cell-pair';
 
-                const wrap = document.createElement('div');
-                wrap.className = 'cell-edit';
+                // Алик
+                pair.appendChild(createPersonInput(ownerKey, day, 'alik', 'Алик', canEdit));
+                // Жидкий
+                pair.appendChild(createPersonInput(ownerKey, day, 'zhidkiy', 'Жидкий', canEdit));
 
-                const label = document.createElement('span');
-                label.className = 'label ' + personKey;
-                label.innerText = (personKey === 'alik' ? 'Алик' : 'Жидкий') + ' — ';
-                wrap.appendChild(label);
-
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.className = 'price-input';
-                input.placeholder = 'цена';
-                input.value = value;
-                input.disabled = !canEdit;
-                input.dataset.owner = ownerKey;
-                input.dataset.person = personKey;
-                input.addEventListener('input', onPriceInput);
-                wrap.appendChild(input);
-
-                td.appendChild(wrap);
+                td.appendChild(pair);
+                tr.appendChild(td);
             });
+
+            tbody.appendChild(tr);
         });
 
+        // Строка Сумма
+        const totalTr = document.createElement('tr');
+        totalTr.className = 'total-row';
+
+        const totalLabel = document.createElement('td');
+        totalLabel.innerText = 'Сумма';
+        totalTr.appendChild(totalLabel);
+
+        const megaTd = document.createElement('td');
+        const megaSpan = document.createElement('span');
+        megaSpan.className = 'total-value mega';
+        megaSpan.id = 'total-mega';
+        megaSpan.innerText = '0 ₽';
+        megaTd.appendChild(megaSpan);
+        totalTr.appendChild(megaTd);
+
+        const sergoTd = document.createElement('td');
+        const sergoSpan = document.createElement('span');
+        sergoSpan.className = 'total-value sergo';
+        sergoSpan.id = 'total-sergo';
+        sergoSpan.innerText = '0 ₽';
+        sergoTd.appendChild(sergoSpan);
+        totalTr.appendChild(sergoTd);
+
+        tbody.appendChild(totalTr);
+
         updateTotals();
+    }
+
+    function createPersonInput(ownerKey, day, personKey, personName, canEdit) {
+        const row = document.createElement('div');
+        row.className = 'cell-row';
+
+        const label = document.createElement('span');
+        label.className = 'label ' + personKey;
+        label.innerText = personName + ' — ';
+        row.appendChild(label);
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'price-input';
+        input.placeholder = 'цена';
+        input.value = tableData[ownerKey][day][personKey] || '';
+        input.disabled = !canEdit;
+        input.dataset.owner = ownerKey;
+        input.dataset.day = day;
+        input.dataset.person = personKey;
+        input.addEventListener('input', onPriceInput);
+        row.appendChild(input);
+
+        return row;
     }
 
     function onPriceInput(e) {
         const input = e.target;
         const ownerKey = input.dataset.owner;
+        const day = input.dataset.day;
         const personKey = input.dataset.person;
 
-        // Обновляем локальные данные
-        tableData[ownerKey][personKey] = input.value;
+        tableData[ownerKey][day][personKey] = input.value;
 
         updateTotals();
 
-        // Отмечаем, что есть несохранённые изменения (только если правим свою колонку)
         if (currentUser && currentUser.key === ownerKey) {
             hasUnsavedChanges = true;
             updateSaveButtonVisibility();
@@ -925,18 +779,23 @@
 
     function parsePrice(str) {
         if (!str) return 0;
-        // Убираем всё кроме цифр, точки, запятой, минуса
         const cleaned = String(str).replace(/[^\d.,-]/g, '').replace(',', '.');
         const n = parseFloat(cleaned);
         return isNaN(n) ? 0 : n;
     }
 
     function updateTotals() {
-        const totalMega = parsePrice(tableData.mega.alik) + parsePrice(tableData.mega.zhidkiy);
-        const totalSergo = parsePrice(tableData.sergo.alik) + parsePrice(tableData.sergo.zhidkiy);
+        let sumMega = 0, sumSergo = 0;
 
-        document.getElementById('total-mega').innerText = totalMega + ' ₽';
-        document.getElementById('total-sergo').innerText = totalSergo + ' ₽';
+        DAYS.forEach(day => {
+            sumMega += parsePrice(tableData.mega[day].alik) + parsePrice(tableData.mega[day].zhidkiy);
+            sumSergo += parsePrice(tableData.sergo[day].alik) + parsePrice(tableData.sergo[day].zhidkiy);
+        });
+
+        const megaEl = document.getElementById('total-mega');
+        const sergoEl = document.getElementById('total-sergo');
+        if (megaEl) megaEl.innerText = sumMega + ' ₽';
+        if (sergoEl) sergoEl.innerText = sumSergo + ' ₽';
     }
 
     async function loadTable() {
@@ -946,16 +805,19 @@
 
             if (docSnap.exists() && docSnap.data()[ACC_FIELD]) {
                 const cloud = docSnap.data()[ACC_FIELD];
-                // Проверка структуры
+
                 if (cloud && cloud.mega && cloud.sergo) {
-                    tableData.mega = {
-                        alik: cloud.mega.alik || '',
-                        zhidkiy: cloud.mega.zhidkiy || ''
-                    };
-                    tableData.sergo = {
-                        alik: cloud.sergo.alik || '',
-                        zhidkiy: cloud.sergo.zhidkiy || ''
-                    };
+                    DAYS.forEach(day => {
+                        ['mega', 'sergo'].forEach(ownerKey => {
+                            const src = cloud[ownerKey][day];
+                            if (src) {
+                                tableData[ownerKey][day] = {
+                                    alik: src.alik || '',
+                                    zhidkiy: src.zhidkiy || ''
+                                };
+                            }
+                        });
+                    });
                 }
             }
         } catch (e) {
@@ -968,11 +830,15 @@
     async function saveTable() {
         if (!currentUser) return;
 
-        // Читаем облако, обновляем только свою часть
+        // Читаем актуальное облако
         let cloud = {
-            mega: { alik: '', zhidkiy: '' },
-            sergo: { alik: '', zhidkiy: '' }
+            mega: {},
+            sergo: {}
         };
+        DAYS.forEach(day => {
+            cloud.mega[day] = { alik: '', zhidkiy: '' };
+            cloud.sergo[day] = { alik: '', zhidkiy: '' };
+        });
 
         try {
             const docRef = doc(db, 'data', ACC_DOC);
@@ -980,17 +846,28 @@
             if (docSnap.exists() && docSnap.data()[ACC_FIELD]) {
                 const c = docSnap.data()[ACC_FIELD];
                 if (c && c.mega && c.sergo) {
-                    cloud.mega = { alik: c.mega.alik || '', zhidkiy: c.mega.zhidkiy || '' };
-                    cloud.sergo = { alik: c.sergo.alik || '', zhidkiy: c.sergo.zhidkiy || '' };
+                    DAYS.forEach(day => {
+                        ['mega', 'sergo'].forEach(ownerKey => {
+                            const src = c[ownerKey] && c[ownerKey][day];
+                            if (src) {
+                                cloud[ownerKey][day] = {
+                                    alik: src.alik || '',
+                                    zhidkiy: src.zhidkiy || ''
+                                };
+                            }
+                        });
+                    });
                 }
             }
         } catch(e) {}
 
         // Обновляем только свою колонку
-        cloud[currentUser.key] = {
-            alik: tableData[currentUser.key].alik,
-            zhidkiy: tableData[currentUser.key].zhidkiy
-        };
+        DAYS.forEach(day => {
+            cloud[currentUser.key][day] = {
+                alik: tableData[currentUser.key][day].alik,
+                zhidkiy: tableData[currentUser.key][day].zhidkiy
+            };
+        });
 
         try {
             await setDoc(doc(db, 'data', ACC_DOC), { [ACC_FIELD]: cloud }, { merge: true });
@@ -1026,7 +903,7 @@
 
     const MONTHS = ['Январь','Февраль','Март','Апрель','Май','Июнь',
                     'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
-    const DAYS = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+    const CAL_DAYS = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
 
     window.switchPlayer = function(playerKey, btn) {
         document.querySelectorAll('.player-view').forEach(v => v.classList.remove('active'));
@@ -1077,7 +954,7 @@
         const cal = document.getElementById('calendar-' + playerKey);
         cal.innerHTML = '';
 
-        DAYS.forEach(d => {
+        CAL_DAYS.forEach(d => {
             const el = document.createElement('div');
             el.className = 'cal-dayname';
             el.innerText = d;
