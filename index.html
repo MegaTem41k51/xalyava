@@ -186,8 +186,6 @@
         transition: 0.2s;
     }
     button:hover { background: #5a3a7d; }
-    button.danger { background: #c62828; }
-    button.danger:hover { background: #9b1f1f; }
 
     /* ===== ТАБЛИЦА УЧЁТА ===== */
     table.acc-table {
@@ -273,7 +271,7 @@
         box-shadow: inset 0 0 0 2px #a78bfa;
     }
 
-    /* ===== КНОПКА СОХРАНИТЬ (плавающая) ===== */
+    /* ===== ПЛАВАЮЩАЯ КНОПКА СОХРАНИТЬ ===== */
     .save-float {
         position: fixed;
         bottom: 20px;
@@ -744,11 +742,6 @@
 
 <!-- УЧЁТ -->
 <div id="tab-accounting" class="tab-content active">
-    <div class="toolbar">
-        <button onclick="addRow()">➕ Добавить день</button>
-        <button class="danger" onclick="clearMyColumn()">🗑 Очистить мою колонку</button>
-    </div>
-
     <table id="myTable" class="acc-table">
         <thead>
             <tr>
@@ -861,6 +854,7 @@
     };
 
     let currentUser = null;
+    let hasUnsavedChanges = false;
 
     window.tryLogin = function() {
         const login = document.getElementById('loginInput').value.trim();
@@ -880,7 +874,11 @@
     };
 
     window.logout = function() {
-        if (!confirm('Выйти?')) return;
+        if (hasUnsavedChanges) {
+            if (!confirm('У тебя есть несохранённые изменения. Выйти?')) return;
+        } else {
+            if (!confirm('Выйти?')) return;
+        }
         localStorage.removeItem('currentUser');
         location.reload();
     };
@@ -897,16 +895,12 @@
         `;
 
         loadTable();
-        attachDeleteButtons();
         applyPermissionsToTable();
         loadSkins();
         renderCalendar('mega');
         renderCalendar('sergo');
         initChat();
         restoreActiveTab();
-
-        // Показываем плавающую кнопку сохранения
-        document.getElementById('saveFloat').classList.add('visible');
     }
 
     function restoreSession() {
@@ -943,13 +937,8 @@
         if (btn) btn.classList.add('active');
         localStorage.setItem(ACTIVE_TAB_KEY, name);
 
-        // Показываем плавающую кнопку только на вкладке Учёта
-        const saveFloat = document.getElementById('saveFloat');
-        if (name === 'accounting') {
-            saveFloat.classList.add('visible');
-        } else {
-            saveFloat.classList.remove('visible');
-        }
+        // Кнопка сохранения — показываем только на Учёте + если есть несохранённые изменения
+        updateSaveButtonVisibility();
 
         if (name === 'chat') {
             const cm = document.getElementById('chatMessages');
@@ -961,6 +950,17 @@
         const saved = localStorage.getItem(ACTIVE_TAB_KEY) || 'accounting';
         const btn = document.querySelector(`.tab-btn[data-tab="${saved}"]`);
         if (btn) switchTab(saved, btn);
+    }
+
+    function updateSaveButtonVisibility() {
+        const saveFloat = document.getElementById('saveFloat');
+        const activeTab = localStorage.getItem(ACTIVE_TAB_KEY) || 'accounting';
+
+        if (activeTab === 'accounting' && hasUnsavedChanges) {
+            saveFloat.classList.add('visible');
+        } else {
+            saveFloat.classList.remove('visible');
+        }
     }
 
     // ==================================================
@@ -1031,7 +1031,6 @@
                     });
                     tbody.appendChild(tr);
                 });
-                attachDeleteButtons();
                 applyPermissionsToTable();
             }
         } catch (e) {
@@ -1039,12 +1038,11 @@
         }
     }
 
-    // Сохранение таблицы (только свою колонку)
     async function saveTable() {
         const table = document.getElementById('myTable');
         const myKey = currentUser.key;
 
-        // Читаем текущее состояние из облака
+        // Читаем облако
         let cloudData = null;
         try {
             const docRef = doc(db, 'data', ACC_DOC);
@@ -1063,35 +1061,26 @@
             localData.body.push(row);
         });
 
-        // Определяем индекс моей колонки
+        // Индекс моей колонки
         const headers = table.querySelectorAll('thead th');
         let myColIndex = -1;
         headers.forEach((th, i) => {
             if (th.dataset.owner === myKey) myColIndex = i;
         });
 
-        if (myColIndex === -1) {
-            console.warn('Не найдена моя колонка');
-            return;
-        }
+        if (myColIndex === -1) return;
 
-        // Формируем итог: берём облако, и в моей колонке обновляем значения
         let finalData = { head: [], body: [] };
 
         if (cloudData && cloudData.body && cloudData.body.length === localData.body.length) {
-            // Структура совпадает — обновляем только мою колонку
             finalData.head = localData.head;
             finalData.body = cloudData.body.map((row, ri) => {
                 const newRow = [...row];
-                // Копируем все колонки из локала, кроме моей — они нам не важны
-                // Мою колонку берём из локала
                 newRow[myColIndex] = localData.body[ri][myColIndex];
-                // Первую ячейку (день) тоже из локала
                 newRow[0] = localData.body[ri][0];
                 return newRow;
             });
         } else {
-            // Нет облачных данных — сохраняем как есть (только моя колонка заполнена)
             finalData = localData;
         }
 
@@ -1102,7 +1091,6 @@
         }
     }
 
-    // Ручное сохранение с уведомлением
     window.manualSave = async function() {
         const btn = document.getElementById('saveFloat');
         btn.innerHTML = '⏳ Сохранение...';
@@ -1110,70 +1098,13 @@
         await saveTable();
 
         btn.innerHTML = '💾 Сохранить';
+        hasUnsavedChanges = false;
+        updateSaveButtonVisibility();
 
-        // Показываем тост
         const toast = document.getElementById('saveToast');
         toast.classList.add('visible');
         setTimeout(() => toast.classList.remove('visible'), 2000);
     };
-
-    window.addRow = function() {
-        const tbody = document.getElementById('myTable').querySelector('tbody');
-        const cols = tbody.rows[0].cells.length;
-        const tr = document.createElement('tr');
-
-        const firstTd = document.createElement('td');
-        firstTd.contentEditable = "true";
-        firstTd.innerText = 'Новый день';
-        tr.appendChild(firstTd);
-
-        for (let i = 1; i < cols; i++) {
-            const td = document.createElement('td');
-            tr.appendChild(td);
-        }
-
-        tbody.appendChild(tr);
-        attachDeleteButtons();
-        applyPermissionsToTable();
-    };
-
-    window.clearMyColumn = function() {
-        if (!confirm("Очистить только СВОЮ колонку?")) return;
-        const table = document.getElementById('myTable');
-        const headers = table.querySelectorAll('thead th');
-        const myKey = currentUser.key;
-
-        table.querySelectorAll('tbody tr').forEach(tr => {
-            const cells = tr.querySelectorAll('td');
-            cells.forEach((td, i) => {
-                if (i === 0) return;
-                const header = headers[i];
-                if (header && header.dataset.owner === myKey) {
-                    td.innerText = '';
-                }
-            });
-        });
-
-        saveTable();
-    };
-
-    function attachDeleteButtons() {
-        document.querySelectorAll('#myTable tbody tr').forEach(tr => {
-            if (tr.querySelector('.row-delete')) return;
-
-            const btn = document.createElement('button');
-            btn.className = 'row-delete';
-            btn.innerHTML = '×';
-            btn.title = 'Удалить строку';
-            btn.onclick = (e) => {
-                e.stopPropagation();
-                tr.remove();
-                saveTable();
-            };
-
-            tr.appendChild(btn);
-        });
-    }
 
     // ==================================================
     // КАЛЕНДАРЬ
@@ -1517,19 +1448,37 @@
     // ==================================================
     restoreSession();
 
-    // Автосохранение при вводе (с задержкой) — тоже оставим, на всякий случай
-    let saveTimeout;
+    // Отслеживаем несохранённые изменения в таблице
     document.getElementById('myTable').addEventListener('input', () => {
-        clearTimeout(saveTimeout);
-        saveTimeout = setTimeout(saveTable, 1000);
+        const table = document.getElementById('myTable');
+        const myKey = currentUser ? currentUser.key : null;
+        if (!myKey) return;
+
+        const headers = table.querySelectorAll('thead th');
+        let myColIndex = -1;
+        headers.forEach((th, i) => {
+            if (th.dataset.owner === myKey) myColIndex = i;
+        });
+
+        if (myColIndex === -1) return;
+
+        // Проверяем, есть ли хоть что-то в моей колонке
+        let hasContent = false;
+        table.querySelectorAll('tbody tr').forEach(tr => {
+            const td = tr.cells[myColIndex];
+            if (td && td.innerText.trim() !== '') hasContent = true;
+        });
+
+        hasUnsavedChanges = hasContent;
+        updateSaveButtonVisibility();
     });
 
-    const observer = new MutationObserver(() => {
-        attachDeleteButtons();
-        if (currentUser) applyPermissionsToTable();
-    });
-    observer.observe(document.getElementById('myTable').querySelector('tbody'), {
-        childList: true
+    // Предупреждение при уходе с несохранёнными изменениями
+    window.addEventListener('beforeunload', (e) => {
+        if (hasUnsavedChanges) {
+            e.preventDefault();
+            e.returnValue = '';
+        }
     });
 </script>
 
