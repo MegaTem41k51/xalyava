@@ -166,14 +166,6 @@
 
     .tab-content.active { display: flex; }
 
-    .toolbar {
-        margin-bottom: 15px;
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
     button {
         padding: 10px 18px;
         border: none;
@@ -895,12 +887,11 @@
         `;
 
         loadTable();
-        applyPermissionsToTable();
         loadSkins();
-        renderCalendar('mega');
-        renderCalendar('sergo');
         initChat();
         restoreActiveTab();
+        renderCalendar('mega');
+        renderCalendar('sergo');
     }
 
     function restoreSession() {
@@ -937,7 +928,6 @@
         if (btn) btn.classList.add('active');
         localStorage.setItem(ACTIVE_TAB_KEY, name);
 
-        // Кнопка сохранения — показываем только на Учёте + если есть несохранённые изменения
         updateSaveButtonVisibility();
 
         if (name === 'chat') {
@@ -968,6 +958,7 @@
     // ==================================================
     function applyPermissionsToTable() {
         const table = document.getElementById('myTable');
+        if (!currentUser) return;
         const myKey = currentUser.key;
 
         const headers = table.querySelectorAll('thead th');
@@ -1001,45 +992,86 @@
     const ACC_DOC = 'accounting';
     const ACC_FIELD = 'table';
 
+    const DEFAULT_HEAD = ['День / Кто', 'MEGATEM41K', 'Sergo Bulkin'];
+    const DEFAULT_BODY = [
+        ['Пн', '', ''],
+        ['Вт', '', ''],
+        ['Ср', '', ''],
+        ['Чт', '', ''],
+        ['Пт', '', ''],
+        ['Сб', '', ''],
+        ['Вс', '', '']
+    ];
+
+    function isTableValid(data) {
+        if (!data || !data.head || !data.body) return false;
+        if (!Array.isArray(data.head) || !Array.isArray(data.body)) return false;
+        if (data.head.length < 3) return false;
+        if (data.body.length < 7) return false;
+        // Проверяем что каждый row — массив с хотя бы 3 элементами
+        for (const row of data.body) {
+            if (!Array.isArray(row) || row.length < 3) return false;
+        }
+        return true;
+    }
+
+    function renderTable(data) {
+        const table = document.getElementById('myTable');
+        const thead = table.querySelector('thead tr');
+        thead.innerHTML = '';
+        data.head.forEach((text, i) => {
+            const th = document.createElement('th');
+            th.innerText = text;
+            if (i === 1) th.dataset.owner = 'mega';
+            if (i === 2) th.dataset.owner = 'sergo';
+            thead.appendChild(th);
+        });
+
+        const tbody = table.querySelector('tbody');
+        tbody.innerHTML = '';
+        data.body.forEach(rowData => {
+            const tr = document.createElement('tr');
+            rowData.forEach((text, i) => {
+                const td = document.createElement('td');
+                td.innerText = text;
+                tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+        });
+
+        applyPermissionsToTable();
+    }
+
     async function loadTable() {
+        let data = { head: [...DEFAULT_HEAD], body: DEFAULT_BODY.map(r => [...r]) };
+
         try {
             const docRef = doc(db, 'data', ACC_DOC);
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists() && docSnap.data()[ACC_FIELD]) {
-                const data = docSnap.data()[ACC_FIELD];
+                const cloud = docSnap.data()[ACC_FIELD];
 
-                const table = document.getElementById('myTable');
-                const thead = table.querySelector('thead tr');
-                thead.innerHTML = '';
-                data.head.forEach((text, i) => {
-                    const th = document.createElement('th');
-                    th.innerText = text;
-                    if (i === 1) th.dataset.owner = 'mega';
-                    if (i === 2) th.dataset.owner = 'sergo';
-                    thead.appendChild(th);
-                });
-
-                const tbody = table.querySelector('tbody');
-                tbody.innerHTML = '';
-                data.body.forEach(rowData => {
-                    const tr = document.createElement('tr');
-                    rowData.forEach((text, i) => {
-                        const td = document.createElement('td');
-                        td.innerText = text;
-                        tr.appendChild(td);
-                    });
-                    tbody.appendChild(tr);
-                });
-                applyPermissionsToTable();
+                if (isTableValid(cloud)) {
+                    data = cloud;
+                } else {
+                    console.warn('Данные в облаке битые — восстанавливаю дефолт');
+                    await setDoc(doc(db, 'data', ACC_DOC), { [ACC_FIELD]: data }, { merge: true });
+                }
+            } else {
+                // Пусто — записываем дефолт
+                await setDoc(doc(db, 'data', ACC_DOC), { [ACC_FIELD]: data }, { merge: true });
             }
         } catch (e) {
-            console.warn('Ошибка загрузки таблицы', e);
+            console.warn('Ошибка загрузки, использую дефолт', e);
         }
+
+        renderTable(data);
     }
 
     async function saveTable() {
         const table = document.getElementById('myTable');
+        if (!currentUser) return;
         const myKey = currentUser.key;
 
         // Читаем облако
@@ -1052,7 +1084,7 @@
             }
         } catch(e) {}
 
-        // Собираем локальные данные
+        // Локальные данные
         const localData = { head: [], body: [] };
         table.querySelectorAll('thead th').forEach(th => localData.head.push(th.innerText));
         table.querySelectorAll('tbody tr').forEach(tr => {
@@ -1072,7 +1104,7 @@
 
         let finalData = { head: [], body: [] };
 
-        if (cloudData && cloudData.body && cloudData.body.length === localData.body.length) {
+        if (isTableValid(cloudData) && cloudData.body.length === localData.body.length) {
             finalData.head = localData.head;
             finalData.body = cloudData.body.map((row, ri) => {
                 const newRow = [...row];
@@ -1448,11 +1480,10 @@
     // ==================================================
     restoreSession();
 
-    // Отслеживаем несохранённые изменения в таблице
     document.getElementById('myTable').addEventListener('input', () => {
         const table = document.getElementById('myTable');
-        const myKey = currentUser ? currentUser.key : null;
-        if (!myKey) return;
+        if (!currentUser) return;
+        const myKey = currentUser.key;
 
         const headers = table.querySelectorAll('thead th');
         let myColIndex = -1;
@@ -1462,7 +1493,6 @@
 
         if (myColIndex === -1) return;
 
-        // Проверяем, есть ли хоть что-то в моей колонке
         let hasContent = false;
         table.querySelectorAll('tbody tr').forEach(tr => {
             const td = tr.cells[myColIndex];
@@ -1473,7 +1503,6 @@
         updateSaveButtonVisibility();
     });
 
-    // Предупреждение при уходе с несохранёнными изменениями
     window.addEventListener('beforeunload', (e) => {
         if (hasUnsavedChanges) {
             e.preventDefault();
