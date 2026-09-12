@@ -11,16 +11,13 @@
         font-family: 'Segoe UI', Arial, sans-serif;
         background: #1e1e2e;
         min-height: 100vh;
-        display: flex;
-        flex-direction: column;
+        display: flex; flex-direction: column;
         align-items: center;
-        padding: 20px;
-        color: #fff;
+        padding: 20px; color: #fff;
     }
-
     h1 { margin-bottom: 20px; font-size: 24px; text-align: center; }
 
-    /* ЛОГИН */
+    /* ===== ЛОГИН ===== */
     .login-overlay {
         position: fixed; inset: 0;
         background: rgba(0,0,0,0.9);
@@ -58,26 +55,30 @@
         margin-top: 12px; min-height: 18px;
     }
 
-    /* ЮЗЕР */
+    /* ===== ЮЗЕР ===== */
     .user-bar {
         display: flex; align-items: center; gap: 12px;
         background: #2a2a3e; padding: 8px 16px;
         border-radius: 10px; margin-bottom: 15px; font-size: 14px;
     }
     .user-bar .avatar {
-        width: 30px; height: 30px; border-radius: 50%;
+        width: 36px; height: 36px; border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
-        font-weight: 700; font-size: 13px; color: #fff;
+        font-weight: 700; font-size: 14px; color: #fff;
+        background-size: cover; background-position: center;
+        flex-shrink: 0;
+        overflow: hidden;
     }
     .user-bar .avatar.mega { background: linear-gradient(135deg, #ff6b6b, #c62828); }
     .user-bar .avatar.sergo { background: linear-gradient(135deg, #4fc3f7, #0288d1); }
+    .user-bar .avatar img { width: 100%; height: 100%; object-fit: cover; }
     .user-bar .logout {
         padding: 5px 12px; font-size: 12px;
         background: #c62828; border-radius: 6px;
     }
     .user-bar .logout:hover { background: #9b1f1f; }
 
-    /* ВКЛАДКИ */
+    /* ===== ВКЛАДКИ ===== */
     .tabs {
         display: flex; gap: 8px; margin-bottom: 20px;
         background: #2a2a3e; padding: 6px;
@@ -95,6 +96,16 @@
         background: #764ba2; color: #fff;
         box-shadow: 0 4px 12px rgba(118, 75, 162, 0.5);
     }
+    .tab-btn.admin-tab {
+        background: linear-gradient(135deg, #f9a825, #f57c00);
+        color: #000;
+    }
+    .tab-btn.admin-tab.active {
+        background: linear-gradient(135deg, #ffb300, #f57c00);
+        color: #000;
+        box-shadow: 0 4px 12px rgba(245, 124, 0, 0.5);
+    }
+
     .tab-content {
         display: none; width: 100%;
         flex-direction: column; align-items: center;
@@ -109,7 +120,7 @@
     }
     button:hover { background: #5a3a7d; }
 
-    /* ТАБЛИЦА */
+    /* ===== ТАБЛИЦА ===== */
     table.acc-table {
         border-collapse: collapse;
         background: #2a2a3e;
@@ -130,36 +141,23 @@
         padding: 16px 12px;
     }
     table.acc-table th:first-child { background: #5a3a7d; min-width: 100px; }
-
     table.acc-table th[data-owner="mega"] {
         background: linear-gradient(135deg, #ff6b6b, #c62828);
     }
     table.acc-table th[data-owner="sergo"] {
         background: linear-gradient(135deg, #4fc3f7, #0288d1);
     }
-
     table.acc-table td:first-child {
         background: #3a3a52; font-weight: 700;
         color: #fff; text-align: center;
         font-size: 15px; min-width: 100px;
     }
 
-    /* Ячейка с двумя полями */
-    .cell-pair {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-    }
-    .cell-row {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
+    .cell-pair { display: flex; flex-direction: column; gap: 6px; }
+    .cell-row { display: flex; align-items: center; gap: 6px; }
     .cell-row .label {
-        font-weight: 700;
-        font-size: 14px;
-        white-space: nowrap;
-        min-width: 60px;
+        font-weight: 700; font-size: 14px;
+        white-space: nowrap; min-width: 60px;
     }
     .cell-row .label.alik { color: #4fc3f7; }
     .cell-row .label.zhidkiy { color: #81c784; }
@@ -168,12 +166,9 @@
         flex: 1;
         background: #1e1e2e;
         border: 1px solid #444;
-        outline: none;
-        color: #fff;
-        font-size: 15px;
-        font-weight: 600;
-        padding: 6px 10px;
-        border-radius: 6px;
+        outline: none; color: #fff;
+        font-size: 15px; font-weight: 600;
+        padding: 6px 10px; border-radius: 6px;
         transition: 0.15s;
         min-width: 60px;
     }
@@ -187,13 +182,8 @@
         background: #23233a;
         border-color: #3a3a52;
     }
-    .price-input::placeholder {
-        color: #555;
-        font-style: italic;
-        font-weight: 400;
-    }
+    .price-input::placeholder { color: #555; font-style: italic; font-weight: 400; }
 
-    /* Строка суммы */
     tr.total-row td {
         border-top: 3px solid #f9a825;
         padding: 16px;
@@ -203,16 +193,14 @@
         font-size: 16px;
     }
     .total-value {
-        font-size: 22px;
-        font-weight: 800;
+        font-size: 22px; font-weight: 800;
         color: #f9a825;
-        display: block;
-        text-align: center;
+        display: block; text-align: center;
     }
     .total-value.mega { color: #ff6b6b; }
     .total-value.sergo { color: #4fc3f7; }
 
-    /* КНОПКА СОХРАНИТЬ */
+    /* ===== СОХРАНИТЬ ===== */
     .save-float {
         position: fixed; bottom: 20px; right: 20px;
         padding: 14px 24px;
@@ -237,16 +225,13 @@
         z-index: 101; display: none;
         box-shadow: 0 8px 25px rgba(0,0,0,0.5);
     }
-    .save-toast.visible {
-        display: block;
-        animation: slideIn 0.3s ease;
-    }
+    .save-toast.visible { display: block; animation: slideIn 0.3s ease; }
     @keyframes slideIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* КАЛЕНДАРЬ */
+    /* ===== КАЛЕНДАРЬ ===== */
     .player-tabs {
         display: flex; gap: 10px; margin-bottom: 20px;
         background: #2a2a3e; padding: 6px; border-radius: 12px;
@@ -357,7 +342,7 @@
     .skin-box.pending .skin-save { display: block; }
     .cal-cell.locked .skin-box { cursor: not-allowed; opacity: 0.85; }
 
-    /* ЧАТ */
+    /* ===== ЧАТ ===== */
     .chat-container {
         width: 100%; max-width: 600px;
         background: #2a2a3e; border-radius: 12px;
@@ -378,8 +363,24 @@
         background: #35354d; padding: 10px 14px;
         border-radius: 12px; max-width: 80%;
         word-wrap: break-word; align-self: flex-start;
+        position: relative;
+        display: flex; gap: 10px;
     }
     .chat-msg.own { background: #764ba2; align-self: flex-end; }
+
+    .chat-msg .msg-avatar {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        background-size: cover; background-position: center;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 700; font-size: 13px;
+    }
+    .chat-msg .msg-avatar.mega { background: linear-gradient(135deg, #ff6b6b, #c62828); }
+    .chat-msg .msg-avatar.sergo { background: linear-gradient(135deg, #4fc3f7, #0288d1); }
+    .chat-msg .msg-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+
+    .chat-msg .msg-body { flex: 1; min-width: 0; }
     .chat-msg .msg-author {
         font-size: 11px; font-weight: 700;
         margin-bottom: 4px; color: #a78bfa;
@@ -390,6 +391,24 @@
         font-size: 10px; color: #888;
         margin-top: 4px; text-align: right;
     }
+
+    .msg-delete {
+        position: absolute;
+        top: 4px; right: 4px;
+        background: #c62828;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 20px; height: 20px;
+        font-size: 12px;
+        cursor: pointer;
+        padding: 0;
+        opacity: 0;
+        transition: 0.2s;
+        z-index: 5;
+    }
+    .chat-msg:hover .msg-delete { opacity: 1; }
+
     .chat-input-area {
         display: flex; gap: 8px; padding: 12px;
         background: #35354d; border-top: 1px solid #444;
@@ -411,6 +430,98 @@
         max-width: 700px; line-height: 1.6;
     }
 
+    /* ===== АДМИНКА ===== */
+    .admin-wrap {
+        width: 100%; max-width: 800px;
+        display: flex; flex-direction: column; gap: 20px;
+    }
+    .admin-card {
+        background: #2a2a3e;
+        border-radius: 14px;
+        padding: 24px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        border: 1px solid #3a3a52;
+    }
+    .admin-card h3 {
+        font-size: 17px;
+        margin-bottom: 16px;
+        color: #f9a825;
+        display: flex; align-items: center; gap: 8px;
+    }
+    .admin-card h3.mega-color { color: #ff6b6b; }
+    .admin-card h3.sergo-color { color: #4fc3f7; }
+
+    .admin-field {
+        display: flex; flex-direction: column; gap: 6px;
+        margin-bottom: 12px;
+    }
+    .admin-field label {
+        font-size: 13px;
+        color: #888;
+        font-weight: 600;
+    }
+    .admin-field input {
+        padding: 10px 14px;
+        border: 1px solid #444;
+        border-radius: 8px;
+        background: #1e1e2e;
+        color: #fff;
+        font-size: 14px;
+        outline: none;
+    }
+    .admin-field input:focus {
+        border-color: #a78bfa;
+        box-shadow: 0 0 0 2px rgba(167,139,250,0.2);
+    }
+
+    .admin-btn-row {
+        display: flex; gap: 10px; flex-wrap: wrap;
+        margin-top: 8px;
+    }
+    .admin-btn {
+        padding: 10px 18px;
+        background: #764ba2;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .admin-btn:hover { background: #5a3a7d; }
+    .admin-btn.danger {
+        background: #c62828;
+    }
+    .admin-btn.danger:hover { background: #9b1f1f; }
+
+    .admin-msg {
+        margin-top: 10px;
+        font-size: 13px;
+        min-height: 18px;
+    }
+    .admin-msg.ok { color: #81c784; }
+    .admin-msg.err { color: #ff6b6b; }
+
+    /* Аватарки в админке */
+    .avatar-edit {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 12px;
+    }
+    .avatar-preview {
+        width: 80px; height: 80px;
+        border-radius: 50%;
+        background-size: cover; background-position: center;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 700; font-size: 28px; color: #fff;
+        flex-shrink: 0;
+        overflow: hidden;
+        border: 3px solid #444;
+    }
+    .avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
+
     .modal {
         display: none; position: fixed; inset: 0;
         background: rgba(0,0,0,0.85); z-index: 1000;
@@ -429,6 +540,7 @@
 </head>
 <body>
 
+<!-- ЛОГИН -->
 <div class="login-overlay" id="loginOverlay">
     <div class="login-box">
         <h2>🔒 Вход</h2>
@@ -450,6 +562,8 @@
     <button class="tab-btn active" data-tab="accounting" onclick="switchTab('accounting', this)">📊 Учёт халявы</button>
     <button class="tab-btn" data-tab="calendar" onclick="switchTab('calendar', this)">📅 Календарь скинов</button>
     <button class="tab-btn" data-tab="chat" onclick="switchTab('chat', this)">💬 Чат</button>
+    <!-- Кнопка админки показывается только для mega -->
+    <button class="tab-btn admin-tab" data-tab="admin" id="adminTabBtn" style="display:none;" onclick="switchTab('admin', this)">🛠 Админка</button>
 </div>
 
 <!-- УЧЁТ -->
@@ -462,11 +576,8 @@
                 <th data-owner="sergo">Sergo Bulkin</th>
             </tr>
         </thead>
-        <tbody id="tableBody">
-            <!-- Заполняется JS -->
-        </tbody>
+        <tbody id="tableBody"></tbody>
     </table>
-
     <p class="hint">👆 Пиши цену Алика и Жидкого. Чужое видишь, но менять не можешь. Сумма считается автоматически.</p>
 </div>
 
@@ -515,6 +626,75 @@
     <p class="hint">👆 Чат общий. Все сообщения видны обоим.</p>
 </div>
 
+<!-- АДМИНКА -->
+<div id="tab-admin" class="tab-content">
+    <div class="admin-wrap">
+
+        <!-- Смена своих данных -->
+        <div class="admin-card">
+            <h3 class="mega-color">👤 MEGATEM41K — свои данные</h3>
+
+            <div class="avatar-edit">
+                <div class="avatar-preview mega" id="preview-mega">M</div>
+                <div>
+                    <button class="admin-btn" onclick="document.getElementById('avatarFile-mega').click()">📷 Загрузить аватар</button>
+                    <input type="file" id="avatarFile-mega" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none;" onchange="uploadAvatar(event, 'mega')">
+                    <button class="admin-btn danger" onclick="removeAvatar('mega')" style="margin-left:8px;">✖ Удалить</button>
+                </div>
+            </div>
+
+            <div class="admin-field">
+                <label>Логин</label>
+                <input type="text" id="login-mega" placeholder="MEGATEM41K">
+            </div>
+            <div class="admin-field">
+                <label>Новый пароль (оставь пустым — не менять)</label>
+                <input type="password" id="password-mega" placeholder="Новый пароль">
+            </div>
+            <div class="admin-btn-row">
+                <button class="admin-btn" onclick="saveAccount('mega')">💾 Сохранить</button>
+            </div>
+            <div class="admin-msg" id="msg-mega"></div>
+        </div>
+
+        <!-- Смена данных Серго -->
+        <div class="admin-card">
+            <h3 class="sergo-color">👤 Sergo Bulkin — данные</h3>
+
+            <div class="avatar-edit">
+                <div class="avatar-preview sergo" id="preview-sergo">S</div>
+                <div>
+                    <button class="admin-btn" onclick="document.getElementById('avatarFile-sergo').click()">📷 Загрузить аватар</button>
+                    <input type="file" id="avatarFile-sergo" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none;" onchange="uploadAvatar(event, 'sergo')">
+                    <button class="admin-btn danger" onclick="removeAvatar('sergo')" style="margin-left:8px;">✖ Удалить</button>
+                </div>
+            </div>
+
+            <div class="admin-field">
+                <label>Логин</label>
+                <input type="text" id="login-sergo" placeholder="Sergo Bulkin">
+            </div>
+            <div class="admin-field">
+                <label>Новый пароль (оставь пустым — не менять)</label>
+                <input type="password" id="password-sergo" placeholder="Новый пароль">
+            </div>
+            <div class="admin-btn-row">
+                <button class="admin-btn" onclick="saveAccount('sergo')">💾 Сохранить</button>
+            </div>
+            <div class="admin-msg" id="msg-sergo"></div>
+        </div>
+
+        <!-- Управление чатом -->
+        <div class="admin-card">
+            <h3>💬 Управление чатом</h3>
+            <p style="font-size:13px;color:#888;margin-bottom:12px;">
+                В самом чате наведи на сообщение — появится <b>×</b>, чтобы удалить. Тебе (как админу) показывается <b>×</b> на всех сообщениях, включая чужие.
+            </p>
+        </div>
+
+    </div>
+</div>
+
 <div class="modal" id="modal" onclick="closeModal(event)">
     <button class="modal-close" onclick="closeModal(event)">×</button>
     <img id="modalImg" src="" alt="">
@@ -539,23 +719,62 @@
     };
 
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-    import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, addDoc, query, orderBy, serverTimestamp }
+    import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, addDoc, deleteDoc, query, orderBy, serverTimestamp }
         from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
     // ==================================================
-    // АККАУНТЫ
+    // АККАУНТЫ — грузятся из Firebase (чтобы можно было менять)
     // ==================================================
-    const ACCOUNTS = {
+    // Резервная копия на случай если Firebase недоступен
+    let ACCOUNTS = {
         'Sergo Bulkin': { password: 'sosyXUI322', key: 'sergo' },
         'MEGATEM41K':    { password: '322sosyXUI322', key: 'mega' }
     };
 
+    // Аватары: { mega: "data:image...", sergo: "data:image..." }
+    let AVATARS = { mega: '', sergo: '' };
+
+    // Загрузка аккаунтов и аватаров из Firebase
+    async function loadAccounts() {
+        try {
+            const docRef = doc(db, 'data', 'accounts');
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                if (data.accounts) ACCOUNTS = data.accounts;
+                if (data.avatars) AVATARS = data.avatars;
+            } else {
+                // Первый запуск — сохраняем дефолтные
+                await setDoc(docRef, { accounts: ACCOUNTS, avatars: AVATARS });
+            }
+        } catch(e) {
+            console.warn('Не удалось загрузить аккаунты, использую дефолт', e);
+        }
+    }
+
+    async function saveAccounts() {
+        try {
+            await setDoc(doc(db, 'data', 'accounts'), {
+                accounts: ACCOUNTS,
+                avatars: AVATARS
+            });
+        } catch(e) {
+            console.warn('Ошибка сохранения аккаунтов', e);
+        }
+    }
+
+    // ==================================================
+    // СОСТОЯНИЕ
+    // ==================================================
     let currentUser = null;
     let hasUnsavedChanges = false;
 
+    // ==================================================
+    // ЛОГИН
+    // ==================================================
     window.tryLogin = function() {
         const login = document.getElementById('loginInput').value.trim();
         const password = document.getElementById('passwordInput').value;
@@ -582,12 +801,16 @@
         document.getElementById('loginOverlay').classList.add('hidden');
         document.getElementById('mainSite').style.display = 'flex';
 
-        const bar = document.getElementById('userBar');
-        bar.innerHTML = `
-            <div class="avatar ${currentUser.key}">${currentUser.login[0]}</div>
-            <span>${currentUser.login}</span>
-            <button class="logout" onclick="logout()">Выйти</button>
-        `;
+        renderUserBar();
+        updateChatAvatarsInDOM();
+
+        // Показать вкладку админки только для mega
+        if (currentUser.key === 'mega') {
+            document.getElementById('adminTabBtn').style.display = '';
+            loadAdminFields();
+        } else {
+            document.getElementById('adminTabBtn').style.display = 'none';
+        }
 
         loadTable();
         loadSkins();
@@ -595,6 +818,45 @@
         restoreActiveTab();
         renderCalendar('mega');
         renderCalendar('sergo');
+    }
+
+    function renderUserBar() {
+        const bar = document.getElementById('userBar');
+        const av = AVATARS[currentUser.key];
+        const avatarStyle = av
+            ? `background-image: url('${av}'); background-size: cover; background-position: center;`
+            : '';
+        const avatarClass = av ? '' : currentUser.key;
+        const avatarContent = av ? '' : currentUser.login[0];
+
+        bar.innerHTML = `
+            <div class="avatar ${avatarClass}" style="${avatarStyle}">
+                ${av ? '' : avatarContent}
+            </div>
+            <span>${currentUser.login}</span>
+            <button class="logout" onclick="logout()">Выйти</button>
+        `;
+    }
+
+    function updateChatAvatarsInDOM() {
+        // При смене аватара обновляет все иконки в чате
+        document.querySelectorAll('.chat-msg .msg-avatar').forEach(el => {
+            const author = el.dataset.author;
+            const key = findUserKeyByLogin(author);
+            if (!key) return;
+            const av = AVATARS[key];
+            if (av) {
+                el.innerHTML = `<img src="${av}">`;
+                el.style.background = 'none';
+            }
+        });
+    }
+
+    function findUserKeyByLogin(login) {
+        for (const [lg, acc] of Object.entries(ACCOUNTS)) {
+            if (lg === login) return acc.key;
+        }
+        return null;
     }
 
     function restoreSession() {
@@ -631,6 +893,9 @@
         if (btn) btn.classList.add('active');
         localStorage.setItem(ACTIVE_TAB_KEY, name);
         updateSaveButtonVisibility();
+
+        if (name === 'admin') loadAdminFields();
+
         if (name === 'chat') {
             const cm = document.getElementById('chatMessages');
             if (cm) cm.scrollTop = cm.scrollHeight;
@@ -639,13 +904,19 @@
 
     function restoreActiveTab() {
         const saved = localStorage.getItem(ACTIVE_TAB_KEY) || 'accounting';
+        // Защита: если сохранилась admin, но мы не mega
+        if (saved === 'admin' && (!currentUser || currentUser.key !== 'mega')) {
+            const btn = document.querySelector('.tab-btn[data-tab="accounting"]');
+            if (btn) switchTab('accounting', btn);
+            return;
+        }
         const btn = document.querySelector(`.tab-btn[data-tab="${saved}"]`);
         if (btn) switchTab(saved, btn);
     }
 
     function updateSaveButtonVisibility() {
         const saveFloat = document.getElementById('saveFloat');
-        const activeTab = localStorage.getItem(ACTIVE_TAB_KEY) || 'accounting';
+        const activeTab = localStorage.getItem('ACTIVE_TAB_KEY') || 'accounting';
         if (activeTab === 'accounting' && hasUnsavedChanges) {
             saveFloat.classList.add('visible');
         } else {
@@ -654,23 +925,13 @@
     }
 
     // ==================================================
-    // УЧЁТ — 7 дней × 2 человека × 2 поля (Алик/Жидкий)
+    // УЧЁТ
     // ==================================================
-    // Структура в Firebase:
-    // {
-    //   mega: { "Пн": { alik: "500", zhidkiy: "300" }, "Вт": {...}, ... },
-    //   sergo: { ... }
-    // }
-
     const ACC_DOC = 'accounting';
     const ACC_FIELD = 'prices_v2';
     const DAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
-    // Локальная модель
-    let tableData = {
-        mega: {},
-        sergo: {}
-    };
+    let tableData = { mega: {}, sergo: {} };
     DAYS.forEach(d => {
         tableData.mega[d] = { alik: '', zhidkiy: '' };
         tableData.sergo[d] = { alik: '', zhidkiy: '' };
@@ -682,36 +943,25 @@
 
         DAYS.forEach(day => {
             const tr = document.createElement('tr');
-
-            // Ячейка дня
             const dayTd = document.createElement('td');
             dayTd.innerText = day;
             tr.appendChild(dayTd);
 
-            // Ячейки для mega и sergo
             ['mega', 'sergo'].forEach(ownerKey => {
                 const td = document.createElement('td');
                 const canEdit = currentUser && currentUser.key === ownerKey;
-
                 const pair = document.createElement('div');
                 pair.className = 'cell-pair';
-
-                // Алик
                 pair.appendChild(createPersonInput(ownerKey, day, 'alik', 'Алик', canEdit));
-                // Жидкий
                 pair.appendChild(createPersonInput(ownerKey, day, 'zhidkiy', 'Жидкий', canEdit));
-
                 td.appendChild(pair);
                 tr.appendChild(td);
             });
-
             tbody.appendChild(tr);
         });
 
-        // Строка Сумма
         const totalTr = document.createElement('tr');
         totalTr.className = 'total-row';
-
         const totalLabel = document.createElement('td');
         totalLabel.innerText = 'Сумма';
         totalTr.appendChild(totalLabel);
@@ -733,14 +983,12 @@
         totalTr.appendChild(sergoTd);
 
         tbody.appendChild(totalTr);
-
         updateTotals();
     }
 
     function createPersonInput(ownerKey, day, personKey, personName, canEdit) {
         const row = document.createElement('div');
         row.className = 'cell-row';
-
         const label = document.createElement('span');
         label.className = 'label ' + personKey;
         label.innerText = personName + ' — ';
@@ -757,7 +1005,6 @@
         input.dataset.person = personKey;
         input.addEventListener('input', onPriceInput);
         row.appendChild(input);
-
         return row;
     }
 
@@ -766,11 +1013,8 @@
         const ownerKey = input.dataset.owner;
         const day = input.dataset.day;
         const personKey = input.dataset.person;
-
         tableData[ownerKey][day][personKey] = input.value;
-
         updateTotals();
-
         if (currentUser && currentUser.key === ownerKey) {
             hasUnsavedChanges = true;
             updateSaveButtonVisibility();
@@ -786,12 +1030,10 @@
 
     function updateTotals() {
         let sumMega = 0, sumSergo = 0;
-
         DAYS.forEach(day => {
             sumMega += parsePrice(tableData.mega[day].alik) + parsePrice(tableData.mega[day].zhidkiy);
             sumSergo += parsePrice(tableData.sergo[day].alik) + parsePrice(tableData.sergo[day].zhidkiy);
         });
-
         const megaEl = document.getElementById('total-mega');
         const sergoEl = document.getElementById('total-sergo');
         if (megaEl) megaEl.innerText = sumMega + ' ₽';
@@ -802,10 +1044,8 @@
         try {
             const docRef = doc(db, 'data', ACC_DOC);
             const docSnap = await getDoc(docRef);
-
             if (docSnap.exists() && docSnap.data()[ACC_FIELD]) {
                 const cloud = docSnap.data()[ACC_FIELD];
-
                 if (cloud && cloud.mega && cloud.sergo) {
                     DAYS.forEach(day => {
                         ['mega', 'sergo'].forEach(ownerKey => {
@@ -820,21 +1060,13 @@
                     });
                 }
             }
-        } catch (e) {
-            console.warn('Ошибка загрузки', e);
-        }
-
+        } catch (e) { console.warn('Ошибка загрузки', e); }
         renderTable();
     }
 
     async function saveTable() {
         if (!currentUser) return;
-
-        // Читаем актуальное облако
-        let cloud = {
-            mega: {},
-            sergo: {}
-        };
+        let cloud = { mega: {}, sergo: {} };
         DAYS.forEach(day => {
             cloud.mega[day] = { alik: '', zhidkiy: '' };
             cloud.sergo[day] = { alik: '', zhidkiy: '' };
@@ -850,10 +1082,7 @@
                         ['mega', 'sergo'].forEach(ownerKey => {
                             const src = c[ownerKey] && c[ownerKey][day];
                             if (src) {
-                                cloud[ownerKey][day] = {
-                                    alik: src.alik || '',
-                                    zhidkiy: src.zhidkiy || ''
-                                };
+                                cloud[ownerKey][day] = { alik: src.alik || '', zhidkiy: src.zhidkiy || '' };
                             }
                         });
                     });
@@ -861,7 +1090,6 @@
             }
         } catch(e) {}
 
-        // Обновляем только свою колонку
         DAYS.forEach(day => {
             cloud[currentUser.key][day] = {
                 alik: tableData[currentUser.key][day].alik,
@@ -871,21 +1099,16 @@
 
         try {
             await setDoc(doc(db, 'data', ACC_DOC), { [ACC_FIELD]: cloud }, { merge: true });
-        } catch (e) {
-            console.warn('Ошибка сохранения', e);
-        }
+        } catch (e) { console.warn('Ошибка сохранения', e); }
     }
 
     window.manualSave = async function() {
         const btn = document.getElementById('saveFloat');
         btn.innerHTML = '⏳ Сохранение...';
-
         await saveTable();
-
         btn.innerHTML = '💾 Сохранить';
         hasUnsavedChanges = false;
         updateSaveButtonVisibility();
-
         const toast = document.getElementById('saveToast');
         toast.classList.add('visible');
         setTimeout(() => toast.classList.remove('visible'), 2000);
@@ -896,7 +1119,6 @@
     // ==================================================
     let skins = { mega: {}, sergo: {} };
     let pendingSkins = {};
-
     let currentDate = { mega: new Date(), sergo: new Date() };
     currentDate.mega.setDate(1);
     currentDate.sergo.setDate(1);
@@ -924,17 +1146,12 @@
             }
             renderCalendar('mega');
             renderCalendar('sergo');
-        }, (error) => {
-            console.warn('Ошибка загрузки скинов', error);
-        });
+        }, (error) => { console.warn('Ошибка загрузки скинов', error); });
     }
 
     async function saveSkins() {
-        try {
-            await setDoc(doc(db, 'data', 'skins'), skins);
-        } catch (e) {
-            alert('Ошибка: ' + e.message);
-        }
+        try { await setDoc(doc(db, 'data', 'skins'), skins); }
+        catch (e) { alert('Ошибка: ' + e.message); }
     }
 
     function dateKey(y, m, d) {
@@ -948,7 +1165,6 @@
     function renderCalendar(playerKey) {
         const y = currentDate[playerKey].getFullYear();
         const m = currentDate[playerKey].getMonth();
-
         document.getElementById('calTitle-' + playerKey).innerText = `${MONTHS[m]} ${y}`;
 
         const cal = document.getElementById('calendar-' + playerKey);
@@ -976,25 +1192,18 @@
         for (let d = 1; d <= daysInMonth; d++) {
             const cell = document.createElement('div');
             cell.className = 'cal-cell';
-
-            if (currentUser && playerKey !== currentUser.key) {
-                cell.classList.add('locked');
-            }
-
+            if (currentUser && playerKey !== currentUser.key) cell.classList.add('locked');
             if (d === today.getDate() && m === today.getMonth() && y === today.getFullYear()) {
                 cell.classList.add('today');
             }
-
             const dateEl = document.createElement('div');
             dateEl.className = 'cal-date';
             dateEl.innerText = d;
             cell.appendChild(dateEl);
 
             const key = dateKey(y, m, d);
-
             cell.appendChild(createPersonBlock(playerKey, 'alik', 'Алик', key));
             cell.appendChild(createPersonBlock(playerKey, 'zhidkiy', 'Жидкий', key));
-
             cal.appendChild(cell);
         }
     }
@@ -1015,7 +1224,6 @@
         const savedSrc = skins[playerKey][dateKeyStr] && skins[playerKey][dateKeyStr][personKey];
         const pendingSrc = pendingSkins[pKey];
         const imgSrc = pendingSrc || savedSrc;
-
         const canEdit = currentUser && playerKey === currentUser.key;
 
         if (imgSrc) {
@@ -1070,7 +1278,6 @@
             input.accept = 'image/png, image/jpeg, image/jpg, image/webp';
             input.onchange = (e) => handleFileUpload(e, playerKey, personKey, dateKeyStr);
             box.appendChild(input);
-
             box.onclick = (e) => {
                 if (e.target.tagName === 'IMG' ||
                     e.target.classList.contains('skin-remove') ||
@@ -1147,7 +1354,9 @@
         const q = query(collection(db, 'chat'), orderBy('timestamp', 'asc'));
         onSnapshot(q, (snapshot) => {
             chatMessages.innerHTML = '';
-            snapshot.forEach((d) => addMessageToDOM(d.data()));
+            snapshot.forEach((docSnap) => {
+                addMessageToDOM(docSnap.id, docSnap.data());
+            });
             chatMessages.scrollTop = chatMessages.scrollHeight;
             chatStatus.innerText = '🟢 онлайн';
         }, (error) => {
@@ -1156,22 +1365,69 @@
         });
     }
 
-    function addMessageToDOM(msg) {
+    function addMessageToDOM(msgId, msg) {
         const div = document.createElement('div');
         div.className = 'chat-msg' + (currentUser && msg.author === currentUser.login ? ' own' : '');
-        const author = document.createElement('div');
-        author.className = 'msg-author';
-        author.innerText = msg.author;
-        const text = document.createElement('div');
-        text.className = 'msg-text';
-        text.innerText = msg.text;
-        const time = document.createElement('div');
-        time.className = 'msg-time';
+
+        // Кто автор — находим его key
+        const authorKey = findUserKeyByLogin(msg.author) || '';
+        const avatar = AVATARS[authorKey] || '';
+
+        // Аватар
+        const av = document.createElement('div');
+        av.className = 'msg-avatar' + (avatar ? '' : ' ' + authorKey);
+        av.dataset.author = msg.author;
+        if (avatar) {
+            const img = document.createElement('img');
+            img.src = avatar;
+            av.appendChild(img);
+        } else {
+            av.innerText = (msg.author[0] || '?').toUpperCase();
+        }
+        div.appendChild(av);
+
+        // Тело сообщения
+        const body = document.createElement('div');
+        body.className = 'msg-body';
+
+        const authorEl = document.createElement('div');
+        authorEl.className = 'msg-author';
+        authorEl.innerText = msg.author;
+
+        const textEl = document.createElement('div');
+        textEl.className = 'msg-text';
+        textEl.innerText = msg.text;
+
+        const timeEl = document.createElement('div');
+        timeEl.className = 'msg-time';
         if (msg.timestamp && msg.timestamp.toDate) {
             const t = msg.timestamp.toDate();
-            time.innerText = t.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+            timeEl.innerText = t.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
         }
-        div.appendChild(author); div.appendChild(text); div.appendChild(time);
+
+        body.appendChild(authorEl);
+        body.appendChild(textEl);
+        body.appendChild(timeEl);
+        div.appendChild(body);
+
+        // Кнопка удаления — если админ (mega) или своё сообщение
+        const isAdmin = currentUser && currentUser.key === 'mega';
+        const isOwn = currentUser && msg.author === currentUser.login;
+
+        if (isAdmin || isOwn) {
+            const delBtn = document.createElement('button');
+            delBtn.className = 'msg-delete';
+            delBtn.innerHTML = '×';
+            delBtn.title = 'Удалить сообщение';
+            delBtn.onclick = (e) => {
+                e.stopPropagation();
+                if (confirm('Удалить сообщение?')) {
+                    deleteDoc(doc(db, 'chat', msgId));
+                }
+            };
+            div.appendChild(delBtn);
+        }
+
         chatMessages.appendChild(div);
     }
 
@@ -1189,9 +1445,155 @@
     };
 
     // ==================================================
+    // АДМИНКА
+    // ==================================================
+    function loadAdminFields() {
+        if (!currentUser || currentUser.key !== 'mega') return;
+
+        // Находим логины по ключам
+        let megaLogin = 'MEGATEM41K', sergoLogin = 'Sergo Bulkin';
+        for (const [lg, acc] of Object.entries(ACCOUNTS)) {
+            if (acc.key === 'mega') megaLogin = lg;
+            if (acc.key === 'sergo') sergoLogin = lg;
+        }
+
+        document.getElementById('login-mega').value = megaLogin;
+        document.getElementById('login-sergo').value = sergoLogin;
+        document.getElementById('password-mega').value = '';
+        document.getElementById('password-sergo').value = '';
+
+        // Аватары
+        updateAvatarPreview('mega');
+        updateAvatarPreview('sergo');
+    }
+
+    function updateAvatarPreview(key) {
+        const el = document.getElementById('preview-' + key);
+        const av = AVATARS[key];
+        if (av) {
+            el.innerHTML = `<img src="${av}">`;
+            el.style.background = 'none';
+        } else {
+            el.innerHTML = key === 'mega' ? 'M' : 'S';
+            el.className = 'avatar-preview ' + (key === 'mega' ? 'mega' : 'sergo');
+            // Ставим цветной фон
+            if (key === 'mega') el.style.background = 'linear-gradient(135deg, #ff6b6b, #c62828)';
+            else el.style.background = 'linear-gradient(135deg, #4fc3f7, #0288d1)';
+        }
+    }
+
+    window.uploadAvatar = async function(event, key) {
+        const file = event.target.files[0];
+        if (!file) return;
+        if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
+
+        const compressed = await compressImage(file, 200, 0.85);
+        AVATARS[key] = compressed;
+
+        await saveAccounts();
+
+        updateAvatarPreview(key);
+        // Если это мой аватар — обновить user-bar и чат
+        if (currentUser && currentUser.key === key) {
+            renderUserBar();
+        }
+        // Обновить все аватары в чате
+        setTimeout(() => {
+            document.querySelectorAll('.chat-msg .msg-avatar').forEach(el => {
+                const author = el.dataset.author;
+                const k = findUserKeyByLogin(author);
+                if (k && AVATARS[k]) {
+                    el.innerHTML = `<img src="${AVATARS[k]}">`;
+                    el.style.background = 'none';
+                }
+            });
+        }, 100);
+    };
+
+    window.removeAvatar = async function(key) {
+        if (!confirm('Удалить аватар?')) return;
+        AVATARS[key] = '';
+        await saveAccounts();
+        updateAvatarPreview(key);
+        if (currentUser && currentUser.key === key) renderUserBar();
+        setTimeout(() => {
+            document.querySelectorAll('.chat-msg .msg-avatar').forEach(el => {
+                const author = el.dataset.author;
+                const k = findUserKeyByLogin(author);
+                if (k === key) {
+                    el.innerHTML = (author[0] || '?').toUpperCase();
+                    el.style.background = k === 'mega'
+                        ? 'linear-gradient(135deg, #ff6b6b, #c62828)'
+                        : 'linear-gradient(135deg, #4fc3f7, #0288d1)';
+                }
+            });
+        }, 100);
+    };
+
+    window.saveAccount = async function(key) {
+        const loginInput = document.getElementById('login-' + key);
+        const passwordInput = document.getElementById('password-' + key);
+        const msgEl = document.getElementById('msg-' + key);
+
+        const newLogin = loginInput.value.trim();
+        const newPassword = passwordInput.value;
+
+        if (!newLogin) {
+            msgEl.className = 'admin-msg err';
+            msgEl.innerText = 'Логин не может быть пустым';
+            return;
+        }
+
+        // Находим старый логин
+        let oldLogin = null;
+        for (const [lg, acc] of Object.entries(ACCOUNTS)) {
+            if (acc.key === key) oldLogin = lg;
+        }
+
+        // Проверка: не занят ли логин другим
+        if (newLogin !== oldLogin && ACCOUNTS[newLogin]) {
+            msgEl.className = 'admin-msg err';
+            msgEl.innerText = 'Логин уже занят';
+            return;
+        }
+
+        // Собираем новый объект ACCOUNTS
+        const newAccounts = {};
+        for (const [lg, acc] of Object.entries(ACCOUNTS)) {
+            if (acc.key === key) {
+                newAccounts[newLogin] = {
+                    password: newPassword || acc.password,
+                    key: acc.key
+                };
+            } else {
+                newAccounts[lg] = acc;
+            }
+        }
+        ACCOUNTS = newAccounts;
+
+        await saveAccounts();
+
+        // Если менял свой логин — обновляем текущую сессию
+        if (currentUser && currentUser.key === key) {
+            currentUser.login = newLogin;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            renderUserBar();
+        }
+
+        passwordInput.value = '';
+        msgEl.className = 'admin-msg ok';
+        msgEl.innerText = '✅ Сохранено';
+        setTimeout(() => { msgEl.innerText = ''; }, 2000);
+    };
+
+    // ==================================================
     // ИНИЦИАЛИЗАЦИЯ
     // ==================================================
-    restoreSession();
+    async function init() {
+        await loadAccounts();
+        restoreSession();
+    }
+    init();
 
     window.addEventListener('beforeunload', (e) => {
         if (hasUnsavedChanges) {
