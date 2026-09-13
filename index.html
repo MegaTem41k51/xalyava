@@ -17,30 +17,19 @@
     }
     h1 { margin-bottom: 20px; font-size: 24px; text-align: center; }
 
-    /* ===== ТЁМНЫЙ СКРОЛЛБАР ВЕЗДЕ ===== */
+    /* Скроллбар */
     * {
         scrollbar-width: thin;
         scrollbar-color: #764ba2 #2a2a3e;
     }
-    *::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
-    }
-    *::-webkit-scrollbar-track {
-        background: #2a2a3e;
-        border-radius: 5px;
-    }
+    *::-webkit-scrollbar { width: 10px; height: 10px; }
+    *::-webkit-scrollbar-track { background: #2a2a3e; border-radius: 5px; }
     *::-webkit-scrollbar-thumb {
-        background: #764ba2;
-        border-radius: 5px;
+        background: #764ba2; border-radius: 5px;
         border: 2px solid #2a2a3e;
     }
-    *::-webkit-scrollbar-thumb:hover {
-        background: #8b5fc0;
-    }
-    *::-webkit-scrollbar-corner {
-        background: #2a2a3e;
-    }
+    *::-webkit-scrollbar-thumb:hover { background: #8b5fc0; }
+    *::-webkit-scrollbar-corner { background: #2a2a3e; }
 
     /* ЛОГИН */
     .login-overlay {
@@ -372,11 +361,94 @@
         position: relative;
     }
     .chat-header {
-        background: #764ba2; padding: 15px 20px;
+        background: #764ba2; padding: 12px 20px;
         font-weight: 700; font-size: 16px;
         display: flex; justify-content: space-between; align-items: center;
+        gap: 12px;
+    }
+    .chat-header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
     .chat-status { font-size: 12px; color: #e0d4ff; }
+
+    /* Кнопка громкости */
+    .volume-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    .volume-btn {
+        background: rgba(0,0,0,0.2);
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+        padding: 0;
+    }
+    .volume-btn:hover { background: rgba(0,0,0,0.4); }
+
+    .volume-slider-wrap {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: 8px;
+        background: #2f2f44;
+        border: 1px solid #4a4a66;
+        border-radius: 10px;
+        padding: 10px 14px;
+        display: none;
+        align-items: center;
+        gap: 10px;
+        z-index: 100;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    }
+    .volume-slider-wrap.open { display: flex; }
+
+    .volume-slider-wrap input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 120px;
+        height: 6px;
+        background: #1e1e2e;
+        border-radius: 3px;
+        outline: none;
+        cursor: pointer;
+    }
+    .volume-slider-wrap input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #a78bfa;
+        cursor: pointer;
+        border: 2px solid #fff;
+    }
+    .volume-slider-wrap input[type="range"]::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #a78bfa;
+        cursor: pointer;
+        border: 2px solid #fff;
+    }
+    .volume-value {
+        font-size: 12px;
+        color: #a78bfa;
+        font-weight: 700;
+        min-width: 36px;
+        text-align: right;
+    }
+
     .chat-messages {
         flex: 1; overflow-y: auto; padding: 15px;
         display: flex; flex-direction: column; gap: 10px;
@@ -412,32 +484,137 @@
         border-radius: 8px;
     }
 
-    /* ===== АУДИО В ЧАТЕ ===== */
-    .chat-msg .msg-audio {
-        margin-top: 6px;
-        width: 240px;
-        max-width: 100%;
-        height: 40px;
-        display: block;
-        border-radius: 20px;
-        background: #23233a;
-    }
-    .chat-msg.own .msg-audio {
-        background: #5a3a7d;
-    }
-    .chat-msg .msg-audio-duration {
-        font-size: 11px;
-        color: #aaa;
-        margin-top: 2px;
+    /* ===== СТИЛИЗОВАННЫЙ АУДИОПЛЕЕР ===== */
+    .voice-player {
         display: flex;
         align-items: center;
-        gap: 4px;
+        gap: 10px;
+        margin-top: 6px;
+        background: rgba(0,0,0,0.25);
+        padding: 8px 12px;
+        border-radius: 20px;
+        min-width: 200px;
+        max-width: 260px;
+    }
+    .chat-msg.own .voice-player {
+        background: rgba(255,255,255,0.15);
+    }
+    .voice-play-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #a78bfa;
+        border: none;
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: 0;
+        transition: 0.2s;
+    }
+    .voice-play-btn:hover { background: #8b5fc0; }
+    .chat-msg.own .voice-play-btn { background: #fff; color: #764ba2; }
+    .chat-msg.own .voice-play-btn:hover { background: #e0d4ff; }
+
+    .voice-wave {
+        flex: 1;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        position: relative;
+        cursor: pointer;
+    }
+    .voice-wave-bar {
+        flex: 1;
+        background: #555;
+        border-radius: 2px;
+        transition: 0.15s;
+    }
+    .chat-msg.own .voice-wave-bar { background: rgba(255,255,255,0.3); }
+    .voice-wave-bar.played {
+        background: #a78bfa;
+    }
+    .chat-msg.own .voice-wave-bar.played {
+        background: #fff;
     }
 
-    .chat-msg .msg-time {
-        font-size: 10px; color: #888;
-        margin-top: 4px; text-align: right;
+    .voice-duration {
+        font-size: 11px;
+        color: #ccc;
+        font-weight: 700;
+        min-width: 32px;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
     }
+    .chat-msg.own .voice-duration { color: #fff; }
+
+    /* Индикатор "печатает..." */
+    .typing-indicator {
+        display: none;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        margin: 0 15px 8px;
+        background: #35354d;
+        border-radius: 20px;
+        align-self: flex-start;
+        max-width: fit-content;
+        font-size: 13px;
+        color: #a78bfa;
+        font-style: italic;
+    }
+    .typing-indicator.visible { display: flex; }
+    .typing-dots {
+        display: flex;
+        gap: 3px;
+    }
+    .typing-dots span {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #a78bfa;
+        animation: typing-bounce 1.4s infinite;
+    }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing-bounce {
+        0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+        30% { transform: translateY(-5px); opacity: 1; }
+    }
+
+    /* Прочитано */
+    .msg-read {
+        font-size: 10px;
+        color: #ccc;
+        margin-top: 4px;
+        text-align: right;
+        font-style: italic;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 4px;
+    }
+    .chat-msg.own .msg-read {
+        color: #e0d4ff;
+    }
+    .msg-read::before {
+        content: '✓✓';
+        font-style: normal;
+        font-weight: 700;
+        color: #81c784;
+    }
+    .chat-msg.own .msg-read::before { color: #fff; }
+
+    .msg-time {
+        font-size: 10px; color: #888;
+        margin-top: 2px; text-align: right;
+    }
+    .chat-msg.own .msg-time { color: #d0c0e0; }
+
     .msg-delete {
         position: absolute; top: 4px; right: 4px;
         background: #c62828; color: #fff;
@@ -484,7 +661,6 @@
         100% { box-shadow: 0 0 0 0 rgba(198, 40, 40, 0); }
     }
 
-    /* ===== ПАНЕЛЬ ЗАПИСИ ===== */
     .record-panel {
         position: absolute;
         bottom: 76px; left: 12px; right: 12px;
@@ -981,10 +1157,26 @@
 <div id="tab-chat" class="tab-content">
     <div class="chat-container">
         <div class="chat-header">
-            <span>💬 Общий чат</span>
-            <span class="chat-status" id="chatStatus">подключение...</span>
+            <div class="chat-header-left">
+                <span>💬 Общий чат</span>
+                <span class="chat-status" id="chatStatus">подключение...</span>
+            </div>
+            <div class="volume-wrap">
+                <button class="volume-btn" id="volumeBtn" onclick="toggleVolumePanel(event)" title="Громкость">🔊</button>
+                <div class="volume-slider-wrap" id="volumeSliderWrap">
+                    <input type="range" id="volumeSlider" min="0" max="100" value="100" oninput="setVolume(this.value)">
+                    <span class="volume-value" id="volumeValue">100%</span>
+                </div>
+            </div>
         </div>
         <div class="chat-messages" id="chatMessages"></div>
+
+        <div class="typing-indicator" id="typingIndicator">
+            <span id="typingName">Кто-то</span>
+            <div class="typing-dots">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
 
         <div class="sticker-panel" id="stickerPanel">
             <div class="sticker-panel-header">
@@ -1006,7 +1198,7 @@
         <div class="chat-input-area">
             <button class="sticker-btn" onclick="toggleStickerPanel()" title="Стикеры">😀</button>
             <button class="mic-btn" id="micBtn" onclick="startRecording()" title="Голосовое сообщение">🎤</button>
-            <input type="text" id="chatInput" placeholder="Напиши сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
+            <input type="text" id="chatInput" placeholder="Напиши сообщение..." onkeydown="if(event.key==='Enter') sendMessage()" oninput="onTyping()">
             <button onclick="sendMessage()">➤</button>
         </div>
     </div>
@@ -1014,10 +1206,8 @@
 
 <div id="tab-admin" class="tab-content">
     <div class="admin-wrap">
-
         <div class="admin-card">
             <h3 class="mega-color">👤 MEGATEM41K — свои данные</h3>
-
             <div class="avatar-edit">
                 <div class="avatar-preview mega" id="preview-mega">M</div>
                 <div>
@@ -1026,7 +1216,6 @@
                     <button class="admin-btn danger" onclick="removeAvatar('mega')" style="margin-left:8px;">✖ Удалить</button>
                 </div>
             </div>
-
             <div class="admin-field">
                 <label>Логин</label>
                 <input type="text" id="login-mega" placeholder="MEGATEM41K">
@@ -1043,7 +1232,6 @@
 
         <div class="admin-card">
             <h3 class="sergo-color">👤 Sergo Bulkin — данные</h3>
-
             <div class="avatar-edit">
                 <div class="avatar-preview sergo" id="preview-sergo">S</div>
                 <div>
@@ -1052,7 +1240,6 @@
                     <button class="admin-btn danger" onclick="removeAvatar('sergo')" style="margin-left:8px;">✖ Удалить</button>
                 </div>
             </div>
-
             <div class="admin-field">
                 <label>Логин</label>
                 <input type="text" id="login-sergo" placeholder="Sergo Bulkin">
@@ -1077,18 +1264,15 @@
         <div class="admin-card">
             <h3>😀 Стикерпаки</h3>
             <p style="font-size:13px;color:#888;margin-bottom:14px;">
-                Загружай <b>PNG</b>, <b>JPG</b> или <b>WebM</b> (анимированные как в Telegram). Максимум <b>200 стикеров в паке</b>.<br>
+                Загружай <b>PNG</b>, <b>JPG</b> или <b>WebM</b>. Максимум <b>200 стикеров в паке</b>.<br>
                 ⚠️ <b>Учти:</b> WebM-файлы тяжёлые. Firestore имеет лимит ~1 МБ на документ — не заливай слишком много видео-стикеров сразу.
             </p>
-
             <div class="pack-create">
-                <input type="text" id="newPackName" placeholder="Название нового пака (например: 'Мемы', 'Смайлы')" maxlength="30">
+                <input type="text" id="newPackName" placeholder="Название нового пака" maxlength="30">
                 <button class="admin-btn" onclick="createPack()">➕ Создать пак</button>
             </div>
-
             <div class="packs-list" id="packsList"></div>
         </div>
-
     </div>
 </div>
 
@@ -1118,12 +1302,67 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
     import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, addDoc, deleteDoc, query, orderBy, serverTimestamp }
         from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
-    import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject }
-        from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const storage = getStorage(app);
+
+    // ==================================================
+    // ГРОМКОСТЬ
+    // ==================================================
+    let currentVolume = parseFloat(localStorage.getItem('chatVolume') || '1.0');
+    window.currentVolume = currentVolume;
+
+    window.toggleVolumePanel = function(e) {
+        if (e) e.stopPropagation();
+        document.getElementById('volumeSliderWrap').classList.toggle('open');
+    };
+
+    // Закрытие панели при клике вне
+    document.addEventListener('click', (e) => {
+        const wrap = document.getElementById('volumeSliderWrap');
+        const btn = document.getElementById('volumeBtn');
+        if (wrap && wrap.classList.contains('open') && !wrap.contains(e.target) && e.target !== btn) {
+            wrap.classList.remove('open');
+        }
+    });
+
+    window.setVolume = function(val) {
+        currentVolume = parseInt(val) / 100;
+        window.currentVolume = currentVolume;
+        localStorage.setItem('chatVolume', String(currentVolume));
+
+        // Обновляем ползунок и лейбл
+        document.getElementById('volumeSlider').value = val;
+        document.getElementById('volumeValue').innerText = val + '%';
+
+        // Иконка
+        const btn = document.getElementById('volumeBtn');
+        if (currentVolume === 0) btn.innerText = '🔇';
+        else if (currentVolume < 0.5) btn.innerText = '🔉';
+        else btn.innerText = '🔊';
+
+        // Обновляем громкость всех играющих аудио
+        document.querySelectorAll('audio').forEach(a => {
+            a.volume = currentVolume;
+        });
+    };
+
+    // Восстановление громкости
+    (function initVolume() {
+        const val = Math.round(currentVolume * 100);
+        const slider = document.getElementById('volumeSlider');
+        const label = document.getElementById('volumeValue');
+        const btn = document.getElementById('volumeBtn');
+        if (slider) {
+            slider.value = val;
+            label.innerText = val + '%';
+        }
+        if (btn) {
+            if (currentVolume === 0) btn.innerText = '🔇';
+            else if (currentVolume < 0.5) btn.innerText = '🔉';
+            else btn.innerText = '🔊';
+        }
+    })();
 
     // ==================================================
     // АККАУНТЫ
@@ -1144,10 +1383,7 @@
         return typeof src === 'string' && (src.startsWith('data:video/webm') || src.includes('.webm'));
     }
     function isVideo(src) {
-        return typeof src === 'string' && (src.startsWith('data:video/') || src.includes('.webm'));
-    }
-    function isAudio(src) {
-        return typeof src === 'string' && (src.startsWith('data:audio/') || src.includes('.webm') && src.includes('voice'));
+        return typeof src === 'string' && (src.startsWith('data:video/') || (src.includes('.webm') && !src.includes('voice')));
     }
 
     async function loadAccounts() {
@@ -1202,33 +1438,26 @@
     let hasUnsavedChanges = false;
 
     // ==================================================
-    // ЗАПОМИНАНИЕ СЕССИИ (чтобы F5 не показывал логин)
+    // СЕССИЯ
     // ==================================================
     const SESSION_KEY = 'chat_session_v1';
 
     function saveSession(user) {
         try {
             sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
-            // Также дублируем в localStorage на случай закрытия вкладки
             localStorage.setItem(SESSION_KEY, JSON.stringify(user));
         } catch(e) {}
     }
 
     function loadSession() {
         try {
-            // Сначала sessionStorage (F5 в той же вкладке)
             let raw = sessionStorage.getItem(SESSION_KEY);
-            if (!raw) {
-                // Потом localStorage (после закрытия браузера)
-                raw = localStorage.getItem(SESSION_KEY);
-            }
+            if (!raw) raw = localStorage.getItem(SESSION_KEY);
             if (!raw) return null;
             const u = JSON.parse(raw);
-            // Проверка что логин ещё существует в ACCOUNTS
             if (ACCOUNTS[u.login]) {
                 return { login: u.login, key: ACCOUNTS[u.login].key };
             }
-            // Если логин сменили — ищем по key
             for (const [lg, acc] of Object.entries(ACCOUNTS)) {
                 if (acc.key === u.key) {
                     return { login: lg, key: acc.key };
@@ -1267,6 +1496,8 @@
     window.logout = function() {
         const msg = hasUnsavedChanges ? 'Есть несохранённые изменения. Выйти?' : 'Выйти?';
         if (!confirm(msg)) return;
+        // Убираем "печатает" при выходе
+        clearTypingStatus();
         clearSession();
         location.reload();
     };
@@ -1287,6 +1518,7 @@
         loadTable();
         loadSkins();
         initChat();
+        initTyping();
         restoreActiveTab();
         renderCalendar('mega');
         renderCalendar('sergo');
@@ -1325,12 +1557,10 @@
         const session = loadSession();
         if (session) {
             currentUser = session;
-            // Обновим сессию на случай если логин сменили
             saveSession(session);
             showMainSite();
             return;
         }
-        // Нет сессии — показываем логин
         document.getElementById('loginOverlay').classList.remove('hidden');
     }
 
@@ -1828,13 +2058,36 @@
     const chatInput = document.getElementById('chatInput');
     const chatStatus = document.getElementById('chatStatus');
 
+    let seenMessageIds = new Set();
+    let unreadFromOthers = new Set(); // id сообщений, которые мы ещё не прочитали
+
     function initChat() {
         const q = query(collection(db, 'chat'), orderBy('timestamp', 'asc'));
         onSnapshot(q, (snapshot) => {
             chatMessages.innerHTML = '';
+            const newIds = [];
             snapshot.forEach((docSnap) => {
-                addMessageToDOM(docSnap.id, docSnap.data());
+                const data = docSnap.data();
+                addMessageToDOM(docSnap.id, data);
+                newIds.push(docSnap.id);
+
+                // Отмечаем как "непрочитанное", если это чужое и новое
+                if (currentUser && data.author !== currentUser.login) {
+                    if (!seenMessageIds.has(docSnap.id)) {
+                        unreadFromOthers.add(docSnap.id);
+                    }
+                }
             });
+
+            // Помечаем прочитанными, если вкладка чата активна
+            const activeTab = localStorage.getItem(ACTIVE_TAB_KEY);
+            if (activeTab === 'chat' && currentUser) {
+                markMessagesAsRead();
+            }
+
+            // Запоминаем все id
+            newIds.forEach(id => seenMessageIds.add(id));
+
             chatMessages.scrollTop = chatMessages.scrollHeight;
             chatStatus.innerText = '🟢 онлайн';
         }, (error) => {
@@ -1846,6 +2099,7 @@
     function addMessageToDOM(msgId, msg) {
         const div = document.createElement('div');
         div.className = 'chat-msg' + (currentUser && msg.author === currentUser.login ? ' own' : '');
+        div.dataset.msgId = msgId;
 
         const authorKey = findUserKeyByLogin(msg.author) || '';
         const avatar = AVATARS[authorKey] || '';
@@ -1870,7 +2124,6 @@
         authorEl.innerText = msg.author;
         body.appendChild(authorEl);
 
-        // Тип сообщения
         if (msg.type === 'sticker' && msg.sticker) {
             if (isVideo(msg.sticker)) {
                 const video = document.createElement('video');
@@ -1890,20 +2143,9 @@
                 body.appendChild(stk);
             }
         } else if (msg.type === 'voice' && msg.audio) {
-            // Голосовое сообщение
-            const audio = document.createElement('audio');
-            audio.className = 'msg-audio';
-            audio.src = msg.audio;
-            audio.controls = true;
-            audio.preload = 'metadata';
-            body.appendChild(audio);
-
-            if (msg.duration) {
-                const dur = document.createElement('div');
-                dur.className = 'msg-audio-duration';
-                dur.innerText = '🎤 ' + formatDuration(msg.duration);
-                body.appendChild(dur);
-            }
+            // ===== СТИЛИЗОВАННЫЙ ПЛЕЕР =====
+            const player = createVoicePlayer(msg.audio, msg.duration || 0);
+            body.appendChild(player);
         } else {
             const textEl = document.createElement('div');
             textEl.className = 'msg-text';
@@ -1911,6 +2153,7 @@
             body.appendChild(textEl);
         }
 
+        // Время
         const timeEl = document.createElement('div');
         timeEl.className = 'msg-time';
         if (msg.timestamp && msg.timestamp.toDate) {
@@ -1918,6 +2161,23 @@
             timeEl.innerText = t.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
         }
         body.appendChild(timeEl);
+
+        // "Прочитано" — только для своих сообщений
+        if (currentUser && msg.author === currentUser.login) {
+            const readEl = document.createElement('div');
+            readEl.className = 'msg-read';
+            readEl.dataset.readFor = msgId;
+
+            // Если сообщение есть в "прочитано" в БД — показываем
+            if (msg.readBy && msg.readBy.includes(getOtherUserKey())) {
+                readEl.innerText = 'Прочитано';
+            } else {
+                readEl.innerText = 'Отправлено';
+                readEl.style.opacity = '0.5';
+            }
+            body.appendChild(readEl);
+        }
+
         div.appendChild(body);
 
         const isAdmin = currentUser && currentUser.key === 'mega';
@@ -1940,22 +2200,257 @@
         chatMessages.appendChild(div);
     }
 
+    function getOtherUserKey() {
+        if (!currentUser) return null;
+        return currentUser.key === 'mega' ? 'sergo' : 'mega';
+    }
+
+    // ==================================================
+    // СТИЛИЗОВАННЫЙ АУДИОПЛЕЕР
+    // ==================================================
+    function createVoicePlayer(src, duration) {
+        const wrap = document.createElement('div');
+        wrap.className = 'voice-player';
+
+        const playBtn = document.createElement('button');
+        playBtn.className = 'voice-play-btn';
+        playBtn.innerHTML = '▶';
+        wrap.appendChild(playBtn);
+
+        const wave = document.createElement('div');
+        wave.className = 'voice-wave';
+
+        // Создаём ~20 столбиков
+        const bars = [];
+        for (let i = 0; i < 20; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'voice-wave-bar';
+            // Случайная высота для вида
+            const h = 20 + Math.random() * 80;
+            bar.style.height = h + '%';
+            wave.appendChild(bar);
+            bars.push(bar);
+        }
+        wrap.appendChild(wave);
+
+        const dur = document.createElement('div');
+        dur.className = 'voice-duration';
+        dur.innerText = formatDuration(duration);
+        wrap.appendChild(dur);
+
+        // Аудио-элемент (скрытый)
+        const audio = document.createElement('audio');
+        audio.src = src;
+        audio.preload = 'metadata';
+        audio.volume = window.currentVolume;
+        audio.style.display = 'none';
+        wrap.appendChild(audio);
+
+        let isPlaying = false;
+
+        playBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                // Ставим громкость
+                audio.volume = window.currentVolume;
+                // Пауза всех остальных
+                document.querySelectorAll('audio').forEach(a => { if (a !== audio) a.pause(); });
+                audio.play();
+            }
+        };
+
+        audio.onplay = () => {
+            isPlaying = true;
+            playBtn.innerHTML = '⏸';
+        };
+        audio.onpause = () => {
+            isPlaying = false;
+            playBtn.innerHTML = '▶';
+        };
+        audio.onended = () => {
+            isPlaying = false;
+            playBtn.innerHTML = '▶';
+            updateWaveProgress(0);
+        };
+        audio.ontimeupdate = () => {
+            if (audio.duration) {
+                const progress = audio.currentTime / audio.duration;
+                updateWaveProgress(progress);
+                const remaining = Math.max(0, Math.ceil(audio.duration - audio.currentTime));
+                dur.innerText = formatDuration(remaining);
+            }
+        };
+        audio.onloadedmetadata = () => {
+            dur.innerText = formatDuration(Math.round(audio.duration));
+        };
+
+        function updateWaveProgress(progress) {
+            const playedBars = Math.round(progress * bars.length);
+            bars.forEach((bar, i) => {
+                if (i < playedBars) bar.classList.add('played');
+                else bar.classList.remove('played');
+            });
+        }
+
+        // Клик по волне — перемотка
+        wave.onclick = (e) => {
+            e.stopPropagation();
+            const rect = wave.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            if (audio.duration) {
+                audio.currentTime = percent * audio.duration;
+            }
+        };
+
+        return wrap;
+    }
+
+    function formatDuration(sec) {
+        sec = Math.max(0, Math.floor(sec));
+        const m = Math.floor(sec / 60);
+        const s = sec % 60;
+        return `${m}:${String(s).padStart(2, '0')}`;
+    }
+
+    // ==================================================
+    // ПЕЧАТАЕТ...
+    // ==================================================
+    let typingTimeout = null;
+    let typingUnsub = null;
+    let typingClearTimeout = null;
+
+    function initTyping() {
+        const docRef = doc(db, 'data', 'typing');
+        if (typingUnsub) typingUnsub();
+        typingUnsub = onSnapshot(docRef, (docSnap) => {
+            const indicator = document.getElementById('typingIndicator');
+            const nameEl = document.getElementById('typingName');
+            if (!indicator) return;
+
+            if (!docSnap.exists()) {
+                indicator.classList.remove('visible');
+                return;
+            }
+            const data = docSnap.data();
+
+            // Ищем кого-то, кто печатает и не мы
+            let someoneTyping = false;
+            const now = Date.now();
+
+            for (const [login, info] of Object.entries(data)) {
+                if (!currentUser || login === currentUser.login) continue;
+                if (!info || !info.timestamp) continue;
+                // Считаем "печатает" только если обновлено <3 сек назад
+                const ts = info.timestamp.toDate ? info.timestamp.toDate().getTime() : info.timestamp;
+                if (now - ts < 3000) {
+                    someoneTyping = true;
+                    nameEl.innerText = login + ' печатает';
+                    break;
+                }
+            }
+
+            if (someoneTyping) {
+                indicator.classList.add('visible');
+            } else {
+                indicator.classList.remove('visible');
+            }
+        });
+    }
+
+    window.onTyping = function() {
+        if (!currentUser) return;
+
+        clearTimeout(typingTimeout);
+
+        // Помечаем "печатает" в БД
+        typingTimeout = setTimeout(async () => {
+            try {
+                const docRef = doc(db, 'data', 'typing');
+                const snap = await getDoc(docRef);
+                const current = snap.exists() ? snap.data() : {};
+                current[currentUser.login] = { timestamp: serverTimestamp() };
+                await setDoc(docRef, current);
+            } catch(e) {}
+        }, 200);
+
+        // Автоочистка через 2.5 сек после остановки
+        clearTimeout(typingClearTimeout);
+        typingClearTimeout = setTimeout(() => {
+            clearTypingStatus();
+        }, 2500);
+    };
+
+    async function clearTypingStatus() {
+        if (!currentUser) return;
+        try {
+            const docRef = doc(db, 'data', 'typing');
+            const snap = await getDoc(docRef);
+            if (!snap.exists()) return;
+            const data = snap.data();
+            delete data[currentUser.login];
+            await setDoc(docRef, data);
+        } catch(e) {}
+    }
+
+    // ==================================================
+    // ПРОЧИТАНО
+    // ==================================================
+    async function markMessagesAsRead() {
+        if (!currentUser) return;
+        if (unreadFromOthers.size === 0) return;
+
+        // Обновляем каждое сообщение в БД: добавляем наш key в readBy
+        for (const msgId of Array.from(unreadFromOthers)) {
+            try {
+                const docRef = doc(db, 'chat', msgId);
+                const snap = await getDoc(docRef);
+                if (!snap.exists()) continue;
+                const data = snap.data();
+                const readBy = data.readBy || [];
+                if (!readBy.includes(currentUser.key)) {
+                    readBy.push(currentUser.key);
+                    await setDoc(docRef, { readBy }, { merge: true });
+                }
+            } catch(e) {}
+        }
+
+        unreadFromOthers.clear();
+        // Перерисовываем только "прочитано" у своих сообщений
+        refreshReadStatuses();
+    }
+
+    function refreshReadStatuses() {
+        // Просто перерисуем весь чат — проще всего
+        // Но чтобы не мигало, обновим только .msg-read
+        document.querySelectorAll('.msg-read').forEach(el => {
+            const msgId = el.dataset.readFor;
+            // Ищем сообщение в текущем рендере
+        });
+    }
+
+    // Когда открываем вкладку чата — помечаем всё прочитанным
+    // (при switchTab)
+
     window.sendMessage = async function() {
         const text = chatInput.value.trim();
         if (!text || !currentUser) return;
         chatInput.value = '';
+        clearTypingStatus();
         try {
             await addDoc(collection(db, 'chat'), {
                 author: currentUser.login,
                 type: 'text',
                 text: text,
+                readBy: [currentUser.key],
                 timestamp: serverTimestamp()
             });
         } catch (e) { console.warn('Ошибка отправки', e); }
     };
 
     // ==================================================
-    // ГОЛОСОВЫЕ СООБЩЕНИЯ
+    // ГОЛОСОВЫЕ
     // ==================================================
     let mediaRecorder = null;
     let audioChunks = [];
@@ -1968,11 +2463,9 @@
         if (isRecording) return;
 
         try {
-            // Запрашиваем микрофон
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
             currentStream = stream;
 
-            // Определяем лучший MIME
             let mimeType = 'audio/webm';
             if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
                 mimeType = 'audio/webm;codecs=opus';
@@ -1992,23 +2485,19 @@
             };
 
             mediaRecorder.onstop = async () => {
-                // Собираем blob
                 const blob = new Blob(audioChunks, { type: mimeType });
                 const duration = (Date.now() - recordStartTime) / 1000;
 
-                // Останавливаем треки
                 if (currentStream) {
                     currentStream.getTracks().forEach(t => t.stop());
                     currentStream = null;
                 }
 
-                // Если отменили — не отправляем
                 if (window._cancelRecording) {
                     window._cancelRecording = false;
                     return;
                 }
 
-                // Отправляем
                 await sendVoiceMessage(blob, duration, mimeType);
             };
 
@@ -2016,11 +2505,9 @@
             isRecording = true;
             recordStartTime = Date.now();
 
-            // UI
             document.getElementById('micBtn').classList.add('recording');
             document.getElementById('recordPanel').classList.add('open');
 
-            // Таймер
             recordTimerInterval = setInterval(updateRecordTime, 200);
             updateRecordTime();
 
@@ -2034,17 +2521,9 @@
         if (!isRecording) return;
         const sec = Math.floor((Date.now() - recordStartTime) / 1000);
         document.getElementById('recordTime').innerText = formatDuration(sec);
-
-        // Автостоп на 5 минутах
         if (sec >= 300) {
             stopAndSendRecording();
         }
-    }
-
-    function formatDuration(sec) {
-        const m = Math.floor(sec / 60);
-        const s = Math.floor(sec % 60);
-        return `${m}:${String(s).padStart(2, '0')}`;
     }
 
     window.cancelRecording = function() {
@@ -2075,24 +2554,22 @@
     async function sendVoiceMessage(blob, duration, mimeType) {
         if (!currentUser) return;
 
-        // Проверка размера
         const sizeKB = Math.round(blob.size / 1024);
         if (sizeKB > 800) {
-            alert(`Голосовое весит ${sizeKB} КБ — это много. Firestore не примет (лимит ~1 МБ на документ).\n\nЗапиши короче или подключи Firebase Storage.`);
+            alert(`Голосовое весит ${sizeKB} КБ — это много. Firestore не примет (лимит ~1 МБ на документ).\n\nЗапиши короче.`);
             return;
         }
 
-        // Конвертируем в base64
         const reader = new FileReader();
         reader.onloadend = async () => {
             const base64 = reader.result;
-
             try {
                 await addDoc(collection(db, 'chat'), {
                     author: currentUser.login,
                     type: 'voice',
                     audio: base64,
                     duration: Math.round(duration),
+                    readBy: [currentUser.key],
                     timestamp: serverTimestamp()
                 });
                 const cm = document.getElementById('chatMessages');
@@ -2199,6 +2676,7 @@
                 author: currentUser.login,
                 type: 'sticker',
                 sticker: stickerSrc,
+                readBy: [currentUser.key],
                 timestamp: serverTimestamp()
             });
             const cm = document.getElementById('chatMessages');
@@ -2224,7 +2702,7 @@
                 if (isWebm) {
                     const sizeKB = Math.round(file.size / 1024);
                     if (sizeKB > 500) {
-                        const ok = confirm(`WebM весит ${sizeKB} КБ — это много. Firestore хранит максимум ~1 МБ на документ, так что 2-3 таких стикера забьют всё. Продолжить?`);
+                        const ok = confirm(`WebM весит ${sizeKB} КБ — это много. Продолжить?`);
                         if (!ok) {
                             reject(new Error('Отменено пользователем'));
                             return;
@@ -2316,7 +2794,7 @@
 
         const toAdd = files.slice(0, remaining);
         if (files.length > remaining) {
-            alert(`Можно добавить только ${remaining} стикеров (лимит ${MAX_STICKERS_PER_PACK}). Остальные пропущены.`);
+            alert(`Можно добавить только ${remaining} стикеров. Остальные пропущены.`);
         }
 
         let added = 0, skipped = 0;
@@ -2340,7 +2818,7 @@
 
             const size = estimatePackSizeKB(packName);
             if (size > 900) {
-                alert(`⚠️ Пак "${packName}" теперь весит ~${size} КБ. Firestore имеет лимит ~1 МБ на документ — при следующей загрузке может не сохраниться.`);
+                alert(`⚠️ Пак "${packName}" теперь весит ~${size} КБ. Firestore имеет лимит ~1 МБ.`);
             }
         }
 
@@ -2403,7 +2881,6 @@
 
         packNames.forEach(packName => {
             const stickers = STICKER_PACKS[packName] || [];
-
             const block = document.createElement('div');
             block.className = 'pack-block';
 
@@ -2669,11 +3146,19 @@
     }
     init();
 
+    // Помечаем прочитанным при переключении на вкладку чата
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && localStorage.getItem(ACTIVE_TAB_KEY) === 'chat') {
+            markMessagesAsRead();
+        }
+    });
+
     window.addEventListener('beforeunload', (e) => {
         if (hasUnsavedChanges) {
             e.preventDefault();
             e.returnValue = '';
         }
+        clearTypingStatus();
     });
 </script>
 
