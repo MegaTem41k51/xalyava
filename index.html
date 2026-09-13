@@ -17,6 +17,32 @@
     }
     h1 { margin-bottom: 20px; font-size: 24px; text-align: center; }
 
+    /* ===== ТЁМНЫЙ СКРОЛЛБАР ВЕЗДЕ ===== */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: #764ba2 #2a2a3e;
+    }
+    *::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    *::-webkit-scrollbar-track {
+        background: #2a2a3e;
+        border-radius: 5px;
+    }
+    *::-webkit-scrollbar-thumb {
+        background: #764ba2;
+        border-radius: 5px;
+        border: 2px solid #2a2a3e;
+    }
+    *::-webkit-scrollbar-thumb:hover {
+        background: #8b5fc0;
+    }
+    *::-webkit-scrollbar-corner {
+        background: #2a2a3e;
+    }
+
+    /* ЛОГИН */
     .login-overlay {
         position: fixed; inset: 0;
         background: rgba(0,0,0,0.9);
@@ -24,7 +50,7 @@
         display: flex; justify-content: center; align-items: center;
         padding: 20px;
     }
-    .login-overlay.hidden { display: none; }
+    .login-overlay.hidden { display: none !important; }
     .login-box {
         background: #2a2a3e; border-radius: 16px;
         padding: 40px; width: 100%; max-width: 400px;
@@ -54,6 +80,7 @@
         margin-top: 12px; min-height: 18px;
     }
 
+    /* ЮЗЕР */
     .user-bar {
         display: flex; align-items: center; gap: 12px;
         background: #2a2a3e; padding: 8px 16px;
@@ -75,6 +102,7 @@
     }
     .user-bar .logout:hover { background: #9b1f1f; }
 
+    /* ВКЛАДКИ */
     .tabs {
         display: flex; gap: 8px; margin-bottom: 20px;
         background: #2a2a3e; padding: 6px;
@@ -114,6 +142,7 @@
     }
     button:hover { background: #5a3a7d; }
 
+    /* ТАБЛИЦА */
     table.acc-table {
         border-collapse: collapse;
         background: #2a2a3e;
@@ -334,7 +363,7 @@
     .skin-box.pending .skin-save { display: block; }
     .cal-cell.locked .skin-box { cursor: not-allowed; opacity: 0.85; }
 
-    /* ЧАТ */
+    /* ===== ЧАТ ===== */
     .chat-container {
         width: 100%; max-width: 600px;
         background: #2a2a3e; border-radius: 12px;
@@ -382,6 +411,29 @@
         display: block; margin-top: 4px;
         border-radius: 8px;
     }
+
+    /* ===== АУДИО В ЧАТЕ ===== */
+    .chat-msg .msg-audio {
+        margin-top: 6px;
+        width: 240px;
+        max-width: 100%;
+        height: 40px;
+        display: block;
+        border-radius: 20px;
+        background: #23233a;
+    }
+    .chat-msg.own .msg-audio {
+        background: #5a3a7d;
+    }
+    .chat-msg .msg-audio-duration {
+        font-size: 11px;
+        color: #aaa;
+        margin-top: 2px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
     .chat-msg .msg-time {
         font-size: 10px; color: #888;
         margin-top: 4px; text-align: right;
@@ -410,7 +462,7 @@
     }
     .chat-input-area input::placeholder { color: #666; }
 
-    .sticker-btn {
+    .sticker-btn, .mic-btn {
         width: 44px; height: 44px;
         border-radius: 50%;
         background: #4a3a6b; border: none;
@@ -418,9 +470,82 @@
         display: flex; align-items: center; justify-content: center;
         flex-shrink: 0; padding: 0;
         transition: 0.2s;
+        color: #fff;
     }
-    .sticker-btn:hover { background: #5a3a7d; transform: scale(1.05); }
+    .sticker-btn:hover, .mic-btn:hover { background: #5a3a7d; transform: scale(1.05); }
 
+    .mic-btn.recording {
+        background: #c62828;
+        animation: pulse-rec 1s infinite;
+    }
+    @keyframes pulse-rec {
+        0% { box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(198, 40, 40, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(198, 40, 40, 0); }
+    }
+
+    /* ===== ПАНЕЛЬ ЗАПИСИ ===== */
+    .record-panel {
+        position: absolute;
+        bottom: 76px; left: 12px; right: 12px;
+        background: #2f2f44;
+        border: 1px solid #c62828;
+        border-radius: 12px;
+        padding: 16px 20px;
+        z-index: 60;
+        display: none;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 -10px 40px rgba(198, 40, 40, 0.3);
+    }
+    .record-panel.open { display: flex; }
+
+    .record-dot {
+        width: 14px; height: 14px;
+        border-radius: 50%;
+        background: #c62828;
+        animation: blink 1s infinite;
+        flex-shrink: 0;
+    }
+    @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0.3; }
+    }
+
+    .record-time {
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+        font-variant-numeric: tabular-nums;
+        min-width: 60px;
+    }
+
+    .record-label {
+        flex: 1;
+        color: #aaa;
+        font-size: 14px;
+    }
+
+    .record-cancel, .record-send {
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+    }
+    .record-cancel {
+        background: #4a4a66;
+        color: #fff;
+    }
+    .record-cancel:hover { background: #5a5a7a; }
+    .record-send {
+        background: linear-gradient(135deg, #4caf50, #2e7d32);
+        color: #fff;
+    }
+    .record-send:hover { background: linear-gradient(135deg, #66bb6a, #388e3c); }
+
+    /* Стикеры */
     .sticker-panel {
         position: absolute;
         bottom: 76px; left: 12px; right: 12px;
@@ -633,7 +758,6 @@
     }
     .avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* ПАКИ */
     .pack-create {
         display: flex;
         gap: 8px;
@@ -789,7 +913,7 @@
 </head>
 <body>
 
-<div class="login-overlay" id="loginOverlay">
+<div class="login-overlay hidden" id="loginOverlay">
     <div class="login-box">
         <h2>🔒 Вход</h2>
         <p>Введи логин и пароль</p>
@@ -871,8 +995,17 @@
             <div class="sticker-grid" id="stickerGrid"></div>
         </div>
 
+        <div class="record-panel" id="recordPanel">
+            <div class="record-dot"></div>
+            <div class="record-time" id="recordTime">0:00</div>
+            <div class="record-label">🎤 Идёт запись...</div>
+            <button class="record-cancel" onclick="cancelRecording()">Отмена</button>
+            <button class="record-send" onclick="stopAndSendRecording()">➤ Отправить</button>
+        </div>
+
         <div class="chat-input-area">
             <button class="sticker-btn" onclick="toggleStickerPanel()" title="Стикеры">😀</button>
+            <button class="mic-btn" id="micBtn" onclick="startRecording()" title="Голосовое сообщение">🎤</button>
             <input type="text" id="chatInput" placeholder="Напиши сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
             <button onclick="sendMessage()">➤</button>
         </div>
@@ -985,9 +1118,12 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
     import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, addDoc, deleteDoc, query, orderBy, serverTimestamp }
         from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject }
+        from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const storage = getStorage(app);
 
     // ==================================================
     // АККАУНТЫ
@@ -1004,15 +1140,14 @@
 
     const MAX_STICKERS_PER_PACK = 200;
 
-    // Определение типа стикера по data-url
     function isWebm(src) {
-        return typeof src === 'string' && src.startsWith('data:video/webm');
+        return typeof src === 'string' && (src.startsWith('data:video/webm') || src.includes('.webm'));
     }
     function isVideo(src) {
-        return typeof src === 'string' && src.startsWith('data:video/');
+        return typeof src === 'string' && (src.startsWith('data:video/') || src.includes('.webm'));
     }
-    function isImage(src) {
-        return typeof src === 'string' && src.startsWith('data:image/');
+    function isAudio(src) {
+        return typeof src === 'string' && (src.startsWith('data:audio/') || src.includes('.webm') && src.includes('voice'));
     }
 
     async function loadAccounts() {
@@ -1045,7 +1180,6 @@
             });
         } catch(e) {
             console.warn('Ошибка сохранения', e);
-            alert('Ошибка сохранения: ' + e.message + '\n\nВозможно, превышен лимит Firestore (1 МБ на документ). Попробуй уменьшить количество WebM-стикеров.');
         }
     }
 
@@ -1068,8 +1202,51 @@
     let hasUnsavedChanges = false;
 
     // ==================================================
-    // ЛОГИН
+    // ЗАПОМИНАНИЕ СЕССИИ (чтобы F5 не показывал логин)
     // ==================================================
+    const SESSION_KEY = 'chat_session_v1';
+
+    function saveSession(user) {
+        try {
+            sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
+            // Также дублируем в localStorage на случай закрытия вкладки
+            localStorage.setItem(SESSION_KEY, JSON.stringify(user));
+        } catch(e) {}
+    }
+
+    function loadSession() {
+        try {
+            // Сначала sessionStorage (F5 в той же вкладке)
+            let raw = sessionStorage.getItem(SESSION_KEY);
+            if (!raw) {
+                // Потом localStorage (после закрытия браузера)
+                raw = localStorage.getItem(SESSION_KEY);
+            }
+            if (!raw) return null;
+            const u = JSON.parse(raw);
+            // Проверка что логин ещё существует в ACCOUNTS
+            if (ACCOUNTS[u.login]) {
+                return { login: u.login, key: ACCOUNTS[u.login].key };
+            }
+            // Если логин сменили — ищем по key
+            for (const [lg, acc] of Object.entries(ACCOUNTS)) {
+                if (acc.key === u.key) {
+                    return { login: lg, key: acc.key };
+                }
+            }
+            return null;
+        } catch(e) {
+            return null;
+        }
+    }
+
+    function clearSession() {
+        try {
+            sessionStorage.removeItem(SESSION_KEY);
+            localStorage.removeItem(SESSION_KEY);
+        } catch(e) {}
+    }
+
     window.tryLogin = function() {
         const login = document.getElementById('loginInput').value.trim();
         const password = document.getElementById('passwordInput').value;
@@ -1080,15 +1257,17 @@
         if (acc.password !== password) { errEl.innerText = 'Неверный пароль'; return; }
 
         currentUser = { login: login, key: acc.key };
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        saveSession(currentUser);
         errEl.innerText = '';
+        document.getElementById('loginInput').value = '';
+        document.getElementById('passwordInput').value = '';
         showMainSite();
     };
 
     window.logout = function() {
         const msg = hasUnsavedChanges ? 'Есть несохранённые изменения. Выйти?' : 'Выйти?';
         if (!confirm(msg)) return;
-        localStorage.removeItem('currentUser');
+        clearSession();
         location.reload();
     };
 
@@ -1143,17 +1322,15 @@
     }
 
     function restoreSession() {
-        const saved = localStorage.getItem('currentUser');
-        if (saved) {
-            try {
-                const u = JSON.parse(saved);
-                if (ACCOUNTS[u.login]) {
-                    currentUser = u;
-                    showMainSite();
-                    return;
-                }
-            } catch(e) {}
+        const session = loadSession();
+        if (session) {
+            currentUser = session;
+            // Обновим сессию на случай если логин сменили
+            saveSession(session);
+            showMainSite();
+            return;
         }
+        // Нет сессии — показываем логин
         document.getElementById('loginOverlay').classList.remove('hidden');
     }
 
@@ -1615,7 +1792,6 @@
         renderCalendar(playerKey);
     };
 
-    // ===== Модалка: поддержка img и video =====
     window.openModal = function(src, isVideoSrc) {
         const content = document.getElementById('modalContent');
         content.innerHTML = '';
@@ -1627,7 +1803,6 @@
             video.loop = true;
             video.muted = true;
             video.playsInline = true;
-            video.controls = false;
             content.appendChild(video);
         } else {
             const img = document.createElement('img');
@@ -1695,9 +1870,9 @@
         authorEl.innerText = msg.author;
         body.appendChild(authorEl);
 
+        // Тип сообщения
         if (msg.type === 'sticker' && msg.sticker) {
             if (isVideo(msg.sticker)) {
-                // WebM стикер — рендерим как video
                 const video = document.createElement('video');
                 video.className = 'msg-sticker';
                 video.src = msg.sticker;
@@ -1708,12 +1883,26 @@
                 video.onclick = (e) => { e.stopPropagation(); openModal(msg.sticker, true); };
                 body.appendChild(video);
             } else {
-                // Картинка
                 const stk = document.createElement('img');
                 stk.className = 'msg-sticker';
                 stk.src = msg.sticker;
                 stk.onclick = (e) => { e.stopPropagation(); openModal(msg.sticker, false); };
                 body.appendChild(stk);
+            }
+        } else if (msg.type === 'voice' && msg.audio) {
+            // Голосовое сообщение
+            const audio = document.createElement('audio');
+            audio.className = 'msg-audio';
+            audio.src = msg.audio;
+            audio.controls = true;
+            audio.preload = 'metadata';
+            body.appendChild(audio);
+
+            if (msg.duration) {
+                const dur = document.createElement('div');
+                dur.className = 'msg-audio-duration';
+                dur.innerText = '🎤 ' + formatDuration(msg.duration);
+                body.appendChild(dur);
             }
         } else {
             const textEl = document.createElement('div');
@@ -1764,6 +1953,157 @@
             });
         } catch (e) { console.warn('Ошибка отправки', e); }
     };
+
+    // ==================================================
+    // ГОЛОСОВЫЕ СООБЩЕНИЯ
+    // ==================================================
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let recordStartTime = 0;
+    let recordTimerInterval = null;
+    let currentStream = null;
+    let isRecording = false;
+
+    window.startRecording = async function() {
+        if (isRecording) return;
+
+        try {
+            // Запрашиваем микрофон
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            currentStream = stream;
+
+            // Определяем лучший MIME
+            let mimeType = 'audio/webm';
+            if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
+                mimeType = 'audio/webm;codecs=opus';
+            } else if (MediaRecorder.isTypeSupported('audio/webm')) {
+                mimeType = 'audio/webm';
+            } else if (MediaRecorder.isTypeSupported('audio/mp4')) {
+                mimeType = 'audio/mp4';
+            } else if (MediaRecorder.isTypeSupported('audio/ogg')) {
+                mimeType = 'audio/ogg';
+            }
+
+            mediaRecorder = new MediaRecorder(stream, { mimeType });
+            audioChunks = [];
+
+            mediaRecorder.ondataavailable = (e) => {
+                if (e.data.size > 0) audioChunks.push(e.data);
+            };
+
+            mediaRecorder.onstop = async () => {
+                // Собираем blob
+                const blob = new Blob(audioChunks, { type: mimeType });
+                const duration = (Date.now() - recordStartTime) / 1000;
+
+                // Останавливаем треки
+                if (currentStream) {
+                    currentStream.getTracks().forEach(t => t.stop());
+                    currentStream = null;
+                }
+
+                // Если отменили — не отправляем
+                if (window._cancelRecording) {
+                    window._cancelRecording = false;
+                    return;
+                }
+
+                // Отправляем
+                await sendVoiceMessage(blob, duration, mimeType);
+            };
+
+            mediaRecorder.start();
+            isRecording = true;
+            recordStartTime = Date.now();
+
+            // UI
+            document.getElementById('micBtn').classList.add('recording');
+            document.getElementById('recordPanel').classList.add('open');
+
+            // Таймер
+            recordTimerInterval = setInterval(updateRecordTime, 200);
+            updateRecordTime();
+
+        } catch (err) {
+            console.error('Ошибка доступа к микрофону:', err);
+            alert('Не удалось получить доступ к микрофону.\n\nПроверь разрешения браузера для микрофона.');
+        }
+    };
+
+    function updateRecordTime() {
+        if (!isRecording) return;
+        const sec = Math.floor((Date.now() - recordStartTime) / 1000);
+        document.getElementById('recordTime').innerText = formatDuration(sec);
+
+        // Автостоп на 5 минутах
+        if (sec >= 300) {
+            stopAndSendRecording();
+        }
+    }
+
+    function formatDuration(sec) {
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return `${m}:${String(s).padStart(2, '0')}`;
+    }
+
+    window.cancelRecording = function() {
+        if (!isRecording || !mediaRecorder) return;
+        window._cancelRecording = true;
+        mediaRecorder.stop();
+        cleanupRecordingUI();
+    };
+
+    window.stopAndSendRecording = function() {
+        if (!isRecording || !mediaRecorder) return;
+        window._cancelRecording = false;
+        mediaRecorder.stop();
+        cleanupRecordingUI();
+    };
+
+    function cleanupRecordingUI() {
+        isRecording = false;
+        document.getElementById('micBtn').classList.remove('recording');
+        document.getElementById('recordPanel').classList.remove('open');
+        document.getElementById('recordTime').innerText = '0:00';
+        if (recordTimerInterval) {
+            clearInterval(recordTimerInterval);
+            recordTimerInterval = null;
+        }
+    }
+
+    async function sendVoiceMessage(blob, duration, mimeType) {
+        if (!currentUser) return;
+
+        // Проверка размера
+        const sizeKB = Math.round(blob.size / 1024);
+        if (sizeKB > 800) {
+            alert(`Голосовое весит ${sizeKB} КБ — это много. Firestore не примет (лимит ~1 МБ на документ).\n\nЗапиши короче или подключи Firebase Storage.`);
+            return;
+        }
+
+        // Конвертируем в base64
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+            const base64 = reader.result;
+
+            try {
+                await addDoc(collection(db, 'chat'), {
+                    author: currentUser.login,
+                    type: 'voice',
+                    audio: base64,
+                    duration: Math.round(duration),
+                    timestamp: serverTimestamp()
+                });
+                const cm = document.getElementById('chatMessages');
+                setTimeout(() => { cm.scrollTop = cm.scrollHeight; }, 100);
+            } catch (e) {
+                console.warn('Ошибка отправки голосового', e);
+                alert('Не удалось отправить голосовое: ' + e.message);
+            }
+        };
+        reader.readAsDataURL(blob);
+    }
 
     // ==================================================
     // СТИКЕРЫ — ЧАТ
@@ -1867,9 +2207,8 @@
     }
 
     // ==================================================
-    // ОБРАБОТКА СТИКЕРА (PNG/JPG/WebM)
+    // ОБРАБОТКА СТИКЕРА
     // ==================================================
-    // Для картинок — сжимаем. Для WebM — конвертируем в base64 как есть.
     function processStickerFile(file) {
         return new Promise((resolve, reject) => {
             const isWebm = file.type === 'video/webm';
@@ -1883,7 +2222,6 @@
             const reader = new FileReader();
             reader.onload = (e) => {
                 if (isWebm) {
-                    // WebM — не сжимаем
                     const sizeKB = Math.round(file.size / 1024);
                     if (sizeKB > 500) {
                         const ok = confirm(`WebM весит ${sizeKB} КБ — это много. Firestore хранит максимум ~1 МБ на документ, так что 2-3 таких стикера забьют всё. Продолжить?`);
@@ -1894,7 +2232,6 @@
                     }
                     resolve(e.target.result);
                 } else {
-                    // Картинка — сжимаем
                     const img = new Image();
                     img.onload = () => {
                         const canvas = document.createElement('canvas');
@@ -1918,12 +2255,10 @@
         });
     }
 
-    // Считаем примерный размер всех стикеров в паке (в КБ)
     function estimatePackSizeKB(packName) {
         if (!STICKER_PACKS[packName]) return 0;
         let total = 0;
         STICKER_PACKS[packName].forEach(src => {
-            // data-url — base64, реальный размер примерно = длина * 3/4
             const base64Part = src.split(',')[1] || '';
             total += (base64Part.length * 3) / 4;
         });
@@ -2075,7 +2410,6 @@
             const header = document.createElement('div');
             header.className = 'pack-header';
 
-            // Считаем размер и количество WebM
             const sizeKB = estimatePackSizeKB(packName);
             const webmCount = stickers.filter(s => isVideo(s)).length;
 
@@ -2315,7 +2649,7 @@
 
         if (currentUser && currentUser.key === key) {
             currentUser.login = newLogin;
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            saveSession(currentUser);
             renderUserBar();
         }
 
