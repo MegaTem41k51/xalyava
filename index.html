@@ -1150,6 +1150,26 @@
     }
     .sticker-admin-remove:hover { background: #9b1f1f; }
 
+    /* CASE EDITOR */
+    .case-editor-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+    .case-editor-select{flex:1;min-width:220px;padding:10px 14px;border:1px solid #444;border-radius:8px;background:#1e1e2e;color:#fff;font-size:14px;outline:none}
+    .case-editor{display:flex;flex-direction:column;gap:14px}
+    .case-editor-head{display:grid;grid-template-columns:1fr 110px 1fr 120px;gap:10px}
+    .case-editor-items{display:flex;flex-direction:column;gap:8px;max-height:620px;overflow:auto;padding-right:3px}
+    .case-editor-item{display:grid;grid-template-columns:56px minmax(120px,1fr) minmax(120px,1fr) 90px 150px minmax(170px,1fr) 40px;gap:8px;align-items:center;background:#23233a;border:1px solid #3a3a52;border-radius:10px;padding:8px}
+    .case-editor-thumb{width:52px;height:52px;border-radius:7px;background:#1e1e2e;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #444}
+    .case-editor-thumb img{max-width:100%;max-height:100%;object-fit:contain}
+    .case-editor-item input,.case-editor-item select,.case-editor-head input{width:100%;min-width:0;padding:8px 9px;border:1px solid #444;border-radius:7px;background:#1e1e2e;color:#fff;outline:none;font-size:12px;box-sizing:border-box}
+    .case-editor-head input{padding:10px 12px;font-size:13px}
+    .case-editor-item input:focus,.case-editor-item select:focus,.case-editor-head input:focus{border-color:#a78bfa;box-shadow:0 0 0 2px rgba(167,139,250,.16)}
+    .case-editor-label{font-size:11px;color:#777;margin:0 0 4px}.case-editor-field{min-width:0}
+    .case-editor-upload{display:flex;gap:5px;align-items:center;margin-top:5px}
+    .case-editor-remove{width:32px;height:32px;padding:0;border-radius:7px;background:#c62828;color:#fff;font-size:18px;border:0;cursor:pointer}
+    .case-editor-remove:hover{background:#9b1f1f}.case-editor-add{border:1px dashed #4b5670;background:#111a2a;color:#cbd5e1;border-radius:9px;padding:10px;cursor:pointer;font-weight:700;text-align:center}
+    .case-editor-add:hover{border-color:#a78bfa;color:#fff}.case-editor-status{min-height:18px;font-size:13px}.case-editor-status.ok{color:#81c784}.case-editor-status.err{color:#ff6b6b}.case-editor-hint{color:#777;font-size:12px;line-height:1.45}
+    @media(max-width:900px){.case-editor-head{grid-template-columns:1fr 90px}.case-editor-head .case-cover-field,.case-editor-head .case-cost-field{grid-column:1/-1}.case-editor-item{grid-template-columns:52px 1fr 1fr 80px 130px minmax(140px,1fr) 34px}}
+    @media(max-width:650px){.case-editor-head{grid-template-columns:1fr}.case-editor-head .case-cover-field,.case-editor-head .case-cost-field{grid-column:auto}.case-editor-item{grid-template-columns:52px 1fr 34px}.case-editor-item .editor-weapon,.case-editor-item .editor-chance,.case-editor-item .editor-rarity,.case-editor-item .editor-image{grid-column:2/-1}}
+
     .modal {
         display: none; position: fixed; inset: 0;
         background: rgba(0,0,0,0.85); z-index: 1000;
@@ -1173,106 +1193,6 @@
         margin-top: 8px;
     }
     .case-custom-input.visible { display: block; }
-
-
-    .case-stats-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
-    .case-stats-total{padding:8px 12px;border:1px solid #2d3950;border-radius:10px;background:#10192a;color:#dce4f2;font-size:12px;font-weight:900;white-space:nowrap}
-    .case-stats-list{display:flex;flex-direction:column;gap:8px}
-    .case-stat-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:12px 14px;border:1px solid #263149;border-radius:11px;background:#0d1422}
-    .case-stat-name{font-weight:900;color:#f5f7ff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .case-stat-count{font-size:12px;font-weight:900;color:#ffc857;min-width:92px;text-align:right}
-    .case-stat-bar{height:4px;border-radius:999px;background:#1d2940;margin-top:7px;overflow:hidden}
-    .case-stat-bar>span{display:block;height:100%;width:0;background:#ffc857;border-radius:999px;transition:width .25s ease}
-    @media(max-width:650px){.case-stats-head{align-items:flex-start;flex-direction:column}.case-stat-row{grid-template-columns:1fr}.case-stat-count{text-align:left}}
-
-    /* ==================================================
-       АДМИНКА — РЕДАКТОР КЕЙСОВ
-       ================================================== */
-    .case-editor-toolbar {
-        display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-        margin-bottom:14px;
-    }
-    .case-editor-select {
-        flex:1; min-width:220px;
-        padding:10px 14px; border:1px solid #444; border-radius:8px;
-        background:#1e1e2e; color:#fff; font-size:14px; outline:none;
-    }
-    .case-editor {
-        display:flex; flex-direction:column; gap:14px;
-    }
-    .case-editor-head {
-        display:grid; grid-template-columns: 1fr 110px 140px; gap:10px;
-    }
-    .case-editor-items {
-        display:flex; flex-direction:column; gap:8px;
-        max-height:620px; overflow:auto; padding-right:3px;
-    }
-    .case-editor-item {
-        display:grid;
-        grid-template-columns:56px minmax(120px,1fr) minmax(120px,1fr) 90px 150px minmax(170px,1fr) 40px;
-        gap:8px; align-items:center;
-        background:#23233a; border:1px solid #3a3a52; border-radius:10px;
-        padding:8px;
-    }
-    .case-editor-thumb {
-        width:52px; height:52px; border-radius:7px; background:#1e1e2e;
-        display:flex; align-items:center; justify-content:center; overflow:hidden;
-        border:1px solid #444;
-    }
-    .case-editor-thumb img { max-width:100%; max-height:100%; object-fit:contain; }
-    .case-editor-item input, .case-editor-item select {
-        width:100%; min-width:0; padding:8px 9px;
-        border:1px solid #444; border-radius:7px;
-        background:#1e1e2e; color:#fff; outline:none; font-size:12px;
-    }
-    .case-editor-item input:focus, .case-editor-item select:focus,
-    .case-editor-head input:focus, .case-editor-head select:focus {
-        border-color:#a78bfa; box-shadow:0 0 0 2px rgba(167,139,250,.16);
-    }
-    .case-editor-head input, .case-editor-head select {
-        width:100%; padding:10px 12px; border:1px solid #444; border-radius:8px;
-        background:#1e1e2e; color:#fff; outline:none; font-size:13px;
-    }
-    .case-editor-label {
-        font-size:11px; color:#777; margin:0 0 4px;
-    }
-    .case-editor-field { min-width:0; }
-    .case-editor-upload {
-        display:flex; gap:5px; align-items:center;
-    }
-    .case-editor-upload input { flex:1; }
-    .case-editor-upload button { flex:0 0 auto; }
-    .case-editor-add {
-        border:1px dashed #4b5670; background:#111a2a; color:#cbd5e1;
-        border-radius:9px; padding:10px; cursor:pointer; font-weight:700;
-    }
-    .case-editor-add:hover { border-color:#a78bfa; color:#fff; }
-    .case-editor-remove {
-        width:32px; height:32px; padding:0; border-radius:7px;
-        background:#c62828; color:#fff; font-size:18px;
-    }
-    .case-editor-remove:hover { background:#9b1f1f; }
-    .case-editor-status { min-height:18px; font-size:13px; }
-    .case-editor-status.ok { color:#81c784; }
-    .case-editor-status.err { color:#ff6b6b; }
-    .case-editor-hint { color:#777; font-size:12px; line-height:1.45; }
-    @media (max-width:900px) {
-        .case-editor-head { grid-template-columns:1fr 90px; }
-        .case-editor-head .case-cover-field { grid-column:1 / -1; }
-        .case-editor-item { grid-template-columns:50px 1fr 1fr 80px 130px minmax(140px,1fr) 34px; }
-    }
-    @media (max-width:650px) {
-        .case-editor-head { grid-template-columns:1fr; }
-        .case-editor-head .case-cover-field { grid-column:auto; }
-        .case-editor-item {
-            grid-template-columns:52px 1fr 34px;
-        }
-        .case-editor-item .editor-weapon,
-        .case-editor-item .editor-chance,
-        .case-editor-item .editor-rarity,
-        .case-editor-item .editor-image { grid-column:2; }
-        .case-editor-item .editor-remove { grid-column:3; grid-row:1; }
-    }
 
     /* ==================================================
        ДЕМО ШАНСЫ — ДИЗАЙН КЕЙСА
@@ -1322,9 +1242,6 @@
 
     .demo-case-tabs {
         display:flex;
-        overflow-x:auto;
-        flex-wrap:nowrap;
-        padding-bottom:5px;
         gap:8px;
         padding: 0 0 14px;
         justify-content:center;
@@ -1480,43 +1397,6 @@
         filter:drop-shadow(0 12px 20px rgba(0,0,0,.55));
         transform:scale(1.02);
     }
-    /* MULTI OPEN — 1..5 кейсов одновременно */
-    .demo-open-controls{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:2px}
-    .demo-qty{display:flex;align-items:center;padding:3px;border:1px solid #29354e;background:#101829;border-radius:999px;gap:2px}
-    .demo-qty button{min-width:42px;height:34px;border:0;border-radius:999px;background:transparent;color:#aeb9ce;font-size:11px;font-weight:900;cursor:pointer}
-    .demo-qty button.active{background:#e8edf7;color:#121722;box-shadow:0 1px 0 rgba(255,255,255,.3) inset}
-    .demo-qty button:hover:not(.active){background:#1a253a;color:#fff}
-    .demo-multi-grid{position:absolute;inset:0;display:grid;z-index:1}
-    .demo-multi-lane{position:relative;min-width:0;border-right:1px solid rgba(38,49,73,.65);overflow:hidden;background:#080d18}
-    .demo-multi-lane:last-child{border-right:0}
-    .demo-multi-lane:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 35%,rgba(78,38,117,.28),transparent 58%);pointer-events:none}
-    .demo-multi-item{position:absolute;left:8%;right:8%;height:50%;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .demo-multi-item.top{top:0}.demo-multi-item.bottom{bottom:0}
-    .demo-multi-item img{width:92%;height:88%;object-fit:contain;filter:drop-shadow(0 8px 12px rgba(0,0,0,.55))}
-    .demo-multi-lane .demo-multi-rarity{position:absolute;inset:0;background:linear-gradient(135deg,rgba(80,40,130,.16),transparent 50%,rgba(130,20,70,.12));pointer-events:none}
-    .demo-case-center{position:absolute;inset:0;z-index:8;display:flex;align-items:center;justify-content:center;pointer-events:none}
-    .demo-case-cover{width:min(310px,42%);height:100%;display:flex;align-items:center;justify-content:center;background:transparent;border:0;overflow:visible}
-    .demo-case-cover img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 12px 20px rgba(0,0,0,.62));transform:scale(1.04)}
-    .demo-opening-grid{position:absolute;inset:0;z-index:20;display:grid;background:#070c16;overflow:hidden}
-    .demo-opening-lane{position:relative;overflow:hidden;border-right:1px solid rgba(45,55,78,.72);background:#080d18}
-    .demo-opening-lane:last-child{border-right:0}
-    .demo-opening-track{position:absolute;left:0;right:0;top:0;display:flex;flex-direction:column;gap:8px;align-items:center;will-change:transform}
-    .demo-opening-card{width:86%;height:92px;flex:0 0 92px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#11192a,#171226);border:1px solid #242e45;overflow:hidden}
-    .demo-opening-card img{width:92%;height:92%;object-fit:contain;filter:drop-shadow(0 7px 12px rgba(0,0,0,.55))}
-    .demo-opening-lane:after{content:'';position:absolute;left:0;right:0;top:50%;height:2px;background:#ef4f4f;box-shadow:0 0 12px rgba(239,79,79,.85);z-index:4}
-    .demo-opening-lane:before{content:'›';position:absolute;right:-1px;top:50%;transform:translateY(-50%);color:#ef4f4f;font-size:34px;line-height:1;z-index:5}
-    .demo-opening-loading{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);z-index:30;color:#8f9bb0;font-size:12px;font-weight:700;background:rgba(7,12,22,.82);padding:5px 12px;border-radius:999px;white-space:nowrap}
-    .demo-final-results{display:grid;gap:0;position:absolute;inset:0;z-index:25;background:#080e19;overflow:hidden}
-    .demo-final-card{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-right:1px solid #1d273b;padding:12px;background:linear-gradient(180deg,#0a101c,#10182a)}
-    .demo-final-card:last-child{border-right:0}
-    .demo-final-card img{width:92%;height:100px;object-fit:contain;filter:drop-shadow(0 10px 15px rgba(0,0,0,.55))}
-    .demo-final-card .weapon{color:#9aa6bc;font-size:10px;margin-top:4px}
-    .demo-final-card .name{color:#fff;font-size:12px;font-weight:900;max-width:96%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
-    .demo-final-card .price{color:#f5c94b;font-size:11px;font-weight:900;margin-top:3px}
-    .demo-final-actions{display:flex;justify-content:center;gap:10px;padding:16px 0 28px}
-    .demo-final-actions button{border:0;border-radius:999px;padding:12px 18px;font-weight:900;cursor:pointer}
-    .demo-final-actions .again{background:#fff;color:#151a25}.demo-final-actions .sell{background:#bdf07a;color:#182014}
-    @media(max-width:700px){.demo-case-title{font-size:18px}.demo-case-stage{height:170px}.demo-case-cover{width:44%}.demo-final-card img{height:76px}.demo-qty button{min-width:36px}}
     .demo-case-actions {
         display:flex;
         align-items:center;
@@ -1572,8 +1452,8 @@
     .demo-roulette::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#090f1b 0%,transparent 17%,transparent 83%,#090f1b 100%); z-index:2; pointer-events:none; }
     .demo-roulette::after { content:''; position:absolute; top:0; bottom:0; left:50%; width:3px; transform:translateX(-50%); background:#ffc857; box-shadow:0 0 18px rgba(255,200,87,.9); z-index:4; }
     .demo-roulette-track { display:flex; gap:8px; height:100%; align-items:center; padding:10px; transform:translateX(0); transition:transform 2.8s cubic-bezier(.08,.72,.12,1); will-change:transform; }
-    .demo-roulette-item { position:relative; width:148px; min-width:148px; height:130px; border-radius:10px; background:linear-gradient(145deg,#171d35,#21152f); border:1px solid #303d5a; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; text-align:center; padding:8px; overflow:hidden; }
-    .demo-roulette-item img { width:100%; height:92px; object-fit:contain; filter:drop-shadow(0 7px 10px rgba(0,0,0,.45)); }
+    .demo-roulette-item { position:relative; width:132px; min-width:132px; height:130px; border-radius:10px; background:linear-gradient(145deg,#171d35,#21152f); border:1px solid #303d5a; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; text-align:center; padding:8px; overflow:hidden; }
+    .demo-roulette-item img { width:100%; height:84px; object-fit:contain; filter:drop-shadow(0 7px 10px rgba(0,0,0,.45)); }
     .demo-roulette-item b { display:block; width:100%; font-size:9px; line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .demo-roulette-item span { color:#aeb9ce; font-size:8px; margin-top:3px; }
     .demo-case-stage.is-opening + .demo-case-actions { opacity:.35; pointer-events:none; }
@@ -1809,18 +1689,9 @@
             </div>
 
             <div class="demo-case-actions" id="demoCaseActions">
-                <div class="demo-open-controls">
-                    <div class="demo-qty" id="demoQty">
-                        <button type="button" data-qty="1" onclick="setDemoOpenQty(1)">x1</button>
-                        <button type="button" data-qty="2" onclick="setDemoOpenQty(2)">x2</button>
-                        <button type="button" data-qty="3" onclick="setDemoOpenQty(3)">x3</button>
-                        <button type="button" data-qty="4" onclick="setDemoOpenQty(4)">x4</button>
-                        <button type="button" data-qty="5" onclick="setDemoOpenQty(5)">x5</button>
-                    </div>
-                    <div class="demo-insufficient" id="demoBalanceMessage">Баланс ₽1000.00</div>
-                    <button class="demo-btn primary" id="demoAddBalanceBtn" style="padding:13px 18px;" onclick="demoAddBalance()">Пополнить баланс&nbsp; +</button>
-                    <button class="demo-open" id="demoOpenBtn" onclick="openDemoCase()">Открыть за 1 ₽</button>
-                </div>
+                <div class="demo-insufficient" id="demoBalanceMessage">Баланс ₽1000.00</div>
+                <button class="demo-btn primary" id="demoAddBalanceBtn" style="padding:13px 18px;" onclick="demoAddBalance()">Пополнить баланс&nbsp; +</button>
+                <button class="demo-open" id="demoOpenBtn" onclick="openDemoCase()">Открыть кейс за 1 ₽ &nbsp;◉</button>
             </div>
 
             <div class="demo-result" id="demoResult">
@@ -2035,61 +1906,23 @@
             <div id="dropsAdminList"></div>
         </div>
 
-
-        <div class="admin-card">
-            <div class="case-stats-head">
-                <div>
-                    <h3>📊 Открытия кейсов</h3>
-                    <p style="font-size:13px;color:#888;margin-top:5px;">Сколько раз каждый кейс открывали пользователи.</p>
-                </div>
-                <div class="case-stats-total" id="caseStatsTotal">0 открытий</div>
-            </div>
-            <div id="caseStatsList" class="case-stats-list"></div>
-        </div>
-
         <div class="admin-card">
             <h3>🎰 Редактор кейсов</h3>
-            <p class="case-editor-hint">
-                Здесь можно полностью менять содержимое кейса: название, иконку, обложку,
-                фото, название оружия, качество и шанс каждого предмета. Изменения сохраняются
-                отдельно в Firestore и применяются к анимации открытия.
-            </p>
-
-            <div class="case-editor-toolbar">
-                <select class="case-editor-select" id="caseEditorSelect" onchange="selectCaseForEdit()"></select>
-                <button class="admin-btn" onclick="addCaseEditor()">➕ Новый кейс</button>
-                <button class="admin-btn danger" onclick="deleteCaseEditor()">🗑 Удалить кейс</button>
-            </div>
-
-            <div id="caseEditorEmpty" class="case-editor-hint" style="display:none;">
-                Нет кейсов. Создай первый кейс.
-            </div>
-
+            <p class="case-editor-hint">Здесь можно менять существующие кейсы: название, иконку, обложку, цену, а также каждый скин — название, оружие, шанс, качество и фото. Новые кейсы автоматически не создаются.</p>
+            <div class="case-editor-toolbar"><select class="case-editor-select" id="caseEditorSelect" onchange="selectCaseForEdit()"></select></div>
             <div id="caseEditorBody" class="case-editor">
                 <div class="case-editor-head">
-                    <div class="case-editor-field">
-                        <div class="case-editor-label">Название кейса</div>
-                        <input id="caseEditorName" type="text" maxlength="80" placeholder="Название кейса">
-                    </div>
-                    <div class="case-editor-field">
-                        <div class="case-editor-label">Иконка</div>
-                        <input id="caseEditorIcon" type="text" maxlength="4" placeholder="🎁">
-                    </div>
-                    <div class="case-editor-field case-cover-field">
-                        <div class="case-editor-label">Обложка (URL)</div>
-                        <input id="caseEditorCover" type="text" placeholder="https://...">
-                    </div>
+                    <div class="case-editor-field"><div class="case-editor-label">Название кейса</div><input id="caseEditorName" type="text" maxlength="80"></div>
+                    <div class="case-editor-field"><div class="case-editor-label">Иконка</div><input id="caseEditorIcon" type="text" maxlength="8"></div>
+                    <div class="case-editor-field case-cover-field"><div class="case-editor-label">Обложка (URL)</div><input id="caseEditorCover" type="text"></div>
+                    <div class="case-editor-field case-cost-field"><div class="case-editor-label">Цена открытия, ₽</div><input id="caseEditorCost" type="number" min="0" step="0.01"></div>
                 </div>
-
                 <div class="case-editor-toolbar">
                     <button class="admin-btn" onclick="document.getElementById('caseEditorCoverFile').click()">📷 Загрузить обложку</button>
-                    <input id="caseEditorCoverFile" type="file"
-                           accept="image/png,image/jpeg,image/jpg,image/webp"
-                           style="display:none;" onchange="handleCaseCoverUpload(event)">
+                    <input id="caseEditorCoverFile" type="file" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none" onchange="handleCaseCoverUpload(event)">
                     <button class="admin-btn" onclick="addCaseItemEditor()">➕ Добавить скин</button>
                     <button class="admin-btn" onclick="saveCaseEditor()">💾 Сохранить кейс</button>
                 </div>
-
                 <div id="caseEditorItems" class="case-editor-items"></div>
                 <div class="case-editor-add" onclick="addCaseItemEditor()">＋ Добавить предмет в кейс</div>
                 <div id="caseEditorStatus" class="case-editor-status"></div>
@@ -2135,7 +1968,7 @@
     };
 
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-    import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, addDoc, deleteDoc, query, orderBy, serverTimestamp, increment }
+    import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, addDoc, deleteDoc, query, orderBy, serverTimestamp }
         from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
     const app = initializeApp(firebaseConfig);
@@ -2749,9 +2582,6 @@
 
     let demoCurrentCase = 'rainy';
     let demoOpening = false;
-    let demoOpenQty = 1;
-    let demoLastResults = [];
-    let demoOpeningTimers = [];
 
     function getDemoBalance() {
         const raw=localStorage.getItem(DEMO_BALANCE_KEY);
@@ -2764,390 +2594,31 @@
         const msg=document.getElementById('demoBalanceMessage');
         const addBtn=document.getElementById('demoAddBalanceBtn');
         const openBtn=document.getElementById('demoOpenBtn');
-        const totalCost=DEMO_CASE_COST*demoOpenQty;
-        if(msg) msg.innerText=safe < totalCost ? 'Не хватает ₽'+(totalCost-safe).toFixed(2)+' на балансе' : 'Баланс ₽'+safe.toFixed(2);
+        const caseCost=(Number(getDemoCase()?.cost ?? DEMO_CASE_COST)||0)*demoOpenQty;
+        if(msg) msg.innerText=safe < caseCost ? 'Не хватает ₽'+(caseCost-safe).toFixed(2)+' на балансе' : 'Баланс ₽'+safe.toFixed(2);
         // Кнопка пополнения нужна только когда баланс закончился.
-        if(addBtn) addBtn.style.display = safe >= DEMO_CASE_COST ? 'none' : 'inline-flex';
-        if(openBtn) { openBtn.disabled=demoOpening || safe<totalCost; openBtn.innerText='Открыть за '+totalCost+' ₽'; }
-        document.querySelectorAll('#demoQty button').forEach(b=>b.classList.toggle('active',Number(b.dataset.qty)===demoOpenQty));
+        if(addBtn) addBtn.style.display = safe >= caseCost ? 'none' : 'inline-flex';
+        if(openBtn) { openBtn.disabled=demoOpening || safe<caseCost; openBtn.innerText='Открыть за '+caseCost+' ₽'; }
     }
     window.demoAddBalance=function(){ setDemoBalance(getDemoBalance()+100); };
     window.demoResetBalance=function(){ setDemoBalance(1000); };
     function getDemoCase(){ return DEMO_CASES.find(c=>c.id===demoCurrentCase)||DEMO_CASES[0]; }
-    const DEMO_RARITIES = {
-        gray:      { label:'Ширпотреб',      color:'#8b93a7' },
-        lightblue: { label:'Промышленное',   color:'#5aa9e6' },
-        blue:      { label:'Армейское',      color:'#4b78e8' },
-        purple:    { label:'Запрещённое',   color:'#a855f7' },
-        pink:      { label:'Засекреченное', color:'#ec4899' },
-        red:       { label:'Тайное',         color:'#ef4444' },
-        gold:      { label:'Золотое',        color:'#f5b942' }
-    };
-    function legacyDemoRarity(item){
-        const w=String(item.weapon||'').toLowerCase();
-        if(/нож|перчат|агент|брелок|charm/.test(w)) return 'gold';
-        const c=Number(item.chance)||0;
-        if(c<=0.5)return 'red';
-        if(c<=1.5)return 'pink';
-        if(c<=8)return 'purple';
-        if(c<=20)return 'blue';
-        if(c<=35)return 'lightblue';
-        return 'gray';
-    }
-    function normalizeDemoCases(cases){
-        return (Array.isArray(cases) ? cases : []).map((c, ci) => ({
-            id: c.id || ('case_' + Date.now() + '_' + ci),
-            name: String(c.name || 'Новый кейс'),
-            icon: String(c.icon || '🎁'),
-            cover: String(c.cover || ''),
-            items: (Array.isArray(c.items) ? c.items : []).map((item, ii) => ({
-                id: item.id || ('item_' + Date.now() + '_' + ci + '_' + ii),
-                weapon: String(item.weapon || 'Оружие'),
-                name: String(item.name || 'Без названия'),
-                chance: Math.max(0, Number(item.chance) || 0),
-                image: String(item.image || ''),
-                rarity: DEMO_RARITIES[item.rarity] ? item.rarity : legacyDemoRarity(item)
-            }))
-        })).filter(c => c.items.length || c.cover || c.name);
-    }
     function demoRarity(item){
-        const key = DEMO_RARITIES[item && item.rarity] ? item.rarity : legacyDemoRarity(item || {});
-        return [key, DEMO_RARITIES[key].label];
+        if(item && ['gray','lightblue','blue','purple','pink','red','gold'].includes(item.rarity)){
+            const labels={gray:'Ширпотреб',lightblue:'Промышленное',blue:'Армейское',purple:'Запрещённое',pink:'Засекреченное',red:'Тайное',gold:'Золотое качество'};
+            return [item.rarity,labels[item.rarity]];
+        }
+        const w=String(item.weapon||'').toLowerCase();
+        if(/нож|перчат|агент|брелок|charm/.test(w)) return ['gold','Золотое качество'];
+        const c=Number(item.chance)||0;
+        if(c<=0.5)return['red','Тайное'];
+        if(c<=1.5)return['pink','Засекреченное'];
+        if(c<=8)return['purple','Запрещённое'];
+        if(c<=20)return['blue','Армейское'];
+        if(c<=35)return['lightblue','Промышленное'];
+        return['gray','Ширпотреб'];
     }
     function demoRarityClass(item){return demoRarity(item)[0];}
-
-
-    async function loadDemoCases(){
-        try {
-            const ref = doc(db, 'data', 'cases');
-            const snap = await getDoc(ref);
-            if(snap.exists() && Array.isArray(snap.data().items) && snap.data().items.length){
-                DEMO_CASES = normalizeDemoCases(snap.data().items);
-            } else {
-                DEMO_CASES = normalizeDemoCases(DEMO_CASES);
-                await setDoc(ref, { items: DEMO_CASES });
-            }
-        } catch(e) {
-            console.warn('Не удалось загрузить кейсы', e);
-            DEMO_CASES = normalizeDemoCases(DEMO_CASES);
-        }
-        if(!DEMO_CASES.length) DEMO_CASES = [{
-            id:'default_case', name:'Новый кейс', icon:'🎁', cover:'', items:[]
-        }];
-        if(!DEMO_CASES.some(c => c.id === demoCurrentCase)) demoCurrentCase = DEMO_CASES[0].id;
-    }
-
-    function subscribeDemoCases(){
-        const ref = doc(db, 'data', 'cases');
-        onSnapshot(ref, snap => {
-            if(!snap.exists() || !Array.isArray(snap.data().items)) return;
-            const currentId = demoCurrentCase;
-            DEMO_CASES = normalizeDemoCases(snap.data().items);
-            if(!DEMO_CASES.length) return;
-            if(DEMO_CASES.some(c => c.id === currentId)) demoCurrentCase = currentId;
-            else demoCurrentCase = DEMO_CASES[0].id;
-            renderDemoCaseTabs();
-            renderDemoCase();
-            renderCaseStatsAdmin();
-            if(currentUser && currentUser.key === 'mega') renderCaseEditor();
-        }, err => console.warn('Ошибка синхронизации кейсов', err));
-    }
-
-    // ==================================================
-    // СТАТИСТИКА ОТКРЫТИЙ КЕЙСОВ
-    // ==================================================
-    let DEMO_CASE_OPEN_COUNTS = {};
-    let demoCaseStatsUnsubscribe = null;
-
-    async function loadDemoCaseStats(){
-        try {
-            const snap = await getDoc(doc(db, 'data', 'caseStats'));
-            DEMO_CASE_OPEN_COUNTS = (snap.exists() && snap.data().counts) ? snap.data().counts : {};
-        } catch(e) {
-            console.warn('Не удалось загрузить статистику кейсов', e);
-            DEMO_CASE_OPEN_COUNTS = {};
-        }
-    }
-
-    function subscribeDemoCaseStats(){
-        const ref = doc(db, 'data', 'caseStats');
-        if(demoCaseStatsUnsubscribe) demoCaseStatsUnsubscribe();
-        demoCaseStatsUnsubscribe = onSnapshot(ref, snap => {
-            DEMO_CASE_OPEN_COUNTS = (snap.exists() && snap.data().counts) ? snap.data().counts : {};
-            renderCaseStatsAdmin();
-        }, err => console.warn('Ошибка статистики кейсов', err));
-    }
-
-    async function incrementCaseOpenCount(caseId, qty=1){
-        try {
-            await setDoc(doc(db, 'data', 'caseStats'), {
-                counts: { [caseId]: increment(Math.max(1, Number(qty)||1)) }
-            }, { merge:true });
-        } catch(e) {
-            console.warn('Не удалось увеличить счётчик кейса', e);
-        }
-    }
-
-    async function saveDemoCases(){
-        const clean = normalizeDemoCases(DEMO_CASES);
-        DEMO_CASES = clean;
-        await setDoc(doc(db, 'data', 'cases'), { items: clean });
-    }
-
-    let caseEditorCurrentId = null;
-    let caseEditorCoverPending = null;
-
-    function getCaseEditorCase(){
-        return DEMO_CASES.find(c => c.id === caseEditorCurrentId) || DEMO_CASES[0] || null;
-    }
-
-    function renderCaseStatsAdmin(){
-        const list=document.getElementById('caseStatsList');
-        const totalEl=document.getElementById('caseStatsTotal');
-        if(!list)return;
-        const rows=DEMO_CASES.map(c=>({case:c,count:Number(DEMO_CASE_OPEN_COUNTS[c.id]||0)}))
-            .sort((a,b)=>b.count-a.count || a.case.name.localeCompare(b.case.name,'ru'));
-        const total=rows.reduce((sum,r)=>sum+r.count,0);
-        if(totalEl){
-            const word=total===1?'открытие':(total>=2&&total<=4?'открытия':'открытий');
-            totalEl.innerText=total+' '+word;
-        }
-        list.innerHTML='';
-        const max=Math.max(1,...rows.map(r=>r.count));
-        rows.forEach(r=>{
-            const row=document.createElement('div'); row.className='case-stat-row';
-            const left=document.createElement('div');
-            left.innerHTML='<div class="case-stat-name">'+escapeHtml(r.case.icon+' '+r.case.name)+'</div><div class="case-stat-bar"><span style="width:'+((r.count/max)*100).toFixed(2)+'%"></span></div>';
-            const count=document.createElement('div'); count.className='case-stat-count'; count.innerText=r.count+' '+(r.count===1?'раз':'раз');
-            row.appendChild(left); row.appendChild(count); list.appendChild(row);
-        });
-    }
-
-    function renderCaseEditor(){
-        const select = document.getElementById('caseEditorSelect');
-        const body = document.getElementById('caseEditorBody');
-        const empty = document.getElementById('caseEditorEmpty');
-        if(!select || !body || !empty) return;
-
-        select.innerHTML = '';
-        DEMO_CASES.forEach(c => {
-            const opt = document.createElement('option');
-            opt.value = c.id;
-            opt.textContent = c.icon + ' ' + c.name;
-            select.appendChild(opt);
-        });
-
-        if(!DEMO_CASES.length){
-            body.style.display='none';
-            empty.style.display='block';
-            return;
-        }
-        body.style.display='flex';
-        empty.style.display='none';
-        if(!DEMO_CASES.some(c => c.id === caseEditorCurrentId)){
-            caseEditorCurrentId = DEMO_CASES[0].id;
-        }
-        select.value = caseEditorCurrentId;
-        const c = getCaseEditorCase();
-        if(!c) return;
-
-        document.getElementById('caseEditorName').value = c.name || '';
-        document.getElementById('caseEditorIcon').value = c.icon || '🎁';
-        document.getElementById('caseEditorCover').value = c.cover || '';
-        caseEditorCoverPending = null;
-        renderCaseEditorItems(c);
-        const status = document.getElementById('caseEditorStatus');
-        if(status) { status.className='case-editor-status'; status.innerText=''; }
-    }
-
-    function renderCaseEditorItems(c){
-        const list = document.getElementById('caseEditorItems');
-        if(!list) return;
-        list.innerHTML='';
-        (c.items || []).forEach((item, idx) => {
-            const row=document.createElement('div');
-            row.className='case-editor-item';
-            row.dataset.index=String(idx);
-
-            const thumb=document.createElement('div');
-            thumb.className='case-editor-thumb';
-            if(item.image){
-                const img=document.createElement('img');
-                img.src=item.image;
-                img.alt='';
-                thumb.appendChild(img);
-            } else thumb.innerText='🎁';
-
-            const nameWrap=document.createElement('div');
-            nameWrap.className='case-editor-field';
-            nameWrap.innerHTML='<div class="case-editor-label">Название</div>';
-            const name=document.createElement('input');
-            name.className='editor-name'; name.value=item.name||''; name.placeholder='Название скина';
-            nameWrap.appendChild(name);
-
-            const weaponWrap=document.createElement('div');
-            weaponWrap.className='case-editor-field editor-weapon';
-            weaponWrap.innerHTML='<div class="case-editor-label">Оружие</div>';
-            const weapon=document.createElement('input');
-            weapon.className='editor-weapon-input'; weapon.value=item.weapon||''; weapon.placeholder='AK-47';
-            weaponWrap.appendChild(weapon);
-
-            const chanceWrap=document.createElement('div');
-            chanceWrap.className='case-editor-field editor-chance';
-            chanceWrap.innerHTML='<div class="case-editor-label">Шанс %</div>';
-            const chance=document.createElement('input');
-            chance.className='editor-chance-input'; chance.type='number'; chance.step='0.001'; chance.min='0';
-            chance.value=item.chance ?? 0; chanceWrap.appendChild(chance);
-
-            const rarityWrap=document.createElement('div');
-            rarityWrap.className='case-editor-field editor-rarity';
-            rarityWrap.innerHTML='<div class="case-editor-label">Качество</div>';
-            const rarity=document.createElement('select');
-            rarity.className='editor-rarity-select';
-            Object.entries(DEMO_RARITIES).forEach(([key, meta])=>{
-                const opt=document.createElement('option');
-                opt.value=key; opt.textContent=meta.label;
-                if(key === item.rarity) opt.selected=true;
-                rarity.appendChild(opt);
-            });
-            rarityWrap.appendChild(rarity);
-
-            const imageWrap=document.createElement('div');
-            imageWrap.className='case-editor-field editor-image';
-            imageWrap.innerHTML='<div class="case-editor-label">Фото (URL)</div>';
-            const imageInput=document.createElement('input');
-            imageInput.className='editor-image-input'; imageInput.value=item.image||''; imageInput.placeholder='https://...';
-            imageWrap.appendChild(imageInput);
-            const upload=document.createElement('div');
-            upload.className='case-editor-upload';
-            const file=document.createElement('input');
-            file.type='file'; file.accept='image/png,image/jpeg,image/jpg,image/webp'; file.style.display='none';
-            const uploadBtn=document.createElement('button');
-            uploadBtn.className='admin-btn small'; uploadBtn.type='button'; uploadBtn.innerText='📷';
-            uploadBtn.title='Загрузить фото с ПК';
-            uploadBtn.onclick=()=>file.click();
-            file.onchange=async e=>{
-                const f=e.target.files && e.target.files[0];
-                if(!f) return;
-                if(!f.type.startsWith('image/')){ alert('Только картинки'); return; }
-                try{
-                    imageInput.value=await compressImage(f, 420, 0.82);
-                    const im=thumb.querySelector('img') || document.createElement('img');
-                    im.src=imageInput.value;
-                    if(!im.parentElement) thumb.innerHTML='', thumb.appendChild(im);
-                }catch(err){ alert('Не удалось обработать фото'); }
-            };
-            upload.appendChild(uploadBtn); upload.appendChild(file);
-            imageWrap.appendChild(upload);
-
-            const remove=document.createElement('button');
-            remove.className='case-editor-remove editor-remove'; remove.type='button'; remove.innerText='×';
-            remove.title='Удалить предмет';
-            remove.onclick=()=>{
-                c.items.splice(idx,1);
-                renderCaseEditorItems(c);
-            };
-
-            row.appendChild(thumb);
-            row.appendChild(nameWrap);
-            row.appendChild(weaponWrap);
-            row.appendChild(chanceWrap);
-            row.appendChild(rarityWrap);
-            row.appendChild(imageWrap);
-            row.appendChild(remove);
-            list.appendChild(row);
-        });
-    }
-
-    window.selectCaseForEdit=function(){
-        const select=document.getElementById('caseEditorSelect');
-        if(!select) return;
-        caseEditorCurrentId=select.value;
-        renderCaseEditor();
-    };
-
-    window.addCaseEditor=function(){
-        if(!currentUser || currentUser.key !== 'mega'){ alert('Только администратор'); return; }
-        const id='case_'+Date.now()+'_'+Math.random().toString(36).slice(2,7);
-        DEMO_CASES.push({id:id,name:'Новый кейс',icon:'🎁',cover:'',items:[]});
-        caseEditorCurrentId=id;
-        renderCaseEditor();
-    };
-
-    window.deleteCaseEditor=async function(){
-        if(!currentUser || currentUser.key !== 'mega') return;
-        const c=getCaseEditorCase(); if(!c) return;
-        if(!confirm('Удалить кейс «'+c.name+'»?')) return;
-        DEMO_CASES=DEMO_CASES.filter(x=>x.id!==c.id);
-        if(!DEMO_CASES.length){
-            DEMO_CASES.push({id:'case_'+Date.now(),name:'Новый кейс',icon:'🎁',cover:'',items:[]});
-        }
-        caseEditorCurrentId=DEMO_CASES[0].id;
-        demoCurrentCase=DEMO_CASES[0].id;
-        await saveDemoCases();
-        renderCaseEditor();
-        renderDemoCaseTabs();
-        renderDemoCase();
-    };
-
-    window.addCaseItemEditor=function(){
-        const c=getCaseEditorCase(); if(!c) return;
-        c.items.push({
-            id:'item_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),
-            weapon:'AK-47', name:'Новый скин', chance:1, image:'', rarity:'gray'
-        });
-        renderCaseEditorItems(c);
-    };
-
-    window.handleCaseCoverUpload=async function(event){
-        const f=event.target.files && event.target.files[0]; if(!f) return;
-        if(!f.type.startsWith('image/')){ alert('Только картинки'); return; }
-        try{
-            caseEditorCoverPending=await compressImage(f, 520, 0.84);
-            const input=document.getElementById('caseEditorCover');
-            if(input) input.value=caseEditorCoverPending;
-        }catch(e){ alert('Не удалось обработать обложку'); }
-        event.target.value='';
-    };
-
-    window.saveCaseEditor=async function(){
-        if(!currentUser || currentUser.key !== 'mega'){ alert('Только администратор'); return; }
-        const c=getCaseEditorCase(); if(!c) return;
-        const status=document.getElementById('caseEditorStatus');
-        try{
-            const name=document.getElementById('caseEditorName').value.trim();
-            const icon=document.getElementById('caseEditorIcon').value.trim() || '🎁';
-            const cover=document.getElementById('caseEditorCover').value.trim();
-            if(!name){ status.className='case-editor-status err'; status.innerText='❌ Введи название кейса'; return; }
-            c.name=name; c.icon=icon; c.cover=cover;
-            const rows=[...document.querySelectorAll('#caseEditorItems .case-editor-item')];
-            c.items=rows.map((row,idx)=>{
-                const old=c.items[idx] || {};
-                return {
-                    id: old.id || ('item_'+Date.now()+'_'+idx),
-                    name: row.querySelector('.editor-name')?.value.trim() || 'Без названия',
-                    weapon: row.querySelector('.editor-weapon-input')?.value.trim() || 'Оружие',
-                    chance: Math.max(0, Number(row.querySelector('.editor-chance-input')?.value) || 0),
-                    rarity: DEMO_RARITIES[row.querySelector('.editor-rarity-select')?.value] ? row.querySelector('.editor-rarity-select').value : 'gray',
-                    image: row.querySelector('.editor-image-input')?.value.trim() || ''
-                };
-            });
-            const total=c.items.reduce((s,i)=>s+Number(i.chance||0),0);
-            if(total <= 0){ status.className='case-editor-status err'; status.innerText='❌ Сумма шансов должна быть больше 0'; return; }
-
-            await saveDemoCases();
-            caseEditorCoverPending=null;
-            status.className='case-editor-status ok';
-            status.innerText='✅ Кейс сохранён';
-            renderDemoCaseTabs();
-            renderDemoCase();
-            setTimeout(()=>{ if(status) status.innerText=''; },2200);
-        }catch(e){
-            console.error(e);
-            status.className='case-editor-status err';
-            status.innerText='❌ Ошибка сохранения: '+(e.message||e);
-        }
-    };
 
     function renderDemoCaseTabs(){
         const tabs=document.getElementById('demoCaseTabs'); if(!tabs)return; tabs.innerHTML='';
@@ -3210,115 +2681,58 @@
         for(const item of items){ r-=item.chance; if(r<=0)return item; }
         return items[items.length-1];
     }
-    function setDemoOpenQty(qty){
-        qty=Math.max(1,Math.min(5,Number(qty)||1));
-        if(demoOpening)return;
-        demoOpenQty=qty;
-        setDemoBalance(getDemoBalance());
-        renderDemoCase();
-    }
-    window.setDemoOpenQty=setDemoOpenQty;
-
-    function buildMultiPreview(c, qty){
-        const stage=document.getElementById('demoCaseStage');
-        if(!stage)return;
-        stage.classList.remove('is-opening');
-        stage.innerHTML='';
-        const grid=document.createElement('div'); grid.className='demo-multi-grid';
-        grid.style.gridTemplateColumns=`repeat(${qty},minmax(0,1fr))`;
-        for(let i=0;i<qty;i++){
-            const lane=document.createElement('div'); lane.className='demo-multi-lane';
-            const top=document.createElement('div'); top.className='demo-multi-item top';
-            const bot=document.createElement('div'); bot.className='demo-multi-item bottom';
-            const a=c.items[(i*2)%c.items.length], b=c.items[(i*2+1)%c.items.length];
-            top.innerHTML='<img src="'+(a.image||'')+'" alt="">';
-            bot.innerHTML='<img src="'+(b.image||'')+'" alt="">';
-            lane.appendChild(top); lane.appendChild(bot); lane.appendChild(Object.assign(document.createElement('div'),{className:'demo-multi-rarity'}));
-            grid.appendChild(lane);
-        }
-        stage.appendChild(grid);
-        const center=document.createElement('div'); center.className='demo-case-center';
-        const cover=document.createElement('div'); cover.className='demo-case-cover'; cover.id='demoCaseCover';
-        cover.innerHTML='<img src="'+(c.cover||'')+'" alt="'+escapeHtml(c.name)+'">';
-        center.appendChild(cover); stage.appendChild(center);
-        const roulette=document.createElement('div'); roulette.id='demoRouletteWrap'; roulette.style.display='none'; stage.appendChild(roulette);
-    }
-
-    function renderDemoCase(){
-        const c=getDemoCase();
-        const name=document.getElementById('demoCaseName');
-        const icon=document.getElementById('demoCaseIcon');
-        const items=document.getElementById('demoItems');
-        const result=document.getElementById('demoResult');
-        if(!name||!items)return;
-        name.innerText=c.name; if(icon)icon.innerText=c.icon;
-        buildMultiPreview(c,demoOpenQty);
-        items.innerHTML='';
-        c.items.forEach(item=>{
-            const [rarity,label]=demoRarity(item); const card=document.createElement('div'); card.className='demo-item rarity-'+rarity;
-            card.innerHTML='<span class="demo-rarity-badge">'+escapeHtml(label)+'</span><div class="demo-item-chance">'+item.chance+'%</div><img src="'+item.image+'" alt=""><div class="demo-item-weapon">'+escapeHtml(item.weapon)+'</div><div class="demo-item-name">'+escapeHtml(item.name)+'</div>';
-            items.appendChild(card);
+    function renderRoulette(c,winner){
+        const track=document.getElementById('demoRouletteTrack'); if(!track)return; track.innerHTML='';
+        const sequence=[]; for(let i=0;i<34;i++)sequence.push(c.items[Math.floor(Math.random()*c.items.length)]);
+        const winnerIndex=29; sequence[winnerIndex]=winner;
+        sequence.forEach(item=>{
+            const el=document.createElement('div');
+            const [rarity,label]=demoRarity(item);
+            el.className='demo-roulette-item rarity-'+rarity;
+            el.innerHTML='<span class="demo-rarity-badge">'+escapeHtml(label)+'</span><img src="'+item.image+'" alt=""><b>'+escapeHtml(item.weapon)+' — '+escapeHtml(item.name)+'</b><span>'+item.chance+'%</span>';
+            track.appendChild(el);
         });
-        if(result)result.classList.remove('open');
-        setDemoBalance(getDemoBalance()); renderDemoCaseTabs();
+        track.style.transition='none'; track.style.transform='translateX(0px)'; void track.offsetWidth;
+        const itemWidth=132+8, container=track.parentElement.getBoundingClientRect().width;
+        const target=-(winnerIndex*itemWidth-container/2+66);
+        track.style.transition='transform 2.8s cubic-bezier(.08,.72,.12,1)';
+        track.style.transform='translateX('+target+'px)';
     }
-
-    function demoBackToCases(){ const tabs=document.getElementById('demoCaseTabs'); if(tabs)tabs.scrollIntoView({behavior:'smooth',block:'center'}); }
-
-    function pickDemoItem(items){
-        const total=items.reduce((s,item)=>s+Math.max(0,Number(item.chance)||0),0);
-        if(total<=0)return items[Math.floor(Math.random()*items.length)];
-        let r=Math.random()*total; for(const item of items){r-=Math.max(0,Number(item.chance)||0);if(r<=0)return item;} return items[items.length-1];
-    }
-
-    function createOpeningLane(c,winner,delay){
-        const lane=document.createElement('div'); lane.className='demo-opening-lane';
-        const track=document.createElement('div'); track.className='demo-opening-track';
-        const seq=[]; for(let i=0;i<13;i++)seq.push(pickDemoItem(c.items));
-        seq[9]=winner;
-        seq.forEach(item=>{const card=document.createElement('div');card.className='demo-opening-card';card.innerHTML='<img src="'+(item.image||'')+'" alt="">';track.appendChild(card);});
-        lane.appendChild(track);
-        const offset=9*(92+8)-40;
-        requestAnimationFrame(()=>{
-            track.style.transition='transform '+(3.05+delay).toFixed(2)+'s cubic-bezier(.08,.72,.12,1)';
-            track.style.transform='translateY(-'+offset+'px)';
-        });
-        return lane;
-    }
-
-    function showFinalResults(results){
-        const stage=document.getElementById('demoCaseStage'); if(!stage)return;
-        stage.innerHTML='';
-        const grid=document.createElement('div'); grid.className='demo-final-results'; grid.style.gridTemplateColumns=`repeat(${results.length},minmax(0,1fr))`;
-        results.forEach(item=>{
-            const card=document.createElement('div'); card.className='demo-final-card rarity-'+demoRarity(item)[0];
-            card.innerHTML='<img src="'+(item.image||'')+'" alt=""><div class="weapon">'+escapeHtml(item.weapon)+'</div><div class="name">'+escapeHtml(item.name)+'</div><div class="price">'+Number(item.chance||0)+' ₽</div>';
-            grid.appendChild(card);
-        });
-        stage.appendChild(grid);
-        const actions=document.getElementById('demoCaseActions');
-        if(actions){actions.style.display='flex';}
-    }
-
     window.openDemoCase=function(){
-        if(demoOpening)return;
-        const c=getDemoCase(); if(!c||!c.items?.length){alert('В этом кейсе пока нет скинов.');return;}
-        const qty=demoOpenQty, totalCost=DEMO_CASE_COST*qty, balance=getDemoBalance();
-        if(balance<totalCost){alert('Недостаточно демо-баланса.');return;}
-        const results=Array.from({length:qty},()=>pickDemoItem(c.items));
-        demoLastResults=results; demoOpening=true;
-        setDemoBalance(balance-totalCost);
-        incrementCaseOpenCount(c.id,qty);
-        const stage=document.getElementById('demoCaseStage'); if(!stage)return;
-        stage.innerHTML='';
-        const grid=document.createElement('div'); grid.className='demo-opening-grid'; grid.style.gridTemplateColumns=`repeat(${qty},minmax(0,1fr))`;
-        results.forEach((winner,i)=>grid.appendChild(createOpeningLane(c,winner,i*.08)));
-        const loading=document.createElement('div'); loading.className='demo-opening-loading'; loading.innerText='Открытие кейса…'; grid.appendChild(loading);
-        stage.appendChild(grid);
-        const actions=document.getElementById('demoCaseActions'); if(actions)actions.style.opacity='.35';
+        if(demoOpening)return; const balance=getDemoBalance();
+        const caseCost=(Number(getDemoCase()?.cost ?? DEMO_CASE_COST)||0)*demoOpenQty;
+        if(balance<caseCost){ alert('Недостаточно демо-баланса.'); return; }
+        const c=getDemoCase(), winner=pickDemoItem(c.items);
+        demoOpening=true;
+        setDemoBalance(balance-caseCost);
+        const stage=document.getElementById('demoCaseStage');
+        const roulette=document.getElementById('demoRouletteWrap');
+        const result=document.getElementById('demoResult');
+        const resultName=document.getElementById('demoResultName');
+        const resultChance=document.getElementById('demoResultChance');
+        const cover=document.getElementById('demoCaseCover');
+        result.classList.remove('open');
+        stage.classList.add('is-opening');
+        roulette.classList.add('open');
+        renderRoulette(c,winner);
         setTimeout(()=>{
-            demoOpening=false; if(actions)actions.style.opacity=''; showFinalResults(results); setDemoBalance(getDemoBalance());
-        },3500+qty*80);
+            roulette.classList.remove('open');
+            stage.classList.remove('is-opening');
+
+            // После открытия результат появляется прямо в центре, где до открытия был кейс.
+            cover.innerHTML = `
+                <div class="demo-drop-result-center rarity-${demoRarity(winner)[0]}"><span class="demo-rarity-badge">${escapeHtml(demoRarity(winner)[1])}</span>
+                    <img src="${winner.image}" alt="${escapeHtml(winner.name)}">
+                    <div class="demo-drop-result-weapon">${escapeHtml(winner.weapon)}</div>
+                    <div class="demo-drop-result-name">${escapeHtml(winner.name)}</div>
+                    <div class="demo-drop-result-chance">${winner.chance}%</div>
+                </div>`;
+
+            // Старый нижний блок результата больше не показываем.
+            result.classList.remove('open');
+            demoOpening=false;
+            setDemoBalance(getDemoBalance());
+        },2950);
     };
     function initDemoTab(){ renderDemoCaseTabs(); renderDemoCase(); }
 
@@ -3407,6 +2821,7 @@
         renderStickerPacksTabs();
         renderStickerGrid();
         renderPacksAdmin();
+        if (currentUser && currentUser.key === 'mega') renderCaseEditor();
 
         subscribeDrops();
         renderDropsAdmin();
@@ -4748,9 +4163,6 @@
         updateAvatarPreview('sergo');
         renderPacksAdmin();
         renderDropsAdmin();
-        if (!caseEditorCurrentId && DEMO_CASES.length) caseEditorCurrentId = DEMO_CASES[0].id;
-        renderCaseEditor();
-        renderCaseStatsAdmin();
     }
 
     function updateAvatarPreview(key) {
@@ -4853,15 +4265,67 @@
     };
 
     // ==================================================
+    // РЕДАКТОР КЕЙСОВ — ТОЛЬКО АДМИНКА
+    // ==================================================
+    const DEMO_RARITIES={gray:'Ширпотреб',lightblue:'Промышленное',blue:'Армейское',purple:'Запрещённое',pink:'Засекреченное',red:'Тайное',gold:'Золотое'};
+    let caseEditorCurrentId='rainy';
+    function caseRarity(it){
+        if(it&&DEMO_RARITIES[it.rarity]) return it.rarity;
+        const w=String(it?.weapon||'').toLowerCase(), c=Number(it?.chance)||0;
+        if(/нож|перчат|агент|брелок|charm/.test(w))return'gold';
+        if(c<=.5)return'red';if(c<=1.5)return'pink';if(c<=8)return'purple';if(c<=20)return'blue';if(c<=35)return'lightblue';return'gray';
+    }
+    async function loadEditableCases(){
+        try{const snap=await getDoc(doc(db,'data','cases'));if(!snap.exists()||!Array.isArray(snap.data().items))return;const saved=snap.data().items;
+            DEMO_CASES=DEMO_CASES.map(base=>{const x=saved.find(v=>v&&v.id===base.id);if(!x)return base;return{...base,name:String(x.name??base.name),icon:String(x.icon??base.icon),cover:String(x.cover??base.cover),cost:Math.max(0,Number(x.cost??base.cost??DEMO_CASE_COST)||0),items:Array.isArray(x.items)?x.items.map((it,i)=>({id:it.id||('item_'+base.id+'_'+i),weapon:String(it.weapon||'Оружие'),name:String(it.name||'Без названия'),chance:Math.max(0,Number(it.chance)||0),image:String(it.image||''),rarity:caseRarity(it)})):base.items};});
+        }catch(e){console.warn('Не удалось загрузить настройки кейсов',e);}
+    }
+    async function saveEditableCases(){
+        const items=DEMO_CASES.map(c=>({id:c.id,name:c.name,icon:c.icon,cover:c.cover,cost:Math.max(0,Number(c.cost??DEMO_CASE_COST)||0),items:(c.items||[]).map((it,i)=>({id:it.id||('item_'+c.id+'_'+i),weapon:it.weapon,name:it.name,chance:Math.max(0,Number(it.chance)||0),image:it.image,rarity:caseRarity(it)}))}));
+        await setDoc(doc(db,'data','cases'),{items},{merge:true});
+    }
+    function getCaseEditorCase(){return DEMO_CASES.find(c=>c.id===caseEditorCurrentId)||DEMO_CASES[0]||null;}
+    function renderCaseEditor(){
+        const s=document.getElementById('caseEditorSelect'),b=document.getElementById('caseEditorBody');if(!s||!b)return;s.innerHTML='';
+        DEMO_CASES.forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.icon+' '+c.name;s.appendChild(o);});if(!DEMO_CASES.length){b.style.display='none';return;}
+        if(!DEMO_CASES.some(c=>c.id===caseEditorCurrentId))caseEditorCurrentId=DEMO_CASES[0].id;s.value=caseEditorCurrentId;const c=getCaseEditorCase();
+        document.getElementById('caseEditorName').value=c.name||'';document.getElementById('caseEditorIcon').value=c.icon||'🎁';document.getElementById('caseEditorCover').value=c.cover||'';document.getElementById('caseEditorCost').value=c.cost??DEMO_CASE_COST;renderCaseEditorItems(c);
+    }
+    function renderCaseEditorItems(c){
+        const list=document.getElementById('caseEditorItems');if(!list)return;list.innerHTML='';
+        (c.items||[]).forEach((it,idx)=>{
+            const row=document.createElement('div');row.className='case-editor-item';
+            const thumb=document.createElement('div');thumb.className='case-editor-thumb';if(it.image){const im=document.createElement('img');im.src=it.image;thumb.appendChild(im);}else thumb.innerText='🎁';
+            const field=(label,cls)=>{const w=document.createElement('div');w.className='case-editor-field '+(cls||'');const l=document.createElement('div');l.className='case-editor-label';l.innerText=label;w.appendChild(l);return w;};
+            const nw=field('Название'),ni=document.createElement('input');ni.className='editor-name';ni.value=it.name||'';nw.appendChild(ni);
+            const ww=field('Оружие','editor-weapon'),wi=document.createElement('input');wi.className='editor-weapon-input';wi.value=it.weapon||'';ww.appendChild(wi);
+            const cw=field('Шанс %','editor-chance'),ci=document.createElement('input');ci.className='editor-chance-input';ci.type='number';ci.step='.001';ci.min='0';ci.value=it.chance??0;cw.appendChild(ci);
+            const rw=field('Качество','editor-rarity'),rs=document.createElement('select');rs.className='editor-rarity-select';Object.entries(DEMO_RARITIES).forEach(([k,v])=>{const o=document.createElement('option');o.value=k;o.textContent=v;if(caseRarity(it)===k)o.selected=true;rs.appendChild(o);});rw.appendChild(rs);
+            const iw=field('Фото (URL)','editor-image'),ii=document.createElement('input');ii.className='editor-image-input';ii.value=it.image||'';iw.appendChild(ii);
+            const up=document.createElement('div');up.className='case-editor-upload';const fi=document.createElement('input');fi.type='file';fi.accept='image/png,image/jpeg,image/jpg,image/webp';fi.style.display='none';const ub=document.createElement('button');ub.type='button';ub.className='admin-btn small';ub.innerText='📷';ub.onclick=()=>fi.click();fi.onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{ii.value=await compressImage(f,420,.82);thumb.innerHTML='';const im=document.createElement('img');im.src=ii.value;thumb.appendChild(im);}catch(err){alert('Не удалось обработать фото');}e.target.value='';};up.appendChild(ub);up.appendChild(fi);iw.appendChild(up);
+            const del=document.createElement('button');del.type='button';del.className='case-editor-remove';del.innerText='×';del.onclick=()=>{c.items.splice(idx,1);renderCaseEditorItems(c);};
+            [thumb,nw,ww,cw,rw,iw,del].forEach(x=>row.appendChild(x));list.appendChild(row);
+        });
+    }
+    window.selectCaseForEdit=()=>{const s=document.getElementById('caseEditorSelect');if(s){caseEditorCurrentId=s.value;renderCaseEditor();}};
+    window.addCaseItemEditor=()=>{const c=getCaseEditorCase();if(!c)return;c.items.push({id:'item_'+Date.now(),weapon:'AK-47',name:'Новый скин',chance:1,image:'',rarity:'gray'});renderCaseEditorItems(c);};
+    window.handleCaseCoverUpload=async e=>{const f=e.target.files?.[0];if(!f)return;try{const x=await compressImage(f,520,.84);document.getElementById('caseEditorCover').value=x;}catch(err){alert('Не удалось обработать обложку');}e.target.value='';};
+    window.saveCaseEditor=async()=>{
+        if(!currentUser||currentUser.key!=='mega'){alert('Только администратор');return;}const c=getCaseEditorCase();if(!c)return;const st=document.getElementById('caseEditorStatus');
+        try{c.name=document.getElementById('caseEditorName').value.trim();if(!c.name){st.className='case-editor-status err';st.innerText='❌ Введи название кейса';return;}c.icon=document.getElementById('caseEditorIcon').value.trim()||'🎁';c.cover=document.getElementById('caseEditorCover').value.trim();c.cost=Math.max(0,Number(document.getElementById('caseEditorCost').value)||0);
+            const rows=[...document.querySelectorAll('#caseEditorItems .case-editor-item')];c.items=rows.map((r,i)=>{const old=c.items[i]||{};return{id:old.id||('item_'+Date.now()+'_'+i),name:r.querySelector('.editor-name')?.value.trim()||'Без названия',weapon:r.querySelector('.editor-weapon-input')?.value.trim()||'Оружие',chance:Math.max(0,Number(r.querySelector('.editor-chance-input')?.value)||0),rarity:r.querySelector('.editor-rarity-select')?.value||'gray',image:r.querySelector('.editor-image-input')?.value.trim()||''};});
+            if(!c.items.length){st.className='case-editor-status err';st.innerText='❌ В кейсе должен быть хотя бы один предмет';return;}if(c.items.reduce((a,x)=>a+Number(x.chance||0),0)<=0){st.className='case-editor-status err';st.innerText='❌ Сумма шансов должна быть больше 0';return;}
+            await saveEditableCases();renderDemoCaseTabs();renderDemoCase();renderCaseEditor();st.className='case-editor-status ok';st.innerText='✅ Кейс сохранён';setTimeout(()=>st.innerText='',2000);
+        }catch(e){console.error(e);st.className='case-editor-status err';st.innerText='❌ Ошибка сохранения: '+(e.message||e);}
+    };
+
+    // ==================================================
     // ИНИЦИАЛИЗАЦИЯ
     // ==================================================
     async function init() {
         await loadAccounts();
-        await loadDemoCases();
-        await loadDemoCaseStats();
+        loadEditableCases().then(() => { if (currentUser && currentUser.key === 'mega') renderCaseEditor(); if (typeof renderDemoCase === 'function') renderDemoCase(); if (typeof renderDemoCaseTabs === 'function') renderDemoCaseTabs(); });
         subscribeStickers();
-        subscribeDemoCaseStats();
-        subscribeDemoCases();
         restoreSession();
     }
     init();
