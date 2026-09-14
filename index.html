@@ -1175,6 +1175,16 @@
     .case-custom-input.visible { display: block; }
 
 
+    .case-stats-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
+    .case-stats-total{padding:8px 12px;border:1px solid #2d3950;border-radius:10px;background:#10192a;color:#dce4f2;font-size:12px;font-weight:900;white-space:nowrap}
+    .case-stats-list{display:flex;flex-direction:column;gap:8px}
+    .case-stat-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:12px 14px;border:1px solid #263149;border-radius:11px;background:#0d1422}
+    .case-stat-name{font-weight:900;color:#f5f7ff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .case-stat-count{font-size:12px;font-weight:900;color:#ffc857;min-width:92px;text-align:right}
+    .case-stat-bar{height:4px;border-radius:999px;background:#1d2940;margin-top:7px;overflow:hidden}
+    .case-stat-bar>span{display:block;height:100%;width:0;background:#ffc857;border-radius:999px;transition:width .25s ease}
+    @media(max-width:650px){.case-stats-head{align-items:flex-start;flex-direction:column}.case-stat-row{grid-template-columns:1fr}.case-stat-count{text-align:left}}
+
     /* ==================================================
        АДМИНКА — РЕДАКТОР КЕЙСОВ
        ================================================== */
@@ -1312,6 +1322,9 @@
 
     .demo-case-tabs {
         display:flex;
+        overflow-x:auto;
+        flex-wrap:nowrap;
+        padding-bottom:5px;
         gap:8px;
         padding: 0 0 14px;
         justify-content:center;
@@ -1467,6 +1480,43 @@
         filter:drop-shadow(0 12px 20px rgba(0,0,0,.55));
         transform:scale(1.02);
     }
+    /* MULTI OPEN — 1..5 кейсов одновременно */
+    .demo-open-controls{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:2px}
+    .demo-qty{display:flex;align-items:center;padding:3px;border:1px solid #29354e;background:#101829;border-radius:999px;gap:2px}
+    .demo-qty button{min-width:42px;height:34px;border:0;border-radius:999px;background:transparent;color:#aeb9ce;font-size:11px;font-weight:900;cursor:pointer}
+    .demo-qty button.active{background:#e8edf7;color:#121722;box-shadow:0 1px 0 rgba(255,255,255,.3) inset}
+    .demo-qty button:hover:not(.active){background:#1a253a;color:#fff}
+    .demo-multi-grid{position:absolute;inset:0;display:grid;z-index:1}
+    .demo-multi-lane{position:relative;min-width:0;border-right:1px solid rgba(38,49,73,.65);overflow:hidden;background:#080d18}
+    .demo-multi-lane:last-child{border-right:0}
+    .demo-multi-lane:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 35%,rgba(78,38,117,.28),transparent 58%);pointer-events:none}
+    .demo-multi-item{position:absolute;left:8%;right:8%;height:50%;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .demo-multi-item.top{top:0}.demo-multi-item.bottom{bottom:0}
+    .demo-multi-item img{width:92%;height:88%;object-fit:contain;filter:drop-shadow(0 8px 12px rgba(0,0,0,.55))}
+    .demo-multi-lane .demo-multi-rarity{position:absolute;inset:0;background:linear-gradient(135deg,rgba(80,40,130,.16),transparent 50%,rgba(130,20,70,.12));pointer-events:none}
+    .demo-case-center{position:absolute;inset:0;z-index:8;display:flex;align-items:center;justify-content:center;pointer-events:none}
+    .demo-case-cover{width:min(310px,42%);height:100%;display:flex;align-items:center;justify-content:center;background:transparent;border:0;overflow:visible}
+    .demo-case-cover img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 12px 20px rgba(0,0,0,.62));transform:scale(1.04)}
+    .demo-opening-grid{position:absolute;inset:0;z-index:20;display:grid;background:#070c16;overflow:hidden}
+    .demo-opening-lane{position:relative;overflow:hidden;border-right:1px solid rgba(45,55,78,.72);background:#080d18}
+    .demo-opening-lane:last-child{border-right:0}
+    .demo-opening-track{position:absolute;left:0;right:0;top:0;display:flex;flex-direction:column;gap:8px;align-items:center;will-change:transform}
+    .demo-opening-card{width:86%;height:92px;flex:0 0 92px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#11192a,#171226);border:1px solid #242e45;overflow:hidden}
+    .demo-opening-card img{width:92%;height:92%;object-fit:contain;filter:drop-shadow(0 7px 12px rgba(0,0,0,.55))}
+    .demo-opening-lane:after{content:'';position:absolute;left:0;right:0;top:50%;height:2px;background:#ef4f4f;box-shadow:0 0 12px rgba(239,79,79,.85);z-index:4}
+    .demo-opening-lane:before{content:'›';position:absolute;right:-1px;top:50%;transform:translateY(-50%);color:#ef4f4f;font-size:34px;line-height:1;z-index:5}
+    .demo-opening-loading{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);z-index:30;color:#8f9bb0;font-size:12px;font-weight:700;background:rgba(7,12,22,.82);padding:5px 12px;border-radius:999px;white-space:nowrap}
+    .demo-final-results{display:grid;gap:0;position:absolute;inset:0;z-index:25;background:#080e19;overflow:hidden}
+    .demo-final-card{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-right:1px solid #1d273b;padding:12px;background:linear-gradient(180deg,#0a101c,#10182a)}
+    .demo-final-card:last-child{border-right:0}
+    .demo-final-card img{width:92%;height:100px;object-fit:contain;filter:drop-shadow(0 10px 15px rgba(0,0,0,.55))}
+    .demo-final-card .weapon{color:#9aa6bc;font-size:10px;margin-top:4px}
+    .demo-final-card .name{color:#fff;font-size:12px;font-weight:900;max-width:96%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+    .demo-final-card .price{color:#f5c94b;font-size:11px;font-weight:900;margin-top:3px}
+    .demo-final-actions{display:flex;justify-content:center;gap:10px;padding:16px 0 28px}
+    .demo-final-actions button{border:0;border-radius:999px;padding:12px 18px;font-weight:900;cursor:pointer}
+    .demo-final-actions .again{background:#fff;color:#151a25}.demo-final-actions .sell{background:#bdf07a;color:#182014}
+    @media(max-width:700px){.demo-case-title{font-size:18px}.demo-case-stage{height:170px}.demo-case-cover{width:44%}.demo-final-card img{height:76px}.demo-qty button{min-width:36px}}
     .demo-case-actions {
         display:flex;
         align-items:center;
@@ -1671,8 +1721,8 @@
 
 <div class="tabs">
     <button class="tab-btn active" data-tab="accounting" onclick="switchTab('accounting', this)">Учёт халявы</button>
-    <button class="tab-btn" data-tab="drops" onclick="switchTab('drops', this)">Дропы</button>
-    <button class="tab-btn" data-tab="demo" onclick="switchTab('demo', this)">Демо шансы</button>
+    <button class="tab-btn" data-tab="drops" onclick="switchTab('drops', this)">🎁 Дропы</button>
+    <button class="tab-btn" data-tab="demo" onclick="switchTab('demo', this)">🎲 Демо шансы</button>
     <button class="tab-btn" data-tab="chat" onclick="switchTab('chat', this)">Чат</button>
     <button class="tab-btn admin-tab" data-tab="admin" id="adminTabBtn" style="display:none;" onclick="switchTab('admin', this)">Админка</button>
 </div>
@@ -1721,7 +1771,7 @@
 <!-- ДРОПЫ -->
 <div id="tab-drops" class="tab-content">
     <div class="drops-header">
-        <div class="drops-title">Последние дропы</div>
+        <div class="drops-title">🎁 Последние дропы</div>
         <div class="drops-filters">
             <button class="drops-filter-btn active" data-filter="all" onclick="setDropFilter('all', this)">Все</button>
             <button class="drops-filter-btn" data-filter="mega" onclick="setDropFilter('mega', this)">MEGATEM41K</button>
@@ -1759,9 +1809,18 @@
             </div>
 
             <div class="demo-case-actions" id="demoCaseActions">
-                <div class="demo-insufficient" id="demoBalanceMessage">Баланс ₽1000.00</div>
-                <button class="demo-btn primary" id="demoAddBalanceBtn" style="padding:13px 18px;" onclick="demoAddBalance()">Пополнить баланс&nbsp; +</button>
-                <button class="demo-open" id="demoOpenBtn" onclick="openDemoCase()">Открыть кейс за 1 ₽ &nbsp;◉</button>
+                <div class="demo-open-controls">
+                    <div class="demo-qty" id="demoQty">
+                        <button type="button" data-qty="1" onclick="setDemoOpenQty(1)">x1</button>
+                        <button type="button" data-qty="2" onclick="setDemoOpenQty(2)">x2</button>
+                        <button type="button" data-qty="3" onclick="setDemoOpenQty(3)">x3</button>
+                        <button type="button" data-qty="4" onclick="setDemoOpenQty(4)">x4</button>
+                        <button type="button" data-qty="5" onclick="setDemoOpenQty(5)">x5</button>
+                    </div>
+                    <div class="demo-insufficient" id="demoBalanceMessage">Баланс ₽1000.00</div>
+                    <button class="demo-btn primary" id="demoAddBalanceBtn" style="padding:13px 18px;" onclick="demoAddBalance()">Пополнить баланс&nbsp; +</button>
+                    <button class="demo-open" id="demoOpenBtn" onclick="openDemoCase()">Открыть за 1 ₽</button>
+                </div>
             </div>
 
             <div class="demo-result" id="demoResult">
@@ -1978,6 +2037,17 @@
 
 
         <div class="admin-card">
+            <div class="case-stats-head">
+                <div>
+                    <h3>📊 Открытия кейсов</h3>
+                    <p style="font-size:13px;color:#888;margin-top:5px;">Сколько раз каждый кейс открывали пользователи.</p>
+                </div>
+                <div class="case-stats-total" id="caseStatsTotal">0 открытий</div>
+            </div>
+            <div id="caseStatsList" class="case-stats-list"></div>
+        </div>
+
+        <div class="admin-card">
             <h3>🎰 Редактор кейсов</h3>
             <p class="case-editor-hint">
                 Здесь можно полностью менять содержимое кейса: название, иконку, обложку,
@@ -2065,7 +2135,7 @@
     };
 
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-    import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, addDoc, deleteDoc, query, orderBy, serverTimestamp }
+    import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, addDoc, deleteDoc, query, orderBy, serverTimestamp, increment }
         from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
     const app = initializeApp(firebaseConfig);
@@ -2679,6 +2749,9 @@
 
     let demoCurrentCase = 'rainy';
     let demoOpening = false;
+    let demoOpenQty = 1;
+    let demoLastResults = [];
+    let demoOpeningTimers = [];
 
     function getDemoBalance() {
         const raw=localStorage.getItem(DEMO_BALANCE_KEY);
@@ -2691,10 +2764,12 @@
         const msg=document.getElementById('demoBalanceMessage');
         const addBtn=document.getElementById('demoAddBalanceBtn');
         const openBtn=document.getElementById('demoOpenBtn');
-        if(msg) msg.innerText=safe < DEMO_CASE_COST ? 'Не хватает ₽'+(DEMO_CASE_COST-safe).toFixed(2)+' на балансе' : 'Баланс ₽'+safe.toFixed(2);
+        const totalCost=DEMO_CASE_COST*demoOpenQty;
+        if(msg) msg.innerText=safe < totalCost ? 'Не хватает ₽'+(totalCost-safe).toFixed(2)+' на балансе' : 'Баланс ₽'+safe.toFixed(2);
         // Кнопка пополнения нужна только когда баланс закончился.
         if(addBtn) addBtn.style.display = safe >= DEMO_CASE_COST ? 'none' : 'inline-flex';
-        if(openBtn) openBtn.disabled=demoOpening || safe<DEMO_CASE_COST;
+        if(openBtn) { openBtn.disabled=demoOpening || safe<totalCost; openBtn.innerText='Открыть за '+totalCost+' ₽'; }
+        document.querySelectorAll('#demoQty button').forEach(b=>b.classList.toggle('active',Number(b.dataset.qty)===demoOpenQty));
     }
     window.demoAddBalance=function(){ setDemoBalance(getDemoBalance()+100); };
     window.demoResetBalance=function(){ setDemoBalance(1000); };
@@ -2773,8 +2848,44 @@
             else demoCurrentCase = DEMO_CASES[0].id;
             renderDemoCaseTabs();
             renderDemoCase();
+            renderCaseStatsAdmin();
             if(currentUser && currentUser.key === 'mega') renderCaseEditor();
         }, err => console.warn('Ошибка синхронизации кейсов', err));
+    }
+
+    // ==================================================
+    // СТАТИСТИКА ОТКРЫТИЙ КЕЙСОВ
+    // ==================================================
+    let DEMO_CASE_OPEN_COUNTS = {};
+    let demoCaseStatsUnsubscribe = null;
+
+    async function loadDemoCaseStats(){
+        try {
+            const snap = await getDoc(doc(db, 'data', 'caseStats'));
+            DEMO_CASE_OPEN_COUNTS = (snap.exists() && snap.data().counts) ? snap.data().counts : {};
+        } catch(e) {
+            console.warn('Не удалось загрузить статистику кейсов', e);
+            DEMO_CASE_OPEN_COUNTS = {};
+        }
+    }
+
+    function subscribeDemoCaseStats(){
+        const ref = doc(db, 'data', 'caseStats');
+        if(demoCaseStatsUnsubscribe) demoCaseStatsUnsubscribe();
+        demoCaseStatsUnsubscribe = onSnapshot(ref, snap => {
+            DEMO_CASE_OPEN_COUNTS = (snap.exists() && snap.data().counts) ? snap.data().counts : {};
+            renderCaseStatsAdmin();
+        }, err => console.warn('Ошибка статистики кейсов', err));
+    }
+
+    async function incrementCaseOpenCount(caseId, qty=1){
+        try {
+            await setDoc(doc(db, 'data', 'caseStats'), {
+                counts: { [caseId]: increment(Math.max(1, Number(qty)||1)) }
+            }, { merge:true });
+        } catch(e) {
+            console.warn('Не удалось увеличить счётчик кейса', e);
+        }
     }
 
     async function saveDemoCases(){
@@ -2788,6 +2899,28 @@
 
     function getCaseEditorCase(){
         return DEMO_CASES.find(c => c.id === caseEditorCurrentId) || DEMO_CASES[0] || null;
+    }
+
+    function renderCaseStatsAdmin(){
+        const list=document.getElementById('caseStatsList');
+        const totalEl=document.getElementById('caseStatsTotal');
+        if(!list)return;
+        const rows=DEMO_CASES.map(c=>({case:c,count:Number(DEMO_CASE_OPEN_COUNTS[c.id]||0)}))
+            .sort((a,b)=>b.count-a.count || a.case.name.localeCompare(b.case.name,'ru'));
+        const total=rows.reduce((sum,r)=>sum+r.count,0);
+        if(totalEl){
+            const word=total===1?'открытие':(total>=2&&total<=4?'открытия':'открытий');
+            totalEl.innerText=total+' '+word;
+        }
+        list.innerHTML='';
+        const max=Math.max(1,...rows.map(r=>r.count));
+        rows.forEach(r=>{
+            const row=document.createElement('div'); row.className='case-stat-row';
+            const left=document.createElement('div');
+            left.innerHTML='<div class="case-stat-name">'+escapeHtml(r.case.icon+' '+r.case.name)+'</div><div class="case-stat-bar"><span style="width:'+((r.count/max)*100).toFixed(2)+'%"></span></div>';
+            const count=document.createElement('div'); count.className='case-stat-count'; count.innerText=r.count+' '+(r.count===1?'раз':'раз');
+            row.appendChild(left); row.appendChild(count); list.appendChild(row);
+        });
     }
 
     function renderCaseEditor(){
@@ -3077,74 +3210,115 @@
         for(const item of items){ r-=item.chance; if(r<=0)return item; }
         return items[items.length-1];
     }
-    function renderRoulette(c,winner){
-        const track=document.getElementById('demoRouletteTrack'); if(!track)return; track.innerHTML='';
-        const sequence=[];
-        let previousRarity='';
-        for(let i=0;i<38;i++){
-            let item=pickDemoItem(c.items);
-            const rarity=demoRarity(item)[0];
-            // Не даём редким предметам визуально заполнять рулетку подряд:
-            // для фона повторно выбираем, если предыдущий предмет тоже gold/red/pink.
-            if((rarity==='gold'||rarity==='red'||rarity==='pink') &&
-               previousRarity===rarity && c.items.length>1){
-                for(let tries=0;tries<8;tries++){
-                    const candidate=pickDemoItem(c.items);
-                    if(demoRarity(candidate)[0]!==rarity){ item=candidate; break; }
-                }
-            }
-            sequence.push(item);
-            previousRarity=demoRarity(item)[0];
-        }
-        const winnerIndex=31;
-        sequence[winnerIndex]=winner;
-        sequence.forEach(item=>{
-            const el=document.createElement('div');
-            const [rarity,label]=demoRarity(item);
-            el.className='demo-roulette-item rarity-'+rarity;
-            el.innerHTML='<span class="demo-rarity-badge">'+escapeHtml(label)+'</span><img src="'+(item.image||'')+'" alt=""><b>'+escapeHtml(item.weapon)+' — '+escapeHtml(item.name)+'</b><span>'+Number(item.chance||0)+'%</span>';
-            track.appendChild(el);
-        });
-        track.style.transition='none'; track.style.transform='translateX(0px)'; void track.offsetWidth;
-        const cardWidth=148, gap=8, container=track.parentElement.getBoundingClientRect().width;
-        const target=-(winnerIndex*(cardWidth+gap)-container/2+cardWidth/2);
-        track.style.transition='transform 3.15s cubic-bezier(.08,.72,.12,1)';
-        track.style.transform='translateX('+target+'px)';
+    function setDemoOpenQty(qty){
+        qty=Math.max(1,Math.min(5,Number(qty)||1));
+        if(demoOpening)return;
+        demoOpenQty=qty;
+        setDemoBalance(getDemoBalance());
+        renderDemoCase();
     }
-    window.openDemoCase=function(){
-        if(demoOpening)return; const balance=getDemoBalance();
-        if(balance<DEMO_CASE_COST){ alert('Недостаточно демо-баланса.'); return; }
-        const c=getDemoCase(), winner=pickDemoItem(c.items);
-        demoOpening=true;
-        setDemoBalance(balance-DEMO_CASE_COST);
+    window.setDemoOpenQty=setDemoOpenQty;
+
+    function buildMultiPreview(c, qty){
         const stage=document.getElementById('demoCaseStage');
-        const roulette=document.getElementById('demoRouletteWrap');
+        if(!stage)return;
+        stage.classList.remove('is-opening');
+        stage.innerHTML='';
+        const grid=document.createElement('div'); grid.className='demo-multi-grid';
+        grid.style.gridTemplateColumns=`repeat(${qty},minmax(0,1fr))`;
+        for(let i=0;i<qty;i++){
+            const lane=document.createElement('div'); lane.className='demo-multi-lane';
+            const top=document.createElement('div'); top.className='demo-multi-item top';
+            const bot=document.createElement('div'); bot.className='demo-multi-item bottom';
+            const a=c.items[(i*2)%c.items.length], b=c.items[(i*2+1)%c.items.length];
+            top.innerHTML='<img src="'+(a.image||'')+'" alt="">';
+            bot.innerHTML='<img src="'+(b.image||'')+'" alt="">';
+            lane.appendChild(top); lane.appendChild(bot); lane.appendChild(Object.assign(document.createElement('div'),{className:'demo-multi-rarity'}));
+            grid.appendChild(lane);
+        }
+        stage.appendChild(grid);
+        const center=document.createElement('div'); center.className='demo-case-center';
+        const cover=document.createElement('div'); cover.className='demo-case-cover'; cover.id='demoCaseCover';
+        cover.innerHTML='<img src="'+(c.cover||'')+'" alt="'+escapeHtml(c.name)+'">';
+        center.appendChild(cover); stage.appendChild(center);
+        const roulette=document.createElement('div'); roulette.id='demoRouletteWrap'; roulette.style.display='none'; stage.appendChild(roulette);
+    }
+
+    function renderDemoCase(){
+        const c=getDemoCase();
+        const name=document.getElementById('demoCaseName');
+        const icon=document.getElementById('demoCaseIcon');
+        const items=document.getElementById('demoItems');
         const result=document.getElementById('demoResult');
-        const resultName=document.getElementById('demoResultName');
-        const resultChance=document.getElementById('demoResultChance');
-        const cover=document.getElementById('demoCaseCover');
-        result.classList.remove('open');
-        stage.classList.add('is-opening');
-        roulette.classList.add('open');
-        renderRoulette(c,winner);
+        if(!name||!items)return;
+        name.innerText=c.name; if(icon)icon.innerText=c.icon;
+        buildMultiPreview(c,demoOpenQty);
+        items.innerHTML='';
+        c.items.forEach(item=>{
+            const [rarity,label]=demoRarity(item); const card=document.createElement('div'); card.className='demo-item rarity-'+rarity;
+            card.innerHTML='<span class="demo-rarity-badge">'+escapeHtml(label)+'</span><div class="demo-item-chance">'+item.chance+'%</div><img src="'+item.image+'" alt=""><div class="demo-item-weapon">'+escapeHtml(item.weapon)+'</div><div class="demo-item-name">'+escapeHtml(item.name)+'</div>';
+            items.appendChild(card);
+        });
+        if(result)result.classList.remove('open');
+        setDemoBalance(getDemoBalance()); renderDemoCaseTabs();
+    }
+
+    function demoBackToCases(){ const tabs=document.getElementById('demoCaseTabs'); if(tabs)tabs.scrollIntoView({behavior:'smooth',block:'center'}); }
+
+    function pickDemoItem(items){
+        const total=items.reduce((s,item)=>s+Math.max(0,Number(item.chance)||0),0);
+        if(total<=0)return items[Math.floor(Math.random()*items.length)];
+        let r=Math.random()*total; for(const item of items){r-=Math.max(0,Number(item.chance)||0);if(r<=0)return item;} return items[items.length-1];
+    }
+
+    function createOpeningLane(c,winner,delay){
+        const lane=document.createElement('div'); lane.className='demo-opening-lane';
+        const track=document.createElement('div'); track.className='demo-opening-track';
+        const seq=[]; for(let i=0;i<13;i++)seq.push(pickDemoItem(c.items));
+        seq[9]=winner;
+        seq.forEach(item=>{const card=document.createElement('div');card.className='demo-opening-card';card.innerHTML='<img src="'+(item.image||'')+'" alt="">';track.appendChild(card);});
+        lane.appendChild(track);
+        const offset=9*(92+8)-40;
+        requestAnimationFrame(()=>{
+            track.style.transition='transform '+(3.05+delay).toFixed(2)+'s cubic-bezier(.08,.72,.12,1)';
+            track.style.transform='translateY(-'+offset+'px)';
+        });
+        return lane;
+    }
+
+    function showFinalResults(results){
+        const stage=document.getElementById('demoCaseStage'); if(!stage)return;
+        stage.innerHTML='';
+        const grid=document.createElement('div'); grid.className='demo-final-results'; grid.style.gridTemplateColumns=`repeat(${results.length},minmax(0,1fr))`;
+        results.forEach(item=>{
+            const card=document.createElement('div'); card.className='demo-final-card rarity-'+demoRarity(item)[0];
+            card.innerHTML='<img src="'+(item.image||'')+'" alt=""><div class="weapon">'+escapeHtml(item.weapon)+'</div><div class="name">'+escapeHtml(item.name)+'</div><div class="price">'+Number(item.chance||0)+' ₽</div>';
+            grid.appendChild(card);
+        });
+        stage.appendChild(grid);
+        const actions=document.getElementById('demoCaseActions');
+        if(actions){actions.style.display='flex';}
+    }
+
+    window.openDemoCase=function(){
+        if(demoOpening)return;
+        const c=getDemoCase(); if(!c||!c.items?.length){alert('В этом кейсе пока нет скинов.');return;}
+        const qty=demoOpenQty, totalCost=DEMO_CASE_COST*qty, balance=getDemoBalance();
+        if(balance<totalCost){alert('Недостаточно демо-баланса.');return;}
+        const results=Array.from({length:qty},()=>pickDemoItem(c.items));
+        demoLastResults=results; demoOpening=true;
+        setDemoBalance(balance-totalCost);
+        incrementCaseOpenCount(c.id,qty);
+        const stage=document.getElementById('demoCaseStage'); if(!stage)return;
+        stage.innerHTML='';
+        const grid=document.createElement('div'); grid.className='demo-opening-grid'; grid.style.gridTemplateColumns=`repeat(${qty},minmax(0,1fr))`;
+        results.forEach((winner,i)=>grid.appendChild(createOpeningLane(c,winner,i*.08)));
+        const loading=document.createElement('div'); loading.className='demo-opening-loading'; loading.innerText='Открытие кейса…'; grid.appendChild(loading);
+        stage.appendChild(grid);
+        const actions=document.getElementById('demoCaseActions'); if(actions)actions.style.opacity='.35';
         setTimeout(()=>{
-            roulette.classList.remove('open');
-            stage.classList.remove('is-opening');
-
-            // После открытия результат появляется прямо в центре, где до открытия был кейс.
-            cover.innerHTML = `
-                <div class="demo-drop-result-center rarity-${demoRarity(winner)[0]}"><span class="demo-rarity-badge">${escapeHtml(demoRarity(winner)[1])}</span>
-                    <img src="${winner.image}" alt="${escapeHtml(winner.name)}">
-                    <div class="demo-drop-result-weapon">${escapeHtml(winner.weapon)}</div>
-                    <div class="demo-drop-result-name">${escapeHtml(winner.name)}</div>
-                    <div class="demo-drop-result-chance">${winner.chance}%</div>
-                </div>`;
-
-            // Старый нижний блок результата больше не показываем.
-            result.classList.remove('open');
-            demoOpening=false;
-            setDemoBalance(getDemoBalance());
-        },2950);
+            demoOpening=false; if(actions)actions.style.opacity=''; showFinalResults(results); setDemoBalance(getDemoBalance());
+        },3500+qty*80);
     };
     function initDemoTab(){ renderDemoCaseTabs(); renderDemoCase(); }
 
@@ -4576,6 +4750,7 @@
         renderDropsAdmin();
         if (!caseEditorCurrentId && DEMO_CASES.length) caseEditorCurrentId = DEMO_CASES[0].id;
         renderCaseEditor();
+        renderCaseStatsAdmin();
     }
 
     function updateAvatarPreview(key) {
@@ -4683,7 +4858,9 @@
     async function init() {
         await loadAccounts();
         await loadDemoCases();
+        await loadDemoCaseStats();
         subscribeStickers();
+        subscribeDemoCaseStats();
         subscribeDemoCases();
         restoreSession();
     }
