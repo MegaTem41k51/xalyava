@@ -290,29 +290,6 @@
     }
     .auction-price .dep-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-    /* Выбор игрока для билета */
-    .player-choose {
-        display: flex; gap: 8px;
-        align-items: center;
-    }
-    .player-choose .pc-btn {
-        padding: 10px 16px; border: 2px solid #3a3a52;
-        background: #23233a; color: #aaa;
-        border-radius: 8px; font-size: 13px; font-weight: 700;
-        cursor: pointer; transition: 0.2s;
-        flex: 1;
-    }
-    .player-choose .pc-btn.active.mega {
-        background: linear-gradient(135deg, #ff6b6b, #c62828);
-        color: #fff;
-        border-color: #ff6b6b;
-    }
-    .player-choose .pc-btn.active.sergo {
-        background: linear-gradient(135deg, #4fc3f7, #0288d1);
-        color: #fff;
-        border-color: #4fc3f7;
-    }
-
     .prizes-title {
         color: #fff; font-size: 14px; font-weight: 700;
         text-transform: uppercase; letter-spacing: 1px;
@@ -641,10 +618,6 @@
                     </div>
                     <button class="dep-btn" id="depBtn" onclick="depositTicket()">💳 DEP</button>
                 </div>
-                <div class="player-choose">
-                    <button class="pc-btn active mega" id="pcMega" onclick="setPlayerForTicket('mega')">🔴 MEGATEM41K</button>
-                    <button class="pc-btn sergo" id="pcSergo" onclick="setPlayerForTicket('sergo')">🔵 Sergo Bulkin</button>
-                </div>
                 <div class="prizes-title">🎁 Призы</div>
                 <div class="auction-prizes" id="auctionPrizes"></div>
             </div>
@@ -807,7 +780,7 @@
                 <input type="number" id="aucTimer" placeholder="1" value="1" min="1" max="10">
             </div>
             <div class="admin-field">
-                <label>Призы (Название;Цена, по одной на строку)</label>
+                <label>Призы (Название;Цена;Шанс, по одной на строку)</label>
                 <textarea id="aucPrizes"></textarea>
             </div>
             <div class="admin-btn-row">
@@ -1420,7 +1393,6 @@
     };
     let ticketsMega = 0;
     let ticketsSergo = 0;
-    let chosenPlayer = 'mega'; // для DEP — чей билет сейчас
     let timerRunning = false;
     let timerFinished = false;
     let timerInterval = null;
@@ -1430,12 +1402,6 @@
     let currentWinner = null;
 
     function totalTickets() { return ticketsMega + ticketsSergo; }
-
-    window.setPlayerForTicket = function(key) {
-        chosenPlayer = key;
-        document.getElementById('pcMega').classList.toggle('active', key === 'mega');
-        document.getElementById('pcSergo').classList.toggle('active', key === 'sergo');
-    };
 
     function subscribeAuction() {
         onSnapshot(doc(db, 'data', 'auction'), (docSnap) => {
@@ -1452,11 +1418,6 @@
                 if (data.winner) currentWinner = data.winner;
                 if (data.timerFinished) timerFinished = data.timerFinished;
                 if (data.isRolling) isRolling = data.isRolling;
-                if (data.chosenPlayer) {
-                    chosenPlayer = data.chosenPlayer;
-                    document.getElementById('pcMega').classList.toggle('active', chosenPlayer === 'mega');
-                    document.getElementById('pcSergo').classList.toggle('active', chosenPlayer === 'sergo');
-                }
             } else {
                 auctionData.prizes = CASE_SKINS.rainy;
             }
@@ -1473,8 +1434,7 @@
                 ticketsSergo: ticketsSergo,
                 winner: currentWinner,
                 timerFinished: timerFinished,
-                isRolling: isRolling,
-                chosenPlayer: chosenPlayer
+                isRolling: isRolling
             });
         } catch(e) { console.warn(e); }
     }
@@ -1550,8 +1510,6 @@
         grid.innerHTML = '';
         const total = auctionData.totalTickets;
 
-        // Сначала рисуем все красные (Mega), потом синие (Sergo)
-        // Если оба — фиолетовый "микс"
         const megaCount = ticketsMega;
         const sergoCount = ticketsSergo;
 
@@ -1586,10 +1544,12 @@
     }
 
     window.depositTicket = async function() {
+        if (!currentUser) return;
         if (totalTickets() >= auctionData.totalTickets || isRolling || currentWinner) return;
 
-        if (chosenPlayer === 'mega') ticketsMega++;
-        else ticketsSergo++;
+        // Билет зачисляется тому, кто нажал DEP
+        if (currentUser.key === 'mega') ticketsMega++;
+        else if (currentUser.key === 'sergo') ticketsSergo++;
 
         await saveAuction();
         renderTickets();
@@ -1647,12 +1607,11 @@
             cells.forEach(c => c.classList.remove('runner'));
         }
 
-        // Скорость: чем ближе к концу, тем медленнее
         function getDelay(currentStep) {
             const progress = currentStep / totalSteps;
-            if (progress < 0.7) return 30;      // быстрая часть
-            if (progress < 0.9) return 80;      // замедление
-            return 200;                          // медленное окончание
+            if (progress < 0.7) return 30;
+            if (progress < 0.9) return 80;
+            return 200;
         }
 
         function animate() {
@@ -1662,7 +1621,6 @@
             step++;
 
             if (step >= totalSteps) {
-                // Останавливаемся на текущем (случайном) билете
                 const finalIndex = runnerIndex % total;
                 clearRunner();
                 cells[finalIndex].classList.add('runner');
@@ -1671,12 +1629,7 @@
                     isRolling = false;
                     timerFinished = true;
 
-                    // Выбираем приз с учётом шансов (сначала сортируем по возрастанию шанса, 
-                    // но так как пользователь просил "от меньшего к большему" — 
-                    // берём случайный приз, но с весами обратными порядку? 
-                    // Пользователь написал: "шансы на каждый кейс от меньшего к большему". 
-                    // По-видимому, он имел в виду сортировку списка призов. 
-                    // А для выбора победившего скина используем взвешенный рандом:
+                    // Выбор приза с учётом шансов
                     const totalChance = auctionData.prizes.reduce((s, p) => s + (p.chance || 0), 0);
                     let rnd = Math.random() * totalChance;
                     let winnerPrize = auctionData.prizes[0];
@@ -1741,7 +1694,6 @@
         const caseKey = document.getElementById('aucCase').value;
         const prizes = CASE_SKINS[caseKey] || [];
         const textarea = document.getElementById('aucPrizes');
-        // Сортируем от меньшего шанса к большему
         const sorted = [...prizes].sort((a, b) => (a.chance || 0) - (b.chance || 0));
         textarea.value = sorted.map(p => `${p.name};${p.price};${p.chance || 0}`).join('\n');
     };
