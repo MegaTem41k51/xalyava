@@ -1173,6 +1173,481 @@
         margin-top: 8px;
     }
     .case-custom-input.visible { display: block; }
+
+
+    /* ==================================================
+       АДМИНКА — РЕДАКТОР КЕЙСОВ
+       ================================================== */
+    .case-editor-toolbar {
+        display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+        margin-bottom:14px;
+    }
+    .case-editor-select {
+        flex:1; min-width:220px;
+        padding:10px 14px; border:1px solid #444; border-radius:8px;
+        background:#1e1e2e; color:#fff; font-size:14px; outline:none;
+    }
+    .case-editor {
+        display:flex; flex-direction:column; gap:14px;
+    }
+    .case-editor-head {
+        display:grid; grid-template-columns: 1fr 110px 140px; gap:10px;
+    }
+    .case-editor-items {
+        display:flex; flex-direction:column; gap:8px;
+        max-height:620px; overflow:auto; padding-right:3px;
+    }
+    .case-editor-item {
+        display:grid;
+        grid-template-columns:56px minmax(120px,1fr) minmax(120px,1fr) 90px 150px minmax(170px,1fr) 40px;
+        gap:8px; align-items:center;
+        background:#23233a; border:1px solid #3a3a52; border-radius:10px;
+        padding:8px;
+    }
+    .case-editor-thumb {
+        width:52px; height:52px; border-radius:7px; background:#1e1e2e;
+        display:flex; align-items:center; justify-content:center; overflow:hidden;
+        border:1px solid #444;
+    }
+    .case-editor-thumb img { max-width:100%; max-height:100%; object-fit:contain; }
+    .case-editor-item input, .case-editor-item select {
+        width:100%; min-width:0; padding:8px 9px;
+        border:1px solid #444; border-radius:7px;
+        background:#1e1e2e; color:#fff; outline:none; font-size:12px;
+    }
+    .case-editor-item input:focus, .case-editor-item select:focus,
+    .case-editor-head input:focus, .case-editor-head select:focus {
+        border-color:#a78bfa; box-shadow:0 0 0 2px rgba(167,139,250,.16);
+    }
+    .case-editor-head input, .case-editor-head select {
+        width:100%; padding:10px 12px; border:1px solid #444; border-radius:8px;
+        background:#1e1e2e; color:#fff; outline:none; font-size:13px;
+    }
+    .case-editor-label {
+        font-size:11px; color:#777; margin:0 0 4px;
+    }
+    .case-editor-field { min-width:0; }
+    .case-editor-upload {
+        display:flex; gap:5px; align-items:center;
+    }
+    .case-editor-upload input { flex:1; }
+    .case-editor-upload button { flex:0 0 auto; }
+    .case-editor-add {
+        border:1px dashed #4b5670; background:#111a2a; color:#cbd5e1;
+        border-radius:9px; padding:10px; cursor:pointer; font-weight:700;
+    }
+    .case-editor-add:hover { border-color:#a78bfa; color:#fff; }
+    .case-editor-remove {
+        width:32px; height:32px; padding:0; border-radius:7px;
+        background:#c62828; color:#fff; font-size:18px;
+    }
+    .case-editor-remove:hover { background:#9b1f1f; }
+    .case-editor-status { min-height:18px; font-size:13px; }
+    .case-editor-status.ok { color:#81c784; }
+    .case-editor-status.err { color:#ff6b6b; }
+    .case-editor-hint { color:#777; font-size:12px; line-height:1.45; }
+    @media (max-width:900px) {
+        .case-editor-head { grid-template-columns:1fr 90px; }
+        .case-editor-head .case-cover-field { grid-column:1 / -1; }
+        .case-editor-item { grid-template-columns:50px 1fr 1fr 80px 130px minmax(140px,1fr) 34px; }
+    }
+    @media (max-width:650px) {
+        .case-editor-head { grid-template-columns:1fr; }
+        .case-editor-head .case-cover-field { grid-column:auto; }
+        .case-editor-item {
+            grid-template-columns:52px 1fr 34px;
+        }
+        .case-editor-item .editor-weapon,
+        .case-editor-item .editor-chance,
+        .case-editor-item .editor-rarity,
+        .case-editor-item .editor-image { grid-column:2; }
+        .case-editor-item .editor-remove { grid-column:3; grid-row:1; }
+    }
+
+    /* ==================================================
+       ДЕМО ШАНСЫ — ДИЗАЙН КЕЙСА
+       ================================================== */
+    #tab-demo {
+        align-items: flex-start;
+        padding: 0;
+        background: #0d1320;
+    }
+    .demo-wrap {
+        width: 100%;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 8px 0 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    .demo-balance {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        padding: 18px 0 24px;
+    }
+    .demo-balance-title { display:none; }
+    .demo-balance-value { display:none; }
+    .demo-balance-actions { display:flex; gap:18px; align-items:center; }
+    .demo-btn {
+        border: 1px solid #39445c;
+        background: #111a2b;
+        color: #dfe7f7;
+        border-radius: 999px;
+        padding: 11px 20px;
+        font-size: 13px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: .18s ease;
+    }
+    .demo-btn:hover { border-color:#667799; transform:translateY(-1px); }
+    .demo-btn.primary { background:#ffc857; color:#12151d; border-color:#ffc857; }
+    .demo-btn.primary:hover { background:#ffd36e; }
+
+    .demo-case-tabs {
+        display:flex;
+        gap:8px;
+        padding: 0 0 14px;
+        justify-content:center;
+        overflow-x:auto;
+    }
+    .demo-case-tab {
+        flex:0 0 auto;
+        border:1px solid #29344b;
+        background:#111a2a;
+        color:#8490a8;
+        border-radius:999px;
+        padding:8px 15px;
+        cursor:pointer;
+        text-align:center;
+        transition:.18s ease;
+    }
+    .demo-case-tab:hover { color:#fff; border-color:#596781; }
+    .demo-case-tab.active { color:#fff; border-color:#ffc857; background:#172136; box-shadow:0 0 0 1px rgba(255,200,87,.08); }
+    .demo-case-tab-title { font-weight:800; font-size:12px; }
+    .demo-case-tab-meta { display:none; }
+
+    .demo-case {
+        width:100%;
+        background:transparent;
+        border:0;
+        border-radius:0;
+        overflow:visible;
+        box-shadow:none;
+    }
+    .demo-case-page-head {
+        position:relative;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        min-height:52px;
+        margin-bottom:8px;
+    }
+    .demo-back {
+        position:absolute;
+        left:0;
+        top:50%;
+        transform:translateY(-50%);
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        border:1px solid #2d3950;
+        background:#10192a;
+        color:#dbe4f5;
+        border-radius:999px;
+        padding:10px 15px;
+        font-size:12px;
+        font-weight:800;
+        cursor:pointer;
+    }
+    .demo-back:hover { border-color:#596781; color:#fff; }
+    .demo-case-title {
+        display:flex;
+        align-items:center;
+        gap:10px;
+        color:#f6f8ff;
+        font-size:22px;
+        font-weight:900;
+        letter-spacing:-.3px;
+        text-align:center;
+    }
+    .demo-case-title-icon { font-size:24px; }
+    .demo-case-url { display:none; }
+
+    .demo-case-stage {
+        position:relative;
+        height:186px;
+        background:#070d18;
+        border:1px solid #172238;
+        border-radius:15px;
+        overflow:hidden;
+        box-shadow:0 14px 38px rgba(0,0,0,.38);
+    }
+    .demo-case-stage::before {
+        content:'';
+        position:absolute;
+        inset:0;
+        background:linear-gradient(90deg, rgba(10,16,29,.98) 0%, rgba(10,16,29,.35) 21%, rgba(10,16,29,.08) 50%, rgba(10,16,29,.35) 79%, rgba(10,16,29,.98) 100%);
+        pointer-events:none;
+        z-index:4;
+    }
+    .demo-feature-items {
+        position:absolute;
+        z-index:5;
+        inset:0;
+        display:grid;
+        grid-template-columns:repeat(3, minmax(0,1fr)) 260px repeat(3, minmax(0,1fr));
+        gap:10px;
+        padding:18px 10px;
+        align-items:stretch;
+    }
+    .demo-feature-card {
+        position:relative;
+        min-width:0;
+        border:1px solid #27324b;
+        border-radius:12px;
+        overflow:hidden;
+        background:linear-gradient(145deg,#171d35,#20142b);
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-end;
+        padding:10px 11px;
+    }
+    .demo-feature-card::after {
+        content:'';
+        position:absolute;
+        inset:0;
+        background:linear-gradient(180deg,transparent 35%,rgba(5,9,17,.86) 100%);
+        z-index:1;
+    }
+    .demo-feature-card img {
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:contain;
+        padding:12px 10px 25px;
+        filter:drop-shadow(0 8px 14px rgba(0,0,0,.35));
+        z-index:0;
+    }
+    .demo-feature-info { position:relative; z-index:2; min-width:0; }
+    .demo-feature-weapon { color:#9ca8c0; font-size:9px; margin-bottom:2px; }
+    .demo-feature-name { color:#f5f7ff; font-size:11px; font-weight:800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .demo-feature-chance { position:absolute; right:8px; top:8px; z-index:3; padding:3px 6px; border-radius:6px; background:rgba(10,15,27,.72); color:#cbd5ea; font-size:9px; font-weight:800; }
+    .demo-feature-center-slot { min-width:0; }
+    .demo-case-center {
+        position:relative;
+        z-index:6;
+        z-index:5;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        pointer-events:none;
+    }
+    .demo-case-cover {
+        width:260px;
+        height:186px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:transparent;
+        border:0;
+        overflow:visible;
+    }
+    .demo-case-cover img {
+        width:100%;
+        height:100%;
+        object-fit:contain;
+        filter:drop-shadow(0 12px 20px rgba(0,0,0,.55));
+        transform:scale(1.02);
+    }
+    .demo-case-actions {
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:18px;
+        padding:18px 0 34px;
+    }
+    .demo-insufficient {
+        border:1px solid #6d5318;
+        color:#f7c85a;
+        background:#101722;
+        border-radius:999px;
+        padding:11px 22px;
+        font-size:12px;
+        font-weight:900;
+        min-width:210px;
+        text-align:center;
+    }
+    .demo-open {
+        min-width:170px;
+        padding:13px 22px;
+        border-radius:999px;
+        background:#ffc857;
+        color:#14171d;
+        font-size:13px;
+        font-weight:900;
+        border:0;
+        cursor:pointer;
+        box-shadow:none;
+        transition:.18s ease;
+    }
+    .demo-open:hover { background:#ffd36e; transform:translateY(-1px); }
+    .demo-open:disabled { opacity:.42; cursor:not-allowed; transform:none; }
+
+    .demo-case-stage.is-opening .demo-feature-items,
+    .demo-case-stage.is-opening .demo-case-center {
+        opacity:0;
+        visibility:hidden;
+        pointer-events:none;
+        transition:opacity .18s ease;
+    }
+    .demo-roulette-wrap {
+        display:none;
+        position:absolute;
+        inset:0;
+        z-index:20;
+        padding:42px 12px 12px;
+        background:#070d18;
+    }
+    .demo-roulette-wrap.open { display:block; animation:demoRouletteIn .18s ease; }
+    .demo-roulette-title { position:absolute; top:13px; left:14px; color:#9ba7bc; font-size:11px; font-weight:800; }
+    .demo-roulette { position:relative; width:100%; height:100%; overflow:hidden; border:1px solid #263149; border-radius:12px; background:#090f1b; box-shadow:inset 0 0 50px rgba(0,0,0,.35); }
+    .demo-roulette::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#090f1b 0%,transparent 17%,transparent 83%,#090f1b 100%); z-index:2; pointer-events:none; }
+    .demo-roulette::after { content:''; position:absolute; top:0; bottom:0; left:50%; width:3px; transform:translateX(-50%); background:#ffc857; box-shadow:0 0 18px rgba(255,200,87,.9); z-index:4; }
+    .demo-roulette-track { display:flex; gap:8px; height:100%; align-items:center; padding:10px; transform:translateX(0); transition:transform 2.8s cubic-bezier(.08,.72,.12,1); will-change:transform; }
+    .demo-roulette-item { position:relative; width:148px; min-width:148px; height:130px; border-radius:10px; background:linear-gradient(145deg,#171d35,#21152f); border:1px solid #303d5a; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; text-align:center; padding:8px; overflow:hidden; }
+    .demo-roulette-item img { width:100%; height:92px; object-fit:contain; filter:drop-shadow(0 7px 10px rgba(0,0,0,.45)); }
+    .demo-roulette-item b { display:block; width:100%; font-size:9px; line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .demo-roulette-item span { color:#aeb9ce; font-size:8px; margin-top:3px; }
+    .demo-case-stage.is-opening + .demo-case-actions { opacity:.35; pointer-events:none; }
+    @keyframes demoRouletteIn { from {opacity:0; transform:scale(.985)} to {opacity:1; transform:scale(1)} }
+
+    .demo-drop-result-center {
+        width:100%;
+        height:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+        position:relative;
+        z-index:7;
+        padding:8px 12px;
+        box-sizing:border-box;
+        animation:demoDropAppear .45s ease;
+    }
+    .demo-drop-result-center img {
+        width:230px;
+        height:112px;
+        object-fit:contain;
+        filter:drop-shadow(0 12px 18px rgba(0,0,0,.6));
+    }
+    .demo-drop-result-weapon {
+        color:#aab5c9;
+        font-size:10px;
+        font-weight:700;
+        margin-top:-2px;
+    }
+    .demo-drop-result-name {
+        color:#fff;
+        font-size:15px;
+        font-weight:900;
+        margin-top:2px;
+        max-width:320px;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+    .demo-drop-result-chance {
+        margin-top:4px;
+        color:#ffc857;
+        font-size:10px;
+        font-weight:900;
+    }
+    @keyframes demoDropAppear {
+        from { opacity:0; transform:scale(.82); }
+        to { opacity:1; transform:scale(1); }
+    }
+
+    .demo-result { display:none; margin:0 0 26px; padding:18px; border-radius:12px; background:#111a2a; border:1px solid #45536e; text-align:center; }
+    .demo-result.open { display:block; animation:demoPop .35s ease; }
+    .demo-result-label { color:#9ba7bc; font-size:10px; font-weight:800; letter-spacing:.8px; }
+    .demo-result-name { font-size:20px; font-weight:900; margin-top:4px; }
+    .demo-result-chance { color:#ffc857; font-weight:800; margin-top:5px; font-size:12px; }
+
+    .demo-content-title {
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:9px;
+        padding:0 0 17px;
+        font-size:18px;
+        font-weight:900;
+        color:#f5f7ff;
+    }
+    .demo-content-title::before { content:'◈'; color:#b8c4d8; font-size:18px; }
+    .demo-items {
+        display:grid;
+        grid-template-columns:repeat(7,minmax(0,1fr));
+        gap:9px;
+        padding:0 0 20px;
+    }
+    .demo-item {
+        position:relative;
+        min-height:96px;
+        background:linear-gradient(145deg,#182139,#1c2440);
+        border:1px solid #2d3a57;
+        border-radius:10px;
+        padding:7px 8px 8px;
+        overflow:hidden;
+        transition:.18s ease;
+    }
+    .demo-item:hover { transform:translateY(-2px); border-color:#60708f; }
+    .demo-item::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 35%,rgba(8,12,22,.52)); pointer-events:none; }
+    .demo-item img { display:block; width:100%; height:62px; object-fit:contain; position:relative; z-index:1; filter:drop-shadow(0 5px 7px rgba(0,0,0,.35)); }
+    .demo-item-weapon { position:relative; z-index:2; color:#9ca8c0; font-size:8px; font-weight:700; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-transform:none; }
+    .demo-item-name { position:relative; z-index:2; color:#f4f6fb; font-size:10px; font-weight:800; line-height:1.2; padding-right:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .demo-item-chance { position:absolute; right:6px; top:6px; z-index:3; padding:3px 5px; border-radius:5px; background:rgba(7,11,19,.75); color:#d9e1ef; font-size:8px; font-weight:900; }
+    .demo-item.rare,.demo-item.epic,.demo-item.common { border-color:#2d3a57; }
+    .demo-feature-card.rarity-gold,.demo-item.rarity-gold,.demo-roulette-item.rarity-gold{border-color:#e7b84b;box-shadow:0 0 0 1px rgba(231,184,75,.18),inset 0 0 22px rgba(231,184,75,.08)}
+    .demo-feature-card.rarity-red,.demo-item.rarity-red,.demo-roulette-item.rarity-red{border-color:#e05252;box-shadow:0 0 0 1px rgba(224,82,82,.16),inset 0 0 22px rgba(224,82,82,.07)}
+    .demo-feature-card.rarity-pink,.demo-item.rarity-pink,.demo-roulette-item.rarity-pink{border-color:#d85bc5;box-shadow:0 0 0 1px rgba(216,91,197,.15),inset 0 0 22px rgba(216,91,197,.07)}
+    .demo-feature-card.rarity-purple,.demo-item.rarity-purple,.demo-roulette-item.rarity-purple{border-color:#9b65e8;box-shadow:0 0 0 1px rgba(155,101,232,.15),inset 0 0 22px rgba(155,101,232,.07)}
+    .demo-feature-card.rarity-blue,.demo-item.rarity-blue,.demo-roulette-item.rarity-blue{border-color:#4f75d8;box-shadow:0 0 0 1px rgba(79,117,216,.14),inset 0 0 22px rgba(79,117,216,.06)}
+    .demo-feature-card.rarity-lightblue,.demo-item.rarity-lightblue,.demo-roulette-item.rarity-lightblue{border-color:#55a8d8;box-shadow:0 0 0 1px rgba(85,168,216,.13),inset 0 0 22px rgba(85,168,216,.05)}
+    .demo-feature-card.rarity-gray,.demo-item.rarity-gray,.demo-roulette-item.rarity-gray{border-color:#5d6675;box-shadow:0 0 0 1px rgba(130,140,155,.08),inset 0 0 18px rgba(130,140,155,.035)}
+    .demo-rarity-badge{position:absolute;left:7px;top:7px;z-index:3;font-size:7px;line-height:1;font-weight:900;letter-spacing:.4px;text-transform:uppercase;padding:4px 5px;border-radius:5px;background:rgba(7,11,19,.74);color:#dce4f2;backdrop-filter:blur(4px)}
+    .rarity-gold .demo-rarity-badge{color:#ffd76c}.rarity-red .demo-rarity-badge{color:#ff7272}.rarity-pink .demo-rarity-badge{color:#f18be1}.rarity-purple .demo-rarity-badge{color:#bb8cff}.rarity-blue .demo-rarity-badge{color:#79a0ff}.rarity-lightblue .demo-rarity-badge{color:#7fd2ff}.rarity-gray .demo-rarity-badge{color:#b8c0cc}
+
+    .demo-note { display:none; }
+
+    @media (max-width: 980px) {
+        .demo-feature-items { grid-template-columns:repeat(2,minmax(0,1fr)) 220px repeat(2,minmax(0,1fr)); }
+        .demo-feature-card:nth-child(1), .demo-feature-card:nth-child(2), .demo-feature-card:nth-child(6), .demo-feature-card:nth-child(7) { display:none; }
+        .demo-items { grid-template-columns:repeat(4,minmax(0,1fr)); }
+    }
+    @media (max-width: 720px) {
+        .demo-wrap { padding-left:12px; padding-right:12px; }
+        .demo-case-title { font-size:18px; padding:0 78px; }
+        .demo-back { padding:8px 11px; font-size:11px; }
+        .demo-case-stage { height:165px; }
+        .demo-feature-items { grid-template-columns:repeat(2,minmax(0,1fr)) 180px repeat(2,minmax(0,1fr)); padding:12px 6px; gap:6px; }
+        .demo-feature-card:nth-child(1), .demo-feature-card:nth-child(2), .demo-feature-card:nth-child(6), .demo-feature-card:nth-child(7) { display:none; }
+        .demo-case-cover { width:180px; height:165px; }
+        .demo-case-actions { flex-direction:column; gap:10px; padding-bottom:24px; }
+        .demo-insufficient,.demo-open,.demo-case-actions .demo-btn { width:100%; }
+        .demo-items { grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
+        .demo-balance-actions { gap:8px; }
+        .demo-case-tabs { justify-content:flex-start; }
+    }
+
 </style>
 </head>
 <body>
@@ -1197,6 +1672,7 @@
 <div class="tabs">
     <button class="tab-btn active" data-tab="accounting" onclick="switchTab('accounting', this)">Учёт халявы</button>
     <button class="tab-btn" data-tab="drops" onclick="switchTab('drops', this)">🎁 Дропы</button>
+    <button class="tab-btn" data-tab="demo" onclick="switchTab('demo', this)">🎲 Демо шансы</button>
     <button class="tab-btn" data-tab="chat" onclick="switchTab('chat', this)">Чат</button>
     <button class="tab-btn admin-tab" data-tab="admin" id="adminTabBtn" style="display:none;" onclick="switchTab('admin', this)">Админка</button>
 </div>
@@ -1253,6 +1729,51 @@
         </div>
     </div>
     <div class="drops-grid" id="dropsGrid"></div>
+</div>
+
+
+<!-- ДЕМО ШАНСЫ -->
+<div id="tab-demo" class="tab-content">
+    <div class="demo-wrap">
+        <div class="demo-case-tabs" id="demoCaseTabs"></div>
+
+        <div class="demo-case">
+            <div class="demo-case-page-head">
+                <button class="demo-back" onclick="demoBackToCases()">←&nbsp; Назад</button>
+                <div class="demo-case-title"><span class="demo-case-title-icon" id="demoCaseIcon">🌧️</span><span id="demoCaseName"></span></div>
+            </div>
+
+            <div class="demo-case-stage" id="demoCaseStage">
+                <div class="demo-feature-items" id="demoFeatureItems"></div>
+                <div class="demo-case-center">
+                    <div class="demo-case-cover" id="demoCaseCover"></div>
+                </div>
+
+                <!-- Во время открытия рулетка появляется прямо внутри блока кейса -->
+                <div class="demo-roulette-wrap" id="demoRouletteWrap">
+                    <div class="demo-roulette-title">Открытие кейса…</div>
+                    <div class="demo-roulette">
+                        <div class="demo-roulette-track" id="demoRouletteTrack"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-case-actions" id="demoCaseActions">
+                <div class="demo-insufficient" id="demoBalanceMessage">Баланс ₽1000.00</div>
+                <button class="demo-btn primary" id="demoAddBalanceBtn" style="padding:13px 18px;" onclick="demoAddBalance()">Пополнить баланс&nbsp; +</button>
+                <button class="demo-open" id="demoOpenBtn" onclick="openDemoCase()">Открыть кейс за 1 ₽ &nbsp;◉</button>
+            </div>
+
+            <div class="demo-result" id="demoResult">
+                <div class="demo-result-label">ВЫПАЛО</div>
+                <div class="demo-result-name" id="demoResultName"></div>
+                <div class="demo-result-chance" id="demoResultChance"></div>
+            </div>
+
+            <div class="demo-content-title">Содержимое кейса</div>
+            <div class="demo-items" id="demoItems"></div>
+        </div>
+    </div>
 </div>
 
 <div id="tab-chat" class="tab-content">
@@ -1453,6 +1974,56 @@
         <div class="admin-card">
             <h3>📋 Управление дропами</h3>
             <div id="dropsAdminList"></div>
+        </div>
+
+
+        <div class="admin-card">
+            <h3>🎰 Редактор кейсов</h3>
+            <p class="case-editor-hint">
+                Здесь можно полностью менять содержимое кейса: название, иконку, обложку,
+                фото, название оружия, качество и шанс каждого предмета. Изменения сохраняются
+                отдельно в Firestore и применяются к анимации открытия.
+            </p>
+
+            <div class="case-editor-toolbar">
+                <select class="case-editor-select" id="caseEditorSelect" onchange="selectCaseForEdit()"></select>
+                <button class="admin-btn" onclick="addCaseEditor()">➕ Новый кейс</button>
+                <button class="admin-btn danger" onclick="deleteCaseEditor()">🗑 Удалить кейс</button>
+            </div>
+
+            <div id="caseEditorEmpty" class="case-editor-hint" style="display:none;">
+                Нет кейсов. Создай первый кейс.
+            </div>
+
+            <div id="caseEditorBody" class="case-editor">
+                <div class="case-editor-head">
+                    <div class="case-editor-field">
+                        <div class="case-editor-label">Название кейса</div>
+                        <input id="caseEditorName" type="text" maxlength="80" placeholder="Название кейса">
+                    </div>
+                    <div class="case-editor-field">
+                        <div class="case-editor-label">Иконка</div>
+                        <input id="caseEditorIcon" type="text" maxlength="4" placeholder="🎁">
+                    </div>
+                    <div class="case-editor-field case-cover-field">
+                        <div class="case-editor-label">Обложка (URL)</div>
+                        <input id="caseEditorCover" type="text" placeholder="https://...">
+                    </div>
+                </div>
+
+                <div class="case-editor-toolbar">
+                    <button class="admin-btn" onclick="document.getElementById('caseEditorCoverFile').click()">📷 Загрузить обложку</button>
+                    <input id="caseEditorCoverFile" type="file"
+                           accept="image/png,image/jpeg,image/jpg,image/webp"
+                           style="display:none;" onchange="handleCaseCoverUpload(event)">
+                    <button class="admin-btn" onclick="addCaseItemEditor()">➕ Добавить скин</button>
+                    <button class="admin-btn" onclick="saveCaseEditor()">💾 Сохранить кейс</button>
+                </div>
+
+                <div id="caseEditorItems" class="case-editor-items"></div>
+                <div class="case-editor-add" onclick="addCaseItemEditor()">＋ Добавить предмет в кейс</div>
+                <div id="caseEditorStatus" class="case-editor-status"></div>
+            </div>
         </div>
 
         <div class="admin-card">
@@ -2030,6 +2601,553 @@
         });
     }
 
+
+    // ==================================================
+    // ДЕМО ШАНСЫ
+    // ==================================================
+    const DEMO_BALANCE_KEY = 'demoChanceBalance_v2';
+    const DEMO_CASE_COST = 1;
+
+    let DEMO_CASES = [
+        {
+            id:'rainy', name:'Дождливый мегаполис', icon:'🌧️',
+            cover:'https://img.skinhouse.gg/images/c3c0f713-6962-4df5-b67c-70a26f70e92f',
+            items:[{weapon:'Штык-нож M9', name:'Чистая вода', chance:0.072, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMW-J_uF1teBncCK9nBsijGTVpYL8JSLSMxhzDMYhTLUD4Re6ktTkMbvh5AyI394UmSv9hiJK63k_4O8CVaMm__eFkUifZn6YDkD1'},
+                {weapon:'Складной нож', name:'Городская маскировка', chance:0.2, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V7d9H-SSHmKv1Px0se9WQyC0nQlp5DnWw46pIy2SOwBxW5VwFOcP5hC4x92zM-6ztVbYjtoTmST_iSNA6DErvbgg2ar9PQ'},
+                {weapon:'Нож с лезвием-крюком', name:'Чистая вода', chance:0.4, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRYL1SL_OWD2mvyuB_tuRWQiy3nAgq_W_SmNz4d3meb1R2AsEhF7QNsEa_xILnNu_qtQfaj9pFz3mvjShL63t1o7FVym_1LUs'},
+                {weapon:'AWP', name:'Удар молнии', chance:0.02, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf_C9k4_upYLBjKf6UMWaH0dF6ueZhW2frwU1_sW2EmNyvc32RZwMpCpcjQ-EJ4xbtmt3gYezk4wzb3tpAy3mrkGoXubsGIfVN'},
+                {weapon:'M4A4', name:'Дождь из пуль', chance:0.28, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMW-J_uF1teBncCK9nBsijGTVpYL8JSLSMxhzDMYhTLUD4Re6ktTkMbvh5AyI394UmSv9hiJK63k_4O8CVaMm__eFkUifZn6YDkD1'},
+                {weapon:'AK-47', name:'Неоновая революция', chance:0.25, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwiFO0PC7ZKhoNM-BD26e_uMisbBWQyC0nQlp4GmGydioIH3DPFMjDMd2QrQO5hDtkNK2Ne_htAXd3d0Uyiiriysb5zErvbh6fsb98Q'},
+                {weapon:'Капитан Фрэнк «Мокрые носки» Бару', name:'Боевые пловцы SEAL', chance:0.06, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIa-2lmxU-LR0dnuNm6E8Vl45Iv181z1fh7lk6nk9DRe_c24abZkIf6HDCmSkrh35uRvHXG1lkp_6zjUzY2gcimRP1N2XJJxTOYKuhDsxNC2YePi-UWA3IGWyCLX'},
+                {weapon:'G3SG1', name:'Поток', chance:7.107, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIa-2lmxU-LR0dnuNm6E8Vl45Iv181z1fh7lk6nk9DRe_c24abZkIf6HDCmSkrh35uRvHXG1lkp_6zjUzY2gcimRP1N2XJJxTOYKuhDsxNC2YePi-UWA3IGWyCLX'},
+                {weapon:'MP9', name:'Бегом за латте', chance:5.887, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2zYXnrB1c_M2pO7dqcc-VAnKI_v5jovFlSha_nBovp3ODz9uoc3vGOgMmApp3QrFe5xftm9bjNOm24Afb3YlBn3mqjS8dvy1p_a9cBmtTF-_C'},
+                {weapon:'Автомат «Галиль»', name:'Радужная ложка', chance:1.06, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8js_f_jdk4uL3V6hsNOSWMWuZxuZi_rdrGCyxxER252ncw9arJC-QOAcmXsF2ROAP4RbrlNOzNbzq5VDb2YJbjXKpzLFi2t8'},
+                {weapon:'USP-S', name:'Следы асфальта', chance:1.3, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PO_V7BkNPGdB3Kd_vx3ue9rQD6MkhwrujGEiLD1KCzPKhhxCMclQeAPtUK-xoWxPrvkslOKg4tHzXn-3Xsbvyo647sLVqoh_6XekUifZrx5Pjj5'},
+                {weapon:'MP9', name:'Цветное стекло', chance:0.1, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL0kp_0-B1Y-s2rZK15JeOsG3WSwOBlpO57Qha_nBovp3PQzI6pc3iRZ1cjC5dzQe4CsxPtwdHjMevq41CLjIpMm3_5jypN7Cxp_a9cBoxgoAoS'},
+                {weapon:'ПП-19 «Бизон»', name:'Синяя струя', chance:13.249, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFL0OirarZsI_GeMWWH_uJ_t-l9AXu3zBkhsDyHz4z9dXmVagJzW8MiQbFetBfrkNHhZbjr51CMiN8TyS_gznQeEoYBjXk'},
+                {weapon:'Dual Berettas', name:'Городской шок', chance:14.856, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL1m5fn8Sdk5-uRfqV_KfOSA2iv1Px0se9WRyyygwRp62_czdmvJC6VZlJ0Xsd2Te4K50O_x9ThY7vmtFePjopGxHivh3gauDErvbgK50IGCg'},
+                {weapon:'M4A4', name:'Тусклые полосы', chance:10.041, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkk4a0qB1O4uKRfLZsLuOaGlicyOl-pK84GnHkkR935D-EyY2sdymXZlAhXJUmRbQD4BDumtbiMLjhtAzWg45A02yg2WS1GQky'},
+                {weapon:'Desert Eagle', name:'Городской щебень', chance:7.007, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_v13vuV5Tjm2hxgjjDGMnYftby2UaFcmCsF1R-cLsBS4mtLmM7nmsVbfiNlHxSuriypAvytisuhQWPY7uvqAwrOwBmU'},
+                {weapon:'UMP-45', name:'Поздняя поездка', chance:6.428, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL1m5fn8Sdk5-uRfqV_KfOSA2iv1Px0se9WRyyygwRp62_czdmvJC6VZlJ0Xsd2Te4K50O_x9ThY7vmtFePjopGxHivh3gauDErvbgK50IGCg'},
+                {weapon:'P90', name:'Мрак', chance:8.535, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLhx8bf_jdk_6v-V6N_Kf2eMWuZxuZi_rA9GHDrlh8h6m7dw4qpciiUOgQkAsF2ELYPsBjploe2P7ngsQaIjN5bjXKpNUOMolU'},
+                {weapon:'MP7', name:'Городская опасность', chance:14.533, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8jsHf_jdk4uL5JadiLf2SAGOV09F6ueZhW2fgx0gl4WTczdj7I3LFaQYjDcQiE-Beuhe6xIXnP-_l41eKi9pEyH79kGoXuW6iY_I1'},
+                {weapon:'MP9', name:'Гроза', chance:7.008, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL0kp_0-B1Y-s2rZK15JeOsG3WSwOBlpO57Qha_nBovp3PQzI6pc3iRZ1cjC5dzQe4CsxPtwdHjMevq41CLjIpMm3_5jypN7Cxp_a9cBoxgoAoS'},
+                {weapon:'AUG', name:'Гроза', chance:1.607, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8js_f7i1k_OaheqlrMv-dGlicyOl-pK8_S3zjxRh_5mmGn9epIymQPQBxDpQlFuUJ5xa6kt2yZLjkswLY2ooT02yg2WH9Y1dp'}]
+        },
+        {
+            id:'usp', name:'USP-S Шанс', icon:'🔫',
+            cover:'https://img.skinhouse.gg/images/a119e066-c856-4496-e8f8-49df92aa9c00',
+            items:[{weapon:'USP-S', name:'Подтвержденное убийство', chance:0.008, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_uV_vO1WTCa9kxQ1vjiBpYL8JSLSMxghCMEjEeNe5hHpw9zhYuOz5VfcitpBmyqt3X9O6itrsesFUfYmrKzTkUifZqPQtnZK'},
+                {weapon:'USP-S', name:'Поток информации', chance:0.02, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_v5kue99XD2hkBwqjDGMnYftb3yUPFR0XsNyRrNc5kO5ltziMenr5lONj4kXyi2riywc7y9o5LtQAqQ7uvqAkScWnv4'},
+                {weapon:'USP-S', name:'Предатель', chance:0.5, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSJ-OsG3SA0tF-se9uSi2-lBMYvjiBk5r0b3yQaABxCsdyR-dc4BS5l4DlYujntgCMi49AmCv5ii0buik54ucAVfI7uvqAawge80M'},
+                {weapon:'USP-S', name:'Кайман', chance:0.1, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsBWaZzO94j-1gSCGn20t-4WyBn4mocC6XbVN0CMB2RLYMsUG5x9DgN-20tQSNiI1GzS2q3XtXrnE8NAiGp64'},
+                {weapon:'USP-S', name:'Извилины', chance:19.923, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_uh6sfJhTSiwniIqtjmMj4K3dinFPQAiDZNyQuAC50a5ltWxPuO0tFDd2toQzHj_iSoYvS5isewKBL1lpPPpl_fG8g'},
+                {weapon:'USP-S', name:'Зубоскал', chance:9.5, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSM-CsA2KDydFlsedsWzChkBkYvjiBk5r0b3_FOFUmCcdxROUMshfrm93gNO7n7gOLg4pGni_6iytI7ys-t-pWVKQ7uvqAUs9mV0k'},
+                {weapon:'USP-S', name:'Взгляд в прошлое', chance:18.223, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_vp5j-lsQyWMmBgjuiiI1I6qdH6fbgAoApFyRrJf4xnumoDnM-7j41Pbgt8TyCT72CxK6SttsrscEf1y0Tw_DYE'},
+                {weapon:'USP-S', name:'Билет в ад', chance:12.236, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSIf2sCmOAwPpJoPR7XyW2qhAitzSQl8GpeC2SbQ8hC5clRuYJsxi-kNHkNenhsgPbi4wXmCqvinhN6iZt670CT-N7rT1W344r'},
+                {weapon:'USP-S', name:'Закрученный', chance:12.416, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_vh5vPVoSCyMmBgjuiiI1NmoIH7CbVVxCpFwQuMN5Bbrl9OxZbvg41fYjotEny38i3kf631pse4cEf1yrW6rYNs'},
+                {weapon:'USP-S', name:'Пиксельный камуфляж', chance:0.9, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_v5kv-Z7SjqgnAsYvzSCkpu3cH2eZgcgD5cmTOQK5BftlobvY-zk4gCN2I4UyX-s3XhI7S4_supXA71lpPNCDDeLhA'},
+                {weapon:'USP-S', name:'Проводник', chance:6.222, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSIf2sCmOAwPpJoPR7XyW2qhAitzSQl8GpeC2SbQ8hC5clRuYJsxi-kNHkNenhsgPbi4wXmCqvinhN6iZt670CT-N7rT1W344r'},
+                {weapon:'USP-S', name:'Неисправность', chance:6, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSNeODMWGZxOJyj_JnTiK2qhAitzSQl8Gvcn_Ebg9xApB5RO8O4Ra-moDmY7nr7gDYjYxMyHis3yhO6Htv5OYAT-N7rT8xDMmb'},
+                {weapon:'USP-S', name:'Горный камуфляж', chance:7, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSJ-OsG3SA_vh5vPVoSCyMmBgjuiiI1NmoIH7CbVVxCpFwQuMN5Bbrl9OxZbvg41fYjotEny38i3kf631pse4cEf1yrW6rYNs'},
+                {weapon:'USP-S', name:'27', chance:6.952, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_v5kue99XD2hkBwqjDGMnYftb3yUPFR0XsNyRrNc5kO5ltziMenr5lONj4kXyi2riywc7y9o5LtQAqQ7uvqAkScWnv4'}]
+        },
+        {
+            id:'atelier', name:'Ателье колдовских колпаков', icon:'🧙',
+            cover:'https://img.skinhouse.gg/images/9f0662d5-c272-480c-e3de-97135a970b00',
+            items:[{weapon:'Фальшион', name:'Волны', chance:0.002, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SA1iDwP5muOh7Sha-lA8lvziMgIr9HifOOV5kFMB1TeAIsxi5w4K0Y7_jtVTc3d1MzX_3iSxAuy85seYDA6Bxq6eCjV7fcepqbrrX6Yc'},
+                {weapon:'Медвежий нож', name:'Волны', chance:0.002, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1O_eG7e5tsLc-AD3eAyedktd5kTjuxmRguqTiBpYPwJiPTcAB2DpUkRrYK50awk9LhZrjg4lPZ2I1Dzyr_3X8Y6n1j4roFUKcl_qPJz1aWr6Afqe0'},
+                {weapon:'Паракорд-нож', name:'Волны', chance:0.003, image:'https://community.akamai.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf0PzadQJD4eOllZCbn_7mNoTcl3lT5MB4kOzFyoD8j1yg5UBrZ2imJdfDIAI8Zw3Q_Ve4kuzn1JO6upzLnCBgvnYqs3zayxC-hktSLrs4UIqIpQQ'},
+                {weapon:'Нож выживания', name:'Волны', chance:0.013, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Y7vyne5tsLc-AD3eAyedktd5kTjuxmRguqTiBpYPwJiPTcAUjCpohTOYPtES7ldzvYrjl5laLi4JBnC_6iS1PvHtst7wDV_Ui-fLJz1aWWu-XwP8'},
+                {weapon:'Нож с лезвием-крюком', name:'Волны', chance:0.011, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaalSM_GDHm-Z0-tJveB7TSW2nAcitwKJk4jxNWWQO1IjW5d4RLUOsEG_lYCxZbjq5QDejYlBnn6o2y9LvCti4OtRUfUl5OSJ2CIbbpiB'},
+                {weapon:'Тычковые ножи', name:'Волны', chance:0.03, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf-jFk5vyqbbRoLvSWMWaH0dF6ueZhW2e1zElxtmzQmIv8J3qQalRzW5t0RrYOsBCwlte2Mbmw5AbXiYlAnnn4kGoXuYBQOb0Q'},
+                {weapon:'AWP', name:'CMYK', chance:0.051, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf7itX6vytbbZSJ-OsG3SA_uV_vO1WTCa9kxQ1vjiBpYL8JSLSMxghCMEjEeNe5hHpw9zhYuOz5VfcitpBmyqt3X9O6itrsesFUfYmrKzTkUifZqPQtnZK'},
+                {weapon:'USP-S', name:'Поток информации', chance:0.89, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf7itX6vytbbZSI-WsG3SA_uV_vO1WTCa9kxQ1vjiBpYL8JSLSMxghCMEjEeNe5hHpw9zhYuOz5VfcitpBmyqt3X9O6itrsesFUfYmrKzTkUifZqPQtnZK'},
+                {weapon:'AK-47', name:'Наследство', chance:0.84, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwiFO0P_6afBSJPWAAWuR1etJo_FoTCyMmRQguynLnNepJXPEaQJyDZJ0QOdbsxi7ktS0Y-Li4ADegthGn32ojCJJ7CxosfFCD_SyjfEkHg'},
+                {weapon:'Glock-18', name:'Полный раскрас', chance:1.69, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGC1iD1fx3pO56XyG2hxgYvzSCkpu3eSjEOgUkDsRxR7RYsRexwNe0Y-O05VeNg90UmX2q33lJ7itvt-cKB71lpPNheQHx2Q'},
+                {weapon:'Брелок', name:'Крошка Привидение', chance:1, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_iKC1iRz-d7se1WXzu6mwkY6m2WpYPwJiPTcFNxDcMjEeUIuxK-wNWyPrzj4wePiIxGmCj5jngcuCpvt7wBAKFw-KbJz1aW-PVDUm8'},
+                {weapon:'M4A4', name:'Безлюдный космос', chance:3.38, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGI6zwki4Uf_a0IWsPGiE7Fhy-I764WbkThD8i5jp6Ttkv6PhY6dSLfmAHW6exuJ_vupWQjynkBovvC6R1NatdHuTPQAiCJF1Re8KsBOwlda0M7vm7gOMj4kUnC__jysf5ytv4OccEf1yvJT6JNo'},
+                {weapon:'M4A1-S', name:'Стратосфера', chance:19.748, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGC1iD1fx3pO56XyG2hxgYvzSCkpu3eSjEOgUkDsRxR7RYsRexwNe0Y-O05VeNg90UmX2q33lJ7itvt-cKB71lpPNheQHx2Q'},
+                {weapon:'M4A1-S', name:'Дикий тусовщик', chance:5.05, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf-jFk5vyqbbRoLvSWMWaH0dF6ueZhW2e1zElxtmzQmIv8J3qQalRzW5t0RrYOsBCwlte2Mbmw5AbXiYlAnnn4kGoXuYBQOb0Q'},
+                {weapon:'Брелок', name:'Бриллиантовая колб... ', chance:5, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwiFO0P_6afBSJPWAAWuR1etJo_FoTCyMmRQguynLnNepJXPEaQJyDZJ0QOdbsxi7ktS0Y-Li4ADegthGn32ojCJJ7CxosfFCD_SyjfEkHg'},
+                {weapon:'M4A4', name:'Зубная фея', chance:6.229, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGI6zwki4Uf_a0IWsPGiE7Fhy-I764RbsQiL8l4Xz9Cxc4_ugY5t-If2sCm6RzOF4tK9sFyi3wUki4TvSnNytdC7FPQBzApIkQuRfukTql93vMung4FTXjIlC02yg2RVCPh13'},
+                {weapon:'Брелок', name:'Литой калаш', chance:6.229, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGC1iD1fx3pO56XyG2hxgYvzSCkpu3eSjEOgUkDsRxR7RYsRexwNe0Y-O05VeNg90UmX2q33lJ7itvt-cKB71lpPNheQHx2Q'},
+                {weapon:'P90', name:'Неокоролева', chance:18.687, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGC1iD1fx3pO56XyG2hxgYvzSCkpu3eSjEOgUkDsRxR7RYsRexwNe0Y-O05VeNg90UmX2q33lJ7itvt-cKB71lpPNheQHx2Q'},
+                {weapon:'USP-S', name:'Неисправность', chance:31.145, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLhx8bf-jFk5vyqbbRoLvSWMWaH0dF6ueZhW2e1zElxtmzQmIv8J3qQalRzW5t0RrYOsBCwlte2Mbmw5AbXiYlAnnn4kGoXuYBQOb0Q'}]
+        }
+    ];
+
+    let demoCurrentCase = 'rainy';
+    let demoOpening = false;
+
+    function getDemoBalance() {
+        const raw=localStorage.getItem(DEMO_BALANCE_KEY);
+        const n=Number(raw);
+        return Number.isFinite(n) && n>=0 ? n : 1000;
+    }
+    function setDemoBalance(value) {
+        const safe=Math.max(0,Math.floor(Number(value)||0));
+        localStorage.setItem(DEMO_BALANCE_KEY,String(safe));
+        const msg=document.getElementById('demoBalanceMessage');
+        const addBtn=document.getElementById('demoAddBalanceBtn');
+        const openBtn=document.getElementById('demoOpenBtn');
+        if(msg) msg.innerText=safe < DEMO_CASE_COST ? 'Не хватает ₽'+(DEMO_CASE_COST-safe).toFixed(2)+' на балансе' : 'Баланс ₽'+safe.toFixed(2);
+        // Кнопка пополнения нужна только когда баланс закончился.
+        if(addBtn) addBtn.style.display = safe >= DEMO_CASE_COST ? 'none' : 'inline-flex';
+        if(openBtn) openBtn.disabled=demoOpening || safe<DEMO_CASE_COST;
+    }
+    window.demoAddBalance=function(){ setDemoBalance(getDemoBalance()+100); };
+    window.demoResetBalance=function(){ setDemoBalance(1000); };
+    function getDemoCase(){ return DEMO_CASES.find(c=>c.id===demoCurrentCase)||DEMO_CASES[0]; }
+    const DEMO_RARITIES = {
+        gray:      { label:'Ширпотреб',      color:'#8b93a7' },
+        lightblue: { label:'Промышленное',   color:'#5aa9e6' },
+        blue:      { label:'Армейское',      color:'#4b78e8' },
+        purple:    { label:'Запрещённое',   color:'#a855f7' },
+        pink:      { label:'Засекреченное', color:'#ec4899' },
+        red:       { label:'Тайное',         color:'#ef4444' },
+        gold:      { label:'Золотое',        color:'#f5b942' }
+    };
+    function legacyDemoRarity(item){
+        const w=String(item.weapon||'').toLowerCase();
+        if(/нож|перчат|агент|брелок|charm/.test(w)) return 'gold';
+        const c=Number(item.chance)||0;
+        if(c<=0.5)return 'red';
+        if(c<=1.5)return 'pink';
+        if(c<=8)return 'purple';
+        if(c<=20)return 'blue';
+        if(c<=35)return 'lightblue';
+        return 'gray';
+    }
+    function normalizeDemoCases(cases){
+        return (Array.isArray(cases) ? cases : []).map((c, ci) => ({
+            id: c.id || ('case_' + Date.now() + '_' + ci),
+            name: String(c.name || 'Новый кейс'),
+            icon: String(c.icon || '🎁'),
+            cover: String(c.cover || ''),
+            items: (Array.isArray(c.items) ? c.items : []).map((item, ii) => ({
+                id: item.id || ('item_' + Date.now() + '_' + ci + '_' + ii),
+                weapon: String(item.weapon || 'Оружие'),
+                name: String(item.name || 'Без названия'),
+                chance: Math.max(0, Number(item.chance) || 0),
+                image: String(item.image || ''),
+                rarity: DEMO_RARITIES[item.rarity] ? item.rarity : legacyDemoRarity(item)
+            }))
+        })).filter(c => c.items.length || c.cover || c.name);
+    }
+    function demoRarity(item){
+        const key = DEMO_RARITIES[item && item.rarity] ? item.rarity : legacyDemoRarity(item || {});
+        return [key, DEMO_RARITIES[key].label];
+    }
+    function demoRarityClass(item){return demoRarity(item)[0];}
+
+
+    async function loadDemoCases(){
+        try {
+            const ref = doc(db, 'data', 'cases');
+            const snap = await getDoc(ref);
+            if(snap.exists() && Array.isArray(snap.data().items) && snap.data().items.length){
+                DEMO_CASES = normalizeDemoCases(snap.data().items);
+            } else {
+                DEMO_CASES = normalizeDemoCases(DEMO_CASES);
+                await setDoc(ref, { items: DEMO_CASES });
+            }
+        } catch(e) {
+            console.warn('Не удалось загрузить кейсы', e);
+            DEMO_CASES = normalizeDemoCases(DEMO_CASES);
+        }
+        if(!DEMO_CASES.length) DEMO_CASES = [{
+            id:'default_case', name:'Новый кейс', icon:'🎁', cover:'', items:[]
+        }];
+        if(!DEMO_CASES.some(c => c.id === demoCurrentCase)) demoCurrentCase = DEMO_CASES[0].id;
+    }
+
+    function subscribeDemoCases(){
+        const ref = doc(db, 'data', 'cases');
+        onSnapshot(ref, snap => {
+            if(!snap.exists() || !Array.isArray(snap.data().items)) return;
+            const currentId = demoCurrentCase;
+            DEMO_CASES = normalizeDemoCases(snap.data().items);
+            if(!DEMO_CASES.length) return;
+            if(DEMO_CASES.some(c => c.id === currentId)) demoCurrentCase = currentId;
+            else demoCurrentCase = DEMO_CASES[0].id;
+            renderDemoCaseTabs();
+            renderDemoCase();
+            if(currentUser && currentUser.key === 'mega') renderCaseEditor();
+        }, err => console.warn('Ошибка синхронизации кейсов', err));
+    }
+
+    async function saveDemoCases(){
+        const clean = normalizeDemoCases(DEMO_CASES);
+        DEMO_CASES = clean;
+        await setDoc(doc(db, 'data', 'cases'), { items: clean });
+    }
+
+    let caseEditorCurrentId = null;
+    let caseEditorCoverPending = null;
+
+    function getCaseEditorCase(){
+        return DEMO_CASES.find(c => c.id === caseEditorCurrentId) || DEMO_CASES[0] || null;
+    }
+
+    function renderCaseEditor(){
+        const select = document.getElementById('caseEditorSelect');
+        const body = document.getElementById('caseEditorBody');
+        const empty = document.getElementById('caseEditorEmpty');
+        if(!select || !body || !empty) return;
+
+        select.innerHTML = '';
+        DEMO_CASES.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.id;
+            opt.textContent = c.icon + ' ' + c.name;
+            select.appendChild(opt);
+        });
+
+        if(!DEMO_CASES.length){
+            body.style.display='none';
+            empty.style.display='block';
+            return;
+        }
+        body.style.display='flex';
+        empty.style.display='none';
+        if(!DEMO_CASES.some(c => c.id === caseEditorCurrentId)){
+            caseEditorCurrentId = DEMO_CASES[0].id;
+        }
+        select.value = caseEditorCurrentId;
+        const c = getCaseEditorCase();
+        if(!c) return;
+
+        document.getElementById('caseEditorName').value = c.name || '';
+        document.getElementById('caseEditorIcon').value = c.icon || '🎁';
+        document.getElementById('caseEditorCover').value = c.cover || '';
+        caseEditorCoverPending = null;
+        renderCaseEditorItems(c);
+        const status = document.getElementById('caseEditorStatus');
+        if(status) { status.className='case-editor-status'; status.innerText=''; }
+    }
+
+    function renderCaseEditorItems(c){
+        const list = document.getElementById('caseEditorItems');
+        if(!list) return;
+        list.innerHTML='';
+        (c.items || []).forEach((item, idx) => {
+            const row=document.createElement('div');
+            row.className='case-editor-item';
+            row.dataset.index=String(idx);
+
+            const thumb=document.createElement('div');
+            thumb.className='case-editor-thumb';
+            if(item.image){
+                const img=document.createElement('img');
+                img.src=item.image;
+                img.alt='';
+                thumb.appendChild(img);
+            } else thumb.innerText='🎁';
+
+            const nameWrap=document.createElement('div');
+            nameWrap.className='case-editor-field';
+            nameWrap.innerHTML='<div class="case-editor-label">Название</div>';
+            const name=document.createElement('input');
+            name.className='editor-name'; name.value=item.name||''; name.placeholder='Название скина';
+            nameWrap.appendChild(name);
+
+            const weaponWrap=document.createElement('div');
+            weaponWrap.className='case-editor-field editor-weapon';
+            weaponWrap.innerHTML='<div class="case-editor-label">Оружие</div>';
+            const weapon=document.createElement('input');
+            weapon.className='editor-weapon-input'; weapon.value=item.weapon||''; weapon.placeholder='AK-47';
+            weaponWrap.appendChild(weapon);
+
+            const chanceWrap=document.createElement('div');
+            chanceWrap.className='case-editor-field editor-chance';
+            chanceWrap.innerHTML='<div class="case-editor-label">Шанс %</div>';
+            const chance=document.createElement('input');
+            chance.className='editor-chance-input'; chance.type='number'; chance.step='0.001'; chance.min='0';
+            chance.value=item.chance ?? 0; chanceWrap.appendChild(chance);
+
+            const rarityWrap=document.createElement('div');
+            rarityWrap.className='case-editor-field editor-rarity';
+            rarityWrap.innerHTML='<div class="case-editor-label">Качество</div>';
+            const rarity=document.createElement('select');
+            rarity.className='editor-rarity-select';
+            Object.entries(DEMO_RARITIES).forEach(([key, meta])=>{
+                const opt=document.createElement('option');
+                opt.value=key; opt.textContent=meta.label;
+                if(key === item.rarity) opt.selected=true;
+                rarity.appendChild(opt);
+            });
+            rarityWrap.appendChild(rarity);
+
+            const imageWrap=document.createElement('div');
+            imageWrap.className='case-editor-field editor-image';
+            imageWrap.innerHTML='<div class="case-editor-label">Фото (URL)</div>';
+            const imageInput=document.createElement('input');
+            imageInput.className='editor-image-input'; imageInput.value=item.image||''; imageInput.placeholder='https://...';
+            imageWrap.appendChild(imageInput);
+            const upload=document.createElement('div');
+            upload.className='case-editor-upload';
+            const file=document.createElement('input');
+            file.type='file'; file.accept='image/png,image/jpeg,image/jpg,image/webp'; file.style.display='none';
+            const uploadBtn=document.createElement('button');
+            uploadBtn.className='admin-btn small'; uploadBtn.type='button'; uploadBtn.innerText='📷';
+            uploadBtn.title='Загрузить фото с ПК';
+            uploadBtn.onclick=()=>file.click();
+            file.onchange=async e=>{
+                const f=e.target.files && e.target.files[0];
+                if(!f) return;
+                if(!f.type.startsWith('image/')){ alert('Только картинки'); return; }
+                try{
+                    imageInput.value=await compressImage(f, 420, 0.82);
+                    const im=thumb.querySelector('img') || document.createElement('img');
+                    im.src=imageInput.value;
+                    if(!im.parentElement) thumb.innerHTML='', thumb.appendChild(im);
+                }catch(err){ alert('Не удалось обработать фото'); }
+            };
+            upload.appendChild(uploadBtn); upload.appendChild(file);
+            imageWrap.appendChild(upload);
+
+            const remove=document.createElement('button');
+            remove.className='case-editor-remove editor-remove'; remove.type='button'; remove.innerText='×';
+            remove.title='Удалить предмет';
+            remove.onclick=()=>{
+                c.items.splice(idx,1);
+                renderCaseEditorItems(c);
+            };
+
+            row.appendChild(thumb);
+            row.appendChild(nameWrap);
+            row.appendChild(weaponWrap);
+            row.appendChild(chanceWrap);
+            row.appendChild(rarityWrap);
+            row.appendChild(imageWrap);
+            row.appendChild(remove);
+            list.appendChild(row);
+        });
+    }
+
+    window.selectCaseForEdit=function(){
+        const select=document.getElementById('caseEditorSelect');
+        if(!select) return;
+        caseEditorCurrentId=select.value;
+        renderCaseEditor();
+    };
+
+    window.addCaseEditor=function(){
+        if(!currentUser || currentUser.key !== 'mega'){ alert('Только администратор'); return; }
+        const id='case_'+Date.now()+'_'+Math.random().toString(36).slice(2,7);
+        DEMO_CASES.push({id:id,name:'Новый кейс',icon:'🎁',cover:'',items:[]});
+        caseEditorCurrentId=id;
+        renderCaseEditor();
+    };
+
+    window.deleteCaseEditor=async function(){
+        if(!currentUser || currentUser.key !== 'mega') return;
+        const c=getCaseEditorCase(); if(!c) return;
+        if(!confirm('Удалить кейс «'+c.name+'»?')) return;
+        DEMO_CASES=DEMO_CASES.filter(x=>x.id!==c.id);
+        if(!DEMO_CASES.length){
+            DEMO_CASES.push({id:'case_'+Date.now(),name:'Новый кейс',icon:'🎁',cover:'',items:[]});
+        }
+        caseEditorCurrentId=DEMO_CASES[0].id;
+        demoCurrentCase=DEMO_CASES[0].id;
+        await saveDemoCases();
+        renderCaseEditor();
+        renderDemoCaseTabs();
+        renderDemoCase();
+    };
+
+    window.addCaseItemEditor=function(){
+        const c=getCaseEditorCase(); if(!c) return;
+        c.items.push({
+            id:'item_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),
+            weapon:'AK-47', name:'Новый скин', chance:1, image:'', rarity:'gray'
+        });
+        renderCaseEditorItems(c);
+    };
+
+    window.handleCaseCoverUpload=async function(event){
+        const f=event.target.files && event.target.files[0]; if(!f) return;
+        if(!f.type.startsWith('image/')){ alert('Только картинки'); return; }
+        try{
+            caseEditorCoverPending=await compressImage(f, 520, 0.84);
+            const input=document.getElementById('caseEditorCover');
+            if(input) input.value=caseEditorCoverPending;
+        }catch(e){ alert('Не удалось обработать обложку'); }
+        event.target.value='';
+    };
+
+    window.saveCaseEditor=async function(){
+        if(!currentUser || currentUser.key !== 'mega'){ alert('Только администратор'); return; }
+        const c=getCaseEditorCase(); if(!c) return;
+        const status=document.getElementById('caseEditorStatus');
+        try{
+            const name=document.getElementById('caseEditorName').value.trim();
+            const icon=document.getElementById('caseEditorIcon').value.trim() || '🎁';
+            const cover=document.getElementById('caseEditorCover').value.trim();
+            if(!name){ status.className='case-editor-status err'; status.innerText='❌ Введи название кейса'; return; }
+            c.name=name; c.icon=icon; c.cover=cover;
+            const rows=[...document.querySelectorAll('#caseEditorItems .case-editor-item')];
+            c.items=rows.map((row,idx)=>{
+                const old=c.items[idx] || {};
+                return {
+                    id: old.id || ('item_'+Date.now()+'_'+idx),
+                    name: row.querySelector('.editor-name')?.value.trim() || 'Без названия',
+                    weapon: row.querySelector('.editor-weapon-input')?.value.trim() || 'Оружие',
+                    chance: Math.max(0, Number(row.querySelector('.editor-chance-input')?.value) || 0),
+                    rarity: DEMO_RARITIES[row.querySelector('.editor-rarity-select')?.value] ? row.querySelector('.editor-rarity-select').value : 'gray',
+                    image: row.querySelector('.editor-image-input')?.value.trim() || ''
+                };
+            });
+            const total=c.items.reduce((s,i)=>s+Number(i.chance||0),0);
+            if(total <= 0){ status.className='case-editor-status err'; status.innerText='❌ Сумма шансов должна быть больше 0'; return; }
+
+            await saveDemoCases();
+            caseEditorCoverPending=null;
+            status.className='case-editor-status ok';
+            status.innerText='✅ Кейс сохранён';
+            renderDemoCaseTabs();
+            renderDemoCase();
+            setTimeout(()=>{ if(status) status.innerText=''; },2200);
+        }catch(e){
+            console.error(e);
+            status.className='case-editor-status err';
+            status.innerText='❌ Ошибка сохранения: '+(e.message||e);
+        }
+    };
+
+    function renderDemoCaseTabs(){
+        const tabs=document.getElementById('demoCaseTabs'); if(!tabs)return; tabs.innerHTML='';
+        DEMO_CASES.forEach(c=>{
+            const btn=document.createElement('button');
+            btn.className='demo-case-tab'+(c.id===demoCurrentCase?' active':'');
+            btn.innerHTML='<div class="demo-case-tab-title">'+escapeHtml(c.icon+' '+c.name)+'</div>';
+            btn.onclick=()=>{ if(demoOpening)return; demoCurrentCase=c.id; renderDemoCase(); };
+            tabs.appendChild(btn);
+        });
+    }
+
+    function makeFeatureCard(item){
+        const card=document.createElement('div'); const [rarity,label]=demoRarity(item); card.className='demo-feature-card rarity-'+rarity;
+        card.innerHTML='<span class="demo-rarity-badge">'+escapeHtml(label)+'</span><span class="demo-feature-chance">'+item.chance+'%</span><img src="'+item.image+'" alt=""><div class="demo-feature-info"><div class="demo-feature-weapon">'+escapeHtml(item.weapon)+'</div><div class="demo-feature-name">'+escapeHtml(item.name)+'</div></div>';
+        return card;
+    }
+
+    function renderDemoCase(){
+        const c=getDemoCase();
+        const name=document.getElementById('demoCaseName');
+        const icon=document.getElementById('demoCaseIcon');
+        const cover=document.getElementById('demoCaseCover');
+        const items=document.getElementById('demoItems');
+        const feature=document.getElementById('demoFeatureItems');
+        const result=document.getElementById('demoResult');
+        const roulette=document.getElementById('demoRouletteWrap');
+        if(!name||!items||!feature)return;
+        name.innerText=c.name; icon.innerText=c.icon;
+        cover.innerHTML='<img src="'+c.cover+'" alt="'+escapeHtml(c.name)+'">';
+
+        feature.innerHTML='';
+        const left=c.items.slice(0,3), right=c.items.slice(-3);
+        left.forEach(item=>feature.appendChild(makeFeatureCard(item)));
+        const centerSlot=document.createElement('div'); centerSlot.className='demo-feature-center-slot'; feature.appendChild(centerSlot);
+        right.forEach(item=>feature.appendChild(makeFeatureCard(item)));
+
+        items.innerHTML='';
+        c.items.forEach(item=>{
+            const [rarity,label]=demoRarity(item);
+            const card=document.createElement('div'); card.className='demo-item rarity-'+rarity;
+            card.innerHTML='<span class="demo-rarity-badge">'+escapeHtml(label)+'</span><div class="demo-item-chance">'+item.chance+'%</div><img src="'+item.image+'" alt=""><div class="demo-item-weapon">'+escapeHtml(item.weapon)+'</div><div class="demo-item-name">'+escapeHtml(item.name)+'</div>';
+            items.appendChild(card);
+        });
+        if(result)result.classList.remove('open');
+        if(roulette)roulette.classList.remove('open');
+        // При переключении кейса возвращаем центральную картинку самого кейса.
+        cover.innerHTML='<img src="'+c.cover+'" alt="'+escapeHtml(c.name)+'">';
+        setDemoBalance(getDemoBalance()); renderDemoCaseTabs();
+    }
+
+    function demoBackToCases(){
+        const tabs=document.getElementById('demoCaseTabs');
+        if(tabs) tabs.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+
+    function pickDemoItem(items){
+        const total=items.reduce((s,item)=>s+item.chance,0);
+        let r=Math.random()*total;
+        for(const item of items){ r-=item.chance; if(r<=0)return item; }
+        return items[items.length-1];
+    }
+    function renderRoulette(c,winner){
+        const track=document.getElementById('demoRouletteTrack'); if(!track)return; track.innerHTML='';
+        const sequence=[];
+        let previousRarity='';
+        for(let i=0;i<38;i++){
+            let item=pickDemoItem(c.items);
+            const rarity=demoRarity(item)[0];
+            // Не даём редким предметам визуально заполнять рулетку подряд:
+            // для фона повторно выбираем, если предыдущий предмет тоже gold/red/pink.
+            if((rarity==='gold'||rarity==='red'||rarity==='pink') &&
+               previousRarity===rarity && c.items.length>1){
+                for(let tries=0;tries<8;tries++){
+                    const candidate=pickDemoItem(c.items);
+                    if(demoRarity(candidate)[0]!==rarity){ item=candidate; break; }
+                }
+            }
+            sequence.push(item);
+            previousRarity=demoRarity(item)[0];
+        }
+        const winnerIndex=31;
+        sequence[winnerIndex]=winner;
+        sequence.forEach(item=>{
+            const el=document.createElement('div');
+            const [rarity,label]=demoRarity(item);
+            el.className='demo-roulette-item rarity-'+rarity;
+            el.innerHTML='<span class="demo-rarity-badge">'+escapeHtml(label)+'</span><img src="'+(item.image||'')+'" alt=""><b>'+escapeHtml(item.weapon)+' — '+escapeHtml(item.name)+'</b><span>'+Number(item.chance||0)+'%</span>';
+            track.appendChild(el);
+        });
+        track.style.transition='none'; track.style.transform='translateX(0px)'; void track.offsetWidth;
+        const cardWidth=148, gap=8, container=track.parentElement.getBoundingClientRect().width;
+        const target=-(winnerIndex*(cardWidth+gap)-container/2+cardWidth/2);
+        track.style.transition='transform 3.15s cubic-bezier(.08,.72,.12,1)';
+        track.style.transform='translateX('+target+'px)';
+    }
+    window.openDemoCase=function(){
+        if(demoOpening)return; const balance=getDemoBalance();
+        if(balance<DEMO_CASE_COST){ alert('Недостаточно демо-баланса.'); return; }
+        const c=getDemoCase(), winner=pickDemoItem(c.items);
+        demoOpening=true;
+        setDemoBalance(balance-DEMO_CASE_COST);
+        const stage=document.getElementById('demoCaseStage');
+        const roulette=document.getElementById('demoRouletteWrap');
+        const result=document.getElementById('demoResult');
+        const resultName=document.getElementById('demoResultName');
+        const resultChance=document.getElementById('demoResultChance');
+        const cover=document.getElementById('demoCaseCover');
+        result.classList.remove('open');
+        stage.classList.add('is-opening');
+        roulette.classList.add('open');
+        renderRoulette(c,winner);
+        setTimeout(()=>{
+            roulette.classList.remove('open');
+            stage.classList.remove('is-opening');
+
+            // После открытия результат появляется прямо в центре, где до открытия был кейс.
+            cover.innerHTML = `
+                <div class="demo-drop-result-center rarity-${demoRarity(winner)[0]}"><span class="demo-rarity-badge">${escapeHtml(demoRarity(winner)[1])}</span>
+                    <img src="${winner.image}" alt="${escapeHtml(winner.name)}">
+                    <div class="demo-drop-result-weapon">${escapeHtml(winner.weapon)}</div>
+                    <div class="demo-drop-result-name">${escapeHtml(winner.name)}</div>
+                    <div class="demo-drop-result-chance">${winner.chance}%</div>
+                </div>`;
+
+            // Старый нижний блок результата больше не показываем.
+            result.classList.remove('open');
+            demoOpening=false;
+            setDemoBalance(getDemoBalance());
+        },2950);
+    };
+    function initDemoTab(){ renderDemoCaseTabs(); renderDemoCase(); }
+
     // ==================================================
     // СЕССИЯ
     // ==================================================
@@ -2118,6 +3236,7 @@
 
         subscribeDrops();
         renderDropsAdmin();
+        initDemoTab();
     }
 
     function renderUserBar() {
@@ -2181,6 +3300,7 @@
 
         if (name === 'admin') loadAdminFields();
         if (name === 'drops') renderDrops();
+        if (name === 'demo') initDemoTab();
         if (name === 'chat') {
             const cm = document.getElementById('chatMessages');
             if (cm) cm.scrollTop = cm.scrollHeight;
@@ -3454,6 +4574,8 @@
         updateAvatarPreview('sergo');
         renderPacksAdmin();
         renderDropsAdmin();
+        if (!caseEditorCurrentId && DEMO_CASES.length) caseEditorCurrentId = DEMO_CASES[0].id;
+        renderCaseEditor();
     }
 
     function updateAvatarPreview(key) {
@@ -3560,7 +4682,9 @@
     // ==================================================
     async function init() {
         await loadAccounts();
+        await loadDemoCases();
         subscribeStickers();
+        subscribeDemoCases();
         restoreSession();
     }
     init();
