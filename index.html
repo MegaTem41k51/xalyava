@@ -17,10 +17,7 @@
     }
     h1 { margin-bottom: 20px; font-size: 24px; text-align: center; }
 
-    * {
-        scrollbar-width: thin;
-        scrollbar-color: #764ba2 #2a2a3e;
-    }
+    * { scrollbar-width: thin; scrollbar-color: #764ba2 #2a2a3e; }
     *::-webkit-scrollbar { width: 10px; height: 10px; }
     *::-webkit-scrollbar-track { background: #2a2a3e; border-radius: 5px; }
     *::-webkit-scrollbar-thumb {
@@ -29,7 +26,6 @@
     }
     *::-webkit-scrollbar-thumb:hover { background: #8b5fc0; }
 
-    /* ЛОГИН */
     .login-overlay {
         position: fixed; inset: 0;
         background: rgba(0,0,0,0.9);
@@ -67,7 +63,6 @@
         margin-top: 12px; min-height: 18px;
     }
 
-    /* ЮЗЕР */
     .user-bar {
         display: flex; align-items: center; gap: 12px;
         background: #2a2a3e; padding: 8px 16px;
@@ -89,7 +84,6 @@
     }
     .user-bar .logout:hover { background: #9b1f1f; }
 
-    /* ВКЛАДКИ */
     .tabs {
         display: flex; gap: 8px; margin-bottom: 20px;
         background: #2a2a3e; padding: 6px;
@@ -129,7 +123,6 @@
     }
     button:hover { background: #5a3a7d; }
 
-    /* ТАБЛИЦА */
     table.acc-table {
         border-collapse: collapse;
         background: #2a2a3e;
@@ -283,7 +276,7 @@
 
     .drops-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
         gap: 16px;
         width: 100%;
         max-width: 1100px;
@@ -295,26 +288,29 @@
         overflow: hidden;
         box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         border: 2px solid #3a3a52;
-        transition: 0.2s;
+        transition: 0.25s;
         position: relative;
         display: flex;
         flex-direction: column;
+        cursor: pointer;
     }
     .drop-card:hover {
         transform: translateY(-3px);
         box-shadow: 0 12px 35px rgba(0,0,0,0.6);
     }
 
-    /* Цвета по редкости */
-    .drop-card.rarity-common { border-color: #5a5a7a; }
-    .drop-card.rarity-uncommon { border-color: #4a90e2; }
-    .drop-card.rarity-rare { border-color: #9b59b6; }
-    .drop-card.rarity-legendary { border-color: #f9a825; box-shadow: 0 0 20px rgba(249,168,37,0.3); }
-    .drop-card.rarity-mythical { border-color: #c62828; box-shadow: 0 0 25px rgba(198,40,40,0.4); }
+    /* Цвета редкостей */
+    .drop-card.rarity-shirotreb { border-color: #5a5a7a; }
+    .drop-card.rarity-prom { border-color: #4a90e2; }
+    .drop-card.rarity-army { border-color: #4caf50; }
+    .drop-card.rarity-forbidden { border-color: #9b59b6; }
+    .drop-card.rarity-classified { border-color: #e91e63; }
+    .drop-card.rarity-secret { border-color: #c62828; box-shadow: 0 0 20px rgba(198,40,40,0.35); }
+    .drop-card.rarity-gold { border-color: #f9a825; box-shadow: 0 0 25px rgba(249,168,37,0.5); }
 
     .drop-image {
         width: 100%;
-        height: 160px;
+        height: 170px;
         background: #1e1e2e;
         display: flex;
         align-items: center;
@@ -326,7 +322,30 @@
         max-width: 90%;
         max-height: 90%;
         object-fit: contain;
+        transition: opacity 0.25s ease;
     }
+    /* Слой для фото кейса (показывается пока не наведёшь) */
+    .drop-image .case-img {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #1e1e2e;
+        transition: opacity 0.25s ease;
+        z-index: 2;
+        padding: 10px;
+    }
+    .drop-image .case-img img {
+        max-width: 85%;
+        max-height: 85%;
+        object-fit: contain;
+    }
+    .drop-card:hover .case-img {
+        opacity: 0;
+        pointer-events: none;
+    }
+
     .drop-image .no-image {
         font-size: 50px;
         opacity: 0.3;
@@ -343,12 +362,15 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
         color: #fff;
+        z-index: 5;
     }
-    .rarity-common .drop-rarity-badge { background: #5a5a7a; }
-    .rarity-uncommon .drop-rarity-badge { background: #4a90e2; }
-    .rarity-rare .drop-rarity-badge { background: #9b59b6; }
-    .rarity-legendary .drop-rarity-badge { background: #f9a825; color: #000; }
-    .rarity-mythical .drop-rarity-badge { background: #c62828; }
+    .rarity-shirotreb .drop-rarity-badge { background: #5a5a7a; }
+    .rarity-prom .drop-rarity-badge { background: #4a90e2; }
+    .rarity-army .drop-rarity-badge { background: #4caf50; }
+    .rarity-forbidden .drop-rarity-badge { background: #9b59b6; }
+    .rarity-classified .drop-rarity-badge { background: #e91e63; }
+    .rarity-secret .drop-rarity-badge { background: #c62828; }
+    .rarity-gold .drop-rarity-badge { background: #f9a825; color: #000; }
 
     .drop-info {
         padding: 12px 14px;
@@ -389,9 +411,9 @@
         color: #666;
         font-size: 15px;
         width: 100%;
+        grid-column: 1 / -1;
     }
 
-    /* АДМИНКА — дропы */
     .drop-form {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -607,7 +629,6 @@
         box-shadow: 0 8px 25px rgba(0,0,0,0.6);
     }
     .volume-slider-wrap.open { display: flex; }
-
     .volume-slider-wrap input[type="range"] {
         -webkit-appearance: none;
         appearance: none;
@@ -676,9 +697,7 @@
         min-width: 200px;
         max-width: 260px;
     }
-    .chat-msg.own .voice-player {
-        background: rgba(255,255,255,0.15);
-    }
+    .chat-msg.own .voice-player { background: rgba(255,255,255,0.15); }
     .voice-play-btn {
         width: 34px; height: 34px;
         border-radius: 50%;
@@ -698,10 +717,8 @@
         gap: 2px; position: relative; cursor: pointer;
     }
     .voice-wave-bar {
-        flex: 1;
-        background: #555;
-        border-radius: 2px;
-        transition: 0.15s;
+        flex: 1; background: #555;
+        border-radius: 2px; transition: 0.15s;
     }
     .chat-msg.own .voice-wave-bar { background: rgba(255,255,255,0.3); }
     .voice-wave-bar.played { background: #a78bfa; }
@@ -957,7 +974,6 @@
         grid-column: 1 / -1;
     }
 
-    /* АДМИНКА */
     .admin-wrap {
         width: 100%; max-width: 900px;
         display: flex; flex-direction: column; gap: 20px;
@@ -1151,6 +1167,12 @@
         padding: 0; line-height: 1;
     }
     .modal-close:hover { color: #a78bfa; }
+
+    .case-custom-input {
+        display: none;
+        margin-top: 8px;
+    }
+    .case-custom-input.visible { display: block; }
 </style>
 </head>
 <body>
@@ -1346,7 +1368,7 @@
         <div class="admin-card">
             <h3>🎁 Добавить дроп</h3>
             <p style="font-size:13px;color:#888;margin-bottom:16px;">
-                Заполни поля и нажми «Добавить». Картинка скина (PNG/JPG) — необязательна, но с ней красивее.
+                Заполни поля и нажми «Добавить». Фото скина и фото кейса — необязательны.
             </p>
 
             <div class="drop-form">
@@ -1357,11 +1379,17 @@
 
                 <div class="admin-field">
                     <label>Кейс</label>
-                    <select class="admin-select" id="dropCase">
+                    <select class="admin-select" id="dropCaseSelect" onchange="onCaseSelectChange()">
                         <option value="Ателье колдовских колпаков">Ателье колдовских колпаков</option>
                         <option value="Дождливый мегаполис">Дождливый мегаполис</option>
-                        <option value="Другой">Другой</option>
+                        <option value="__other__">Другое...</option>
                     </select>
+                    <input type="text" id="dropCaseCustom" class="case-custom-input" placeholder="Введи название кейса">
+                </div>
+
+                <div class="admin-field">
+                    <label>Ссылка на кейс (необязательно)</label>
+                    <input type="text" id="dropCaseUrl" placeholder="https://skinhouse.gg/ru/case/...">
                 </div>
 
                 <div class="admin-field">
@@ -1372,11 +1400,13 @@
                 <div class="admin-field">
                     <label>Редкость</label>
                     <select class="admin-select" id="dropRarity">
-                        <option value="common">Обычный</option>
-                        <option value="uncommon">Необычный</option>
-                        <option value="rare">Редкий</option>
-                        <option value="legendary">Легендарный</option>
-                        <option value="mythical">Мифический</option>
+                        <option value="shirotreb">Ширпотреб</option>
+                        <option value="prom">Промышленное</option>
+                        <option value="army">Армейское</option>
+                        <option value="forbidden">Запрещённое</option>
+                        <option value="classified">Засекреченное</option>
+                        <option value="secret">Тайное</option>
+                        <option value="gold">Золотое</option>
                     </select>
                 </div>
 
@@ -1389,14 +1419,28 @@
                 </div>
 
                 <div class="drop-image-upload">
-                    <div class="drop-image-preview" id="dropImagePreview" onclick="document.getElementById('dropImageFile').click()">
-                        <div class="ph">📷</div>
-                    </div>
-                    <input type="file" id="dropImageFile" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none;" onchange="handleDropImage(event)">
                     <div>
-                        <button class="admin-btn small" onclick="document.getElementById('dropImageFile').click()">📷 Выбрать картинку</button>
-                        <button class="admin-btn small danger" onclick="clearDropImage()" style="margin-left:6px;">✖ Убрать</button>
-                        <p style="font-size:12px;color:#666;margin-top:8px;">Сожмётся до 400px автоматически</p>
+                        <p style="font-size:12px;color:#888;margin-bottom:8px;font-weight:600;">Фото скина</p>
+                        <div class="drop-image-preview" id="dropImagePreview" onclick="document.getElementById('dropImageFile').click()">
+                            <div class="ph">🎁</div>
+                        </div>
+                        <input type="file" id="dropImageFile" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none;" onchange="handleDropImage(event)">
+                        <div style="margin-top:8px;">
+                            <button class="admin-btn small" onclick="document.getElementById('dropImageFile').click()">📷 Выбрать</button>
+                            <button class="admin-btn small danger" onclick="clearDropImage()" style="margin-left:6px;">✖</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p style="font-size:12px;color:#888;margin-bottom:8px;font-weight:600;">Фото кейса</p>
+                        <div class="drop-image-preview" id="dropCaseImagePreview" onclick="document.getElementById('dropCaseImageFile').click()">
+                            <div class="ph">📦</div>
+                        </div>
+                        <input type="file" id="dropCaseImageFile" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none;" onchange="handleDropCaseImage(event)">
+                        <div style="margin-top:8px;">
+                            <button class="admin-btn small" onclick="document.getElementById('dropCaseImageFile').click()">📷 Выбрать</button>
+                            <button class="admin-btn small danger" onclick="clearDropCaseImage()" style="margin-left:6px;">✖</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1407,7 +1451,6 @@
             <div class="admin-msg" id="msg-drop"></div>
         </div>
 
-        <!-- СПИСОК ДРОПОВ (управление) -->
         <div class="admin-card">
             <h3>📋 Управление дропами</h3>
             <div id="dropsAdminList"></div>
@@ -1457,6 +1500,14 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+
+    // ==================================================
+    // ССЫЛКИ НА ПРОФИЛИ ИГРОКОВ
+    // ==================================================
+    const PROFILE_URLS = {
+        mega: 'https://skinhouse.gg/ru/user/2181',
+        sergo: 'https://skinhouse.gg/ru/user/26587'
+    };
 
     // ==================================================
     // ГРОМКОСТЬ
@@ -1512,7 +1563,7 @@
     };
     let AVATARS = { mega: '', sergo: '' };
     let STICKER_PACKS = {};
-    let DROPS = []; // массив дропов
+    let DROPS = [];
 
     let currentAdminPack = null;
     let currentChatPack = null;
@@ -1574,10 +1625,11 @@
     }
 
     // ==================================================
-    // ДРОПЫ — Firestore
+    // ДРОПЫ
     // ==================================================
     let currentDropFilter = 'all';
     let pendingDropImage = null;
+    let pendingDropCaseImage = null;
 
     function subscribeDrops() {
         const docRef = doc(db, 'data', 'drops');
@@ -1620,15 +1672,27 @@
         } catch(e) { return ''; }
     }
 
-    function getRarityLabel(r) {
-        return {
-            common: 'Обычный',
-            uncommon: 'Необычный',
-            rare: 'Редкий',
-            legendary: 'Легендарный',
-            mythical: 'Мифический'
-        }[r] || 'Обычный';
-    }
+    const RARITY_LABELS = {
+        shirotreb: 'Ширпотреб',
+        prom: 'Промышленное',
+        army: 'Армейское',
+        forbidden: 'Запрещённое',
+        classified: 'Засекреченное',
+        secret: 'Тайное',
+        gold: 'Золотое'
+    };
+    const RARITY_COLORS = {
+        shirotreb: '#5a5a7a',
+        prom: '#4a90e2',
+        army: '#4caf50',
+        forbidden: '#9b59b6',
+        classified: '#e91e63',
+        secret: '#c62828',
+        gold: '#f9a825'
+    };
+
+    function getRarityLabel(r) { return RARITY_LABELS[r] || 'Ширпотреб'; }
+    function getRarityColor(r) { return RARITY_COLORS[r] || '#5a5a7a'; }
 
     function getAuthorLabel(key) {
         if (key === 'mega') return 'MEGATEM41K';
@@ -1641,16 +1705,14 @@
         if (!grid) return;
         grid.innerHTML = '';
 
-        // Фильтр
         let filtered = DROPS.filter(d => {
             if (currentDropFilter === 'all') return true;
             return d.author === currentDropFilter;
         });
 
-        // Сортировка: свежие сначала
         filtered.sort((a, b) => {
-            const ta = a.createdAt ? (a.createdAt.toDate ? a.createdAt.toDate().getTime() : a.createdAt) : 0;
-            const tb = b.createdAt ? (b.createdAt.toDate ? b.createdAt.toDate().getTime() : b.createdAt) : 0;
+            const ta = a.createdAt ? (a.createdAt.toDate ? a.createdAt.toDate().getTime() : new Date(a.createdAt).getTime()) : 0;
+            const tb = b.createdAt ? (b.createdAt.toDate ? b.createdAt.toDate().getTime() : new Date(b.createdAt).getTime()) : 0;
             return tb - ta;
         });
 
@@ -1666,16 +1728,55 @@
 
         filtered.forEach(drop => {
             const card = document.createElement('div');
-            card.className = 'drop-card rarity-' + (drop.rarity || 'common');
+            card.className = 'drop-card rarity-' + (drop.rarity || 'shirotreb');
+
+            // Клик по карточке — переход на профиль автора
+            card.onclick = (e) => {
+                // Если клик был по картинке — не переходим
+                if (e.target.tagName === 'IMG' || e.target.closest('.case-img')) return;
+                const url = PROFILE_URLS[drop.author];
+                if (url) window.open(url, '_blank');
+            };
 
             const imgWrap = document.createElement('div');
             imgWrap.className = 'drop-image';
+
+            // Если есть фото кейса — оно сверху, при наведении исчезает и показывается скин
+            if (drop.caseImage) {
+                const caseLayer = document.createElement('div');
+                caseLayer.className = 'case-img';
+                const cimg = document.createElement('img');
+                cimg.src = drop.caseImage;
+                caseLayer.appendChild(cimg);
+
+                // Клик по фото кейса — открыть ссылку кейса или профиль
+                caseLayer.onclick = (e) => {
+                    e.stopPropagation();
+                    if (drop.caseUrl) {
+                        window.open(drop.caseUrl, '_blank');
+                    } else {
+                        const url = PROFILE_URLS[drop.author];
+                        if (url) window.open(url, '_blank');
+                    }
+                };
+
+                imgWrap.appendChild(caseLayer);
+            }
+
+            // Основное фото (скин)
             if (drop.image) {
                 const img = document.createElement('img');
                 img.src = drop.image;
-                img.onclick = (e) => { e.stopPropagation(); openModal(drop.image, false); };
+                img.onclick = (e) => {
+                    e.stopPropagation();
+                    if (drop.caseUrl) window.open(drop.caseUrl, '_blank');
+                    else {
+                        const url = PROFILE_URLS[drop.author];
+                        if (url) window.open(url, '_blank');
+                    }
+                };
                 imgWrap.appendChild(img);
-            } else {
+            } else if (!drop.caseImage) {
                 const ph = document.createElement('div');
                 ph.className = 'no-image';
                 ph.innerText = '🎁';
@@ -1712,14 +1813,18 @@
             }
 
             const meta = document.createElement('div');
-            meta.style.display = 'flex';
-            meta.style.justifyContent = 'space-between';
-            meta.style.alignItems = 'center';
-            meta.style.marginTop = '6px';
+            meta.style.cssText = 'display:flex;justify-content:space-between;align-items:center;margin-top:6px;';
 
             const author = document.createElement('div');
             author.className = 'drop-author';
             author.innerText = getAuthorLabel(drop.author);
+            author.style.cursor = 'pointer';
+            author.style.textDecoration = 'underline';
+            author.onclick = (e) => {
+                e.stopPropagation();
+                const url = PROFILE_URLS[drop.author];
+                if (url) window.open(url, '_blank');
+            };
             meta.appendChild(author);
 
             const date = document.createElement('div');
@@ -1737,11 +1842,20 @@
     // ==================================================
     // ДРОПЫ — АДМИНКА
     // ==================================================
+    window.onCaseSelectChange = function() {
+        const sel = document.getElementById('dropCaseSelect');
+        const custom = document.getElementById('dropCaseCustom');
+        if (sel.value === '__other__') {
+            custom.classList.add('visible');
+        } else {
+            custom.classList.remove('visible');
+        }
+    };
+
     window.handleDropImage = function(event) {
         const file = event.target.files[0];
         if (!file) return;
         if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
-
         compressImage(file, 400, 0.85).then(result => {
             pendingDropImage = result;
             const preview = document.getElementById('dropImagePreview');
@@ -1752,17 +1866,47 @@
     window.clearDropImage = function() {
         pendingDropImage = null;
         const preview = document.getElementById('dropImagePreview');
-        preview.innerHTML = '<div class="ph">📷</div>';
+        preview.innerHTML = '<div class="ph">🎁</div>';
         document.getElementById('dropImageFile').value = '';
+    };
+
+    window.handleDropCaseImage = function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
+        compressImage(file, 400, 0.85).then(result => {
+            pendingDropCaseImage = result;
+            const preview = document.getElementById('dropCaseImagePreview');
+            preview.innerHTML = `<img src="${result}">`;
+        });
+    };
+
+    window.clearDropCaseImage = function() {
+        pendingDropCaseImage = null;
+        const preview = document.getElementById('dropCaseImagePreview');
+        preview.innerHTML = '<div class="ph">📦</div>';
+        document.getElementById('dropCaseImageFile').value = '';
     };
 
     window.addDrop = async function() {
         const name = document.getElementById('dropName').value.trim();
-        const caseName = document.getElementById('dropCase').value;
+        const caseSelect = document.getElementById('dropCaseSelect').value;
+        const caseCustom = document.getElementById('dropCaseCustom').value.trim();
+        const caseUrl = document.getElementById('dropCaseUrl').value.trim();
         const price = document.getElementById('dropPrice').value.trim();
         const rarity = document.getElementById('dropRarity').value;
         const author = document.getElementById('dropAuthor').value;
         const msgEl = document.getElementById('msg-drop');
+
+        let caseName = caseSelect;
+        if (caseSelect === '__other__') {
+            if (!caseCustom) {
+                msgEl.className = 'admin-msg err';
+                msgEl.innerText = 'Введи название кейса';
+                return;
+            }
+            caseName = caseCustom;
+        }
 
         if (!name) {
             msgEl.className = 'admin-msg err';
@@ -1774,44 +1918,34 @@
             id: 'drop_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
             name,
             case: caseName,
+            caseUrl: caseUrl || '',
             price,
             rarity,
             author,
             image: pendingDropImage || '',
-            createdAt: { toDate: () => new Date() } // упрощённо, чтобы сортировка работала и до сохранения
+            caseImage: pendingDropCaseImage || '',
+            createdAt: new Date().toISOString()
         };
 
-        // В Firebase сохраним с serverTimestamp
-        DROPS.push({
-            ...newDrop,
-            createdAt: null // временно
-        });
-
-        // Сохраняем с правильным timestamp
-        const toSave = DROPS.map(d => {
-            if (d.id === newDrop.id) {
-                return { ...d, createdAt: new Date().toISOString() };
-            }
-            return d;
-        });
+        DROPS.push(newDrop);
 
         try {
-            await setDoc(doc(db, 'data', 'drops'), { items: toSave });
-            // Обновим локальный кэш
-            const snap = await getDoc(doc(db, 'data', 'drops'));
-            if (snap.exists()) {
-                DROPS = snap.data().items || [];
-            }
+            await saveDrops();
         } catch(e) {
             msgEl.className = 'admin-msg err';
             msgEl.innerText = 'Ошибка: ' + e.message;
             return;
         }
 
-        // Очистка формы
+        // Очистка
         document.getElementById('dropName').value = '';
         document.getElementById('dropPrice').value = '';
+        document.getElementById('dropCaseUrl').value = '';
+        document.getElementById('dropCaseCustom').value = '';
+        document.getElementById('dropCaseSelect').value = 'Ателье колдовских колпаков';
+        document.getElementById('dropCaseCustom').classList.remove('visible');
         clearDropImage();
+        clearDropCaseImage();
 
         msgEl.className = 'admin-msg ok';
         msgEl.innerText = '✅ Дроп добавлен';
@@ -1839,7 +1973,6 @@
             return;
         }
 
-        // Сортировка: свежие сначала
         const sorted = [...DROPS].sort((a, b) => {
             const ta = a.createdAt ? new Date(a.createdAt).getTime() : 0;
             const tb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
@@ -1855,9 +1988,8 @@
                 border-left: 4px solid ${getRarityColor(drop.rarity)};
             `;
 
-            // Картинка
             const imgWrap = document.createElement('div');
-            imgWrap.style.cssText = 'width:50px;height:50px;background:#1e1e2e;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;';
+            imgWrap.style.cssText = 'width:50px;height:50px;background:#1e1e2e;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;position:relative;';
             if (drop.image) {
                 const im = document.createElement('img');
                 im.src = drop.image;
@@ -1868,7 +2000,6 @@
             }
             row.appendChild(imgWrap);
 
-            // Инфа
             const info = document.createElement('div');
             info.style.cssText = 'flex:1;min-width:0;';
 
@@ -1883,13 +2014,13 @@
                 getAuthorLabel(drop.author),
                 drop.case || '',
                 drop.price || '',
+                getRarityLabel(drop.rarity),
                 formatDropDate(drop.createdAt)
             ].filter(Boolean).join(' · ');
             info.appendChild(t2);
 
             row.appendChild(info);
 
-            // Кнопка удалить
             const delBtn = document.createElement('button');
             delBtn.className = 'admin-btn danger small';
             delBtn.innerText = '🗑';
@@ -1898,16 +2029,6 @@
 
             list.appendChild(row);
         });
-    }
-
-    function getRarityColor(r) {
-        return {
-            common: '#5a5a7a',
-            uncommon: '#4a90e2',
-            rare: '#9b59b6',
-            legendary: '#f9a825',
-            mythical: '#c62828'
-        }[r] || '#5a5a7a';
     }
 
     // ==================================================
@@ -2090,7 +2211,7 @@
     }
 
     // ==================================================
-    // УЧЁТ (без изменений — как было)
+    // УЧЁТ
     // ==================================================
     const ACC_DOC = 'accounting';
     const ACC_FIELD = 'prices_v2';
@@ -2280,7 +2401,7 @@
     };
 
     // ==================================================
-    // КАЛЕНДАРЬ (без изменений)
+    // КАЛЕНДАРЬ
     // ==================================================
     let skins = { mega: {}, sergo: {} };
     let pendingSkins = {};
@@ -2526,7 +2647,7 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
     // ==================================================
-    // ЧАТ (без изменений — как было)
+    // ЧАТ
     // ==================================================
     const chatMessages = document.getElementById('chatMessages');
     const chatInput = document.getElementById('chatInput');
@@ -2974,7 +3095,7 @@
     }
 
     // ==================================================
-    // СТИКЕРЫ (без изменений)
+    // СТИКЕРЫ
     // ==================================================
     window.toggleStickerPanel = function() {
         const panel = document.getElementById('stickerPanel');
@@ -3112,7 +3233,6 @@
         return Math.round(total / 1024);
     }
 
-    // Стикерпаки в админке
     window.createPack = async function() {
         const input = document.getElementById('newPackName');
         const name = input.value.trim();
