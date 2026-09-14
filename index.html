@@ -19,16 +19,13 @@
 
     * { scrollbar-width: thin; scrollbar-color: #764ba2 #2a2a3e; }
     *::-webkit-scrollbar { width: 10px; height: 10px; }
-    *::-webkit-scrollbar-track { background: #2a2a3e; border-radius: 5px; }
-    *::-webkit-scrollbar-thumb {
-        background: #764ba2; border-radius: 5px;
-        border: 2px solid #2a2a3e;
-    }
-    *::-webkit-scrollbar-thumb:hover { background: #8b5fc0; }
+    *::-webkit-scrollbar-track { background: #2a2a3e; }
+    *::-webkit-scrollbar-thumb { background: #764ba2; border-radius: 5px; }
 
+    /* ЛОГИН */
     .login-overlay {
         position: fixed; inset: 0;
-        background: rgba(0,0,0,0.9);
+        background: rgba(0,0,0,0.95);
         z-index: 2000;
         display: flex; justify-content: center; align-items: center;
         padding: 20px;
@@ -37,7 +34,6 @@
     .login-box {
         background: #2a2a3e; border-radius: 16px;
         padding: 40px; width: 100%; max-width: 400px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.6);
         text-align: center;
     }
     .login-box h2 { font-size: 22px; margin-bottom: 8px; }
@@ -47,10 +43,7 @@
         border: 1px solid #444; border-radius: 8px;
         background: #1e1e2e; color: #fff; font-size: 15px; outline: none;
     }
-    .login-box input:focus {
-        border-color: #a78bfa;
-        box-shadow: 0 0 0 3px rgba(167,139,250,0.2);
-    }
+    .login-box input:focus { border-color: #a78bfa; }
     .login-box button {
         width: 100%; padding: 14px;
         background: #764ba2; border: none; border-radius: 8px;
@@ -58,11 +51,9 @@
         cursor: pointer; margin-top: 8px;
     }
     .login-box button:hover { background: #5a3a7d; }
-    .login-error {
-        color: #ff6b6b; font-size: 13px;
-        margin-top: 12px; min-height: 18px;
-    }
+    .login-error { color: #ff6b6b; font-size: 13px; margin-top: 12px; min-height: 18px; }
 
+    /* ЮЗЕР */
     .user-bar {
         display: flex; align-items: center; gap: 12px;
         background: #2a2a3e; padding: 8px 16px;
@@ -82,33 +73,26 @@
         padding: 5px 12px; font-size: 12px;
         background: #c62828; border-radius: 6px;
     }
-    .user-bar .logout:hover { background: #9b1f1f; }
 
+    /* ВКЛАДКИ */
     .tabs {
         display: flex; gap: 8px; margin-bottom: 20px;
         background: #2a2a3e; padding: 6px;
-        border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        flex-wrap: wrap; justify-content: center;
+        border-radius: 12px; flex-wrap: wrap; justify-content: center;
     }
     .tab-btn {
-        padding: 10px 24px; border: none; border-radius: 8px;
+        padding: 10px 20px; border: none; border-radius: 8px;
         background: transparent; color: #aaa;
-        font-size: 15px; font-weight: 600;
+        font-size: 14px; font-weight: 600;
         cursor: pointer; transition: 0.2s;
     }
     .tab-btn:hover { color: #fff; background: #35354d; }
-    .tab-btn.active {
-        background: #764ba2; color: #fff;
-        box-shadow: 0 4px 12px rgba(118, 75, 162, 0.5);
-    }
-    .tab-btn.admin-tab {
-        background: linear-gradient(135deg, #f9a825, #f57c00);
-        color: #000;
-    }
-    .tab-btn.admin-tab.active {
-        background: linear-gradient(135deg, #ffb300, #f57c00);
-        color: #000;
-    }
+    .tab-btn.active { background: #764ba2; color: #fff; }
+    .tab-btn.admin-tab { background: linear-gradient(135deg, #f9a825, #f57c00); color: #000; }
+    .tab-btn.admin-tab.active { background: linear-gradient(135deg, #ffb300, #f57c00); color: #000; }
+    .tab-btn.auction-tab { background: linear-gradient(135deg, #ff3d3d, #a00000); color: #fff; }
+    .tab-btn.auction-tab.active { background: linear-gradient(135deg, #ff5555, #c00000); color: #fff; }
+
     .tab-content {
         display: none; width: 100%;
         flex-direction: column; align-items: center;
@@ -123,862 +107,230 @@
     }
     button:hover { background: #5a3a7d; }
 
+    /* ТАБЛИЦА УЧЁТА */
     table.acc-table {
         border-collapse: collapse;
         background: #2a2a3e;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         border-radius: 8px; overflow: hidden;
     }
-    table.acc-table th,
-    table.acc-table td {
+    table.acc-table th, table.acc-table td {
         border: 1px solid #444;
         padding: 12px 16px;
-        min-width: 260px;
-        vertical-align: middle;
+        min-width: 220px;
         font-size: 15px;
     }
-    table.acc-table th {
-        color: #fff; font-weight: 700;
-        text-align: center; font-size: 15px;
-        padding: 16px 12px;
-    }
+    table.acc-table th { text-align: center; padding: 16px 12px; }
     table.acc-table th:first-child { background: #5a3a7d; min-width: 100px; }
-    table.acc-table th[data-owner="mega"] {
-        background: linear-gradient(135deg, #ff6b6b, #c62828);
-    }
-    table.acc-table th[data-owner="sergo"] {
-        background: linear-gradient(135deg, #4fc3f7, #0288d1);
-    }
+    table.acc-table th[data-owner="mega"] { background: linear-gradient(135deg, #ff6b6b, #c62828); }
+    table.acc-table th[data-owner="sergo"] { background: linear-gradient(135deg, #4fc3f7, #0288d1); }
     table.acc-table td:first-child {
         background: #3a3a52; font-weight: 700;
-        color: #fff; text-align: center;
-        font-size: 15px; min-width: 100px;
+        text-align: center; min-width: 100px;
     }
 
     .cell-pair { display: flex; flex-direction: column; gap: 6px; }
     .cell-row { display: flex; align-items: center; gap: 6px; }
-    .cell-row .label {
-        font-weight: 700; font-size: 14px;
-        white-space: nowrap; min-width: 60px;
-    }
+    .cell-row .label { font-weight: 700; font-size: 14px; white-space: nowrap; min-width: 60px; }
     .cell-row .label.alik { color: #4fc3f7; }
     .cell-row .label.zhidkiy { color: #81c784; }
 
     .price-input {
-        flex: 1;
-        background: #1e1e2e;
-        border: 1px solid #444;
-        outline: none; color: #fff;
-        font-size: 15px; font-weight: 600;
-        padding: 6px 10px; border-radius: 6px;
-        transition: 0.15s;
-        min-width: 60px;
+        flex: 1; background: #1e1e2e; border: 1px solid #444;
+        outline: none; color: #fff; font-size: 15px; font-weight: 600;
+        padding: 6px 10px; border-radius: 6px; min-width: 60px;
     }
-    .price-input:focus {
-        border-color: #a78bfa;
-        box-shadow: 0 0 0 2px rgba(167,139,250,0.3);
-    }
-    .price-input:disabled {
-        color: #e0e0e0;
-        cursor: not-allowed;
-        background: #23233a;
-        border-color: #3a3a52;
-    }
-    .price-input::placeholder { color: #555; font-style: italic; font-weight: 400; }
+    .price-input:focus { border-color: #a78bfa; }
+    .price-input:disabled { color: #e0e0e0; cursor: not-allowed; background: #23233a; }
 
-    tr.total-row td {
-        border-top: 3px solid #f9a825;
-        padding: 16px;
-    }
-    tr.total-row td:first-child {
-        background: #4a3a6b !important;
-        font-size: 16px;
-    }
-    .total-value {
-        font-size: 22px; font-weight: 800;
-        color: #f9a825;
-        display: block; text-align: center;
-    }
+    tr.total-row td { border-top: 3px solid #f9a825; padding: 16px; }
+    tr.total-row td:first-child { background: #4a3a6b !important; font-size: 16px; }
+    .total-value { font-size: 22px; font-weight: 800; color: #f9a825; display: block; text-align: center; }
     .total-value.mega { color: #ff6b6b; }
     .total-value.sergo { color: #4fc3f7; }
 
-    .save-float {
-        position: fixed; bottom: 20px; right: 20px;
-        padding: 14px 24px;
-        background: linear-gradient(135deg, #f9a825, #f57c00);
-        color: #000; border: none; border-radius: 50px;
-        font-size: 15px; font-weight: 800;
-        cursor: pointer;
-        box-shadow: 0 8px 25px rgba(245, 124, 0, 0.5);
-        z-index: 100; display: none; transition: 0.2s;
-    }
-    .save-float:hover {
-        background: linear-gradient(135deg, #ffb300, #f57c00);
-        transform: translateY(-2px);
-    }
-    .save-float.visible { display: block; }
-
-    .save-toast {
-        position: fixed; bottom: 90px; right: 20px;
-        background: #2e7d32; color: #fff;
-        padding: 12px 20px; border-radius: 10px;
-        font-size: 14px; font-weight: 600;
-        z-index: 101; display: none;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-    }
-    .save-toast.visible { display: block; animation: slideIn 0.3s ease; }
-    @keyframes slideIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+    /* ===== АУКЦИОН ===== */
+    .auction-wrap {
+        width: 100%; max-width: 1200px;
+        display: flex; flex-direction: column; gap: 20px;
     }
 
-    /* ДРОПЫ */
-    .drops-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        max-width: 1100px;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-        gap: 12px;
+    .auction-header {
+        background: linear-gradient(135deg, #2a0a0a, #1a0a1a);
+        border: 2px solid #a00000;
+        border-radius: 16px;
+        padding: 24px;
     }
-    .drops-title {
-        font-size: 20px;
-        font-weight: 700;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        gap: 10px;
+    .auction-header h2 {
+        font-size: 28px; letter-spacing: 2px;
+        color: #fff; text-transform: uppercase;
+        font-weight: 900;
     }
-    .drops-filters {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-    }
-    .drops-filter-btn {
-        padding: 8px 16px;
-        background: #2a2a3e;
-        color: #aaa;
-        border: 1px solid #3a3a52;
-        border-radius: 8px;
-        font-size: 13px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: 0.2s;
-    }
-    .drops-filter-btn:hover { color: #fff; border-color: #764ba2; }
-    .drops-filter-btn.active {
-        background: #764ba2;
-        color: #fff;
-        border-color: #764ba2;
-    }
+    .auction-header p { color: #888; font-size: 13px; margin-top: 4px; }
 
-    .drops-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-        gap: 16px;
-        width: 100%;
-        max-width: 1100px;
-    }
-
-    .drop-card {
-        background: #2a2a3e;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-        border: 2px solid #3a3a52;
-        transition: 0.25s;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-    }
-    .drop-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 35px rgba(0,0,0,0.6);
-    }
-
-    /* Редкости: армейское теперь СИНЕВАТОЕ */
-    .drop-card.rarity-shirotreb { border-color: #5a5a7a; }
-    .drop-card.rarity-prom { border-color: #4a90e2; }
-    .drop-card.rarity-army { border-color: #5b8dd6; }
-    .drop-card.rarity-forbidden { border-color: #9b59b6; }
-    .drop-card.rarity-classified { border-color: #e91e63; }
-    .drop-card.rarity-secret { border-color: #c62828; box-shadow: 0 0 20px rgba(198,40,40,0.35); }
-    .drop-card.rarity-gold { border-color: #f9a825; box-shadow: 0 0 25px rgba(249,168,37,0.5); }
-
-    .drop-image {
-        width: 100%;
-        height: 170px;
-        background: #1e1e2e;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        position: relative;
-    }
-    .drop-image img {
-        max-width: 90%;
-        max-height: 90%;
-        object-fit: contain;
-        transition: opacity 0.25s ease;
-    }
-    /* Слой для фото кейса */
-    .drop-image .case-img {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #1e1e2e;
-        transition: opacity 0.25s ease;
-        z-index: 2;
-        padding: 10px;
-    }
-    .drop-image .case-img img {
-        max-width: 85%;
-        max-height: 85%;
-        object-fit: contain;
-    }
-    .drop-card:hover .case-img {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    .drop-image .no-image {
-        font-size: 50px;
-        opacity: 0.3;
-    }
-
-    .drop-rarity-badge {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        padding: 3px 10px;
-        border-radius: 12px;
-        font-size: 10px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: #fff;
-        z-index: 5;
-    }
-    .rarity-shirotreb .drop-rarity-badge { background: #5a5a7a; }
-    .rarity-prom .drop-rarity-badge { background: #4a90e2; }
-    .rarity-army .drop-rarity-badge { background: #5b8dd6; }
-    .rarity-forbidden .drop-rarity-badge { background: #9b59b6; }
-    .rarity-classified .drop-rarity-badge { background: #e91e63; }
-    .rarity-secret .drop-rarity-badge { background: #c62828; }
-    .rarity-gold .drop-rarity-badge { background: #f9a825; color: #000; }
-
-    .drop-info {
-        padding: 12px 14px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-    }
-    .drop-name {
-        font-size: 14px;
-        font-weight: 700;
-        color: #fff;
-        line-height: 1.3;
-    }
-    .drop-case {
-        font-size: 12px;
-        color: #a78bfa;
-    }
-    .drop-giver {
-        font-size: 12px;
-        color: #f9a825;
-        font-weight: 700;
-    }
-    .drop-price {
-        font-size: 16px;
-        font-weight: 800;
-        color: #81c784;
-        margin-top: auto;
-    }
-    .drop-date {
-        font-size: 11px;
-        color: #666;
-    }
-    .drop-author {
-        font-size: 11px;
-        color: #888;
-        font-style: italic;
-    }
-
-    .drops-empty {
-        text-align: center;
-        padding: 60px 20px;
-        color: #666;
-        font-size: 15px;
-        width: 100%;
-        grid-column: 1 / -1;
-    }
-
-    .drop-form {
+    .auction-main {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 14px;
-        margin-bottom: 20px;
-    }
-    .drop-form .full-width { grid-column: 1 / -1; }
-    @media (max-width: 600px) {
-        .drop-form { grid-template-columns: 1fr; }
-    }
-
-    .drop-image-upload {
-        display: flex;
-        align-items: flex-start;
         gap: 20px;
-        grid-column: 1 / -1;
-        flex-wrap: wrap;
+        align-items: start;
     }
-    .drop-image-preview {
-        width: 120px;
-        height: 120px;
-        background: #1e1e2e;
-        border: 2px dashed #3a3a52;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        flex-shrink: 0;
-        cursor: pointer;
-    }
-    .drop-image-preview:hover { border-color: #a78bfa; }
-    .drop-image-preview img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-    .drop-image-preview .ph {
-        font-size: 32px;
-        color: #555;
+    @media (max-width: 900px) {
+        .auction-main { grid-template-columns: 1fr; }
     }
 
-    .admin-select {
-        padding: 10px 14px;
-        border: 1px solid #444;
-        border-radius: 8px;
-        background: #1e1e2e;
-        color: #fff;
-        font-size: 14px;
-        outline: none;
-        width: 100%;
-        cursor: pointer;
-    }
-    .admin-select:focus { border-color: #a78bfa; }
-
-    .player-tabs {
-        display: flex; gap: 10px; margin-bottom: 20px;
-        background: #2a2a3e; padding: 6px; border-radius: 12px;
-    }
-    .player-btn {
-        padding: 12px 28px; border: none; border-radius: 8px;
-        background: transparent; color: #aaa;
-        font-size: 15px; font-weight: 700; cursor: pointer;
-        display: flex; align-items: center; gap: 8px;
-    }
-    .player-btn:hover { color: #fff; background: #35354d; }
-    .player-btn.active.mega {
-        background: linear-gradient(135deg, #ff6b6b, #c62828); color: #fff;
-    }
-    .player-btn.active.sergo {
-        background: linear-gradient(135deg, #4fc3f7, #0288d1); color: #fff;
-    }
-    .player-btn .dot {
-        width: 10px; height: 10px;
-        border-radius: 50%; background: #ff6b6b;
-    }
-    .player-btn.sergo .dot { background: #4fc3f7; }
-    .player-view { display: none; flex-direction: column; align-items: center; width: 100%; }
-    .player-view.active { display: flex; }
-
-    .cal-header {
-        display: flex; align-items: center; gap: 15px;
-        margin-bottom: 20px; background: #2a2a3e;
-        padding: 12px 20px; border-radius: 12px;
-    }
-    .cal-header button { padding: 8px 14px; font-size: 18px; background: #5a3a7d; }
-    .cal-header button:hover { background: #764ba2; }
-    .cal-title {
-        font-size: 20px; font-weight: 700;
-        min-width: 220px; text-align: center;
-    }
-    .calendar {
-        display: grid; grid-template-columns: repeat(7, 1fr);
-        gap: 8px; width: 100%; max-width: 1100px;
-    }
-    .cal-dayname {
-        text-align: center; font-weight: 700;
-        color: #a78bfa; padding: 8px 0;
-        font-size: 14px; text-transform: uppercase;
-    }
-    .cal-cell {
-        background: #2a2a3e; border-radius: 10px;
-        padding: 8px; min-height: 240px;
+    .auction-info {
+        background: #2a2a3e;
+        border-radius: 14px;
+        padding: 20px;
+        display: flex; flex-direction: column; gap: 16px;
         border: 1px solid #3a3a52;
-        display: flex; flex-direction: column;
     }
-    .cal-cell.empty { background: transparent; border: none; }
-    .cal-cell.today { border: 2px solid #a78bfa; box-shadow: 0 0 15px rgba(167,139,250,0.4); }
-    .cal-date {
-        font-size: 14px; font-weight: 700;
-        color: #a78bfa; margin-bottom: 6px; text-align: right;
+
+    .auction-org {
+        display: flex; align-items: center; gap: 14px;
     }
-    .cal-cell.today .cal-date {
-        color: #fff; background: #764ba2;
-        border-radius: 50%; width: 26px; height: 26px;
-        line-height: 26px; text-align: center; align-self: flex-end;
-    }
-    .cal-person {
-        background: #35354d; border-radius: 8px;
-        padding: 6px; margin-bottom: 6px;
-        flex: 1; display: flex; flex-direction: column;
-    }
-    .cal-person:last-child { margin-bottom: 0; }
-    .cal-person-name {
-        font-size: 12px; font-weight: 700;
-        margin-bottom: 4px; text-align: center;
-    }
-    .cal-person-name.alik { color: #4fc3f7; }
-    .cal-person-name.zhidkiy { color: #81c784; }
-    .skin-box {
-        flex: 1; background: #1e1e2e;
-        border: 1px dashed #555; border-radius: 6px;
+    .auction-org .org-avatar {
+        width: 60px; height: 60px; border-radius: 50%;
+        background: linear-gradient(135deg, #ff6b6b, #c62828);
         display: flex; align-items: center; justify-content: center;
-        cursor: pointer; position: relative; overflow: hidden;
-        min-height: 60px;
-    }
-    .skin-box:hover { border-color: #a78bfa; background: #25253a; }
-    .skin-box img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
-    .skin-box .placeholder {
-        font-size: 10px; color: #666;
-        text-align: center; padding: 4px;
-        pointer-events: none;
-    }
-    .skin-box input[type="file"] { display: none; }
-    .skin-remove {
-        position: absolute; top: 2px; right: 2px;
-        background: #c62828; color: #fff;
-        border: none; border-radius: 50%;
-        width: 18px; height: 18px; font-size: 12px;
-        cursor: pointer; padding: 0; z-index: 5; display: none;
-    }
-    .skin-box.has-image .skin-remove { display: block; }
-    .skin-save {
-        position: absolute; bottom: 2px; left: 50%;
-        transform: translateX(-50%);
-        background: #f9a825; color: #000;
-        border: none; border-radius: 6px;
-        padding: 3px 10px; font-size: 11px;
-        font-weight: 700; cursor: pointer;
-        display: none; z-index: 6;
-    }
-    .skin-box.pending { border: 2px solid #f9a825; }
-    .skin-box.pending .skin-save { display: block; }
-    .cal-cell.locked .skin-box { cursor: not-allowed; opacity: 0.85; }
-
-    /* ЧАТ */
-    .chat-container {
-        width: 100%; max-width: 600px;
-        background: #2a2a3e; border-radius: 12px;
-        overflow: hidden; display: flex; flex-direction: column;
-        height: 70vh; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        position: relative;
-    }
-    .chat-header {
-        background: #764ba2; padding: 12px 20px;
-        font-weight: 700; font-size: 16px;
-        display: flex; justify-content: space-between; align-items: center;
-        gap: 12px;
-    }
-    .chat-header-left {
-        display: flex; align-items: center; gap: 10px;
-    }
-    .chat-status { font-size: 12px; color: #e0d4ff; }
-
-    .volume-wrap {
-        position: relative;
-        display: flex;
-        align-items: center;
-    }
-    .volume-btn {
-        background: rgba(0,0,0,0.2);
-        border: none; color: #fff;
-        font-size: 16px; cursor: pointer;
-        width: 32px; height: 32px;
-        border-radius: 8px;
-        display: flex; align-items: center; justify-content: center;
-        transition: 0.2s; padding: 0;
-    }
-    .volume-btn:hover { background: rgba(0,0,0,0.4); }
-
-    .volume-slider-wrap {
-        position: absolute;
-        top: 100%; right: 0;
-        margin-top: 8px;
-        background: #2f2f44;
-        border: 1px solid #4a4a66;
-        border-radius: 10px;
-        padding: 10px 14px;
-        display: none;
-        align-items: center;
-        gap: 10px;
-        z-index: 100;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-    }
-    .volume-slider-wrap.open { display: flex; }
-    .volume-slider-wrap input[type="range"] {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 120px; height: 6px;
-        background: #1e1e2e;
-        border-radius: 3px;
-        outline: none; cursor: pointer;
-    }
-    .volume-slider-wrap input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 16px; height: 16px;
-        border-radius: 50%;
-        background: #a78bfa;
-        cursor: pointer;
-        border: 2px solid #fff;
-    }
-    .volume-value {
-        font-size: 12px; color: #a78bfa;
-        font-weight: 700; min-width: 36px;
-        text-align: right;
-    }
-
-    .chat-messages {
-        flex: 1; overflow-y: auto; padding: 15px;
-        display: flex; flex-direction: column; gap: 10px;
-    }
-    .chat-msg {
-        background: #35354d; padding: 10px 14px;
-        border-radius: 12px; max-width: 80%;
-        word-wrap: break-word; align-self: flex-start;
-        position: relative;
-        display: flex; gap: 10px;
-    }
-    .chat-msg.own { background: #764ba2; align-self: flex-end; }
-    .chat-msg .msg-avatar {
-        width: 32px; height: 32px;
-        border-radius: 50%; flex-shrink: 0;
-        display: flex; align-items: center; justify-content: center;
-        font-weight: 700; font-size: 13px;
+        font-size: 24px; font-weight: 900;
         overflow: hidden;
     }
-    .chat-msg .msg-avatar.mega { background: linear-gradient(135deg, #ff6b6b, #c62828); }
-    .chat-msg .msg-avatar.sergo { background: linear-gradient(135deg, #4fc3f7, #0288d1); }
-    .chat-msg .msg-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-    .chat-msg .msg-body { flex: 1; min-width: 0; }
-    .chat-msg .msg-author {
-        font-size: 11px; font-weight: 700;
-        margin-bottom: 4px; color: #a78bfa;
-    }
-    .chat-msg.own .msg-author { color: #e0d4ff; }
-    .chat-msg .msg-text { font-size: 14px; line-height: 1.4; word-break: break-word; }
-    .chat-msg .msg-sticker {
-        max-width: 160px; max-height: 160px;
-        display: block; margin-top: 4px;
-        border-radius: 8px;
-    }
+    .auction-org .org-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .auction-org .org-info h3 { font-size: 18px; }
+    .auction-org .org-info p { color: #888; font-size: 12px; }
 
-    .voice-player {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-top: 6px;
-        background: rgba(0,0,0,0.25);
-        padding: 8px 12px;
-        border-radius: 20px;
-        min-width: 200px;
-        max-width: 260px;
-    }
-    .chat-msg.own .voice-player { background: rgba(255,255,255,0.15); }
-    .voice-play-btn {
-        width: 34px; height: 34px;
-        border-radius: 50%;
-        background: #a78bfa;
-        border: none; color: #fff;
-        font-size: 14px; cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        flex-shrink: 0; padding: 0;
-        transition: 0.2s;
-    }
-    .voice-play-btn:hover { background: #8b5fc0; }
-    .chat-msg.own .voice-play-btn { background: #fff; color: #764ba2; }
-
-    .voice-wave {
-        flex: 1; height: 24px;
-        display: flex; align-items: center;
-        gap: 2px; position: relative; cursor: pointer;
-    }
-    .voice-wave-bar {
-        flex: 1; background: #555;
-        border-radius: 2px; transition: 0.15s;
-    }
-    .chat-msg.own .voice-wave-bar { background: rgba(255,255,255,0.3); }
-    .voice-wave-bar.played { background: #a78bfa; }
-    .chat-msg.own .voice-wave-bar.played { background: #fff; }
-
-    .voice-duration {
-        font-size: 11px; color: #ccc;
-        font-weight: 700; min-width: 32px;
+    .auction-timer {
+        margin-left: auto;
         text-align: right;
+        display: none;
+    }
+    .auction-timer.visible { display: block; }
+    .auction-timer .timer-label {
+        font-size: 11px; color: #888;
+        text-transform: uppercase; letter-spacing: 1px;
+    }
+    .auction-timer .timer-value {
+        font-size: 20px; font-weight: 800;
+        color: #fff;
         font-variant-numeric: tabular-nums;
     }
-    .chat-msg.own .voice-duration { color: #fff; }
+    .auction-timer .timer-value.running { color: #4ade80; }
 
-    .typing-indicator {
-        display: none;
-        align-items: center; gap: 8px;
-        padding: 8px 14px;
-        margin: 0 15px 8px;
-        background: #35354d;
-        border-radius: 20px;
-        align-self: flex-start;
-        max-width: fit-content;
-        font-size: 13px;
-        color: #a78bfa;
-        font-style: italic;
-    }
-    .typing-indicator.visible { display: flex; }
-    .typing-dots { display: flex; gap: 3px; }
-    .typing-dots span {
-        width: 5px; height: 5px;
-        border-radius: 50%;
-        background: #a78bfa;
-        animation: typing-bounce 1.4s infinite;
-    }
-    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes typing-bounce {
-        0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-        30% { transform: translateY(-5px); opacity: 1; }
-    }
-
-    .msg-read {
-        font-size: 10px; color: #ccc;
-        margin-top: 4px; text-align: right;
-        font-style: italic;
-        display: flex; align-items: center;
-        justify-content: flex-end; gap: 4px;
-    }
-    .chat-msg.own .msg-read { color: #e0d4ff; }
-    .msg-read::before {
-        content: '✓✓';
-        font-style: normal;
-        font-weight: 700;
-        color: #81c784;
-    }
-    .chat-msg.own .msg-read::before { color: #fff; }
-
-    .msg-time {
-        font-size: 10px; color: #888;
-        margin-top: 2px; text-align: right;
-    }
-    .chat-msg.own .msg-time { color: #d0c0e0; }
-
-    .msg-delete {
-        position: absolute; top: 4px; right: 4px;
-        background: #c62828; color: #fff;
-        border: none; border-radius: 50%;
-        width: 20px; height: 20px;
-        font-size: 12px; cursor: pointer;
-        padding: 0; opacity: 0;
-        transition: 0.2s; z-index: 5;
-    }
-    .chat-msg:hover .msg-delete { opacity: 1; }
-
-    .chat-input-area {
-        display: flex; gap: 8px; padding: 12px;
-        background: #35354d; border-top: 1px solid #444;
-        align-items: center;
-    }
-    .chat-input-area input {
-        flex: 1; padding: 12px 16px;
-        border: none; border-radius: 8px;
-        background: #1e1e2e; color: #fff;
-        font-size: 14px; outline: none;
-    }
-    .chat-input-area input::placeholder { color: #666; }
-
-    .sticker-btn, .mic-btn {
-        width: 44px; height: 44px;
-        border-radius: 50%;
-        background: #4a3a6b; border: none;
-        font-size: 20px; cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        flex-shrink: 0; padding: 0;
-        transition: 0.2s; color: #fff;
-    }
-    .sticker-btn:hover, .mic-btn:hover { background: #5a3a7d; transform: scale(1.05); }
-
-    .mic-btn.recording {
-        background: #c62828;
-        animation: pulse-rec 1s infinite;
-    }
-    @keyframes pulse-rec {
-        0% { box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.7); }
-        70% { box-shadow: 0 0 0 10px rgba(198, 40, 40, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(198, 40, 40, 0); }
-    }
-
-    .record-panel {
-        position: absolute;
-        bottom: 76px; left: 12px; right: 12px;
-        background: #2f2f44;
-        border: 1px solid #c62828;
+    .auction-price {
+        background: linear-gradient(135deg, #2a0a0a, #1a0a1a);
+        border: 1px solid #a00000;
         border-radius: 12px;
         padding: 16px 20px;
-        z-index: 60;
-        display: none;
-        align-items: center; gap: 15px;
-        box-shadow: 0 -10px 40px rgba(198, 40, 40, 0.3);
-    }
-    .record-panel.open { display: flex; }
-
-    .record-dot {
-        width: 14px; height: 14px;
-        border-radius: 50%;
-        background: #c62828;
-        animation: blink 1s infinite;
-        flex-shrink: 0;
-    }
-    @keyframes blink {
-        0%, 50% { opacity: 1; }
-        51%, 100% { opacity: 0.3; }
-    }
-    .record-time {
-        font-size: 18px; font-weight: 700;
-        color: #fff;
-        font-variant-numeric: tabular-nums;
-        min-width: 60px;
-    }
-    .record-label { flex: 1; color: #aaa; font-size: 14px; }
-    .record-cancel, .record-send {
-        padding: 10px 18px;
-        border-radius: 8px;
-        font-size: 14px; font-weight: 700;
-        cursor: pointer; border: none;
-    }
-    .record-cancel { background: #4a4a66; color: #fff; }
-    .record-cancel:hover { background: #5a5a7a; }
-    .record-send {
-        background: linear-gradient(135deg, #4caf50, #2e7d32);
-        color: #fff;
-    }
-    .record-send:hover { background: linear-gradient(135deg, #66bb6a, #388e3c); }
-
-    .sticker-panel {
-        position: absolute;
-        bottom: 76px; left: 12px; right: 12px;
-        height: 340px;
-        background: #2f2f44;
-        border: 1px solid #4a4a66;
-        border-radius: 12px;
-        z-index: 50;
-        display: none;
-        flex-direction: column;
-        box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
-        overflow: hidden;
-    }
-    .sticker-panel.open { display: flex; }
-
-    .sticker-panel-header {
         display: flex; justify-content: space-between; align-items: center;
-        padding: 8px 12px;
-        background: #3a3a55;
-        border-bottom: 1px solid #4a4a66;
     }
-    .sticker-panel-title {
-        font-size: 13px; color: #ccc; font-weight: 700;
-    }
-    .sticker-panel-close {
-        background: transparent; border: none;
-        color: #aaa; font-size: 20px;
-        cursor: pointer; padding: 0;
-        width: 26px; height: 26px;
-    }
-    .sticker-panel-close:hover { color: #fff; }
-
-    .sticker-packs-tabs {
-        display: flex; gap: 4px;
-        padding: 8px 8px 4px;
-        overflow-x: auto;
-        background: #2a2a40;
-        border-bottom: 1px solid #3a3a52;
-        flex-shrink: 0;
-    }
-    .sticker-pack-tab {
-        padding: 6px 14px;
-        border: none;
-        background: #3a3a55;
-        color: #aaa;
-        border-radius: 8px;
-        font-size: 12px;
-        font-weight: 600;
+    .auction-price .price-left { display: flex; flex-direction: column; }
+    .auction-price .price-val { color: #ff4444; font-size: 22px; font-weight: 900; }
+    .auction-price .price-sub { color: #888; font-size: 12px; }
+    .auction-price .dep-btn {
+        background: linear-gradient(135deg, #f9a825, #f57c00);
+        color: #000; font-size: 14px; font-weight: 800;
+        padding: 12px 24px;
+        border: none; border-radius: 8px;
         cursor: pointer;
-        white-space: nowrap;
-        transition: 0.2s;
-        flex-shrink: 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
-    .sticker-pack-tab:hover { color: #fff; background: #4a4a6a; }
-    .sticker-pack-tab.active { background: #764ba2; color: #fff; }
-    .sticker-pack-tab .pack-count {
-        opacity: 0.7; font-size: 10px; margin-left: 4px;
+    .auction-price .dep-btn:hover {
+        background: linear-gradient(135deg, #ffb300, #f57c00);
+        transform: scale(1.05);
+    }
+    .auction-price .dep-btn:active { transform: scale(0.98); }
+    .auction-price .dep-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .prizes-title {
+        color: #fff; font-size: 14px; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 1px;
     }
 
-    .sticker-grid {
+    .auction-prizes {
+        display: flex; flex-direction: column; gap: 8px;
+        max-height: 400px; overflow-y: auto;
+    }
+    .auction-prize {
+        background: #23233a;
+        border-radius: 8px;
+        padding: 10px 14px;
+        display: flex; justify-content: space-between; align-items: center;
+        border-left: 3px solid #a00000;
+        gap: 10px;
+    }
+    .auction-prize .prize-info { flex: 1; }
+    .auction-prize .prize-name { font-size: 13px; font-weight: 600; color: #fff; }
+    .auction-prize .prize-price { color: #4ade80; font-weight: 700; font-size: 14px; white-space: nowrap; }
+
+    /* ПРАВАЯ КОЛОНКА */
+    .auction-tickets {
+        background: #2a2a3e;
+        border-radius: 14px;
+        padding: 20px;
+        border: 1px solid #3a3a52;
+    }
+    .tickets-header {
+        display: flex; justify-content: space-between; align-items: center;
+        margin-bottom: 14px;
+    }
+    .tickets-header h3 { font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+    .tickets-count {
+        color: #ff4444; font-weight: 800;
+        font-size: 18px; font-variant-numeric: tabular-nums;
+    }
+
+    /* СЛИТНАЯ СЕТКА БЕЗ ЩЕЛЕЙ */
+    .tickets-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-        gap: 8px;
+        grid-template-columns: repeat(30, 1fr);
+        gap: 1px;
+        background: #1a1a2a;
+        padding: 4px;
+        border-radius: 6px;
+        max-height: 420px;
         overflow-y: auto;
-        padding: 10px;
-        flex: 1;
-    }
-    .sticker-item {
-        width: 100%; aspect-ratio: 1;
-        background: #1e1e2e;
-        border-radius: 8px;
-        cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        overflow: hidden;
-        border: 2px solid transparent;
-        transition: 0.15s;
         position: relative;
     }
-    .sticker-item:hover { border-color: #a78bfa; transform: scale(1.05); }
-    .sticker-item img,
-    .sticker-item video {
-        max-width: 100%; max-height: 100%;
-        object-fit: contain; pointer-events: none;
+    .ticket-cell {
+        aspect-ratio: 1;
+        background: #2f2f44;
+        transition: 0.1s;
     }
-    .sticker-item .sticker-video-badge {
-        position: absolute;
-        bottom: 2px; right: 2px;
-        background: rgba(118, 75, 162, 0.9);
-        color: #fff;
-        font-size: 9px;
-        padding: 1px 5px;
-        border-radius: 4px;
-        font-weight: 700;
-        pointer-events: none;
+    .ticket-cell.filled {
+        background: linear-gradient(135deg, #4ade80, #22c55e);
     }
-    .sticker-empty {
-        color: #666; text-align: center;
-        padding: 30px 10px; font-size: 13px;
-        grid-column: 1 / -1;
+    .ticket-cell.prize {
+        background: linear-gradient(135deg, #a78bfa, #764ba2);
+    }
+    /* Прозрачный бегающий квадрат */
+    .ticket-cell.runner {
+        background: rgba(255,255,255,0.8) !important;
+        box-shadow: 0 0 8px rgba(255,255,255,0.9), 0 0 16px rgba(167,139,250,0.8);
+        z-index: 2;
     }
 
+    .tickets-status {
+        margin-top: 14px;
+        text-align: center;
+        font-size: 14px;
+        color: #888;
+        min-height: 20px;
+    }
+    .tickets-status.win {
+        color: #4ade80; font-weight: 800; font-size: 18px;
+    }
+    .tickets-status.winner {
+        color: #ffd700; font-weight: 900; font-size: 20px;
+        text-shadow: 0 0 12px rgba(255,215,0,0.6);
+        animation: pulse 0.6s ease 3;
+    }
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.08); }
+    }
+
+    /* АДМИНКА */
     .admin-wrap {
         width: 100%; max-width: 900px;
         display: flex; flex-direction: column; gap: 20px;
@@ -987,14 +339,12 @@
         background: #2a2a3e;
         border-radius: 14px;
         padding: 24px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         border: 1px solid #3a3a52;
     }
     .admin-card h3 {
         font-size: 17px;
         margin-bottom: 16px;
         color: #f9a825;
-        display: flex; align-items: center; gap: 8px;
     }
     .admin-card h3.mega-color { color: #ff6b6b; }
     .admin-card h3.sergo-color { color: #4fc3f7; }
@@ -1003,181 +353,108 @@
         display: flex; flex-direction: column; gap: 6px;
         margin-bottom: 12px;
     }
-    .admin-field label {
-        font-size: 13px; color: #888; font-weight: 600;
+    .admin-field label { font-size: 13px; color: #888; font-weight: 600; }
+    .admin-field input, .admin-field select, .admin-field textarea {
+        padding: 10px 14px; border: 1px solid #444;
+        border-radius: 8px; background: #1e1e2e;
+        color: #fff; font-size: 14px; outline: none;
     }
-    .admin-field input {
-        padding: 10px 14px;
-        border: 1px solid #444;
-        border-radius: 8px;
-        background: #1e1e2e;
-        color: #fff;
-        font-size: 14px;
-        outline: none;
-    }
-    .admin-field input:focus {
-        border-color: #a78bfa;
-        box-shadow: 0 0 0 2px rgba(167,139,250,0.2);
-    }
+    .admin-field textarea { font-family: monospace; font-size: 12px; min-height: 160px; resize: vertical; }
+    .admin-field select { cursor: pointer; }
+
     .admin-btn-row {
         display: flex; gap: 10px; flex-wrap: wrap;
         margin-top: 8px;
     }
     .admin-btn {
         padding: 10px 18px;
-        background: #764ba2;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: 600;
+        background: #764ba2; color: #fff;
+        border: none; border-radius: 8px;
+        font-size: 14px; font-weight: 600;
         cursor: pointer;
-        transition: 0.2s;
     }
     .admin-btn:hover { background: #5a3a7d; }
     .admin-btn.danger { background: #c62828; }
-    .admin-btn.danger:hover { background: #9b1f1f; }
-    .admin-btn.small { padding: 6px 12px; font-size: 12px; }
 
-    .admin-msg {
-        margin-top: 10px;
-        font-size: 13px;
-        min-height: 18px;
-    }
+    .admin-msg { margin-top: 10px; font-size: 13px; min-height: 18px; }
     .admin-msg.ok { color: #81c784; }
     .admin-msg.err { color: #ff6b6b; }
 
-    .avatar-edit {
-        display: flex; align-items: center; gap: 16px;
-        margin-bottom: 12px;
-    }
+    .avatar-edit { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
     .avatar-preview {
-        width: 80px; height: 80px;
-        border-radius: 50%;
-        background-size: cover; background-position: center;
+        width: 80px; height: 80px; border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
         font-weight: 700; font-size: 28px; color: #fff;
-        flex-shrink: 0; overflow: hidden;
-        border: 3px solid #444;
+        flex-shrink: 0; overflow: hidden; border: 3px solid #444;
     }
     .avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
 
-    .pack-create {
-        display: flex; gap: 8px; margin-bottom: 16px;
+    /* ЧАТ */
+    .chat-container {
+        width: 100%; max-width: 600px;
+        background: #2a2a3e; border-radius: 12px;
+        overflow: hidden; display: flex; flex-direction: column;
+        height: 70vh;
     }
-    .pack-create input {
-        flex: 1;
-        padding: 10px 14px;
-        border: 1px solid #444;
-        border-radius: 8px;
-        background: #1e1e2e;
-        color: #fff;
-        font-size: 14px;
-        outline: none;
-    }
-    .pack-create input:focus { border-color: #a78bfa; }
-
-    .packs-list {
-        display: flex; flex-direction: column; gap: 12px;
-    }
-    .pack-block {
-        background: #23233a;
-        border: 1px solid #3a3a52;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    .pack-header {
+    .chat-header {
+        background: #764ba2; padding: 12px 20px;
+        font-weight: 700; font-size: 16px;
         display: flex; justify-content: space-between; align-items: center;
-        padding: 12px 16px;
-        background: #2f2f48;
-        border-bottom: 1px solid #3a3a52;
-        flex-wrap: wrap; gap: 8px;
     }
-    .pack-title {
-        font-weight: 700; font-size: 15px; color: #fff;
-        display: flex; align-items: center; gap: 10px;
-        flex-wrap: wrap;
+    .chat-status { font-size: 12px; color: #e0d4ff; }
+    .chat-messages {
+        flex: 1; overflow-y: auto; padding: 15px;
+        display: flex; flex-direction: column; gap: 10px;
     }
-    .pack-title .pack-badge {
-        background: #764ba2; color: #fff;
-        font-size: 11px; padding: 2px 8px;
-        border-radius: 10px; font-weight: 700;
+    .chat-msg {
+        background: #35354d; padding: 10px 14px;
+        border-radius: 12px; max-width: 80%;
+        align-self: flex-start; position: relative;
+        display: flex; gap: 10px;
     }
-    .pack-title .pack-badge.warn { background: #f57c00; }
-    .pack-title .pack-badge.danger { background: #c62828; }
-
-    .pack-header-actions {
-        display: flex; gap: 6px; flex-wrap: wrap;
-    }
-    .pack-stickers {
-        padding: 12px;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-        gap: 10px;
-        min-height: 40px;
-    }
-    .pack-empty {
-        color: #666; font-size: 13px;
-        font-style: italic;
-        grid-column: 1 / -1;
-        text-align: center; padding: 10px;
-    }
-    .sticker-admin-item {
-        position: relative;
-        aspect-ratio: 1;
-        background: #1e1e2e;
-        border-radius: 8px;
-        overflow: hidden;
+    .chat-msg.own { background: #764ba2; align-self: flex-end; }
+    .chat-msg .msg-avatar {
+        width: 32px; height: 32px; border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
-        border: 1px solid #3a3a52;
+        font-weight: 700; font-size: 13px; overflow: hidden;
+        flex-shrink: 0;
     }
-    .sticker-admin-item img,
-    .sticker-admin-item video {
-        max-width: 100%; max-height: 100%; object-fit: contain;
+    .chat-msg .msg-avatar.mega { background: linear-gradient(135deg, #ff6b6b, #c62828); }
+    .chat-msg .msg-avatar.sergo { background: linear-gradient(135deg, #4fc3f7, #0288d1); }
+    .chat-msg .msg-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .chat-msg .msg-body { flex: 1; min-width: 0; }
+    .chat-msg .msg-author {
+        font-size: 11px; font-weight: 700;
+        margin-bottom: 4px; color: #a78bfa;
     }
-    .sticker-admin-item .webm-badge {
-        position: absolute;
-        bottom: 2px; left: 2px;
-        background: rgba(118, 75, 162, 0.9);
-        color: #fff; font-size: 9px;
-        padding: 1px 5px; border-radius: 4px;
-        font-weight: 700;
+    .chat-msg.own .msg-author { color: #e0d4ff; }
+    .chat-msg .msg-text { font-size: 14px; word-break: break-word; }
+    .chat-msg .msg-time {
+        font-size: 10px; color: #888;
+        margin-top: 4px; text-align: right;
     }
-    .sticker-admin-remove {
-        position: absolute;
-        top: 3px; right: 3px;
+    .msg-delete {
+        position: absolute; top: 4px; right: 4px;
         background: #c62828; color: #fff;
         border: none; border-radius: 50%;
-        width: 22px; height: 22px;
-        font-size: 13px; cursor: pointer;
-        padding: 0; line-height: 1;
-        z-index: 2;
+        width: 20px; height: 20px;
+        font-size: 12px; cursor: pointer;
+        padding: 0; opacity: 0;
     }
-    .sticker-admin-remove:hover { background: #9b1f1f; }
-
-    .modal {
-        display: none; position: fixed; inset: 0;
-        background: rgba(0,0,0,0.85); z-index: 1000;
-        justify-content: center; align-items: center; padding: 20px;
+    .chat-msg:hover .msg-delete { opacity: 1; }
+    .chat-input-area {
+        display: flex; gap: 8px; padding: 12px;
+        background: #35354d; border-top: 1px solid #444;
     }
-    .modal.active { display: flex; }
-    .modal img, .modal video {
-        max-width: 90vw; max-height: 90vh;
-        border-radius: 12px;
+    .chat-input-area input {
+        flex: 1; padding: 12px 16px;
+        border: none; border-radius: 8px;
+        background: #1e1e2e; color: #fff;
+        font-size: 14px; outline: none;
     }
-    .modal-close {
-        position: absolute; top: 20px; right: 30px;
-        font-size: 36px; color: #fff;
-        cursor: pointer; background: none; border: none;
-        padding: 0; line-height: 1;
+    .chat-input-area button {
+        padding: 12px 20px; background: #764ba2; border-radius: 8px;
     }
-    .modal-close:hover { color: #a78bfa; }
-
-    .case-custom-input {
-        display: none;
-        margin-top: 8px;
-    }
-    .case-custom-input.visible { display: block; }
 </style>
 </head>
 <body>
@@ -1200,12 +477,13 @@
 <div class="user-bar" id="userBar"></div>
 
 <div class="tabs">
-    <button class="tab-btn active" data-tab="accounting" onclick="switchTab('accounting', this)">Учёт халявы</button>
-    <button class="tab-btn" data-tab="drops" onclick="switchTab('drops', this)">🎁 Дропы</button>
-    <button class="tab-btn" data-tab="chat" onclick="switchTab('chat', this)">Чат</button>
-    <button class="tab-btn admin-tab" data-tab="admin" id="adminTabBtn" style="display:none;" onclick="switchTab('admin', this)">Админка</button>
+    <button class="tab-btn active" data-tab="accounting" onclick="switchTab('accounting', this)">📊 Учёт</button>
+    <button class="tab-btn auction-tab" data-tab="auction" onclick="switchTab('auction', this)">🎰 Аукционы</button>
+    <button class="tab-btn" data-tab="chat" onclick="switchTab('chat', this)">💬 Чат</button>
+    <button class="tab-btn admin-tab" data-tab="admin" id="adminTabBtn" style="display:none;" onclick="switchTab('admin', this)">🛠 Админка</button>
 </div>
 
+<!-- УЧЁТ -->
 <div id="tab-accounting" class="tab-content active">
     <table id="myTable" class="acc-table">
         <thead>
@@ -1217,72 +495,75 @@
         </thead>
         <tbody id="tableBody"></tbody>
     </table>
-    <p class="hint">Сумма считается автоматически.</p>
 </div>
 
-<!-- ДРОПЫ -->
-<div id="tab-drops" class="tab-content">
-    <div class="drops-header">
-        <div class="drops-title">🎁 Последние дропы</div>
-        <div class="drops-filters">
-            <button class="drops-filter-btn active" data-filter="all" onclick="setDropFilter('all', this)">Все</button>
-            <button class="drops-filter-btn" data-filter="mega" onclick="setDropFilter('mega', this)">MEGATEM41K</button>
-            <button class="drops-filter-btn" data-filter="sergo" onclick="setDropFilter('sergo', this)">Sergo Bulkin</button>
+<!-- АУКЦИОН -->
+<div id="tab-auction" class="tab-content">
+    <div class="auction-wrap">
+
+        <div class="auction-header">
+            <h2>🎰 АУКЦИОНЫ</h2>
+            <p>Выполняй условия и получай призы</p>
+        </div>
+
+        <div class="auction-main">
+
+            <div class="auction-info">
+                <div class="auction-org">
+                    <div class="org-avatar" id="orgAvatar">M</div>
+                    <div class="org-info">
+                        <h3 id="orgName">MEGATEM41K</h3>
+                        <p>Организатор</p>
+                    </div>
+                    <div class="auction-timer" id="auctionTimerBlock">
+                        <div class="timer-label">До выбора победителей</div>
+                        <div class="timer-value" id="auctionTimer">1 : 00</div>
+                    </div>
+                </div>
+
+                <div class="auction-price">
+                    <div class="price-left">
+                        <div class="price-val" id="ticketPrice">₽8.78</div>
+                        <div class="price-sub">Цена за 1 билет</div>
+                    </div>
+                    <button class="dep-btn" id="depBtn" onclick="depositTicket()">💳 DEP</button>
+                </div>
+
+                <div class="prizes-title">🎁 Призы</div>
+                <div class="auction-prizes" id="auctionPrizes"></div>
+            </div>
+
+            <div class="auction-tickets">
+                <div class="tickets-header">
+                    <h3>🎫 Билеты</h3>
+                    <div class="tickets-count" id="ticketsCount">0 / 1000</div>
+                </div>
+                <div class="tickets-grid" id="ticketsGrid"></div>
+                <div class="tickets-status" id="ticketsStatus">
+                    Нажми DEP чтобы получить билеты
+                </div>
+            </div>
+
         </div>
     </div>
-    <div class="drops-grid" id="dropsGrid"></div>
 </div>
 
+<!-- ЧАТ -->
 <div id="tab-chat" class="tab-content">
     <div class="chat-container">
         <div class="chat-header">
-            <div class="chat-header-left">
-                <span>💬 Общий чат</span>
-                <span class="chat-status" id="chatStatus">подключение...</span>
-            </div>
-            <div class="volume-wrap">
-                <button class="volume-btn" id="volumeBtn" onclick="toggleVolumePanel(event)" title="Громкость">🔊</button>
-                <div class="volume-slider-wrap" id="volumeSliderWrap">
-                    <input type="range" id="volumeSlider" min="0" max="100" value="100" oninput="setVolume(this.value)">
-                    <span class="volume-value" id="volumeValue">100%</span>
-                </div>
-            </div>
+            <span>💬 Общий чат</span>
+            <span class="chat-status" id="chatStatus">подключение...</span>
         </div>
         <div class="chat-messages" id="chatMessages"></div>
-
-        <div class="typing-indicator" id="typingIndicator">
-            <span id="typingName">Кто-то</span>
-            <div class="typing-dots">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-
-        <div class="sticker-panel" id="stickerPanel">
-            <div class="sticker-panel-header">
-                <span class="sticker-panel-title">😀 Стикеры</span>
-                <button class="sticker-panel-close" onclick="toggleStickerPanel()">×</button>
-            </div>
-            <div class="sticker-packs-tabs" id="stickerPacksTabs"></div>
-            <div class="sticker-grid" id="stickerGrid"></div>
-        </div>
-
-        <div class="record-panel" id="recordPanel">
-            <div class="record-dot"></div>
-            <div class="record-time" id="recordTime">0:00</div>
-            <div class="record-label">🎤 Идёт запись...</div>
-            <button class="record-cancel" onclick="cancelRecording()">Отмена</button>
-            <button class="record-send" onclick="stopAndSendRecording()">➤ Отправить</button>
-        </div>
-
         <div class="chat-input-area">
-            <button class="sticker-btn" onclick="toggleStickerPanel()" title="Стикеры">😀</button>
-            <button class="mic-btn" id="micBtn" onclick="startRecording()" title="Голосовое сообщение">🎤</button>
-            <input type="text" id="chatInput" placeholder="Напиши сообщение..." onkeydown="if(event.key==='Enter') sendMessage()" oninput="onTyping()">
+            <input type="text" id="chatInput" placeholder="Напиши сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
             <button onclick="sendMessage()">➤</button>
         </div>
     </div>
 </div>
 
+<!-- АДМИНКА -->
 <div id="tab-admin" class="tab-content">
     <div class="admin-wrap">
 
@@ -1292,17 +573,16 @@
                 <div class="avatar-preview mega" id="preview-mega">M</div>
                 <div>
                     <button class="admin-btn" onclick="document.getElementById('avatarFile-mega').click()">📷 Загрузить аватар</button>
-                    <input type="file" id="avatarFile-mega" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none;" onchange="uploadAvatar(event, 'mega')">
-                    <button class="admin-btn danger" onclick="removeAvatar('mega')" style="margin-left:8px;">✖ Удалить</button>
+                    <input type="file" id="avatarFile-mega" accept="image/*" style="display:none;" onchange="uploadAvatar(event, 'mega')">
                 </div>
             </div>
             <div class="admin-field">
                 <label>Логин</label>
-                <input type="text" id="login-mega" placeholder="MEGATEM41K">
+                <input type="text" id="login-mega">
             </div>
             <div class="admin-field">
-                <label>Новый пароль (оставь пустым — не менять)</label>
-                <input type="password" id="password-mega" placeholder="Новый пароль">
+                <label>Новый пароль</label>
+                <input type="password" id="password-mega">
             </div>
             <div class="admin-btn-row">
                 <button class="admin-btn" onclick="saveAccount('mega')">💾 Сохранить</button>
@@ -1316,17 +596,16 @@
                 <div class="avatar-preview sergo" id="preview-sergo">S</div>
                 <div>
                     <button class="admin-btn" onclick="document.getElementById('avatarFile-sergo').click()">📷 Загрузить аватар</button>
-                    <input type="file" id="avatarFile-sergo" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none;" onchange="uploadAvatar(event, 'sergo')">
-                    <button class="admin-btn danger" onclick="removeAvatar('sergo')" style="margin-left:8px;">✖ Удалить</button>
+                    <input type="file" id="avatarFile-sergo" accept="image/*" style="display:none;" onchange="uploadAvatar(event, 'sergo')">
                 </div>
             </div>
             <div class="admin-field">
                 <label>Логин</label>
-                <input type="text" id="login-sergo" placeholder="Sergo Bulkin">
+                <input type="text" id="login-sergo">
             </div>
             <div class="admin-field">
-                <label>Новый пароль (оставь пустым — не менять)</label>
-                <input type="password" id="password-sergo" placeholder="Новый пароль">
+                <label>Новый пароль</label>
+                <input type="password" id="password-sergo">
             </div>
             <div class="admin-btn-row">
                 <button class="admin-btn" onclick="saveAccount('sergo')">💾 Сохранить</button>
@@ -1334,117 +613,54 @@
             <div class="admin-msg" id="msg-sergo"></div>
         </div>
 
+        <!-- АДМИНКА АУКЦИОНОВ -->
         <div class="admin-card">
-            <h3>💬 Управление чатом</h3>
-            <p style="font-size:13px;color:#888;">
-                В самом чате наведи на сообщение — появится <b>×</b>, чтобы удалить. Тебе (как админу) показывается <b>×</b> на всех сообщениях, включая чужие.
-            </p>
-        </div>
+            <h3>🎰 Создать аукцион</h3>
 
-        <!-- ДРОПЫ В АДМИНКЕ -->
-        <div class="admin-card">
-            <h3>🎁 Добавить дроп</h3>
-            <p style="font-size:13px;color:#888;margin-bottom:16px;">
-                Заполни поля и нажми «Добавить». Фото кейса подставляется автоматически по названию.
-            </p>
+            <div class="admin-field">
+                <label>Название аукциона</label>
+                <input type="text" id="aucTitle" placeholder="Например: Дамасская сталь">
+            </div>
 
-            <div class="drop-form">
-                <div class="admin-field full-width">
-                    <label>Название скина *</label>
-                    <input type="text" id="dropName" placeholder="Например: AWP | Удар молнии">
-                </div>
+            <div class="admin-field">
+                <label>Кейс (влияет на список призов)</label>
+                <select id="aucCase" onchange="onCaseSelectAdmin()">
+                    <option value="rainy">Дождливый мегаполис</option>
+                    <option value="atelier">Ателье колдовских колпаков</option>
+                </select>
+            </div>
 
-                <div class="admin-field">
-                    <label>Кейс</label>
-                    <select class="admin-select" id="dropCaseSelect" onchange="onCaseSelectChange()">
-                        <option value="Дождливый мегаполис">Дождливый мегаполис</option>
-                        <option value="Ателье колдовских колпаков">Ателье колдовских колпаков</option>
-                        <option value="__other__">Другое...</option>
-                    </select>
-                    <input type="text" id="dropCaseCustom" class="case-custom-input" placeholder="Введи название кейса">
-                </div>
+            <div class="admin-field">
+                <label>Цена за билет (₽)</label>
+                <input type="number" id="aucPrice" placeholder="8.78" step="0.01" value="8.78">
+            </div>
 
-                <div class="admin-field">
-                    <label>Ссылка на кейс (необязательно)</label>
-                    <input type="text" id="dropCaseUrl" placeholder="https://skinhouse.gg/ru/case/...">
-                </div>
+            <div class="admin-field">
+                <label>Билетов до старта</label>
+                <input type="number" id="aucTotal" placeholder="1000" value="1000">
+            </div>
 
-                <div class="admin-field">
-                    <label>Цена</label>
-                    <input type="text" id="dropPrice" placeholder="Например: 1500 ₽">
-                </div>
+            <div class="admin-field">
+                <label>Таймер до победителя (минут, от 1 до 10)</label>
+                <input type="number" id="aucTimer" placeholder="1" value="1" min="1" max="10">
+            </div>
 
-                <div class="admin-field">
-                    <label>Редкость</label>
-                    <select class="admin-select" id="dropRarity">
-                        <option value="shirotreb">Ширпотреб</option>
-                        <option value="prom">Промышленное</option>
-                        <option value="army">Армейское</option>
-                        <option value="forbidden">Запрещённое</option>
-                        <option value="classified">Засекреченное</option>
-                        <option value="secret">Тайное</option>
-                        <option value="gold">Золотое</option>
-                    </select>
-                </div>
-
-                <div class="admin-field">
-                    <label>Кто выбил</label>
-                    <select class="admin-select" id="dropAuthor">
-                        <option value="mega">MEGATEM41K</option>
-                        <option value="sergo">Sergo Bulkin</option>
-                    </select>
-                </div>
-
-                <div class="drop-image-upload">
-                    <div>
-                        <p style="font-size:12px;color:#888;margin-bottom:8px;font-weight:600;">Фото скина</p>
-                        <div class="drop-image-preview" id="dropImagePreview" onclick="document.getElementById('dropImageFile').click()">
-                            <div class="ph">🎁</div>
-                        </div>
-                        <input type="file" id="dropImageFile" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none;" onchange="handleDropImage(event)">
-                        <div style="margin-top:8px;">
-                            <button class="admin-btn small" onclick="document.getElementById('dropImageFile').click()">📷 Выбрать</button>
-                            <button class="admin-btn small danger" onclick="clearDropImage()" style="margin-left:6px;">✖</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="admin-field">
+                <label>Призы (Название;Цена, по одной на строку)</label>
+                <textarea id="aucPrizes"></textarea>
             </div>
 
             <div class="admin-btn-row">
-                <button class="admin-btn" onclick="addDrop()">➕ Добавить дроп</button>
+                <button class="admin-btn" onclick="createAuction()">➕ Создать аукцион</button>
+                <button class="admin-btn danger" onclick="resetTickets()">🔄 Сбросить билеты</button>
             </div>
-            <div class="admin-msg" id="msg-drop"></div>
-        </div>
-
-        <div class="admin-card">
-            <h3>📋 Управление дропами</h3>
-            <div id="dropsAdminList"></div>
-        </div>
-
-        <div class="admin-card">
-            <h3>😀 Стикерпаки</h3>
-            <p style="font-size:13px;color:#888;margin-bottom:14px;">
-                Загружай <b>PNG</b>, <b>JPG</b> или <b>WebM</b>. Максимум <b>200 стикеров в паке</b>.
-            </p>
-            <div class="pack-create">
-                <input type="text" id="newPackName" placeholder="Название нового пака" maxlength="30">
-                <button class="admin-btn" onclick="createPack()">➕ Создать пак</button>
-            </div>
-            <div class="packs-list" id="packsList"></div>
+            <div class="admin-msg" id="msg-auction"></div>
         </div>
 
     </div>
 </div>
 
-<div class="modal" id="modal" onclick="closeModal(event)">
-    <button class="modal-close" onclick="closeModal(event)">×</button>
-    <div id="modalContent"></div>
 </div>
-
-</div>
-
-<button class="save-float" id="saveFloat" onclick="manualSave()">💾 Сохранить</button>
-<div class="save-toast" id="saveToast">✅ Сохранено!</div>
 
 <script type="module">
     // ==================================================
@@ -1467,81 +683,54 @@
     const db = getFirestore(app);
 
     // ==================================================
-    // ССЫЛКИ НА ПРОФИЛИ И ФОТО КЕЙСОВ
+    // СПИСКИ СКИНОВ ПО КЕЙСАМ
     // ==================================================
-    const PROFILE_URLS = {
-        mega: 'https://skinhouse.gg/ru/user/2181',
-        sergo: 'https://skinhouse.gg/ru/user/26587'
+    const CASE_SKINS = {
+        rainy: [
+            { name: 'Штык-нож M9 | Чистая вода', price: 14918.98 },
+            { name: 'Складной нож | Городская маскировка', price: 21902.59 },
+            { name: 'Нож с лезвием-крюком | Чистая вода', price: 8668.49 },
+            { name: 'AWP | Удар молнии', price: 0 },
+            { name: 'M4A4 | Дождь из пуль', price: 0 },
+            { name: 'AK-47 | Неоновая революция', price: 0 },
+            { name: 'Капитан Фрэнк «Мокрый» | Боевые пловцы SEAL', price: 0 },
+            { name: 'G3SG1 | Поток', price: 0 },
+            { name: 'MP9 | Бегом за латте', price: 0 },
+            { name: 'Автомат «Галиль» | Радужная ложка', price: 0 },
+            { name: 'USP-S | Следы асфальта', price: 0 },
+            { name: 'MP9 | Цветное стекло', price: 0 },
+            { name: 'ПП-19 «Бизон» | Синяя струя', price: 0 },
+            { name: 'Dual Berettas | Городской шок', price: 0 },
+            { name: 'M4A4 | Тусклые полосы', price: 0 },
+            { name: 'Desert Eagle | Городской щебень', price: 0 },
+            { name: 'UMP-45 | Поздняя поездка', price: 0 },
+            { name: 'P90 | Мрак', price: 0 },
+            { name: 'MP7 | Городская опасность', price: 0 },
+            { name: 'MP9 | Гроза', price: 0 },
+            { name: 'AUG | Гроза', price: 0 }
+        ],
+        atelier: [
+            { name: 'Фальшион | Волны', price: 0 },
+            { name: 'Медвежий нож | Волны', price: 0 },
+            { name: 'Паракорд-нож | Волны', price: 0 },
+            { name: 'Нож выживания | Волны', price: 0 },
+            { name: 'Нож с лезвием-крюком | Волны', price: 0 },
+            { name: 'Тычковые ножи | Волны', price: 0 },
+            { name: 'AWP | CMYK', price: 0 },
+            { name: 'USP-S | Поток информации', price: 0 },
+            { name: 'AK-47 | Наследство', price: 0 },
+            { name: 'Glock-18 | Полный раскрас', price: 0 },
+            { name: 'Брелок | Крошка Привидение', price: 0 },
+            { name: 'M4A4 | Безлюдный космос', price: 0 },
+            { name: 'M4A1-S | Стратосфера', price: 0 },
+            { name: 'M4A1-S | Дикий тусовщик', price: 0 },
+            { name: 'Брелок | Бриллиантовая колба', price: 0 },
+            { name: 'M4A4 | Зубная фея', price: 0 },
+            { name: 'Брелок | Литой калаш', price: 0 },
+            { name: 'P90 | Неокоролева', price: 0 },
+            { name: 'USP-S | Неисправность', price: 0 }
+        ]
     };
-
-    // Встроенные фото кейсов (data-url)
-    // Дождливый мегаполис (PNG без фона)
-    const CASE_IMAGE_RAINY = 'images/rainy.webp';
-    // Ателье (PNG без фона)
-    const CASE_IMAGE_ATELIER = 'images/atelier.webp';
-
-    // Маппинг кейсов на фото и подпись дропа
-    function getCaseInfo(caseName) {
-        const n = (caseName || '').toLowerCase();
-        if (n.includes('дождлив') || n.includes('мегаполис') || n.includes('rainy')) {
-            return {
-                image: CASE_IMAGE_RAINY,
-                giver: 'Дроп от Алика'
-            };
-        }
-        if (n.includes('ателье') || n.includes('колдовск') || n.includes('atelier')) {
-            return {
-                image: CASE_IMAGE_ATELIER,
-                giver: 'Дроп от Жидкого'
-            };
-        }
-        return { image: '', giver: '' };
-    }
-
-    // ==================================================
-    // ГРОМКОСТЬ
-    // ==================================================
-    let currentVolume = parseFloat(localStorage.getItem('chatVolume') || '1.0');
-    window.currentVolume = currentVolume;
-
-    window.toggleVolumePanel = function(e) {
-        if (e) e.stopPropagation();
-        document.getElementById('volumeSliderWrap').classList.toggle('open');
-    };
-
-    document.addEventListener('click', (e) => {
-        const wrap = document.getElementById('volumeSliderWrap');
-        const btn = document.getElementById('volumeBtn');
-        if (wrap && wrap.classList.contains('open') && !wrap.contains(e.target) && e.target !== btn) {
-            wrap.classList.remove('open');
-        }
-    });
-
-    window.setVolume = function(val) {
-        currentVolume = parseInt(val) / 100;
-        window.currentVolume = currentVolume;
-        localStorage.setItem('chatVolume', String(currentVolume));
-        document.getElementById('volumeSlider').value = val;
-        document.getElementById('volumeValue').innerText = val + '%';
-        const btn = document.getElementById('volumeBtn');
-        if (currentVolume === 0) btn.innerText = '🔇';
-        else if (currentVolume < 0.5) btn.innerText = '🔉';
-        else btn.innerText = '🔊';
-        document.querySelectorAll('audio').forEach(a => { a.volume = currentVolume; });
-    };
-
-    (function initVolume() {
-        const val = Math.round(currentVolume * 100);
-        const slider = document.getElementById('volumeSlider');
-        const label = document.getElementById('volumeValue');
-        const btn = document.getElementById('volumeBtn');
-        if (slider) { slider.value = val; label.innerText = val + '%'; }
-        if (btn) {
-            if (currentVolume === 0) btn.innerText = '🔇';
-            else if (currentVolume < 0.5) btn.innerText = '🔉';
-            else btn.innerText = '🔊';
-        }
-    })();
 
     // ==================================================
     // АККАУНТЫ
@@ -1551,467 +740,28 @@
         'MEGATEM41K':    { password: '322sosyXUI322', key: 'mega' }
     };
     let AVATARS = { mega: '', sergo: '' };
-    let STICKER_PACKS = {};
-    let DROPS = [];
+    let currentUser = null;
 
-    let currentAdminPack = null;
-    let currentChatPack = null;
-    const MAX_STICKERS_PER_PACK = 200;
-
-    function isWebm(src) {
-        return typeof src === 'string' && (src.startsWith('data:video/webm') || src.includes('.webm'));
-    }
-    function isVideo(src) {
-        return typeof src === 'string' && (src.startsWith('data:video/') || (src.includes('.webm') && !src.includes('voice')));
-    }
+    const SESSION_KEY = 'chat_session_v1';
 
     async function loadAccounts() {
         try {
-            const docRef = doc(db, 'data', 'accounts');
-            const docSnap = await getDoc(docRef);
+            const docSnap = await getDoc(doc(db, 'data', 'accounts'));
             if (docSnap.exists()) {
                 const data = docSnap.data();
                 if (data.accounts) ACCOUNTS = data.accounts;
                 if (data.avatars) AVATARS = data.avatars;
-                if (data.stickerPacks) STICKER_PACKS = data.stickerPacks;
             } else {
-                await setDoc(docRef, {
-                    accounts: ACCOUNTS,
-                    avatars: AVATARS,
-                    stickerPacks: {}
-                });
+                await setDoc(doc(db, 'data', 'accounts'), { accounts: ACCOUNTS, avatars: AVATARS });
             }
-        } catch(e) {
-            console.warn('Не удалось загрузить аккаунты', e);
-        }
+        } catch(e) { console.warn(e); }
     }
 
     async function saveAccounts() {
         try {
-            await setDoc(doc(db, 'data', 'accounts'), {
-                accounts: ACCOUNTS,
-                avatars: AVATARS,
-                stickerPacks: STICKER_PACKS
-            });
-        } catch(e) {
-            console.warn('Ошибка сохранения', e);
-        }
+            await setDoc(doc(db, 'data', 'accounts'), { accounts: ACCOUNTS, avatars: AVATARS });
+        } catch(e) { console.warn(e); }
     }
-
-    function subscribeStickers() {
-        const docRef = doc(db, 'data', 'accounts');
-        onSnapshot(docRef, (docSnap) => {
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                if (data.stickerPacks) {
-                    STICKER_PACKS = data.stickerPacks;
-                    renderStickerPacksTabs();
-                    renderStickerGrid();
-                    renderPacksAdmin();
-                }
-            }
-        });
-    }
-
-    // ==================================================
-    // ДРОПЫ
-    // ==================================================
-    let currentDropFilter = 'all';
-    let pendingDropImage = null;
-
-    function subscribeDrops() {
-        const docRef = doc(db, 'data', 'drops');
-        onSnapshot(docRef, (docSnap) => {
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                DROPS = data.items || [];
-            } else {
-                DROPS = [];
-            }
-            renderDrops();
-            renderDropsAdmin();
-        }, (err) => {
-            console.warn('Ошибка дропов', err);
-        });
-    }
-
-    async function saveDrops() {
-        try {
-            await setDoc(doc(db, 'data', 'drops'), { items: DROPS });
-        } catch(e) {
-            console.warn('Ошибка сохранения дропов', e);
-            alert('Не удалось сохранить: ' + e.message);
-        }
-    }
-
-    window.setDropFilter = function(filter, btn) {
-        currentDropFilter = filter;
-        document.querySelectorAll('.drops-filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        renderDrops();
-    };
-
-    function formatDropDate(ts) {
-        if (!ts) return '';
-        try {
-            const d = ts.toDate ? ts.toDate() : new Date(ts);
-            return d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: '2-digit' }) +
-                   ' ' + d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
-        } catch(e) { return ''; }
-    }
-
-    const RARITY_LABELS = {
-        shirotreb: 'Ширпотреб',
-        prom: 'Промышленное',
-        army: 'Армейское',
-        forbidden: 'Запрещённое',
-        classified: 'Засекреченное',
-        secret: 'Тайное',
-        gold: 'Золотое'
-    };
-    const RARITY_COLORS = {
-        shirotreb: '#5a5a7a',
-        prom: '#4a90e2',
-        army: '#5b8dd6',
-        forbidden: '#9b59b6',
-        classified: '#e91e63',
-        secret: '#c62828',
-        gold: '#f9a825'
-    };
-
-    function getRarityLabel(r) { return RARITY_LABELS[r] || 'Ширпотреб'; }
-    function getRarityColor(r) { return RARITY_COLORS[r] || '#5a5a7a'; }
-
-    function getAuthorLabel(key) {
-        if (key === 'mega') return 'MEGATEM41K';
-        if (key === 'sergo') return 'Sergo Bulkin';
-        return key;
-    }
-
-    function renderDrops() {
-        const grid = document.getElementById('dropsGrid');
-        if (!grid) return;
-        grid.innerHTML = '';
-
-        let filtered = DROPS.filter(d => {
-            if (currentDropFilter === 'all') return true;
-            return d.author === currentDropFilter;
-        });
-
-        filtered.sort((a, b) => {
-            const ta = a.createdAt ? (a.createdAt.toDate ? a.createdAt.toDate().getTime() : new Date(a.createdAt).getTime()) : 0;
-            const tb = b.createdAt ? (b.createdAt.toDate ? b.createdAt.toDate().getTime() : new Date(b.createdAt).getTime()) : 0;
-            return tb - ta;
-        });
-
-        if (filtered.length === 0) {
-            const empty = document.createElement('div');
-            empty.className = 'drops-empty';
-            empty.innerText = currentDropFilter === 'all'
-                ? 'Пока нет дропов. Добавь их в админке.'
-                : 'У этого игрока пока нет дропов.';
-            grid.appendChild(empty);
-            return;
-        }
-
-        filtered.forEach(drop => {
-            const card = document.createElement('div');
-            card.className = 'drop-card rarity-' + (drop.rarity || 'shirotreb');
-
-            const caseInfo = getCaseInfo(drop.case);
-            const caseImage = caseInfo.image;
-
-            card.onclick = (e) => {
-                if (e.target.tagName === 'IMG' || e.target.closest('.case-img')) return;
-                const url = PROFILE_URLS[drop.author];
-                if (url) window.open(url, '_blank');
-            };
-
-            const imgWrap = document.createElement('div');
-            imgWrap.className = 'drop-image';
-
-            // Если есть фото кейса — оно сверху, при наведении исчезает
-            if (caseImage) {
-                const caseLayer = document.createElement('div');
-                caseLayer.className = 'case-img';
-                const cimg = document.createElement('img');
-                cimg.src = caseImage;
-                caseLayer.appendChild(cimg);
-
-                caseLayer.onclick = (e) => {
-                    e.stopPropagation();
-                    if (drop.caseUrl) {
-                        window.open(drop.caseUrl, '_blank');
-                    } else {
-                        const url = PROFILE_URLS[drop.author];
-                        if (url) window.open(url, '_blank');
-                    }
-                };
-
-                imgWrap.appendChild(caseLayer);
-            }
-
-            if (drop.image) {
-                const img = document.createElement('img');
-                img.src = drop.image;
-                img.onclick = (e) => {
-                    e.stopPropagation();
-                    if (drop.caseUrl) window.open(drop.caseUrl, '_blank');
-                    else {
-                        const url = PROFILE_URLS[drop.author];
-                        if (url) window.open(url, '_blank');
-                    }
-                };
-                imgWrap.appendChild(img);
-            } else if (!caseImage) {
-                const ph = document.createElement('div');
-                ph.className = 'no-image';
-                ph.innerText = '🎁';
-                imgWrap.appendChild(ph);
-            }
-
-            const badge = document.createElement('div');
-            badge.className = 'drop-rarity-badge';
-            badge.innerText = getRarityLabel(drop.rarity);
-            imgWrap.appendChild(badge);
-
-            card.appendChild(imgWrap);
-
-            const info = document.createElement('div');
-            info.className = 'drop-info';
-
-            const name = document.createElement('div');
-            name.className = 'drop-name';
-            name.innerText = drop.name || 'Без названия';
-            info.appendChild(name);
-
-            if (drop.case) {
-                const c = document.createElement('div');
-                c.className = 'drop-case';
-                c.innerText = '📦 ' + drop.case;
-                info.appendChild(c);
-            }
-
-            // Подпись "Дроп от Алика/Жидкого" — по кейсу
-            if (caseInfo.giver) {
-                const g = document.createElement('div');
-                g.className = 'drop-giver';
-                g.innerText = '🎁 ' + caseInfo.giver;
-                info.appendChild(g);
-            }
-
-            if (drop.price) {
-                const p = document.createElement('div');
-                p.className = 'drop-price';
-                p.innerText = drop.price;
-                info.appendChild(p);
-            }
-
-            const meta = document.createElement('div');
-            meta.style.cssText = 'display:flex;justify-content:space-between;align-items:center;margin-top:6px;';
-
-            const author = document.createElement('div');
-            author.className = 'drop-author';
-            author.innerText = getAuthorLabel(drop.author);
-            author.style.cursor = 'pointer';
-            author.style.textDecoration = 'underline';
-            author.onclick = (e) => {
-                e.stopPropagation();
-                const url = PROFILE_URLS[drop.author];
-                if (url) window.open(url, '_blank');
-            };
-            meta.appendChild(author);
-
-            const date = document.createElement('div');
-            date.className = 'drop-date';
-            date.innerText = formatDropDate(drop.createdAt);
-            meta.appendChild(date);
-
-            info.appendChild(meta);
-            card.appendChild(info);
-
-            grid.appendChild(card);
-        });
-    }
-
-    // ==================================================
-    // ДРОПЫ — АДМИНКА
-    // ==================================================
-    window.onCaseSelectChange = function() {
-        const sel = document.getElementById('dropCaseSelect');
-        const custom = document.getElementById('dropCaseCustom');
-        if (sel.value === '__other__') {
-            custom.classList.add('visible');
-        } else {
-            custom.classList.remove('visible');
-        }
-    };
-
-    window.handleDropImage = function(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
-        compressImage(file, 400, 0.85).then(result => {
-            pendingDropImage = result;
-            const preview = document.getElementById('dropImagePreview');
-            preview.innerHTML = `<img src="${result}">`;
-        });
-    };
-
-    window.clearDropImage = function() {
-        pendingDropImage = null;
-        const preview = document.getElementById('dropImagePreview');
-        preview.innerHTML = '<div class="ph">🎁</div>';
-        document.getElementById('dropImageFile').value = '';
-    };
-
-    window.addDrop = async function() {
-        const name = document.getElementById('dropName').value.trim();
-        const caseSelect = document.getElementById('dropCaseSelect').value;
-        const caseCustom = document.getElementById('dropCaseCustom').value.trim();
-        const caseUrl = document.getElementById('dropCaseUrl').value.trim();
-        const price = document.getElementById('dropPrice').value.trim();
-        const rarity = document.getElementById('dropRarity').value;
-        const author = document.getElementById('dropAuthor').value;
-        const msgEl = document.getElementById('msg-drop');
-
-        let caseName = caseSelect;
-        if (caseSelect === '__other__') {
-            if (!caseCustom) {
-                msgEl.className = 'admin-msg err';
-                msgEl.innerText = 'Введи название кейса';
-                return;
-            }
-            caseName = caseCustom;
-        }
-
-        if (!name) {
-            msgEl.className = 'admin-msg err';
-            msgEl.innerText = 'Введи название скина';
-            return;
-        }
-
-        const newDrop = {
-            id: 'drop_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
-            name,
-            case: caseName,
-            caseUrl: caseUrl || '',
-            price,
-            rarity,
-            author,
-            image: pendingDropImage || '',
-            createdAt: new Date().toISOString()
-        };
-
-        DROPS.push(newDrop);
-
-        try {
-            await saveDrops();
-        } catch(e) {
-            msgEl.className = 'admin-msg err';
-            msgEl.innerText = 'Ошибка: ' + e.message;
-            return;
-        }
-
-        document.getElementById('dropName').value = '';
-        document.getElementById('dropPrice').value = '';
-        document.getElementById('dropCaseUrl').value = '';
-        document.getElementById('dropCaseCustom').value = '';
-        document.getElementById('dropCaseSelect').value = 'Дождливый мегаполис';
-        document.getElementById('dropCaseCustom').classList.remove('visible');
-        clearDropImage();
-
-        msgEl.className = 'admin-msg ok';
-        msgEl.innerText = '✅ Дроп добавлен';
-        setTimeout(() => { msgEl.innerText = ''; }, 2000);
-
-        renderDrops();
-        renderDropsAdmin();
-    };
-
-    window.deleteDrop = async function(id) {
-        if (!confirm('Удалить этот дроп?')) return;
-        DROPS = DROPS.filter(d => d.id !== id);
-        await saveDrops();
-        renderDrops();
-        renderDropsAdmin();
-    };
-
-    function renderDropsAdmin() {
-        const list = document.getElementById('dropsAdminList');
-        if (!list) return;
-        list.innerHTML = '';
-
-        if (DROPS.length === 0) {
-            list.innerHTML = '<p style="color:#666;font-style:italic;">Пока нет дропов</p>';
-            return;
-        }
-
-        const sorted = [...DROPS].sort((a, b) => {
-            const ta = a.createdAt ? new Date(a.createdAt).getTime() : 0;
-            const tb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
-            return tb - ta;
-        });
-
-        sorted.forEach(drop => {
-            const row = document.createElement('div');
-            row.style.cssText = `
-                display: flex; align-items: center; gap: 12px;
-                padding: 10px; background: #23233a;
-                border-radius: 8px; margin-bottom: 8px;
-                border-left: 4px solid ${getRarityColor(drop.rarity)};
-            `;
-
-            const imgWrap = document.createElement('div');
-            imgWrap.style.cssText = 'width:50px;height:50px;background:#1e1e2e;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;position:relative;';
-            if (drop.image) {
-                const im = document.createElement('img');
-                im.src = drop.image;
-                im.style.cssText = 'max-width:100%;max-height:100%;object-fit:contain;';
-                imgWrap.appendChild(im);
-            } else {
-                imgWrap.innerText = '🎁';
-            }
-            row.appendChild(imgWrap);
-
-            const info = document.createElement('div');
-            info.style.cssText = 'flex:1;min-width:0;';
-
-            const t1 = document.createElement('div');
-            t1.style.cssText = 'font-weight:700;font-size:14px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
-            t1.innerText = drop.name || 'Без названия';
-            info.appendChild(t1);
-
-            const t2 = document.createElement('div');
-            t2.style.cssText = 'font-size:11px;color:#888;margin-top:2px;';
-            t2.innerText = [
-                getAuthorLabel(drop.author),
-                drop.case || '',
-                drop.price || '',
-                getRarityLabel(drop.rarity),
-                formatDropDate(drop.createdAt)
-            ].filter(Boolean).join(' · ');
-            info.appendChild(t2);
-
-            row.appendChild(info);
-
-            const delBtn = document.createElement('button');
-            delBtn.className = 'admin-btn danger small';
-            delBtn.innerText = '🗑';
-            delBtn.onclick = () => deleteDrop(drop.id);
-            row.appendChild(delBtn);
-
-            list.appendChild(row);
-        });
-    }
-
-    // ==================================================
-    // СЕССИЯ
-    // ==================================================
-    let currentUser = null;
-    let hasUnsavedChanges = false;
-
-    const SESSION_KEY = 'chat_session_v1';
 
     function saveSession(user) {
         try {
@@ -2019,11 +769,9 @@
             localStorage.setItem(SESSION_KEY, JSON.stringify(user));
         } catch(e) {}
     }
-
     function loadSession() {
         try {
-            let raw = sessionStorage.getItem(SESSION_KEY);
-            if (!raw) raw = localStorage.getItem(SESSION_KEY);
+            let raw = sessionStorage.getItem(SESSION_KEY) || localStorage.getItem(SESSION_KEY);
             if (!raw) return null;
             const u = JSON.parse(raw);
             if (ACCOUNTS[u.login]) return { login: u.login, key: ACCOUNTS[u.login].key };
@@ -2033,35 +781,26 @@
             return null;
         } catch(e) { return null; }
     }
-
     function clearSession() {
-        try {
-            sessionStorage.removeItem(SESSION_KEY);
-            localStorage.removeItem(SESSION_KEY);
-        } catch(e) {}
+        sessionStorage.removeItem(SESSION_KEY);
+        localStorage.removeItem(SESSION_KEY);
     }
 
     window.tryLogin = function() {
         const login = document.getElementById('loginInput').value.trim();
         const password = document.getElementById('passwordInput').value;
         const errEl = document.getElementById('loginError');
-
         const acc = ACCOUNTS[login];
         if (!acc) { errEl.innerText = 'Неверный логин'; return; }
         if (acc.password !== password) { errEl.innerText = 'Неверный пароль'; return; }
-
         currentUser = { login: login, key: acc.key };
         saveSession(currentUser);
         errEl.innerText = '';
-        document.getElementById('loginInput').value = '';
-        document.getElementById('passwordInput').value = '';
         showMainSite();
     };
 
     window.logout = function() {
-        const msg = hasUnsavedChanges ? 'Есть несохранённые изменения. Выйти?' : 'Выйти?';
-        if (!confirm(msg)) return;
-        clearTypingStatus();
+        if (!confirm('Выйти?')) return;
         clearSession();
         location.reload();
     };
@@ -2069,70 +808,38 @@
     function showMainSite() {
         document.getElementById('loginOverlay').classList.add('hidden');
         document.getElementById('mainSite').style.display = 'flex';
-
         renderUserBar();
-
         if (currentUser.key === 'mega') {
             document.getElementById('adminTabBtn').style.display = '';
             loadAdminFields();
-        } else {
-            document.getElementById('adminTabBtn').style.display = 'none';
         }
-
         loadTable();
-        initChat();
-        initTyping();
+        subscribeAuction();
+        subscribeChat();
         restoreActiveTab();
-
-        renderStickerPacksTabs();
-        renderStickerGrid();
-        renderPacksAdmin();
-
-        subscribeDrops();
-        renderDropsAdmin();
     }
 
     function renderUserBar() {
         const bar = document.getElementById('userBar');
         const av = AVATARS[currentUser.key];
-        const avatarStyle = av
-            ? `background-image: url('${av}'); background-size: cover; background-position: center;`
-            : '';
+        const avatarStyle = av ? `background-image: url('${av}'); background-size: cover; background-position: center;` : '';
         const avatarClass = av ? '' : currentUser.key;
         const avatarContent = av ? '' : currentUser.login[0];
-
         bar.innerHTML = `
-            <div class="avatar ${avatarClass}" style="${avatarStyle}">
-                ${av ? '' : avatarContent}
-            </div>
+            <div class="avatar ${avatarClass}" style="${avatarStyle}">${av ? '' : avatarContent}</div>
             <span>${currentUser.login}</span>
             <button class="logout" onclick="logout()">Выйти</button>
         `;
     }
 
-    function findUserKeyByLogin(login) {
-        for (const [lg, acc] of Object.entries(ACCOUNTS)) {
-            if (lg === login) return acc.key;
-        }
-        return null;
-    }
-
     function restoreSession() {
         const session = loadSession();
-        if (session) {
-            currentUser = session;
-            saveSession(session);
-            showMainSite();
-            return;
-        }
+        if (session) { currentUser = session; saveSession(session); showMainSite(); return; }
         document.getElementById('loginOverlay').classList.remove('hidden');
     }
 
     document.getElementById('passwordInput').addEventListener('keydown', (e) => {
         if (e.key === 'Enter') tryLogin();
-    });
-    document.getElementById('loginInput').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') document.getElementById('passwordInput').focus();
     });
 
     // ==================================================
@@ -2146,18 +853,7 @@
         document.getElementById('tab-' + name).classList.add('active');
         if (btn) btn.classList.add('active');
         localStorage.setItem(ACTIVE_TAB_KEY, name);
-        updateSaveButtonVisibility();
-
-        const sp = document.getElementById('stickerPanel');
-        if (sp) sp.classList.remove('open');
-
         if (name === 'admin') loadAdminFields();
-        if (name === 'drops') renderDrops();
-        if (name === 'chat') {
-            const cm = document.getElementById('chatMessages');
-            if (cm) cm.scrollTop = cm.scrollHeight;
-            markMessagesAsRead();
-        }
     };
 
     function restoreActiveTab() {
@@ -2169,16 +865,6 @@
         }
         const btn = document.querySelector(`.tab-btn[data-tab="${saved}"]`);
         if (btn) switchTab(saved, btn);
-    }
-
-    function updateSaveButtonVisibility() {
-        const saveFloat = document.getElementById('saveFloat');
-        const activeTab = localStorage.getItem(ACTIVE_TAB_KEY) || 'accounting';
-        if (activeTab === 'accounting' && hasUnsavedChanges) {
-            saveFloat.classList.add('visible');
-        } else {
-            saveFloat.classList.remove('visible');
-        }
     }
 
     // ==================================================
@@ -2197,13 +883,11 @@
     function renderTable() {
         const tbody = document.getElementById('tableBody');
         tbody.innerHTML = '';
-
         DAYS.forEach(day => {
             const tr = document.createElement('tr');
             const dayTd = document.createElement('td');
             dayTd.innerText = day;
             tr.appendChild(dayTd);
-
             ['mega', 'sergo'].forEach(ownerKey => {
                 const td = document.createElement('td');
                 const canEdit = currentUser && currentUser.key === ownerKey;
@@ -2222,23 +906,15 @@
         const totalLabel = document.createElement('td');
         totalLabel.innerText = 'Сумма';
         totalTr.appendChild(totalLabel);
-
-        const megaTd = document.createElement('td');
-        const megaSpan = document.createElement('span');
-        megaSpan.className = 'total-value mega';
-        megaSpan.id = 'total-mega';
-        megaSpan.innerText = '0 ₽';
-        megaTd.appendChild(megaSpan);
-        totalTr.appendChild(megaTd);
-
-        const sergoTd = document.createElement('td');
-        const sergoSpan = document.createElement('span');
-        sergoSpan.className = 'total-value sergo';
-        sergoSpan.id = 'total-sergo';
-        sergoSpan.innerText = '0 ₽';
-        sergoTd.appendChild(sergoSpan);
-        totalTr.appendChild(sergoTd);
-
+        ['mega', 'sergo'].forEach(key => {
+            const td = document.createElement('td');
+            const span = document.createElement('span');
+            span.className = 'total-value ' + key;
+            span.id = 'total-' + key;
+            span.innerText = '0 ₽';
+            td.appendChild(span);
+            totalTr.appendChild(td);
+        });
         tbody.appendChild(totalTr);
         updateTotals();
     }
@@ -2250,7 +926,6 @@
         label.className = 'label ' + personKey;
         label.innerText = personName + ' — ';
         row.appendChild(label);
-
         const input = document.createElement('input');
         input.type = 'text';
         input.className = 'price-input';
@@ -2260,22 +935,12 @@
         input.dataset.owner = ownerKey;
         input.dataset.day = day;
         input.dataset.person = personKey;
-        input.addEventListener('input', onPriceInput);
+        input.addEventListener('input', (e) => {
+            tableData[e.target.dataset.owner][e.target.dataset.day][e.target.dataset.person] = e.target.value;
+            updateTotals();
+        });
         row.appendChild(input);
         return row;
-    }
-
-    function onPriceInput(e) {
-        const input = e.target;
-        const ownerKey = input.dataset.owner;
-        const day = input.dataset.day;
-        const personKey = input.dataset.person;
-        tableData[ownerKey][day][personKey] = input.value;
-        updateTotals();
-        if (currentUser && currentUser.key === ownerKey) {
-            hasUnsavedChanges = true;
-            updateSaveButtonVisibility();
-        }
     }
 
     function parsePrice(str) {
@@ -2299,927 +964,388 @@
 
     async function loadTable() {
         try {
-            const docRef = doc(db, 'data', ACC_DOC);
-            const docSnap = await getDoc(docRef);
+            const docSnap = await getDoc(doc(db, 'data', ACC_DOC));
             if (docSnap.exists() && docSnap.data()[ACC_FIELD]) {
                 const cloud = docSnap.data()[ACC_FIELD];
                 if (cloud && cloud.mega && cloud.sergo) {
                     DAYS.forEach(day => {
                         ['mega', 'sergo'].forEach(ownerKey => {
                             const src = cloud[ownerKey][day];
-                            if (src) {
-                                tableData[ownerKey][day] = {
-                                    alik: src.alik || '',
-                                    zhidkiy: src.zhidkiy || ''
-                                };
-                            }
+                            if (src) tableData[ownerKey][day] = { alik: src.alik || '', zhidkiy: src.zhidkiy || '' };
                         });
                     });
                 }
             }
-        } catch (e) { console.warn('Ошибка загрузки', e); }
+        } catch(e) { console.warn(e); }
         renderTable();
     }
 
-    async function saveTable() {
-        if (!currentUser) return;
-        let cloud = { mega: {}, sergo: {} };
-        DAYS.forEach(day => {
-            cloud.mega[day] = { alik: '', zhidkiy: '' };
-            cloud.sergo[day] = { alik: '', zhidkiy: '' };
-        });
-
-        try {
-            const docRef = doc(db, 'data', ACC_DOC);
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists() && docSnap.data()[ACC_FIELD]) {
-                const c = docSnap.data()[ACC_FIELD];
-                if (c && c.mega && c.sergo) {
-                    DAYS.forEach(day => {
-                        ['mega', 'sergo'].forEach(ownerKey => {
-                            const src = c[ownerKey] && c[ownerKey][day];
-                            if (src) {
-                                cloud[ownerKey][day] = { alik: src.alik || '', zhidkiy: src.zhidkiy || '' };
-                            }
-                        });
-                    });
-                }
-            }
-        } catch(e) {}
-
-        DAYS.forEach(day => {
-            cloud[currentUser.key][day] = {
-                alik: tableData[currentUser.key][day].alik,
-                zhidkiy: tableData[currentUser.key][day].zhidkiy
-            };
-        });
-
-        try {
-            await setDoc(doc(db, 'data', ACC_DOC), { [ACC_FIELD]: cloud }, { merge: true });
-        } catch (e) { console.warn('Ошибка сохранения', e); }
-    }
-
-    window.manualSave = async function() {
-        const btn = document.getElementById('saveFloat');
-        btn.innerHTML = '⏳ Сохранение...';
-        await saveTable();
-        btn.innerHTML = '💾 Сохранить';
-        hasUnsavedChanges = false;
-        updateSaveButtonVisibility();
-        const toast = document.getElementById('saveToast');
-        toast.classList.add('visible');
-        setTimeout(() => toast.classList.remove('visible'), 2000);
+    // ==================================================
+    // АУКЦИОН
+    // ==================================================
+    let auctionData = {
+        title: 'Дамасская сталь',
+        case: 'rainy',
+        ticketPrice: 8.78,
+        totalTickets: 1000,
+        timerMinutes: 1,
+        prizes: []
     };
+    let tickets = 0;
+    let timerRunning = false;
+    let timerInterval = null;
+    let runnerInterval = null;
+    let runnerIndex = 0;
+    let isRolling = false;
 
-    // ==================================================
-    // КАЛЕНДАРЬ — УДАЛЁН (оставлены только вспомогательные функции)
-    // ==================================================
-    function compressImage(file, maxSize = 512, quality = 0.8) {
-        return new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    let w = img.width, h = img.height;
-                    if (w > h && w > maxSize) { h = Math.round(h * maxSize / w); w = maxSize; }
-                    else if (h > maxSize) { w = Math.round(w * maxSize / h); h = maxSize; }
-                    canvas.width = w; canvas.height = h;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, w, h);
-                    let result = (file.type === 'image/png')
-                        ? canvas.toDataURL('image/png')
-                        : canvas.toDataURL('image/jpeg', quality);
-                    resolve(result);
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
+    function subscribeAuction() {
+        onSnapshot(doc(db, 'data', 'auction'), (docSnap) => {
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                if (data.auction) {
+                    auctionData = { ...auctionData, ...data.auction };
+                    if (!auctionData.prizes || auctionData.prizes.length === 0) {
+                        auctionData.prizes = CASE_SKINS[auctionData.case] || CASE_SKINS.rainy;
+                    }
+                }
+                if (typeof data.tickets === 'number') tickets = data.tickets;
+            } else {
+                auctionData.prizes = CASE_SKINS.rainy;
+            }
+            renderAuction();
+            renderTickets();
         });
     }
 
-    window.openModal = function(src, isVideoSrc) {
-        const content = document.getElementById('modalContent');
-        content.innerHTML = '';
+    async function saveAuction() {
+        try {
+            await setDoc(doc(db, 'data', 'auction'), { auction: auctionData, tickets: tickets });
+        } catch(e) { console.warn(e); }
+    }
 
-        if (isVideoSrc || isVideo(src)) {
-            const video = document.createElement('video');
-            video.src = src;
-            video.autoplay = true;
-            video.loop = true;
-            video.muted = true;
-            video.playsInline = true;
-            content.appendChild(video);
+    function renderAuction() {
+        document.getElementById('ticketPrice').innerText = '₽' + auctionData.ticketPrice.toFixed(2);
+        document.getElementById('ticketsCount').innerText = tickets + ' / ' + auctionData.totalTickets;
+
+        document.getElementById('orgName').innerText = 'MEGATEM41K';
+        const orgAv = AVATARS.mega;
+        const orgEl = document.getElementById('orgAvatar');
+        if (orgAv) {
+            orgEl.innerHTML = `<img src="${orgAv}">`;
         } else {
-            const img = document.createElement('img');
-            img.src = src;
-            content.appendChild(img);
+            orgEl.innerText = 'M';
         }
 
-        document.getElementById('modal').classList.add('active');
+        const timerBlock = document.getElementById('auctionTimerBlock');
+        if (tickets >= auctionData.totalTickets) {
+            timerBlock.classList.add('visible');
+        } else {
+            timerBlock.classList.remove('visible');
+        }
+
+        const container = document.getElementById('auctionPrizes');
+        container.innerHTML = '';
+        auctionData.prizes.forEach(prize => {
+            const el = document.createElement('div');
+            el.className = 'auction-prize';
+            const info = document.createElement('div');
+            info.className = 'prize-info';
+            const name = document.createElement('div');
+            name.className = 'prize-name';
+            name.innerText = prize.name;
+            info.appendChild(name);
+            el.appendChild(info);
+            if (prize.price) {
+                const price = document.createElement('div');
+                price.className = 'prize-price';
+                price.innerText = '₽' + Number(prize.price).toLocaleString('ru-RU');
+                el.appendChild(price);
+            }
+            container.appendChild(el);
+        });
+
+        document.getElementById('depBtn').disabled = tickets >= auctionData.totalTickets || isRolling;
+    }
+
+    function renderTickets() {
+        const grid = document.getElementById('ticketsGrid');
+        grid.innerHTML = '';
+        const total = auctionData.totalTickets;
+
+        for (let i = 0; i < total; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'ticket-cell';
+            cell.dataset.index = i;
+            if (i < tickets) {
+                cell.classList.add(i % 3 === 0 ? 'prize' : 'filled');
+            }
+            grid.appendChild(cell);
+        }
+
+        const status = document.getElementById('ticketsStatus');
+        if (isRolling) {
+            status.className = 'tickets-status';
+            status.innerText = '🎲 Выбираем победителя...';
+        } else if (tickets >= total) {
+            status.className = 'tickets-status win';
+            status.innerText = '🎉 Все билеты выкуплены!';
+        } else {
+            status.className = 'tickets-status';
+            status.innerText = `Ещё ${total - tickets} билетов до старта`;
+        }
+    }
+
+    window.depositTicket = async function() {
+        if (tickets >= auctionData.totalTickets || isRolling) return;
+        tickets++;
+        await saveAuction();
+        renderTickets();
+
+        if (tickets >= auctionData.totalTickets && !timerRunning && !isRolling) {
+            startTimer();
+        }
     };
 
-    window.closeModal = function(e) {
-        if (e) e.stopPropagation();
-        document.getElementById('modalContent').innerHTML = '';
-        document.getElementById('modal').classList.remove('active');
+    function startTimer() {
+        if (timerRunning || isRolling) return;
+        timerRunning = true;
+
+        const minutes = Math.min(10, Math.max(1, parseInt(auctionData.timerMinutes) || 1));
+        const totalSec = minutes * 60;
+        let remaining = totalSec;
+
+        const el = document.getElementById('auctionTimer');
+        el.classList.add('running');
+
+        const updateEl = () => {
+            const m = Math.floor(remaining / 60);
+            const s = remaining % 60;
+            el.innerText = m + ' : ' + String(s).padStart(2, '0');
+        };
+        updateEl();
+
+        timerInterval = setInterval(() => {
+            remaining--;
+            updateEl();
+            if (remaining <= 0) {
+                clearInterval(timerInterval);
+                timerRunning = false;
+                el.classList.remove('running');
+                startRolling();
+            }
+        }, 1000);
+    }
+
+    // Анимация бегающего квадрата
+    function startRolling() {
+        if (isRolling) return;
+        isRolling = true;
+        runnerIndex = 0;
+
+        const cells = document.querySelectorAll('#ticketsGrid .ticket-cell');
+        const total = cells.length;
+
+        // Минимум 3 сек, максимум 6 сек анимации
+        const rollDuration = 3000 + Math.random() * 3000;
+        const startTime = Date.now();
+
+        // Скорость: проходим по сетке много раз
+        const speed = 40; // мс на клетку
+
+        function clearRunner() {
+            cells.forEach(c => c.classList.remove('runner'));
+        }
+
+        runnerInterval = setInterval(() => {
+            clearRunner();
+            cells[runnerIndex % total].classList.add('runner');
+            runnerIndex++;
+        }, speed);
+
+        // Стоп в случайный момент
+        setTimeout(() => {
+            clearInterval(runnerInterval);
+            clearRunner();
+
+            // Финальная случайная клетка
+            const finalIndex = Math.floor(Math.random() * total);
+            cells[finalIndex].classList.add('runner');
+
+            // Через 1 сек — объявляем победителя
+            setTimeout(() => {
+                isRolling = false;
+                const winnerPrize = auctionData.prizes[Math.floor(Math.random() * auctionData.prizes.length)];
+                const status = document.getElementById('ticketsStatus');
+                status.className = 'tickets-status winner';
+                status.innerText = '🏆 Выиграл: ' + winnerPrize.name + (winnerPrize.price ? ' (₽' + Number(winnerPrize.price).toLocaleString('ru-RU') + ')' : '');
+                document.getElementById('depBtn').disabled = true;
+
+                // Через 3 сек — очищаем статус
+                setTimeout(() => {
+                    status.className = 'tickets-status';
+                    status.innerText = 'Розыгрыш завершён. Создай новый аукцион в админке.';
+                }, 5000);
+            }, 1000);
+        }, rollDuration);
+    }
+
+    window.resetTickets = async function() {
+        tickets = 0;
+        timerRunning = false;
+        isRolling = false;
+        if (timerInterval) clearInterval(timerInterval);
+        if (runnerInterval) clearInterval(runnerInterval);
+        document.querySelectorAll('#ticketsGrid .ticket-cell').forEach(c => c.classList.remove('runner'));
+        await saveAuction();
+        renderTickets();
+        document.getElementById('auctionTimer').innerText = '1 : 00';
+        document.getElementById('auctionTimerBlock').classList.remove('visible');
+        document.getElementById('ticketsStatus').className = 'tickets-status';
+        document.getElementById('ticketsStatus').innerText = 'Нажми DEP чтобы получить билеты';
     };
 
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+    window.onCaseSelectAdmin = function() {
+        const caseKey = document.getElementById('aucCase').value;
+        const prizes = CASE_SKINS[caseKey] || [];
+        const textarea = document.getElementById('aucPrizes');
+        textarea.value = prizes.map(p => `${p.name};${p.price}`).join('\n');
+    };
+
+    window.createAuction = async function() {
+        const title = document.getElementById('aucTitle').value.trim() || 'Аукцион';
+        const caseKey = document.getElementById('aucCase').value;
+        const price = parseFloat(document.getElementById('aucPrice').value) || 8.78;
+        const total = parseInt(document.getElementById('aucTotal').value) || 1000;
+        let timerMin = parseInt(document.getElementById('aucTimer').value) || 1;
+        timerMin = Math.min(10, Math.max(1, timerMin));
+        const prizesRaw = document.getElementById('aucPrizes').value.trim();
+        const msgEl = document.getElementById('msg-auction');
+
+        const prizes = [];
+        prizesRaw.split('\n').forEach(line => {
+            line = line.trim();
+            if (!line) return;
+            const parts = line.split(';');
+            if (parts.length >= 1) {
+                prizes.push({
+                    name: parts[0].trim(),
+                    price: parseFloat(parts[1]) || 0
+                });
+            }
+        });
+
+        auctionData = {
+            title,
+            case: caseKey,
+            ticketPrice: price,
+            totalTickets: total,
+            timerMinutes: timerMin,
+            prizes: prizes.length ? prizes : CASE_SKINS[caseKey]
+        };
+        tickets = 0;
+        timerRunning = false;
+        isRolling = false;
+        if (timerInterval) clearInterval(timerInterval);
+        if (runnerInterval) clearInterval(runnerInterval);
+
+        await saveAuction();
+        renderAuction();
+        renderTickets();
+
+        msgEl.className = 'admin-msg ok';
+        msgEl.innerText = '✅ Аукцион создан (таймер ' + timerMin + ' мин)';
+        setTimeout(() => { msgEl.innerText = ''; }, 2000);
+    };
 
     // ==================================================
     // ЧАТ
     // ==================================================
-    const chatMessages = document.getElementById('chatMessages');
-    const chatInput = document.getElementById('chatInput');
-    const chatStatus = document.getElementById('chatStatus');
-
-    let seenMessageIds = new Set();
-    let unreadFromOthers = new Set();
-
-    function initChat() {
+    function subscribeChat() {
+        const chatMessages = document.getElementById('chatMessages');
+        const chatStatus = document.getElementById('chatStatus');
         const q = query(collection(db, 'chat'), orderBy('timestamp', 'asc'));
         onSnapshot(q, (snapshot) => {
             chatMessages.innerHTML = '';
-            const newIds = [];
             snapshot.forEach((docSnap) => {
-                const data = docSnap.data();
-                addMessageToDOM(docSnap.id, data);
-                newIds.push(docSnap.id);
-                if (currentUser && data.author !== currentUser.login) {
-                    if (!seenMessageIds.has(docSnap.id)) {
-                        unreadFromOthers.add(docSnap.id);
+                const msg = docSnap.data();
+                const div = document.createElement('div');
+                div.className = 'chat-msg' + (currentUser && msg.author === currentUser.login ? ' own' : '');
+
+                const authorKey = (() => {
+                    for (const [lg, acc] of Object.entries(ACCOUNTS)) {
+                        if (lg === msg.author) return acc.key;
                     }
+                    return '';
+                })();
+                const avatar = AVATARS[authorKey] || '';
+
+                const av = document.createElement('div');
+                av.className = 'msg-avatar' + (avatar ? '' : ' ' + authorKey);
+                if (avatar) {
+                    const img = document.createElement('img');
+                    img.src = avatar;
+                    av.appendChild(img);
+                } else {
+                    av.innerText = (msg.author[0] || '?').toUpperCase();
                 }
+                div.appendChild(av);
+
+                const body = document.createElement('div');
+                body.className = 'msg-body';
+                const author = document.createElement('div');
+                author.className = 'msg-author';
+                author.innerText = msg.author;
+                body.appendChild(author);
+                const text = document.createElement('div');
+                text.className = 'msg-text';
+                text.innerText = msg.text;
+                body.appendChild(text);
+                const time = document.createElement('div');
+                time.className = 'msg-time';
+                if (msg.timestamp && msg.timestamp.toDate) {
+                    const t = msg.timestamp.toDate();
+                    time.innerText = t.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+                }
+                body.appendChild(time);
+                div.appendChild(body);
+
+                if (currentUser && (currentUser.key === 'mega' || msg.author === currentUser.login)) {
+                    const delBtn = document.createElement('button');
+                    delBtn.className = 'msg-delete';
+                    delBtn.innerHTML = '×';
+                    delBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        if (confirm('Удалить?')) deleteDoc(doc(db, 'chat', docSnap.id));
+                    };
+                    div.appendChild(delBtn);
+                }
+
+                chatMessages.appendChild(div);
             });
-
-            const activeTab = localStorage.getItem(ACTIVE_TAB_KEY);
-            if (activeTab === 'chat' && currentUser) markMessagesAsRead();
-
-            newIds.forEach(id => seenMessageIds.add(id));
             chatMessages.scrollTop = chatMessages.scrollHeight;
             chatStatus.innerText = '🟢 онлайн';
-        }, (error) => {
+        }, (err) => {
             chatStatus.innerText = '🔴 ошибка';
-            console.warn('Ошибка чата', error);
+            console.warn(err);
         });
-    }
-
-    function addMessageToDOM(msgId, msg) {
-        const div = document.createElement('div');
-        div.className = 'chat-msg' + (currentUser && msg.author === currentUser.login ? ' own' : '');
-        div.dataset.msgId = msgId;
-
-        const authorKey = findUserKeyByLogin(msg.author) || '';
-        const avatar = AVATARS[authorKey] || '';
-
-        const av = document.createElement('div');
-        av.className = 'msg-avatar' + (avatar ? '' : ' ' + authorKey);
-        av.dataset.author = msg.author;
-        if (avatar) {
-            const img = document.createElement('img');
-            img.src = avatar;
-            av.appendChild(img);
-        } else {
-            av.innerText = (msg.author[0] || '?').toUpperCase();
-        }
-        div.appendChild(av);
-
-        const body = document.createElement('div');
-        body.className = 'msg-body';
-
-        const authorEl = document.createElement('div');
-        authorEl.className = 'msg-author';
-        authorEl.innerText = msg.author;
-        body.appendChild(authorEl);
-
-        if (msg.type === 'sticker' && msg.sticker) {
-            if (isVideo(msg.sticker)) {
-                const video = document.createElement('video');
-                video.className = 'msg-sticker';
-                video.src = msg.sticker;
-                video.autoplay = true;
-                video.loop = true;
-                video.muted = true;
-                video.playsInline = true;
-                video.onclick = (e) => { e.stopPropagation(); openModal(msg.sticker, true); };
-                body.appendChild(video);
-            } else {
-                const stk = document.createElement('img');
-                stk.className = 'msg-sticker';
-                stk.src = msg.sticker;
-                stk.onclick = (e) => { e.stopPropagation(); openModal(msg.sticker, false); };
-                body.appendChild(stk);
-            }
-        } else if (msg.type === 'voice' && msg.audio) {
-            const player = createVoicePlayer(msg.audio, msg.duration || 0);
-            body.appendChild(player);
-        } else {
-            const textEl = document.createElement('div');
-            textEl.className = 'msg-text';
-            textEl.innerText = msg.text || '';
-            body.appendChild(textEl);
-        }
-
-        const timeEl = document.createElement('div');
-        timeEl.className = 'msg-time';
-        if (msg.timestamp && msg.timestamp.toDate) {
-            const t = msg.timestamp.toDate();
-            timeEl.innerText = t.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
-        }
-        body.appendChild(timeEl);
-
-        if (currentUser && msg.author === currentUser.login) {
-            const readEl = document.createElement('div');
-            readEl.className = 'msg-read';
-            readEl.dataset.readFor = msgId;
-            if (msg.readBy && msg.readBy.includes(getOtherUserKey())) {
-                readEl.innerText = 'Прочитано';
-            } else {
-                readEl.innerText = 'Отправлено';
-                readEl.style.opacity = '0.5';
-            }
-            body.appendChild(readEl);
-        }
-
-        div.appendChild(body);
-
-        const isAdmin = currentUser && currentUser.key === 'mega';
-        const isOwn = currentUser && msg.author === currentUser.login;
-
-        if (isAdmin || isOwn) {
-            const delBtn = document.createElement('button');
-            delBtn.className = 'msg-delete';
-            delBtn.innerHTML = '×';
-            delBtn.title = 'Удалить';
-            delBtn.onclick = (e) => {
-                e.stopPropagation();
-                if (confirm('Удалить сообщение?')) {
-                    deleteDoc(doc(db, 'chat', msgId));
-                }
-            };
-            div.appendChild(delBtn);
-        }
-
-        chatMessages.appendChild(div);
-    }
-
-    function getOtherUserKey() {
-        if (!currentUser) return null;
-        return currentUser.key === 'mega' ? 'sergo' : 'mega';
-    }
-
-    function createVoicePlayer(src, duration) {
-        const wrap = document.createElement('div');
-        wrap.className = 'voice-player';
-
-        const playBtn = document.createElement('button');
-        playBtn.className = 'voice-play-btn';
-        playBtn.innerHTML = '▶';
-        wrap.appendChild(playBtn);
-
-        const wave = document.createElement('div');
-        wave.className = 'voice-wave';
-        const bars = [];
-        for (let i = 0; i < 20; i++) {
-            const bar = document.createElement('div');
-            bar.className = 'voice-wave-bar';
-            const h = 20 + Math.random() * 80;
-            bar.style.height = h + '%';
-            wave.appendChild(bar);
-            bars.push(bar);
-        }
-        wrap.appendChild(wave);
-
-        const dur = document.createElement('div');
-        dur.className = 'voice-duration';
-        dur.innerText = formatDuration(duration);
-        wrap.appendChild(dur);
-
-        const audio = document.createElement('audio');
-        audio.src = src;
-        audio.preload = 'metadata';
-        audio.volume = window.currentVolume;
-        audio.style.display = 'none';
-        wrap.appendChild(audio);
-
-        let isPlaying = false;
-
-        playBtn.onclick = (e) => {
-            e.stopPropagation();
-            if (isPlaying) {
-                audio.pause();
-            } else {
-                audio.volume = window.currentVolume;
-                document.querySelectorAll('audio').forEach(a => { if (a !== audio) a.pause(); });
-                audio.play();
-            }
-        };
-
-        audio.onplay = () => { isPlaying = true; playBtn.innerHTML = '⏸'; };
-        audio.onpause = () => { isPlaying = false; playBtn.innerHTML = '▶'; };
-        audio.onended = () => {
-            isPlaying = false; playBtn.innerHTML = '▶';
-            updateWaveProgress(0);
-        };
-        audio.ontimeupdate = () => {
-            if (audio.duration) {
-                const progress = audio.currentTime / audio.duration;
-                updateWaveProgress(progress);
-                const remaining = Math.max(0, Math.ceil(audio.duration - audio.currentTime));
-                dur.innerText = formatDuration(remaining);
-            }
-        };
-        audio.onloadedmetadata = () => {
-            dur.innerText = formatDuration(Math.round(audio.duration));
-        };
-
-        function updateWaveProgress(progress) {
-            const playedBars = Math.round(progress * bars.length);
-            bars.forEach((bar, i) => {
-                if (i < playedBars) bar.classList.add('played');
-                else bar.classList.remove('played');
-            });
-        }
-
-        wave.onclick = (e) => {
-            e.stopPropagation();
-            const rect = wave.getBoundingClientRect();
-            const percent = (e.clientX - rect.left) / rect.width;
-            if (audio.duration) audio.currentTime = percent * audio.duration;
-        };
-
-        return wrap;
-    }
-
-    function formatDuration(sec) {
-        sec = Math.max(0, Math.floor(sec));
-        const m = Math.floor(sec / 60);
-        const s = sec % 60;
-        return `${m}:${String(s).padStart(2, '0')}`;
-    }
-
-    // ==================================================
-    // ПЕЧАТАЕТ
-    // ==================================================
-    let typingTimeout = null;
-    let typingUnsub = null;
-    let typingClearTimeout = null;
-
-    function initTyping() {
-        const docRef = doc(db, 'data', 'typing');
-        if (typingUnsub) typingUnsub();
-        typingUnsub = onSnapshot(docRef, (docSnap) => {
-            const indicator = document.getElementById('typingIndicator');
-            const nameEl = document.getElementById('typingName');
-            if (!indicator) return;
-            if (!docSnap.exists()) {
-                indicator.classList.remove('visible');
-                return;
-            }
-            const data = docSnap.data();
-            let someoneTyping = false;
-            const now = Date.now();
-            for (const [login, info] of Object.entries(data)) {
-                if (!currentUser || login === currentUser.login) continue;
-                if (!info || !info.timestamp) continue;
-                const ts = info.timestamp.toDate ? info.timestamp.toDate().getTime() : info.timestamp;
-                if (now - ts < 3000) {
-                    someoneTyping = true;
-                    nameEl.innerText = login + ' печатает';
-                    break;
-                }
-            }
-            if (someoneTyping) indicator.classList.add('visible');
-            else indicator.classList.remove('visible');
-        });
-    }
-
-    window.onTyping = function() {
-        if (!currentUser) return;
-        clearTimeout(typingTimeout);
-        typingTimeout = setTimeout(async () => {
-            try {
-                const docRef = doc(db, 'data', 'typing');
-                const snap = await getDoc(docRef);
-                const current = snap.exists() ? snap.data() : {};
-                current[currentUser.login] = { timestamp: serverTimestamp() };
-                await setDoc(docRef, current);
-            } catch(e) {}
-        }, 200);
-        clearTimeout(typingClearTimeout);
-        typingClearTimeout = setTimeout(() => { clearTypingStatus(); }, 2500);
-    };
-
-    async function clearTypingStatus() {
-        if (!currentUser) return;
-        try {
-            const docRef = doc(db, 'data', 'typing');
-            const snap = await getDoc(docRef);
-            if (!snap.exists()) return;
-            const data = snap.data();
-            delete data[currentUser.login];
-            await setDoc(docRef, data);
-        } catch(e) {}
-    }
-
-    // ==================================================
-    // ПРОЧИТАНО
-    // ==================================================
-    async function markMessagesAsRead() {
-        if (!currentUser) return;
-        if (unreadFromOthers.size === 0) return;
-        for (const msgId of Array.from(unreadFromOthers)) {
-            try {
-                const docRef = doc(db, 'chat', msgId);
-                const snap = await getDoc(docRef);
-                if (!snap.exists()) continue;
-                const data = snap.data();
-                const readBy = data.readBy || [];
-                if (!readBy.includes(currentUser.key)) {
-                    readBy.push(currentUser.key);
-                    await setDoc(docRef, { readBy }, { merge: true });
-                }
-            } catch(e) {}
-        }
-        unreadFromOthers.clear();
     }
 
     window.sendMessage = async function() {
-        const text = chatInput.value.trim();
+        const input = document.getElementById('chatInput');
+        const text = input.value.trim();
         if (!text || !currentUser) return;
-        chatInput.value = '';
-        clearTypingStatus();
-        try {
-            await addDoc(collection(db, 'chat'), {
-                author: currentUser.login,
-                type: 'text',
-                text: text,
-                readBy: [currentUser.key],
-                timestamp: serverTimestamp()
-            });
-        } catch (e) { console.warn('Ошибка отправки', e); }
-    };
-
-    // ==================================================
-    // ГОЛОСОВЫЕ
-    // ==================================================
-    let mediaRecorder = null;
-    let audioChunks = [];
-    let recordStartTime = 0;
-    let recordTimerInterval = null;
-    let currentStream = null;
-    let isRecording = false;
-
-    window.startRecording = async function() {
-        if (isRecording) return;
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            currentStream = stream;
-            let mimeType = 'audio/webm';
-            if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) mimeType = 'audio/webm;codecs=opus';
-            else if (MediaRecorder.isTypeSupported('audio/webm')) mimeType = 'audio/webm';
-            else if (MediaRecorder.isTypeSupported('audio/mp4')) mimeType = 'audio/mp4';
-
-            mediaRecorder = new MediaRecorder(stream, { mimeType });
-            audioChunks = [];
-
-            mediaRecorder.ondataavailable = (e) => {
-                if (e.data.size > 0) audioChunks.push(e.data);
-            };
-
-            mediaRecorder.onstop = async () => {
-                const blob = new Blob(audioChunks, { type: mimeType });
-                const duration = (Date.now() - recordStartTime) / 1000;
-                if (currentStream) {
-                    currentStream.getTracks().forEach(t => t.stop());
-                    currentStream = null;
-                }
-                if (window._cancelRecording) {
-                    window._cancelRecording = false;
-                    return;
-                }
-                await sendVoiceMessage(blob, duration, mimeType);
-            };
-
-            mediaRecorder.start();
-            isRecording = true;
-            recordStartTime = Date.now();
-            document.getElementById('micBtn').classList.add('recording');
-            document.getElementById('recordPanel').classList.add('open');
-            recordTimerInterval = setInterval(updateRecordTime, 200);
-            updateRecordTime();
-        } catch (err) {
-            console.error('Ошибка микрофона:', err);
-            alert('Не удалось получить доступ к микрофону.');
-        }
-    };
-
-    function updateRecordTime() {
-        if (!isRecording) return;
-        const sec = Math.floor((Date.now() - recordStartTime) / 1000);
-        document.getElementById('recordTime').innerText = formatDuration(sec);
-        if (sec >= 300) stopAndSendRecording();
-    }
-
-    window.cancelRecording = function() {
-        if (!isRecording || !mediaRecorder) return;
-        window._cancelRecording = true;
-        mediaRecorder.stop();
-        cleanupRecordingUI();
-    };
-
-    window.stopAndSendRecording = function() {
-        if (!isRecording || !mediaRecorder) return;
-        window._cancelRecording = false;
-        mediaRecorder.stop();
-        cleanupRecordingUI();
-    };
-
-    function cleanupRecordingUI() {
-        isRecording = false;
-        document.getElementById('micBtn').classList.remove('recording');
-        document.getElementById('recordPanel').classList.remove('open');
-        document.getElementById('recordTime').innerText = '0:00';
-        if (recordTimerInterval) {
-            clearInterval(recordTimerInterval);
-            recordTimerInterval = null;
-        }
-    }
-
-    async function sendVoiceMessage(blob, duration, mimeType) {
-        if (!currentUser) return;
-        const sizeKB = Math.round(blob.size / 1024);
-        if (sizeKB > 800) {
-            alert(`Голосовое весит ${sizeKB} КБ — это много. Firestore не примет.`);
-            return;
-        }
-        const reader = new FileReader();
-        reader.onloadend = async () => {
-            const base64 = reader.result;
-            try {
-                await addDoc(collection(db, 'chat'), {
-                    author: currentUser.login,
-                    type: 'voice',
-                    audio: base64,
-                    duration: Math.round(duration),
-                    readBy: [currentUser.key],
-                    timestamp: serverTimestamp()
-                });
-                const cm = document.getElementById('chatMessages');
-                setTimeout(() => { cm.scrollTop = cm.scrollHeight; }, 100);
-            } catch (e) {
-                console.warn('Ошибка отправки голосового', e);
-            }
-        };
-        reader.readAsDataURL(blob);
-    }
-
-    // ==================================================
-    // СТИКЕРЫ
-    // ==================================================
-    window.toggleStickerPanel = function() {
-        const panel = document.getElementById('stickerPanel');
-        panel.classList.toggle('open');
-        if (panel.classList.contains('open')) {
-            renderStickerPacksTabs();
-            renderStickerGrid();
-        }
-    };
-
-    function renderStickerPacksTabs() {
-        const tabs = document.getElementById('stickerPacksTabs');
-        if (!tabs) return;
-        tabs.innerHTML = '';
-        const packNames = Object.keys(STICKER_PACKS);
-        if (packNames.length === 0) {
-            const empty = document.createElement('div');
-            empty.style.cssText = 'color:#666;font-size:12px;padding:6px;font-style:italic;';
-            empty.innerText = 'Нет паков';
-            tabs.appendChild(empty);
-            return;
-        }
-        if (!currentChatPack || !STICKER_PACKS[currentChatPack]) currentChatPack = packNames[0];
-        packNames.forEach(packName => {
-            const btn = document.createElement('button');
-            btn.className = 'sticker-pack-tab' + (packName === currentChatPack ? ' active' : '');
-            btn.innerHTML = `${escapeHtml(packName)} <span class="pack-count">${STICKER_PACKS[packName].length}</span>`;
-            btn.onclick = () => {
-                currentChatPack = packName;
-                renderStickerPacksTabs();
-                renderStickerGrid();
-            };
-            tabs.appendChild(btn);
-        });
-    }
-
-    function renderStickerGrid() {
-        const grid = document.getElementById('stickerGrid');
-        if (!grid) return;
-        grid.innerHTML = '';
-        if (!currentChatPack || !STICKER_PACKS[currentChatPack] || STICKER_PACKS[currentChatPack].length === 0) {
-            const empty = document.createElement('div');
-            empty.className = 'sticker-empty';
-            empty.innerText = Object.keys(STICKER_PACKS).length === 0
-                ? 'Стикеров пока нет.'
-                : 'В этом паке пока нет стикеров.';
-            grid.appendChild(empty);
-            return;
-        }
-        STICKER_PACKS[currentChatPack].forEach((stickerSrc) => {
-            const item = document.createElement('div');
-            item.className = 'sticker-item';
-            if (isVideo(stickerSrc)) {
-                const video = document.createElement('video');
-                video.src = stickerSrc;
-                video.autoplay = true;
-                video.loop = true;
-                video.muted = true;
-                video.playsInline = true;
-                item.appendChild(video);
-                const badge = document.createElement('div');
-                badge.className = 'sticker-video-badge';
-                badge.innerText = 'WEBM';
-                item.appendChild(badge);
-            } else {
-                const img = document.createElement('img');
-                img.src = stickerSrc;
-                item.appendChild(img);
-            }
-            item.onclick = () => sendSticker(stickerSrc);
-            grid.appendChild(item);
-        });
-    }
-
-    async function sendSticker(stickerSrc) {
-        if (!currentUser) return;
-        try {
-            await addDoc(collection(db, 'chat'), {
-                author: currentUser.login,
-                type: 'sticker',
-                sticker: stickerSrc,
-                readBy: [currentUser.key],
-                timestamp: serverTimestamp()
-            });
-            const cm = document.getElementById('chatMessages');
-            setTimeout(() => { cm.scrollTop = cm.scrollHeight; }, 100);
-        } catch (e) { console.warn('Ошибка отправки стикера', e); }
-    }
-
-    function processStickerFile(file) {
-        return new Promise((resolve, reject) => {
-            const isWebm = file.type === 'video/webm';
-            const isImage = file.type.startsWith('image/');
-            if (!isWebm && !isImage) { reject(new Error('Неподдерживаемый формат')); return; }
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                if (isWebm) {
-                    const sizeKB = Math.round(file.size / 1024);
-                    if (sizeKB > 500) {
-                        const ok = confirm(`WebM весит ${sizeKB} КБ — это много. Продолжить?`);
-                        if (!ok) { reject(new Error('Отменено')); return; }
-                    }
-                    resolve(e.target.result);
-                } else {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const maxSize = 256;
-                        let w = img.width, h = img.height;
-                        if (w > h && w > maxSize) { h = Math.round(h * maxSize / w); w = maxSize; }
-                        else if (h > maxSize) { w = Math.round(w * maxSize / h); h = maxSize; }
-                        canvas.width = w; canvas.height = h;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, w, h);
-                        let result = (file.type === 'image/png')
-                            ? canvas.toDataURL('image/png')
-                            : canvas.toDataURL('image/jpeg', 0.85);
-                        resolve(result);
-                    };
-                    img.src = e.target.result;
-                }
-            };
-            reader.onerror = () => reject(new Error('Ошибка чтения'));
-            reader.readAsDataURL(file);
-        });
-    }
-
-    function estimatePackSizeKB(packName) {
-        if (!STICKER_PACKS[packName]) return 0;
-        let total = 0;
-        STICKER_PACKS[packName].forEach(src => {
-            const base64Part = src.split(',')[1] || '';
-            total += (base64Part.length * 3) / 4;
-        });
-        return Math.round(total / 1024);
-    }
-
-    window.createPack = async function() {
-        const input = document.getElementById('newPackName');
-        const name = input.value.trim();
-        if (!name) { alert('Введи название'); return; }
-        if (name.length > 30) { alert('До 30 символов'); return; }
-        if (STICKER_PACKS[name]) { alert('Уже есть'); return; }
-        STICKER_PACKS[name] = [];
         input.value = '';
-        await saveAccounts();
-        currentAdminPack = name;
-        renderPacksAdmin();
-        renderStickerPacksTabs();
-        renderStickerGrid();
+        try {
+            await addDoc(collection(db, 'chat'), {
+                author: currentUser.login,
+                text: text,
+                timestamp: serverTimestamp()
+            });
+        } catch(e) { console.warn(e); }
     };
-
-    window.deletePack = async function(packName) {
-        const count = STICKER_PACKS[packName] ? STICKER_PACKS[packName].length : 0;
-        if (!confirm(`Удалить пак "${packName}" (${count} стикеров)?`)) return;
-        delete STICKER_PACKS[packName];
-        if (currentAdminPack === packName) currentAdminPack = null;
-        if (currentChatPack === packName) currentChatPack = null;
-        await saveAccounts();
-        renderPacksAdmin();
-        renderStickerPacksTabs();
-        renderStickerGrid();
-    };
-
-    window.uploadStickerToPack = async function(event, packName) {
-        const files = Array.from(event.target.files);
-        if (!files.length) return;
-        if (!STICKER_PACKS[packName]) STICKER_PACKS[packName] = [];
-        const remaining = MAX_STICKERS_PER_PACK - STICKER_PACKS[packName].length;
-        if (remaining <= 0) {
-            alert(`Максимум ${MAX_STICKERS_PER_PACK} стикеров`);
-            event.target.value = '';
-            return;
-        }
-        const toAdd = files.slice(0, remaining);
-        let added = 0, skipped = 0;
-        for (const file of toAdd) {
-            try {
-                const result = await processStickerFile(file);
-                STICKER_PACKS[packName].push(result);
-                added++;
-            } catch (err) {
-                console.warn('Пропущен:', file.name, err.message);
-                skipped++;
-            }
-        }
-        if (added > 0) {
-            await saveAccounts();
-            renderPacksAdmin();
-            renderStickerPacksTabs();
-            renderStickerGrid();
-            const size = estimatePackSizeKB(packName);
-            if (size > 900) alert(`⚠️ Пак весит ~${size} КБ. Firestore может не сохранить.`);
-        }
-        if (skipped > 0) alert(`Пропущено: ${skipped}`);
-        event.target.value = '';
-    };
-
-    window.removeStickerFromPack = async function(packName, idx) {
-        if (!confirm('Удалить стикер?')) return;
-        if (!STICKER_PACKS[packName]) return;
-        STICKER_PACKS[packName].splice(idx, 1);
-        await saveAccounts();
-        renderPacksAdmin();
-        renderStickerPacksTabs();
-        renderStickerGrid();
-    };
-
-    window.renamePack = async function(packName) {
-        const newName = prompt('Новое название:', packName);
-        if (!newName || newName === packName) return;
-        if (newName.length > 30) { alert('До 30 символов'); return; }
-        if (STICKER_PACKS[newName]) { alert('Занято'); return; }
-        const newPacks = {};
-        for (const [name, arr] of Object.entries(STICKER_PACKS)) {
-            if (name === packName) newPacks[newName] = arr;
-            else newPacks[name] = arr;
-        }
-        STICKER_PACKS = newPacks;
-        if (currentAdminPack === packName) currentAdminPack = newName;
-        if (currentChatPack === packName) currentChatPack = newName;
-        await saveAccounts();
-        renderPacksAdmin();
-        renderStickerPacksTabs();
-        renderStickerGrid();
-    };
-
-    function renderPacksAdmin() {
-        const list = document.getElementById('packsList');
-        if (!list) return;
-        list.innerHTML = '';
-        const packNames = Object.keys(STICKER_PACKS);
-        if (packNames.length === 0) {
-            const empty = document.createElement('div');
-            empty.style.cssText = 'color:#666;font-size:13px;font-style:italic;text-align:center;padding:20px;';
-            empty.innerText = 'Пока нет паков.';
-            list.appendChild(empty);
-            return;
-        }
-        packNames.forEach(packName => {
-            const stickers = STICKER_PACKS[packName] || [];
-            const block = document.createElement('div');
-            block.className = 'pack-block';
-            const header = document.createElement('div');
-            header.className = 'pack-header';
-            const sizeKB = estimatePackSizeKB(packName);
-            const webmCount = stickers.filter(s => isVideo(s)).length;
-            let badgeClass = 'pack-badge';
-            if (sizeKB > 900) badgeClass += ' danger';
-            else if (sizeKB > 700) badgeClass += ' warn';
-            const title = document.createElement('div');
-            title.className = 'pack-title';
-            title.innerHTML = `${escapeHtml(packName)} <span class="${badgeClass}">${stickers.length} / ${MAX_STICKERS_PER_PACK} · ${sizeKB} КБ</span>`;
-            if (webmCount > 0) {
-                const webmBadge = document.createElement('span');
-                webmBadge.className = 'pack-badge';
-                webmBadge.style.background = '#0288d1';
-                webmBadge.innerText = `🎬 ${webmCount} WebM`;
-                title.appendChild(webmBadge);
-            }
-            const actions = document.createElement('div');
-            actions.className = 'pack-header-actions';
-            const renameBtn = document.createElement('button');
-            renameBtn.className = 'admin-btn small';
-            renameBtn.innerText = '✏️ Переименовать';
-            renameBtn.onclick = () => renamePack(packName);
-            const uploadBtn = document.createElement('button');
-            uploadBtn.className = 'admin-btn small';
-            uploadBtn.innerText = '📷 + Стикеры';
-            uploadBtn.onclick = () => {
-                const fileInput = document.getElementById('uploadTo-' + safeId(packName));
-                if (fileInput) fileInput.click();
-            };
-            const fileInput = document.createElement('input');
-            fileInput.type = 'file';
-            fileInput.id = 'uploadTo-' + safeId(packName);
-            fileInput.accept = 'image/png,image/jpeg,image/jpg,image/webp,video/webm,.webm';
-            fileInput.multiple = true;
-            fileInput.style.display = 'none';
-            fileInput.onchange = (e) => uploadStickerToPack(e, packName);
-            const delBtn = document.createElement('button');
-            delBtn.className = 'admin-btn small danger';
-            delBtn.innerText = '🗑 Удалить пак';
-            delBtn.onclick = () => deletePack(packName);
-            actions.appendChild(renameBtn);
-            actions.appendChild(uploadBtn);
-            actions.appendChild(fileInput);
-            actions.appendChild(delBtn);
-            header.appendChild(title);
-            header.appendChild(actions);
-            block.appendChild(header);
-            const grid = document.createElement('div');
-            grid.className = 'pack-stickers';
-            if (stickers.length === 0) {
-                const empty = document.createElement('div');
-                empty.className = 'pack-empty';
-                empty.innerText = 'Пак пуст';
-                grid.appendChild(empty);
-            } else {
-                stickers.forEach((src, idx) => {
-                    const item = document.createElement('div');
-                    item.className = 'sticker-admin-item';
-                    if (isVideo(src)) {
-                        const video = document.createElement('video');
-                        video.src = src;
-                        video.autoplay = true;
-                        video.loop = true;
-                        video.muted = true;
-                        video.playsInline = true;
-                        video.onclick = (e) => { e.stopPropagation(); openModal(src, true); };
-                        item.appendChild(video);
-                        const badge = document.createElement('div');
-                        badge.className = 'webm-badge';
-                        badge.innerText = 'WEBM';
-                        item.appendChild(badge);
-                    } else {
-                        const img = document.createElement('img');
-                        img.src = src;
-                        img.onclick = (e) => { e.stopPropagation(); openModal(src, false); };
-                        item.appendChild(img);
-                    }
-                    const rm = document.createElement('button');
-                    rm.className = 'sticker-admin-remove';
-                    rm.innerHTML = '×';
-                    rm.onclick = (e) => { e.stopPropagation(); removeStickerFromPack(packName, idx); };
-                    item.appendChild(rm);
-                    grid.appendChild(item);
-                });
-            }
-            block.appendChild(grid);
-            list.appendChild(block);
-        });
-    }
-
-    function safeId(str) { return str.replace(/[^a-zA-Z0-9]/g, '_'); }
-    function escapeHtml(str) {
-        return String(str).replace(/[&<>"']/g, (m) => ({
-            '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-        }[m]));
-    }
 
     // ==================================================
-    // АДМИНКА — аккаунты
+    // АДМИНКА
     // ==================================================
     function loadAdminFields() {
         if (!currentUser || currentUser.key !== 'mega') return;
@@ -3230,12 +1356,10 @@
         }
         document.getElementById('login-mega').value = megaLogin;
         document.getElementById('login-sergo').value = sergoLogin;
-        document.getElementById('password-mega').value = '';
-        document.getElementById('password-sergo').value = '';
         updateAvatarPreview('mega');
         updateAvatarPreview('sergo');
-        renderPacksAdmin();
-        renderDropsAdmin();
+        const textarea = document.getElementById('aucPrizes');
+        if (!textarea.value) onCaseSelectAdmin();
     }
 
     function updateAvatarPreview(key) {
@@ -3255,83 +1379,44 @@
     window.uploadAvatar = async function(event, key) {
         const file = event.target.files[0];
         if (!file) return;
-        if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
-        const compressed = await compressImage(file, 200, 0.85);
-        AVATARS[key] = compressed;
-        await saveAccounts();
-        updateAvatarPreview(key);
-        if (currentUser && currentUser.key === key) renderUserBar();
-        setTimeout(() => {
-            document.querySelectorAll('.chat-msg .msg-avatar').forEach(el => {
-                const author = el.dataset.author;
-                const k = findUserKeyByLogin(author);
-                if (k && AVATARS[k]) {
-                    el.innerHTML = `<img src="${AVATARS[k]}">`;
-                    el.style.background = 'none';
-                }
-            });
-        }, 100);
-    };
-
-    window.removeAvatar = async function(key) {
-        if (!confirm('Удалить аватар?')) return;
-        AVATARS[key] = '';
-        await saveAccounts();
-        updateAvatarPreview(key);
-        if (currentUser && currentUser.key === key) renderUserBar();
-        setTimeout(() => {
-            document.querySelectorAll('.chat-msg .msg-avatar').forEach(el => {
-                const author = el.dataset.author;
-                const k = findUserKeyByLogin(author);
-                if (k === key) {
-                    el.innerHTML = (author[0] || '?').toUpperCase();
-                    el.style.background = k === 'mega'
-                        ? 'linear-gradient(135deg, #ff6b6b, #c62828)'
-                        : 'linear-gradient(135deg, #4fc3f7, #0288d1)';
-                }
-            });
-        }, 100);
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+            AVATARS[key] = e.target.result;
+            await saveAccounts();
+            updateAvatarPreview(key);
+            if (currentUser && currentUser.key === key) renderUserBar();
+        };
+        reader.readAsDataURL(file);
     };
 
     window.saveAccount = async function(key) {
-        const loginInput = document.getElementById('login-' + key);
-        const passwordInput = document.getElementById('password-' + key);
+        const newLogin = document.getElementById('login-' + key).value.trim();
+        const newPassword = document.getElementById('password-' + key).value;
         const msgEl = document.getElementById('msg-' + key);
-        const newLogin = loginInput.value.trim();
-        const newPassword = passwordInput.value;
-        if (!newLogin) {
-            msgEl.className = 'admin-msg err';
-            msgEl.innerText = 'Логин не может быть пустым';
-            return;
-        }
+        if (!newLogin) { msgEl.className = 'admin-msg err'; msgEl.innerText = 'Логин пустой'; return; }
+
         let oldLogin = null;
         for (const [lg, acc] of Object.entries(ACCOUNTS)) {
             if (acc.key === key) oldLogin = lg;
         }
         if (newLogin !== oldLogin && ACCOUNTS[newLogin]) {
-            msgEl.className = 'admin-msg err';
-            msgEl.innerText = 'Логин уже занят';
-            return;
+            msgEl.className = 'admin-msg err'; msgEl.innerText = 'Логин занят'; return;
         }
+
         const newAccounts = {};
         for (const [lg, acc] of Object.entries(ACCOUNTS)) {
-            if (acc.key === key) {
-                newAccounts[newLogin] = {
-                    password: newPassword || acc.password,
-                    key: acc.key
-                };
-            } else {
-                newAccounts[lg] = acc;
-            }
+            if (acc.key === key) newAccounts[newLogin] = { password: newPassword || acc.password, key: acc.key };
+            else newAccounts[lg] = acc;
         }
         ACCOUNTS = newAccounts;
         await saveAccounts();
+
         if (currentUser && currentUser.key === key) {
             currentUser.login = newLogin;
             saveSession(currentUser);
             renderUserBar();
         }
-        passwordInput.value = '';
+        document.getElementById('password-' + key).value = '';
         msgEl.className = 'admin-msg ok';
         msgEl.innerText = '✅ Сохранено';
         setTimeout(() => { msgEl.innerText = ''; }, 2000);
@@ -3342,24 +1427,10 @@
     // ==================================================
     async function init() {
         await loadAccounts();
-        subscribeStickers();
         restoreSession();
     }
     init();
 
-    document.addEventListener('visibilitychange', () => {
-        if (!document.hidden && localStorage.getItem(ACTIVE_TAB_KEY) === 'chat') {
-            markMessagesAsRead();
-        }
-    });
-
-    window.addEventListener('beforeunload', (e) => {
-        if (hasUnsavedChanges) {
-            e.preventDefault();
-            e.returnValue = '';
-        }
-        clearTypingStatus();
-    });
 </script>
 
 </body>
