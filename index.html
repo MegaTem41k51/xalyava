@@ -155,7 +155,7 @@
     .drops-filter-btn {
         padding: 8px 16px; background: #2a2a3e; color: #aaa;
         border: 1px solid #3a3a52; border-radius: 8px;
-        font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s;
+        font-size: 13px; font-weight: 600; cursor: pointer;
     }
     .drops-filter-btn:hover { color: #fff; border-color: #764ba2; }
     .drops-filter-btn.active { background: #764ba2; color: #fff; border-color: #764ba2; }
@@ -171,7 +171,6 @@
         position: relative; display: flex; flex-direction: column; cursor: pointer;
     }
     .drop-card:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(0,0,0,0.6); }
-
     .drop-card.rarity-shirotreb { border-color: #5a5a7a; }
     .drop-card.rarity-prom { border-color: #4a90e2; }
     .drop-card.rarity-army { border-color: #5b8dd6; }
@@ -191,7 +190,7 @@
         position: absolute; top: 8px; right: 8px;
         padding: 3px 10px; border-radius: 12px;
         font-size: 10px; font-weight: 800; text-transform: uppercase;
-        letter-spacing: 0.5px; color: #fff; z-index: 5;
+        color: #fff; z-index: 5;
     }
     .rarity-shirotreb .drop-rarity-badge { background: #5a5a7a; }
     .rarity-prom .drop-rarity-badge { background: #4a90e2; }
@@ -259,7 +258,7 @@
     .auction-timer.visible { display: block; }
     .auction-timer .timer-label {
         font-size: 11px; color: #888;
-        text-transform: uppercase; letter-spacing: 1px;
+        text-transform: uppercase;
     }
     .auction-timer .timer-value {
         font-size: 20px; font-weight: 800;
@@ -272,7 +271,6 @@
         background: linear-gradient(135deg, #2a0a0a, #1a0a1a);
         border: 1px solid #a00000; border-radius: 12px;
         padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
-        gap: 12px;
     }
     .auction-price .price-left { display: flex; flex-direction: column; }
     .auction-price .price-val { color: #ff4444; font-size: 22px; font-weight: 900; }
@@ -281,7 +279,7 @@
         background: linear-gradient(135deg, #f9a825, #f57c00);
         color: #000; font-size: 14px; font-weight: 800;
         padding: 12px 24px; border: none; border-radius: 8px;
-        cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+        cursor: pointer; text-transform: uppercase;
     }
     .auction-price .dep-btn:hover {
         background: linear-gradient(135deg, #ffb300, #f57c00);
@@ -291,7 +289,7 @@
 
     .prizes-title {
         color: #fff; font-size: 14px; font-weight: 700;
-        text-transform: uppercase; letter-spacing: 1px;
+        text-transform: uppercase;
     }
     .auction-prizes {
         display: flex; flex-direction: column; gap: 8px;
@@ -305,6 +303,7 @@
     }
     .auction-prize .prize-info { flex: 1; }
     .auction-prize .prize-name { font-size: 13px; font-weight: 600; }
+    .auction-prize .prize-chance { font-size: 11px; color: #888; margin-top: 2px; }
     .auction-prize .prize-price { color: #4ade80; font-weight: 700; font-size: 14px; white-space: nowrap; }
 
     .auction-tickets {
@@ -315,7 +314,7 @@
         display: flex; justify-content: space-between; align-items: center;
         margin-bottom: 14px; flex-wrap: wrap; gap: 8px;
     }
-    .tickets-header h3 { font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+    .tickets-header h3 { font-size: 16px; text-transform: uppercase; }
     .tickets-count {
         color: #ff4444; font-weight: 800;
         font-size: 18px; font-variant-numeric: tabular-nums;
@@ -348,7 +347,6 @@
         background: #1a1a2a;
         padding: 4px; border-radius: 6px;
         max-height: 420px; overflow-y: auto;
-        position: relative;
     }
     .ticket-cell {
         aspect-ratio: 1;
@@ -356,7 +354,6 @@
         transition: 0.1s;
     }
 
-    /* Много цветов для билетов */
     .ticket-cell.c0  { background: #4ade80; }
     .ticket-cell.c1  { background: #f87171; }
     .ticket-cell.c2  { background: #fbbf24; }
@@ -386,7 +383,6 @@
     }
     .tickets-status.win { color: #4ade80; font-weight: 800; font-size: 18px; }
 
-    /* Победитель снизу */
     .winner-block {
         margin-top: 20px;
         display: none;
@@ -405,7 +401,7 @@
     }
     .winner-block .winner-title {
         color: #f9a825; font-size: 18px; font-weight: 900;
-        text-transform: uppercase; letter-spacing: 2px;
+        text-transform: uppercase;
     }
     .winner-block .winner-content {
         display: flex; flex-direction: column; align-items: center;
@@ -450,7 +446,7 @@
         border-radius: 8px; background: #1e1e2e;
         color: #fff; font-size: 14px; outline: none;
     }
-    .admin-field textarea { font-family: monospace; font-size: 12px; min-height: 200px; resize: vertical; }
+    .admin-field textarea { font-family: monospace; font-size: 12px; min-height: 220px; resize: vertical; }
     .admin-field select { cursor: pointer; }
 
     .admin-btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
@@ -624,691 +620,4 @@
                         <div class="price-val" id="ticketPrice">₽8.78</div>
                         <div class="price-sub">Цена за 1 билет</div>
                     </div>
-                    <button class="dep-btn" id="depBtn" onclick="depositTicket()">💳 DEP</button>
-                </div>
-                <div class="prizes-title">🎁 Призы (от меньшего шанса к большему)</div>
-                <div class="auction-prizes" id="auctionPrizes"></div>
-            </div>
-            <div class="auction-tickets">
-                <div class="tickets-header">
-                    <h3>🎫 Билеты</h3>
-                    <div class="tickets-count" id="ticketsCount">0 / 1000</div>
-                </div>
-
-                <div class="tickets-counters">
-                    <div class="counter-badge mega">
-                        🔴 MEGATEM41K: <span class="cnt" id="cntMega">0</span>
-                    </div>
-                    <div class="counter-badge sergo">
-                        🔵 Sergo Bulkin: <span class="cnt" id="cntSergo">0</span>
-                    </div>
-                </div>
-
-                <div class="tickets-grid" id="ticketsGrid"></div>
-                <div class="tickets-status" id="ticketsStatus">Нажми DEP чтобы получить билет</div>
-
-                <div class="winner-block" id="winnerBlock">
-                    <div class="winner-title">🏆 ПОБЕДИТЕЛЬ</div>
-                    <div class="winner-content">
-                        <div class="winner-skin-name" id="winnerSkinName"></div>
-                        <div class="winner-skin-price" id="winnerSkinPrice"></div>
-                        <div class="winner-nick" id="winnerNick"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="tab-chat" class="tab-content">
-    <div class="chat-container">
-        <div class="chat-header">
-            <span>💬 Общий чат</span>
-            <span class="chat-status" id="chatStatus">подключение...</span>
-        </div>
-        <div class="chat-messages" id="chatMessages"></div>
-        <div class="chat-input-area">
-            <input type="text" id="chatInput" placeholder="Напиши сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
-            <button onclick="sendMessage()">➤</button>
-        </div>
-    </div>
-</div>
-
-<div id="tab-admin" class="tab-content">
-    <div class="admin-wrap">
-
-        <div class="admin-card">
-            <h3 class="mega-color">👤 MEGATEM41K — свои данные</h3>
-            <div class="avatar-edit">
-                <div class="avatar-preview mega" id="preview-mega">M</div>
-                <div>
-                    <button class="admin-btn" onclick="document.getElementById('avatarFile-mega').click()">📷 Загрузить аватар</button>
-                    <input type="file" id="avatarFile-mega" accept="image/*" style="display:none;" onchange="uploadAvatar(event, 'mega')">
-                </div>
-            </div>
-            <div class="admin-field"><label>Логин</label><input type="text" id="login-mega"></div>
-            <div class="admin-field"><label>Новый пароль</label><input type="password" id="password-mega"></div>
-            <div class="admin-btn-row"><button class="admin-btn" onclick="saveAccount('mega')">💾 Сохранить</button></div>
-            <div class="admin-msg" id="msg-mega"></div>
-        </div>
-
-        <div class="admin-card">
-            <h3 class="sergo-color">👤 Sergo Bulkin — данные</h3>
-            <div class="avatar-edit">
-                <div class="avatar-preview sergo" id="preview-sergo">S</div>
-                <div>
-                    <button class="admin-btn" onclick="document.getElementById('avatarFile-sergo').click()">📷 Загрузить аватар</button>
-                    <input type="file" id="avatarFile-sergo" accept="image/*" style="display:none;" onchange="uploadAvatar(event, 'sergo')">
-                </div>
-            </div>
-            <div class="admin-field"><label>Логин</label><input type="text" id="login-sergo"></div>
-            <div class="admin-field"><label>Новый пароль</label><input type="password" id="password-sergo"></div>
-            <div class="admin-btn-row"><button class="admin-btn" onclick="saveAccount('sergo')">💾 Сохранить</button></div>
-            <div class="admin-msg" id="msg-sergo"></div>
-        </div>
-
-        <div class="admin-card">
-            <h3>🎁 Добавить дроп</h3>
-            <div class="drop-form">
-                <div class="admin-field full-width">
-                    <label>Название скина *</label>
-                    <input type="text" id="dropName" placeholder="Например: AWP | Удар молнии">
-                </div>
-                <div class="admin-field">
-                    <label>Кейс</label>
-                    <select class="admin-field" id="dropCaseSelect" onchange="onCaseSelectDropChange()">
-                        <option value="Дождливый мегаполис">Дождливый мегаполис</option>
-                        <option value="Ателье колдовских колпаков">Ателье колдовских колпаков</option>
-                        <option value="__other__">Другое...</option>
-                    </select>
-                    <input type="text" id="dropCaseCustom" class="case-custom-input" placeholder="Введи название кейса">
-                </div>
-                <div class="admin-field">
-                    <label>Цена</label>
-                    <input type="text" id="dropPrice" placeholder="Например: 1500 ₽">
-                </div>
-                <div class="admin-field">
-                    <label>Редкость</label>
-                    <select class="admin-field" id="dropRarity">
-                        <option value="shirotreb">Ширпотреб</option>
-                        <option value="prom">Промышленное</option>
-                        <option value="army">Армейское</option>
-                        <option value="forbidden">Запрещённое</option>
-                        <option value="classified">Засекреченное</option>
-                        <option value="secret">Тайное</option>
-                        <option value="gold">Золотое</option>
-                    </select>
-                </div>
-                <div class="admin-field">
-                    <label>Кто выбил</label>
-                    <select class="admin-field" id="dropAuthor">
-                        <option value="mega">MEGATEM41K</option>
-                        <option value="sergo">Sergo Bulkin</option>
-                    </select>
-                </div>
-            </div>
-            <div class="admin-btn-row"><button class="admin-btn" onclick="addDrop()">➕ Добавить дроп</button></div>
-            <div class="admin-msg" id="msg-drop"></div>
-        </div>
-
-        <div class="admin-card">
-            <h3>📋 Управление дропами</h3>
-            <div id="dropsAdminList"></div>
-        </div>
-
-        <div class="admin-card">
-            <h3>🎰 Создать аукцион</h3>
-            <div class="admin-field">
-                <label>Название аукциона</label>
-                <input type="text" id="aucTitle" placeholder="Например: Дамасская сталь">
-            </div>
-            <div class="admin-field">
-                <label>Кейс (влияет на список призов)</label>
-                <select id="aucCase" onchange="onCaseSelectAdmin()">
-                    <option value="rainy">Дождливый мегаполис</option>
-                    <option value="atelier">Ателье колдовских колпаков</option>
-                </select>
-            </div>
-            <div class="admin-field">
-                <label>Цена за билет (₽)</label>
-                <input type="number" id="aucPrice" placeholder="8.78" step="0.01" value="8.78">
-            </div>
-            <div class="admin-field">
-                <label>Билетов до старта</label>
-                <input type="number" id="aucTotal" placeholder="1000" value="1000">
-            </div>
-            <div class="admin-field">
-                <label>Таймер до победителя (минут, от 1 до 10)</label>
-                <input type="number" id="aucTimer" placeholder="1" value="1" min="1" max="10">
-            </div>
-            <div class="admin-field">
-                <label>Призы (Название;Цена, по одной на строку) — идут от меньшего шанса к большему</label>
-                <textarea id="aucPrizes"></textarea>
-            </div>
-            <div class="admin-btn-row">
-                <button class="admin-btn" onclick="createAuction()">➕ Создать аукцион</button>
-                <button class="admin-btn danger" onclick="resetTickets()">🔄 Сбросить билеты</button>
-            </div>
-            <div class="admin-msg" id="msg-auction"></div>
-        </div>
-
-    </div>
-</div>
-
-</div>
-
-<script type="module">
-    const firebaseConfig = {
-        apiKey: "AIzaSyCp06hFJwxSppjYpsI1yBQobSMb2hDZkmZE",
-        authDomain: "xalyava.firebaseapp.com",
-        projectId: "xalyava",
-        storageBucket: "xalyava.firebasestorage.app",
-        messagingSenderId: "507932218230",
-        appId: "1:507932218230:web:df0afc6e1c96cbc76e057"
-    };
-
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-    import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, addDoc, deleteDoc, query, orderBy, serverTimestamp }
-        from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // ===== ДРОПЫ — константы =====
-    const PROFILE_URLS = {
-        mega: 'https://skinhouse.gg/ru/user/2181',
-        sergo: 'https://skinhouse.gg/ru/user/26587'
-    };
-
-    const RARITY_LABELS = {
-        shirotreb: 'Ширпотреб', prom: 'Промышленное', army: 'Армейское',
-        forbidden: 'Запрещённое', classified: 'Засекреченное', secret: 'Тайное', gold: 'Золотое'
-    };
-    const RARITY_COLORS = {
-        shirotreb: '#5a5a7a', prom: '#4a90e2', army: '#5b8dd6',
-        forbidden: '#9b59b6', classified: '#e91e63', secret: '#c62828', gold: '#f9a825'
-    };
-    function getRarityLabel(r) { return RARITY_LABELS[r] || 'Ширпотреб'; }
-    function getRarityColor(r) { return RARITY_COLORS[r] || '#5a5a7a'; }
-    function getAuthorLabel(key) {
-        if (key === 'mega') return 'MEGATEM41K';
-        if (key === 'sergo') return 'Sergo Bulkin';
-        return key;
-    }
-    function getCaseGiver(caseName) {
-        const n = (caseName || '').toLowerCase();
-        if (n.includes('дождлив') || n.includes('мегаполис') || n.includes('rainy')) return 'Дроп от Алика';
-        if (n.includes('ателье') || n.includes('колдовск') || n.includes('atelier')) return 'Дроп от Жидкого';
-        return '';
-    }
-
-    // ===== СПИСКИ СКИНОВ — от меньшего шанса к большему =====
-    // Сверху — дорогие/редкие (маленький шанс), снизу — дешёвые (большой шанс)
-    const CASE_SKINS = {
-        rainy: [
-            // Редкие/дорогие
-            { name: 'Штык-нож M9 | Чистая вода', price: 14918.98, chance: 0.072 },
-            { name: 'Складной нож | Городская маскировка', price: 21902.59, chance: 0.2 },
-            { name: 'Нож с лезвием-крюком | Чистая вода', price: 8668.49, chance: 0.4 },
-            { name: 'AWP | Удар молнии', price: 0, chance: 0.02 },
-            { name: 'M4A4 | Дождь из пуль', price: 0, chance: 0.28 },
-            { name: 'AK-47 | Неоновая революция', price: 0, chance: 0.25 },
-            { name: 'Капитан Фрэнк «Мокрый» | Боевые пловцы SEAL', price: 0, chance: 0.06 },
-            { name: 'G3SG1 | Поток', price: 0, chance: 7.107 },
-            { name: 'MP9 | Бегом за латте', price: 0, chance: 5.887 },
-            { name: 'Автомат «Галиль» | Радужная ложка', price: 0, chance: 1.06 },
-            { name: 'USP-S | Следы асфальта', price: 0, chance: 1.3 },
-            { name: 'MP9 | Цветное стекло', price: 0, chance: 0.1 },
-            { name: 'ПП-19 «Бизон» | Синяя струя', price: 0, chance: 13.249 },
-            { name: 'Dual Berettas | Городской шок', price: 0, chance: 14.856 },
-            { name: 'M4A4 | Тусклые полосы', price: 0, chance: 10.041 },
-            { name: 'Desert Eagle | Городской щебень', price: 0, chance: 7.007 },
-            { name: 'UMP-45 | Поздняя поездка', price: 0, chance: 6.428 },
-            { name: 'P90 | Мрак', price: 0, chance: 8.535 },
-            { name: 'MP7 | Городская опасность', price: 0, chance: 14.533 },
-            { name: 'MP9 | Гроза', price: 0, chance: 7.008 },
-            { name: 'AUG | Гроза', price: 0, chance: 1.607 }
-        ],
-        atelier: [
-            // Редкие/дорогие
-            { name: 'Фальшион | Волны', price: 0, chance: 0.002 },
-            { name: 'Медвежий нож | Волны', price: 0, chance: 0.002 },
-            { name: 'Паракорд-нож | Волны', price: 0, chance: 0.003 },
-            { name: 'Нож выживания | Волны', price: 0, chance: 0.013 },
-            { name: 'Нож с лезвием-крюком | Волны', price: 0, chance: 0.011 },
-            { name: 'Тычковые ножи | Волны', price: 0, chance: 0.03 },
-            { name: 'AWP | CMYK', price: 0, chance: 0.051 },
-            { name: 'USP-S | Поток информации', price: 0, chance: 0.89 },
-            { name: 'AK-47 | Наследство', price: 0, chance: 0.84 },
-            { name: 'Glock-18 | Полный раскрас', price: 0, chance: 1.69 },
-            { name: 'Брелок | Крошка Привидение', price: 0, chance: 1 },
-            { name: 'M4A4 | Безлюдный космос', price: 0, chance: 3.38 },
-            { name: 'M4A1-S | Стратосфера', price: 0, chance: 19.748 },
-            { name: 'M4A1-S | Дикий тусовщик', price: 0, chance: 5.05 },
-            { name: 'Брелок | Бриллиантовая колба', price: 0, chance: 5 },
-            { name: 'M4A4 | Зубная фея', price: 0, chance: 6.229 },
-            { name: 'Брелок | Литой калаш', price: 0, chance: 6.229 },
-            { name: 'P90 | Неокоролева', price: 0, chance: 18.687 },
-            { name: 'USP-S | Неисправность', price: 0, chance: 31.145 }
-        ]
-    };
-
-    // ===== АККАУНТЫ =====
-    let ACCOUNTS = {
-        'Sergo Bulkin': { password: 'sosyXUI322', key: 'sergo' },
-        'MEGATEM41K':    { password: '322sosyXUI322', key: 'mega' }
-    };
-    let AVATARS = { mega: '', sergo: '' };
-    let currentUser = null;
-    const SESSION_KEY = 'chat_session_v1';
-
-    async function loadAccounts() {
-        try {
-            const docSnap = await getDoc(doc(db, 'data', 'accounts'));
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                if (data.accounts) ACCOUNTS = data.accounts;
-                if (data.avatars) AVATARS = data.avatars;
-            } else {
-                await setDoc(doc(db, 'data', 'accounts'), { accounts: ACCOUNTS, avatars: AVATARS });
-            }
-        } catch(e) { console.warn(e); }
-    }
-    async function saveAccounts() {
-        try {
-            await setDoc(doc(db, 'data', 'accounts'), { accounts: ACCOUNTS, avatars: AVATARS });
-        } catch(e) { console.warn(e); }
-    }
-
-    function saveSession(user) {
-        try {
-            sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
-            localStorage.setItem(SESSION_KEY, JSON.stringify(user));
-        } catch(e) {}
-    }
-    function loadSession() {
-        try {
-            let raw = sessionStorage.getItem(SESSION_KEY) || localStorage.getItem(SESSION_KEY);
-            if (!raw) return null;
-            const u = JSON.parse(raw);
-            if (ACCOUNTS[u.login]) return { login: u.login, key: ACCOUNTS[u.login].key };
-            for (const [lg, acc] of Object.entries(ACCOUNTS)) {
-                if (acc.key === u.key) return { login: lg, key: acc.key };
-            }
-            return null;
-        } catch(e) { return null; }
-    }
-    function clearSession() {
-        sessionStorage.removeItem(SESSION_KEY);
-        localStorage.removeItem(SESSION_KEY);
-    }
-
-    window.tryLogin = function() {
-        const login = document.getElementById('loginInput').value.trim();
-        const password = document.getElementById('passwordInput').value;
-        const errEl = document.getElementById('loginError');
-        const acc = ACCOUNTS[login];
-        if (!acc) { errEl.innerText = 'Неверный логин'; return; }
-        if (acc.password !== password) { errEl.innerText = 'Неверный пароль'; return; }
-        currentUser = { login: login, key: acc.key };
-        saveSession(currentUser);
-        errEl.innerText = '';
-        showMainSite();
-    };
-
-    window.logout = function() {
-        if (!confirm('Выйти?')) return;
-        clearSession();
-        location.reload();
-    };
-
-    function showMainSite() {
-        document.getElementById('loginOverlay').classList.add('hidden');
-        document.getElementById('mainSite').style.display = 'flex';
-        renderUserBar();
-        if (currentUser.key === 'mega') {
-            document.getElementById('adminTabBtn').style.display = '';
-            loadAdminFields();
-        }
-        loadTable();
-        subscribeAuction();
-        subscribeDrops();
-        subscribeChat();
-        restoreActiveTab();
-    }
-
-    function renderUserBar() {
-        const bar = document.getElementById('userBar');
-        const av = AVATARS[currentUser.key];
-        const avatarStyle = av ? `background-image: url('${av}'); background-size: cover; background-position: center;` : '';
-        const avatarClass = av ? '' : currentUser.key;
-        const avatarContent = av ? '' : currentUser.login[0];
-        bar.innerHTML = `
-            <div class="avatar ${avatarClass}" style="${avatarStyle}">${av ? '' : avatarContent}</div>
-            <span>${currentUser.login}</span>
-            <button class="logout" onclick="logout()">Выйти</button>
-        `;
-    }
-
-    function restoreSession() {
-        const session = loadSession();
-        if (session) { currentUser = session; saveSession(session); showMainSite(); return; }
-        document.getElementById('loginOverlay').classList.remove('hidden');
-    }
-
-    document.getElementById('passwordInput').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') tryLogin();
-    });
-
-    // ===== ВКЛАДКИ =====
-    const ACTIVE_TAB_KEY = 'activeTab';
-
-    window.switchTab = function(name, btn) {
-        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById('tab-' + name).classList.add('active');
-        if (btn) btn.classList.add('active');
-        localStorage.setItem(ACTIVE_TAB_KEY, name);
-        if (name === 'admin') loadAdminFields();
-        if (name === 'drops') renderDrops();
-    };
-
-    function restoreActiveTab() {
-        const saved = localStorage.getItem(ACTIVE_TAB_KEY) || 'accounting';
-        if (saved === 'admin' && (!currentUser || currentUser.key !== 'mega')) {
-            const btn = document.querySelector('.tab-btn[data-tab="accounting"]');
-            if (btn) switchTab('accounting', btn);
-            return;
-        }
-        const btn = document.querySelector(`.tab-btn[data-tab="${saved}"]`);
-        if (btn) switchTab(saved, btn);
-    }
-
-    // ===== УЧЁТ =====
-    const ACC_DOC = 'accounting';
-    const ACC_FIELD = 'prices_v2';
-    const DAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-
-    let tableData = { mega: {}, sergo: {} };
-    DAYS.forEach(d => {
-        tableData.mega[d] = { alik: '', zhidkiy: '' };
-        tableData.sergo[d] = { alik: '', zhidkiy: '' };
-    });
-
-    function renderTable() {
-        const tbody = document.getElementById('tableBody');
-        tbody.innerHTML = '';
-        DAYS.forEach(day => {
-            const tr = document.createElement('tr');
-            const dayTd = document.createElement('td');
-            dayTd.innerText = day;
-            tr.appendChild(dayTd);
-            ['mega', 'sergo'].forEach(ownerKey => {
-                const td = document.createElement('td');
-                const canEdit = currentUser && currentUser.key === ownerKey;
-                const pair = document.createElement('div');
-                pair.className = 'cell-pair';
-                pair.appendChild(createPersonInput(ownerKey, day, 'alik', 'Алик', canEdit));
-                pair.appendChild(createPersonInput(ownerKey, day, 'zhidkiy', 'Жидкий', canEdit));
-                td.appendChild(pair);
-                tr.appendChild(td);
-            });
-            tbody.appendChild(tr);
-        });
-
-        const totalTr = document.createElement('tr');
-        totalTr.className = 'total-row';
-        const totalLabel = document.createElement('td');
-        totalLabel.innerText = 'Сумма';
-        totalTr.appendChild(totalLabel);
-        ['mega', 'sergo'].forEach(key => {
-            const td = document.createElement('td');
-            const span = document.createElement('span');
-            span.className = 'total-value ' + key;
-            span.id = 'total-' + key;
-            span.innerText = '0 ₽';
-            td.appendChild(span);
-            totalTr.appendChild(td);
-        });
-        tbody.appendChild(totalTr);
-        updateTotals();
-    }
-
-    function createPersonInput(ownerKey, day, personKey, personName, canEdit) {
-        const row = document.createElement('div');
-        row.className = 'cell-row';
-        const label = document.createElement('span');
-        label.className = 'label ' + personKey;
-        label.innerText = personName + ' — ';
-        row.appendChild(label);
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.className = 'price-input';
-        input.placeholder = 'цена';
-        input.value = tableData[ownerKey][day][personKey] || '';
-        input.disabled = !canEdit;
-        input.dataset.owner = ownerKey;
-        input.dataset.day = day;
-        input.dataset.person = personKey;
-        input.addEventListener('input', (e) => {
-            tableData[e.target.dataset.owner][e.target.dataset.day][e.target.dataset.person] = e.target.value;
-            updateTotals();
-        });
-        row.appendChild(input);
-        return row;
-    }
-
-    function parsePrice(str) {
-        if (!str) return 0;
-        const cleaned = String(str).replace(/[^\d.,-]/g, '').replace(',', '.');
-        const n = parseFloat(cleaned);
-        return isNaN(n) ? 0 : n;
-    }
-
-    function updateTotals() {
-        let sumMega = 0, sumSergo = 0;
-        DAYS.forEach(day => {
-            sumMega += parsePrice(tableData.mega[day].alik) + parsePrice(tableData.mega[day].zhidkiy);
-            sumSergo += parsePrice(tableData.sergo[day].alik) + parsePrice(tableData.sergo[day].zhidkiy);
-        });
-        const megaEl = document.getElementById('total-mega');
-        const sergoEl = document.getElementById('total-sergo');
-        if (megaEl) megaEl.innerText = sumMega + ' ₽';
-        if (sergoEl) sergoEl.innerText = sumSergo + ' ₽';
-    }
-
-    async function loadTable() {
-        try {
-            const docSnap = await getDoc(doc(db, 'data', ACC_DOC));
-            if (docSnap.exists() && docSnap.data()[ACC_FIELD]) {
-                const cloud = docSnap.data()[ACC_FIELD];
-                if (cloud && cloud.mega && cloud.sergo) {
-                    DAYS.forEach(day => {
-                        ['mega', 'sergo'].forEach(ownerKey => {
-                            const src = cloud[ownerKey][day];
-                            if (src) tableData[ownerKey][day] = { alik: src.alik || '', zhidkiy: src.zhidkiy || '' };
-                        });
-                    });
-                }
-            }
-        } catch(e) { console.warn(e); }
-        renderTable();
-    }
-
-    // ===== ДРОПЫ =====
-    let DROPS = [];
-    let currentDropFilter = 'all';
-
-    function subscribeDrops() {
-        onSnapshot(doc(db, 'data', 'drops'), (docSnap) => {
-            if (docSnap.exists()) DROPS = docSnap.data().items || [];
-            else DROPS = [];
-            renderDrops();
-            renderDropsAdmin();
-        }, (err) => { console.warn('Drops error', err); });
-    }
-
-    async function saveDrops() {
-        try {
-            await setDoc(doc(db, 'data', 'drops'), { items: DROPS });
-        } catch(e) { alert('Не удалось сохранить: ' + e.message); }
-    }
-
-    window.setDropFilter = function(filter, btn) {
-        currentDropFilter = filter;
-        document.querySelectorAll('.drops-filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        renderDrops();
-    };
-
-    function formatDropDate(ts) {
-        if (!ts) return '';
-        try {
-            const d = ts.toDate ? ts.toDate() : new Date(ts);
-            return d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: '2-digit' }) +
-                   ' ' + d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
-        } catch(e) { return ''; }
-    }
-
-    function renderDrops() {
-        const grid = document.getElementById('dropsGrid');
-        if (!grid) return;
-        grid.innerHTML = '';
-
-        let filtered = DROPS.filter(d => currentDropFilter === 'all' || d.author === currentDropFilter);
-        filtered.sort((a, b) => {
-            const ta = a.createdAt ? new Date(a.createdAt).getTime() : 0;
-            const tb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
-            return tb - ta;
-        });
-
-        if (filtered.length === 0) {
-            const empty = document.createElement('div');
-            empty.className = 'drops-empty';
-            empty.innerText = currentDropFilter === 'all' ? 'Пока нет дропов.' : 'У этого игрока нет дропов.';
-            grid.appendChild(empty);
-            return;
-        }
-
-        filtered.forEach(drop => {
-            const card = document.createElement('div');
-            card.className = 'drop-card rarity-' + (drop.rarity || 'shirotreb');
-
-            const giver = getCaseGiver(drop.case);
-
-            card.onclick = () => {
-                const url = PROFILE_URLS[drop.author];
-                if (url) window.open(url, '_blank');
-            };
-
-            const imgWrap = document.createElement('div');
-            imgWrap.className = 'drop-image';
-            const ph = document.createElement('div');
-            ph.className = 'no-image';
-            ph.innerText = '🎁';
-            imgWrap.appendChild(ph);
-
-            const badge = document.createElement('div');
-            badge.className = 'drop-rarity-badge';
-            badge.innerText = getRarityLabel(drop.rarity);
-            imgWrap.appendChild(badge);
-
-            card.appendChild(imgWrap);
-
-            const info = document.createElement('div');
-            info.className = 'drop-info';
-
-            const name = document.createElement('div');
-            name.className = 'drop-name';
-            name.innerText = drop.name || 'Без названия';
-            info.appendChild(name);
-
-            if (drop.case) {
-                const c = document.createElement('div');
-                c.className = 'drop-case';
-                c.innerText = '📦 ' + drop.case;
-                info.appendChild(c);
-            }
-
-            if (giver) {
-                const g = document.createElement('div');
-                g.className = 'drop-giver';
-                g.innerText = '🎁 ' + giver;
-                info.appendChild(g);
-            }
-
-            if (drop.price) {
-                const p = document.createElement('div');
-                p.className = 'drop-price';
-                p.innerText = drop.price;
-                info.appendChild(p);
-            }
-
-            const meta = document.createElement('div');
-            meta.style.cssText = 'display:flex;justify-content:space-between;align-items:center;margin-top:6px;';
-
-            const author = document.createElement('div');
-            author.className = 'drop-author';
-            author.innerText = getAuthorLabel(drop.author);
-            meta.appendChild(author);
-
-            const date = document.createElement('div');
-            date.className = 'drop-date';
-            date.innerText = formatDropDate(drop.createdAt);
-            meta.appendChild(date);
-
-            info.appendChild(meta);
-            card.appendChild(info);
-
-            grid.appendChild(card);
-        });
-    }
-
-    window.onCaseSelectDropChange = function() {
-        const sel = document.getElementById('dropCaseSelect');
-        const custom = document.getElementById('dropCaseCustom');
-        if (sel.value === '__other__') custom.classList.add('visible');
-        else custom.classList.remove('visible');
-    };
-
-    window.addDrop = async function() {
-        const name = document.getElementById('dropName').value.trim();
-        const caseSelect = document.getElementById('dropCaseSelect').value;
-        const caseCustom = document.getElementById('dropCaseCustom').value.trim();
-        const price = document.getElementById('dropPrice').value.trim();
-        const rarity = document.getElementById('dropRarity').value;
-        const author = document.getElementById('dropAuthor').value;
-        const msgEl = document.getElementById('msg-drop');
-
-        let caseName = caseSelect;
-        if (caseSelect === '__other__') {
-            if (!caseCustom) { msgEl.className = 'admin-msg err'; msgEl.innerText = 'Введи название кейса'; return; }
-            caseName = caseCustom;
-        }
-
-        if (!name) { msgEl.className = 'admin-msg err'; msgEl.innerText = 'Введи название скина'; return; }
-
-        DROPS.push({
-            id: 'drop_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
-            name, case: caseName, price, rarity, author,
-            createdAt: new Date().toISOString()
-        });
-
-        try { await saveDrops(); }
-        catch(e) { msgEl.className = 'admin-msg err'; msgEl.innerText = 'Ошибка: ' + e.message; return; }
-
-        document.getElementById('dropName').value = '';
-        document.getElementById('dropPrice').value = '';
-        document.getElementById('dropCaseCustom').value = '';
-        document.getElementById('dropCaseSelect').value = 'Дождливый мегаполис';
-        document.getElementById('dropCaseCustom').classList.remove('visible');
-
-        msgEl.className = 'admin-msg ok';
-        msgEl.innerText = '✅ Дроп добавлен';
-        setTimeout(() => { msgEl.innerText = ''; }, 2000);
-
-        renderDrops();
-        renderDropsAdmin();
-    };
-
-   
+                    <
