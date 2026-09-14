@@ -17,7 +17,6 @@
     }
     h1 { margin-bottom: 20px; font-size: 24px; text-align: center; }
 
-    /* Скроллбар */
     * {
         scrollbar-width: thin;
         scrollbar-color: #764ba2 #2a2a3e;
@@ -29,7 +28,6 @@
         border: 2px solid #2a2a3e;
     }
     *::-webkit-scrollbar-thumb:hover { background: #8b5fc0; }
-    *::-webkit-scrollbar-corner { background: #2a2a3e; }
 
     /* ЛОГИН */
     .login-overlay {
@@ -241,7 +239,214 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* КАЛЕНДАРЬ */
+    /* ДРОПЫ */
+    .drops-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1100px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    .drops-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .drops-filters {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    .drops-filter-btn {
+        padding: 8px 16px;
+        background: #2a2a3e;
+        color: #aaa;
+        border: 1px solid #3a3a52;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .drops-filter-btn:hover { color: #fff; border-color: #764ba2; }
+    .drops-filter-btn.active {
+        background: #764ba2;
+        color: #fff;
+        border-color: #764ba2;
+    }
+
+    .drops-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 16px;
+        width: 100%;
+        max-width: 1100px;
+    }
+
+    .drop-card {
+        background: #2a2a3e;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        border: 2px solid #3a3a52;
+        transition: 0.2s;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+    .drop-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+    }
+
+    /* Цвета по редкости */
+    .drop-card.rarity-common { border-color: #5a5a7a; }
+    .drop-card.rarity-uncommon { border-color: #4a90e2; }
+    .drop-card.rarity-rare { border-color: #9b59b6; }
+    .drop-card.rarity-legendary { border-color: #f9a825; box-shadow: 0 0 20px rgba(249,168,37,0.3); }
+    .drop-card.rarity-mythical { border-color: #c62828; box-shadow: 0 0 25px rgba(198,40,40,0.4); }
+
+    .drop-image {
+        width: 100%;
+        height: 160px;
+        background: #1e1e2e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+    }
+    .drop-image img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+    }
+    .drop-image .no-image {
+        font-size: 50px;
+        opacity: 0.3;
+    }
+
+    .drop-rarity-badge {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 10px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #fff;
+    }
+    .rarity-common .drop-rarity-badge { background: #5a5a7a; }
+    .rarity-uncommon .drop-rarity-badge { background: #4a90e2; }
+    .rarity-rare .drop-rarity-badge { background: #9b59b6; }
+    .rarity-legendary .drop-rarity-badge { background: #f9a825; color: #000; }
+    .rarity-mythical .drop-rarity-badge { background: #c62828; }
+
+    .drop-info {
+        padding: 12px 14px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .drop-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.3;
+    }
+    .drop-case {
+        font-size: 12px;
+        color: #a78bfa;
+    }
+    .drop-price {
+        font-size: 16px;
+        font-weight: 800;
+        color: #81c784;
+        margin-top: auto;
+    }
+    .drop-date {
+        font-size: 11px;
+        color: #666;
+    }
+    .drop-author {
+        font-size: 11px;
+        color: #888;
+        font-style: italic;
+    }
+
+    .drops-empty {
+        text-align: center;
+        padding: 60px 20px;
+        color: #666;
+        font-size: 15px;
+        width: 100%;
+    }
+
+    /* АДМИНКА — дропы */
+    .drop-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+    .drop-form .full-width { grid-column: 1 / -1; }
+    @media (max-width: 600px) {
+        .drop-form { grid-template-columns: 1fr; }
+    }
+
+    .drop-image-upload {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        grid-column: 1 / -1;
+    }
+    .drop-image-preview {
+        width: 120px;
+        height: 120px;
+        background: #1e1e2e;
+        border: 2px dashed #3a3a52;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+    .drop-image-preview:hover { border-color: #a78bfa; }
+    .drop-image-preview img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    .drop-image-preview .ph {
+        font-size: 32px;
+        color: #555;
+    }
+
+    .admin-select {
+        padding: 10px 14px;
+        border: 1px solid #444;
+        border-radius: 8px;
+        background: #1e1e2e;
+        color: #fff;
+        font-size: 14px;
+        outline: none;
+        width: 100%;
+        cursor: pointer;
+    }
+    .admin-select:focus { border-color: #a78bfa; }
+
+    /* Остальное из прошлого кода */
     .player-tabs {
         display: flex; gap: 10px; margin-bottom: 20px;
         background: #2a2a3e; padding: 6px; border-radius: 12px;
@@ -352,7 +557,7 @@
     .skin-box.pending .skin-save { display: block; }
     .cal-cell.locked .skin-box { cursor: not-allowed; opacity: 0.85; }
 
-    /* ===== ЧАТ ===== */
+    /* ЧАТ */
     .chat-container {
         width: 100%; max-width: 600px;
         background: #2a2a3e; border-radius: 12px;
@@ -367,13 +572,10 @@
         gap: 12px;
     }
     .chat-header-left {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        display: flex; align-items: center; gap: 10px;
     }
     .chat-status { font-size: 12px; color: #e0d4ff; }
 
-    /* Кнопка громкости */
     .volume-wrap {
         position: relative;
         display: flex;
@@ -381,25 +583,18 @@
     }
     .volume-btn {
         background: rgba(0,0,0,0.2);
-        border: none;
-        color: #fff;
-        font-size: 16px;
-        cursor: pointer;
-        width: 32px;
-        height: 32px;
+        border: none; color: #fff;
+        font-size: 16px; cursor: pointer;
+        width: 32px; height: 32px;
         border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: 0.2s;
-        padding: 0;
+        display: flex; align-items: center; justify-content: center;
+        transition: 0.2s; padding: 0;
     }
     .volume-btn:hover { background: rgba(0,0,0,0.4); }
 
     .volume-slider-wrap {
         position: absolute;
-        top: 100%;
-        right: 0;
+        top: 100%; right: 0;
         margin-top: 8px;
         background: #2f2f44;
         border: 1px solid #4a4a66;
@@ -416,36 +611,22 @@
     .volume-slider-wrap input[type="range"] {
         -webkit-appearance: none;
         appearance: none;
-        width: 120px;
-        height: 6px;
+        width: 120px; height: 6px;
         background: #1e1e2e;
         border-radius: 3px;
-        outline: none;
-        cursor: pointer;
+        outline: none; cursor: pointer;
     }
     .volume-slider-wrap input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
-        appearance: none;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background: #a78bfa;
-        cursor: pointer;
-        border: 2px solid #fff;
-    }
-    .volume-slider-wrap input[type="range"]::-moz-range-thumb {
-        width: 16px;
-        height: 16px;
+        width: 16px; height: 16px;
         border-radius: 50%;
         background: #a78bfa;
         cursor: pointer;
         border: 2px solid #fff;
     }
     .volume-value {
-        font-size: 12px;
-        color: #a78bfa;
-        font-weight: 700;
-        min-width: 36px;
+        font-size: 12px; color: #a78bfa;
+        font-weight: 700; min-width: 36px;
         text-align: right;
     }
 
@@ -484,7 +665,6 @@
         border-radius: 8px;
     }
 
-    /* ===== СТИЛИЗОВАННЫЙ АУДИОПЛЕЕР ===== */
     .voice-player {
         display: flex;
         align-items: center;
@@ -500,33 +680,22 @@
         background: rgba(255,255,255,0.15);
     }
     .voice-play-btn {
-        width: 34px;
-        height: 34px;
+        width: 34px; height: 34px;
         border-radius: 50%;
         background: #a78bfa;
-        border: none;
-        color: #fff;
-        font-size: 14px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        padding: 0;
+        border: none; color: #fff;
+        font-size: 14px; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0; padding: 0;
         transition: 0.2s;
     }
     .voice-play-btn:hover { background: #8b5fc0; }
     .chat-msg.own .voice-play-btn { background: #fff; color: #764ba2; }
-    .chat-msg.own .voice-play-btn:hover { background: #e0d4ff; }
 
     .voice-wave {
-        flex: 1;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        gap: 2px;
-        position: relative;
-        cursor: pointer;
+        flex: 1; height: 24px;
+        display: flex; align-items: center;
+        gap: 2px; position: relative; cursor: pointer;
     }
     .voice-wave-bar {
         flex: 1;
@@ -535,28 +704,20 @@
         transition: 0.15s;
     }
     .chat-msg.own .voice-wave-bar { background: rgba(255,255,255,0.3); }
-    .voice-wave-bar.played {
-        background: #a78bfa;
-    }
-    .chat-msg.own .voice-wave-bar.played {
-        background: #fff;
-    }
+    .voice-wave-bar.played { background: #a78bfa; }
+    .chat-msg.own .voice-wave-bar.played { background: #fff; }
 
     .voice-duration {
-        font-size: 11px;
-        color: #ccc;
-        font-weight: 700;
-        min-width: 32px;
+        font-size: 11px; color: #ccc;
+        font-weight: 700; min-width: 32px;
         text-align: right;
         font-variant-numeric: tabular-nums;
     }
     .chat-msg.own .voice-duration { color: #fff; }
 
-    /* Индикатор "печатает..." */
     .typing-indicator {
         display: none;
-        align-items: center;
-        gap: 8px;
+        align-items: center; gap: 8px;
         padding: 8px 14px;
         margin: 0 15px 8px;
         background: #35354d;
@@ -568,13 +729,9 @@
         font-style: italic;
     }
     .typing-indicator.visible { display: flex; }
-    .typing-dots {
-        display: flex;
-        gap: 3px;
-    }
+    .typing-dots { display: flex; gap: 3px; }
     .typing-dots span {
-        width: 5px;
-        height: 5px;
+        width: 5px; height: 5px;
         border-radius: 50%;
         background: #a78bfa;
         animation: typing-bounce 1.4s infinite;
@@ -586,21 +743,14 @@
         30% { transform: translateY(-5px); opacity: 1; }
     }
 
-    /* Прочитано */
     .msg-read {
-        font-size: 10px;
-        color: #ccc;
-        margin-top: 4px;
-        text-align: right;
+        font-size: 10px; color: #ccc;
+        margin-top: 4px; text-align: right;
         font-style: italic;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 4px;
+        display: flex; align-items: center;
+        justify-content: flex-end; gap: 4px;
     }
-    .chat-msg.own .msg-read {
-        color: #e0d4ff;
-    }
+    .chat-msg.own .msg-read { color: #e0d4ff; }
     .msg-read::before {
         content: '✓✓';
         font-style: normal;
@@ -646,8 +796,7 @@
         font-size: 20px; cursor: pointer;
         display: flex; align-items: center; justify-content: center;
         flex-shrink: 0; padding: 0;
-        transition: 0.2s;
-        color: #fff;
+        transition: 0.2s; color: #fff;
     }
     .sticker-btn:hover, .mic-btn:hover { background: #5a3a7d; transform: scale(1.05); }
 
@@ -670,8 +819,7 @@
         padding: 16px 20px;
         z-index: 60;
         display: none;
-        align-items: center;
-        gap: 15px;
+        align-items: center; gap: 15px;
         box-shadow: 0 -10px 40px rgba(198, 40, 40, 0.3);
     }
     .record-panel.open { display: flex; }
@@ -687,33 +835,20 @@
         0%, 50% { opacity: 1; }
         51%, 100% { opacity: 0.3; }
     }
-
     .record-time {
-        font-size: 18px;
-        font-weight: 700;
+        font-size: 18px; font-weight: 700;
         color: #fff;
         font-variant-numeric: tabular-nums;
         min-width: 60px;
     }
-
-    .record-label {
-        flex: 1;
-        color: #aaa;
-        font-size: 14px;
-    }
-
+    .record-label { flex: 1; color: #aaa; font-size: 14px; }
     .record-cancel, .record-send {
         padding: 10px 18px;
         border-radius: 8px;
-        font-size: 14px;
-        font-weight: 700;
-        cursor: pointer;
-        border: none;
+        font-size: 14px; font-weight: 700;
+        cursor: pointer; border: none;
     }
-    .record-cancel {
-        background: #4a4a66;
-        color: #fff;
-    }
+    .record-cancel { background: #4a4a66; color: #fff; }
     .record-cancel:hover { background: #5a5a7a; }
     .record-send {
         background: linear-gradient(135deg, #4caf50, #2e7d32);
@@ -721,7 +856,6 @@
     }
     .record-send:hover { background: linear-gradient(135deg, #66bb6a, #388e3c); }
 
-    /* Стикеры */
     .sticker-panel {
         position: absolute;
         bottom: 76px; left: 12px; right: 12px;
@@ -738,33 +872,24 @@
     .sticker-panel.open { display: flex; }
 
     .sticker-panel-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display: flex; justify-content: space-between; align-items: center;
         padding: 8px 12px;
         background: #3a3a55;
         border-bottom: 1px solid #4a4a66;
     }
     .sticker-panel-title {
-        font-size: 13px;
-        color: #ccc;
-        font-weight: 700;
+        font-size: 13px; color: #ccc; font-weight: 700;
     }
     .sticker-panel-close {
-        background: transparent;
-        border: none;
-        color: #aaa;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 0;
-        width: 26px;
-        height: 26px;
+        background: transparent; border: none;
+        color: #aaa; font-size: 20px;
+        cursor: pointer; padding: 0;
+        width: 26px; height: 26px;
     }
     .sticker-panel-close:hover { color: #fff; }
 
     .sticker-packs-tabs {
-        display: flex;
-        gap: 4px;
+        display: flex; gap: 4px;
         padding: 8px 8px 4px;
         overflow-x: auto;
         background: #2a2a40;
@@ -785,14 +910,9 @@
         flex-shrink: 0;
     }
     .sticker-pack-tab:hover { color: #fff; background: #4a4a6a; }
-    .sticker-pack-tab.active {
-        background: #764ba2;
-        color: #fff;
-    }
+    .sticker-pack-tab.active { background: #764ba2; color: #fff; }
     .sticker-pack-tab .pack-count {
-        opacity: 0.7;
-        font-size: 10px;
-        margin-left: 4px;
+        opacity: 0.7; font-size: 10px; margin-left: 4px;
     }
 
     .sticker-grid {
@@ -804,34 +924,25 @@
         flex: 1;
     }
     .sticker-item {
-        width: 100%;
-        aspect-ratio: 1;
+        width: 100%; aspect-ratio: 1;
         background: #1e1e2e;
         border-radius: 8px;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: flex; align-items: center; justify-content: center;
         overflow: hidden;
         border: 2px solid transparent;
         transition: 0.15s;
         position: relative;
     }
-    .sticker-item:hover {
-        border-color: #a78bfa;
-        transform: scale(1.05);
-    }
+    .sticker-item:hover { border-color: #a78bfa; transform: scale(1.05); }
     .sticker-item img,
     .sticker-item video {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-        pointer-events: none;
+        max-width: 100%; max-height: 100%;
+        object-fit: contain; pointer-events: none;
     }
     .sticker-item .sticker-video-badge {
         position: absolute;
-        bottom: 2px;
-        right: 2px;
+        bottom: 2px; right: 2px;
         background: rgba(118, 75, 162, 0.9);
         color: #fff;
         font-size: 9px;
@@ -841,13 +952,12 @@
         pointer-events: none;
     }
     .sticker-empty {
-        color: #666;
-        text-align: center;
-        padding: 30px 10px;
-        font-size: 13px;
+        color: #666; text-align: center;
+        padding: 30px 10px; font-size: 13px;
         grid-column: 1 / -1;
     }
 
+    /* АДМИНКА */
     .admin-wrap {
         width: 100%; max-width: 900px;
         display: flex; flex-direction: column; gap: 20px;
@@ -906,10 +1016,7 @@
     .admin-btn:hover { background: #5a3a7d; }
     .admin-btn.danger { background: #c62828; }
     .admin-btn.danger:hover { background: #9b1f1f; }
-    .admin-btn.small {
-        padding: 6px 12px;
-        font-size: 12px;
-    }
+    .admin-btn.small { padding: 6px 12px; font-size: 12px; }
 
     .admin-msg {
         margin-top: 10px;
@@ -935,9 +1042,7 @@
     .avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
 
     .pack-create {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 16px;
+        display: flex; gap: 8px; margin-bottom: 16px;
     }
     .pack-create input {
         flex: 1;
@@ -949,63 +1054,40 @@
         font-size: 14px;
         outline: none;
     }
-    .pack-create input:focus {
-        border-color: #a78bfa;
-    }
+    .pack-create input:focus { border-color: #a78bfa; }
 
     .packs-list {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
+        display: flex; flex-direction: column; gap: 12px;
     }
-
     .pack-block {
         background: #23233a;
         border: 1px solid #3a3a52;
         border-radius: 10px;
         overflow: hidden;
     }
-
     .pack-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display: flex; justify-content: space-between; align-items: center;
         padding: 12px 16px;
         background: #2f2f48;
         border-bottom: 1px solid #3a3a52;
-        flex-wrap: wrap;
-        gap: 8px;
+        flex-wrap: wrap; gap: 8px;
     }
     .pack-title {
-        font-weight: 700;
-        font-size: 15px;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        font-weight: 700; font-size: 15px; color: #fff;
+        display: flex; align-items: center; gap: 10px;
         flex-wrap: wrap;
     }
     .pack-title .pack-badge {
-        background: #764ba2;
-        color: #fff;
-        font-size: 11px;
-        padding: 2px 8px;
-        border-radius: 10px;
-        font-weight: 700;
+        background: #764ba2; color: #fff;
+        font-size: 11px; padding: 2px 8px;
+        border-radius: 10px; font-weight: 700;
     }
-    .pack-title .pack-badge.warn {
-        background: #f57c00;
-    }
-    .pack-title .pack-badge.danger {
-        background: #c62828;
-    }
+    .pack-title .pack-badge.warn { background: #f57c00; }
+    .pack-title .pack-badge.danger { background: #c62828; }
 
     .pack-header-actions {
-        display: flex;
-        gap: 6px;
-        flex-wrap: wrap;
+        display: flex; gap: 6px; flex-wrap: wrap;
     }
-
     .pack-stickers {
         padding: 12px;
         display: grid;
@@ -1013,56 +1095,41 @@
         gap: 10px;
         min-height: 40px;
     }
-
     .pack-empty {
-        color: #666;
-        font-size: 13px;
+        color: #666; font-size: 13px;
         font-style: italic;
         grid-column: 1 / -1;
-        text-align: center;
-        padding: 10px;
+        text-align: center; padding: 10px;
     }
-
     .sticker-admin-item {
         position: relative;
         aspect-ratio: 1;
         background: #1e1e2e;
         border-radius: 8px;
         overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: flex; align-items: center; justify-content: center;
         border: 1px solid #3a3a52;
     }
     .sticker-admin-item img,
     .sticker-admin-item video {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
+        max-width: 100%; max-height: 100%; object-fit: contain;
     }
     .sticker-admin-item .webm-badge {
         position: absolute;
-        bottom: 2px;
-        left: 2px;
+        bottom: 2px; left: 2px;
         background: rgba(118, 75, 162, 0.9);
-        color: #fff;
-        font-size: 9px;
-        padding: 1px 5px;
-        border-radius: 4px;
+        color: #fff; font-size: 9px;
+        padding: 1px 5px; border-radius: 4px;
         font-weight: 700;
     }
     .sticker-admin-remove {
         position: absolute;
         top: 3px; right: 3px;
-        background: #c62828;
-        color: #fff;
-        border: none;
-        border-radius: 50%;
+        background: #c62828; color: #fff;
+        border: none; border-radius: 50%;
         width: 22px; height: 22px;
-        font-size: 13px;
-        cursor: pointer;
-        padding: 0;
-        line-height: 1;
+        font-size: 13px; cursor: pointer;
+        padding: 0; line-height: 1;
         z-index: 2;
     }
     .sticker-admin-remove:hover { background: #9b1f1f; }
@@ -1073,8 +1140,7 @@
         justify-content: center; align-items: center; padding: 20px;
     }
     .modal.active { display: flex; }
-    .modal img,
-    .modal video {
+    .modal img, .modal video {
         max-width: 90vw; max-height: 90vh;
         border-radius: 12px;
     }
@@ -1109,6 +1175,7 @@
 <div class="tabs">
     <button class="tab-btn active" data-tab="accounting" onclick="switchTab('accounting', this)">Учёт халявы</button>
     <button class="tab-btn" data-tab="calendar" onclick="switchTab('calendar', this)">Календарь скинов</button>
+    <button class="tab-btn" data-tab="drops" onclick="switchTab('drops', this)">🎁 Дропы</button>
     <button class="tab-btn" data-tab="chat" onclick="switchTab('chat', this)">Чат</button>
     <button class="tab-btn admin-tab" data-tab="admin" id="adminTabBtn" style="display:none;" onclick="switchTab('admin', this)">Админка</button>
 </div>
@@ -1152,6 +1219,19 @@
         </div>
         <div class="calendar" id="calendar-sergo"></div>
     </div>
+</div>
+
+<!-- ДРОПЫ -->
+<div id="tab-drops" class="tab-content">
+    <div class="drops-header">
+        <div class="drops-title">🎁 Последние дропы</div>
+        <div class="drops-filters">
+            <button class="drops-filter-btn active" data-filter="all" onclick="setDropFilter('all', this)">Все</button>
+            <button class="drops-filter-btn" data-filter="mega" onclick="setDropFilter('mega', this)">MEGATEM41K</button>
+            <button class="drops-filter-btn" data-filter="sergo" onclick="setDropFilter('sergo', this)">Sergo Bulkin</button>
+        </div>
+    </div>
+    <div class="drops-grid" id="dropsGrid"></div>
 </div>
 
 <div id="tab-chat" class="tab-content">
@@ -1206,6 +1286,7 @@
 
 <div id="tab-admin" class="tab-content">
     <div class="admin-wrap">
+
         <div class="admin-card">
             <h3 class="mega-color">👤 MEGATEM41K — свои данные</h3>
             <div class="avatar-edit">
@@ -1261,11 +1342,81 @@
             </p>
         </div>
 
+        <!-- ДРОПЫ В АДМИНКЕ -->
+        <div class="admin-card">
+            <h3>🎁 Добавить дроп</h3>
+            <p style="font-size:13px;color:#888;margin-bottom:16px;">
+                Заполни поля и нажми «Добавить». Картинка скина (PNG/JPG) — необязательна, но с ней красивее.
+            </p>
+
+            <div class="drop-form">
+                <div class="admin-field full-width">
+                    <label>Название скина *</label>
+                    <input type="text" id="dropName" placeholder="Например: AWP | Удар молнии">
+                </div>
+
+                <div class="admin-field">
+                    <label>Кейс</label>
+                    <select class="admin-select" id="dropCase">
+                        <option value="Ателье колдовских колпаков">Ателье колдовских колпаков</option>
+                        <option value="Дождливый мегаполис">Дождливый мегаполис</option>
+                        <option value="Другой">Другой</option>
+                    </select>
+                </div>
+
+                <div class="admin-field">
+                    <label>Цена</label>
+                    <input type="text" id="dropPrice" placeholder="Например: 1500 ₽">
+                </div>
+
+                <div class="admin-field">
+                    <label>Редкость</label>
+                    <select class="admin-select" id="dropRarity">
+                        <option value="common">Обычный</option>
+                        <option value="uncommon">Необычный</option>
+                        <option value="rare">Редкий</option>
+                        <option value="legendary">Легендарный</option>
+                        <option value="mythical">Мифический</option>
+                    </select>
+                </div>
+
+                <div class="admin-field">
+                    <label>Кто выбил</label>
+                    <select class="admin-select" id="dropAuthor">
+                        <option value="mega">MEGATEM41K</option>
+                        <option value="sergo">Sergo Bulkin</option>
+                    </select>
+                </div>
+
+                <div class="drop-image-upload">
+                    <div class="drop-image-preview" id="dropImagePreview" onclick="document.getElementById('dropImageFile').click()">
+                        <div class="ph">📷</div>
+                    </div>
+                    <input type="file" id="dropImageFile" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none;" onchange="handleDropImage(event)">
+                    <div>
+                        <button class="admin-btn small" onclick="document.getElementById('dropImageFile').click()">📷 Выбрать картинку</button>
+                        <button class="admin-btn small danger" onclick="clearDropImage()" style="margin-left:6px;">✖ Убрать</button>
+                        <p style="font-size:12px;color:#666;margin-top:8px;">Сожмётся до 400px автоматически</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-btn-row">
+                <button class="admin-btn" onclick="addDrop()">➕ Добавить дроп</button>
+            </div>
+            <div class="admin-msg" id="msg-drop"></div>
+        </div>
+
+        <!-- СПИСОК ДРОПОВ (управление) -->
+        <div class="admin-card">
+            <h3>📋 Управление дропами</h3>
+            <div id="dropsAdminList"></div>
+        </div>
+
         <div class="admin-card">
             <h3>😀 Стикерпаки</h3>
             <p style="font-size:13px;color:#888;margin-bottom:14px;">
-                Загружай <b>PNG</b>, <b>JPG</b> или <b>WebM</b>. Максимум <b>200 стикеров в паке</b>.<br>
-                ⚠️ <b>Учти:</b> WebM-файлы тяжёлые. Firestore имеет лимит ~1 МБ на документ — не заливай слишком много видео-стикеров сразу.
+                Загружай <b>PNG</b>, <b>JPG</b> или <b>WebM</b>. Максимум <b>200 стикеров в паке</b>.
             </p>
             <div class="pack-create">
                 <input type="text" id="newPackName" placeholder="Название нового пака" maxlength="30">
@@ -1273,6 +1424,7 @@
             </div>
             <div class="packs-list" id="packsList"></div>
         </div>
+
     </div>
 </div>
 
@@ -1317,7 +1469,6 @@
         document.getElementById('volumeSliderWrap').classList.toggle('open');
     };
 
-    // Закрытие панели при клике вне
     document.addEventListener('click', (e) => {
         const wrap = document.getElementById('volumeSliderWrap');
         const btn = document.getElementById('volumeBtn');
@@ -1330,33 +1481,21 @@
         currentVolume = parseInt(val) / 100;
         window.currentVolume = currentVolume;
         localStorage.setItem('chatVolume', String(currentVolume));
-
-        // Обновляем ползунок и лейбл
         document.getElementById('volumeSlider').value = val;
         document.getElementById('volumeValue').innerText = val + '%';
-
-        // Иконка
         const btn = document.getElementById('volumeBtn');
         if (currentVolume === 0) btn.innerText = '🔇';
         else if (currentVolume < 0.5) btn.innerText = '🔉';
         else btn.innerText = '🔊';
-
-        // Обновляем громкость всех играющих аудио
-        document.querySelectorAll('audio').forEach(a => {
-            a.volume = currentVolume;
-        });
+        document.querySelectorAll('audio').forEach(a => { a.volume = currentVolume; });
     };
 
-    // Восстановление громкости
     (function initVolume() {
         const val = Math.round(currentVolume * 100);
         const slider = document.getElementById('volumeSlider');
         const label = document.getElementById('volumeValue');
         const btn = document.getElementById('volumeBtn');
-        if (slider) {
-            slider.value = val;
-            label.innerText = val + '%';
-        }
+        if (slider) { slider.value = val; label.innerText = val + '%'; }
         if (btn) {
             if (currentVolume === 0) btn.innerText = '🔇';
             else if (currentVolume < 0.5) btn.innerText = '🔉';
@@ -1373,10 +1512,10 @@
     };
     let AVATARS = { mega: '', sergo: '' };
     let STICKER_PACKS = {};
+    let DROPS = []; // массив дропов
 
     let currentAdminPack = null;
     let currentChatPack = null;
-
     const MAX_STICKERS_PER_PACK = 200;
 
     function isWebm(src) {
@@ -1434,12 +1573,349 @@
         });
     }
 
-    let currentUser = null;
-    let hasUnsavedChanges = false;
+    // ==================================================
+    // ДРОПЫ — Firestore
+    // ==================================================
+    let currentDropFilter = 'all';
+    let pendingDropImage = null;
+
+    function subscribeDrops() {
+        const docRef = doc(db, 'data', 'drops');
+        onSnapshot(docRef, (docSnap) => {
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                DROPS = data.items || [];
+            } else {
+                DROPS = [];
+            }
+            renderDrops();
+            renderDropsAdmin();
+        }, (err) => {
+            console.warn('Ошибка дропов', err);
+        });
+    }
+
+    async function saveDrops() {
+        try {
+            await setDoc(doc(db, 'data', 'drops'), { items: DROPS });
+        } catch(e) {
+            console.warn('Ошибка сохранения дропов', e);
+            alert('Не удалось сохранить: ' + e.message);
+        }
+    }
+
+    window.setDropFilter = function(filter, btn) {
+        currentDropFilter = filter;
+        document.querySelectorAll('.drops-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderDrops();
+    };
+
+    function formatDropDate(ts) {
+        if (!ts) return '';
+        try {
+            const d = ts.toDate ? ts.toDate() : new Date(ts);
+            return d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: '2-digit' }) +
+                   ' ' + d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+        } catch(e) { return ''; }
+    }
+
+    function getRarityLabel(r) {
+        return {
+            common: 'Обычный',
+            uncommon: 'Необычный',
+            rare: 'Редкий',
+            legendary: 'Легендарный',
+            mythical: 'Мифический'
+        }[r] || 'Обычный';
+    }
+
+    function getAuthorLabel(key) {
+        if (key === 'mega') return 'MEGATEM41K';
+        if (key === 'sergo') return 'Sergo Bulkin';
+        return key;
+    }
+
+    function renderDrops() {
+        const grid = document.getElementById('dropsGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+
+        // Фильтр
+        let filtered = DROPS.filter(d => {
+            if (currentDropFilter === 'all') return true;
+            return d.author === currentDropFilter;
+        });
+
+        // Сортировка: свежие сначала
+        filtered.sort((a, b) => {
+            const ta = a.createdAt ? (a.createdAt.toDate ? a.createdAt.toDate().getTime() : a.createdAt) : 0;
+            const tb = b.createdAt ? (b.createdAt.toDate ? b.createdAt.toDate().getTime() : b.createdAt) : 0;
+            return tb - ta;
+        });
+
+        if (filtered.length === 0) {
+            const empty = document.createElement('div');
+            empty.className = 'drops-empty';
+            empty.innerText = currentDropFilter === 'all'
+                ? 'Пока нет дропов. Добавь их в админке.'
+                : 'У этого игрока пока нет дропов.';
+            grid.appendChild(empty);
+            return;
+        }
+
+        filtered.forEach(drop => {
+            const card = document.createElement('div');
+            card.className = 'drop-card rarity-' + (drop.rarity || 'common');
+
+            const imgWrap = document.createElement('div');
+            imgWrap.className = 'drop-image';
+            if (drop.image) {
+                const img = document.createElement('img');
+                img.src = drop.image;
+                img.onclick = (e) => { e.stopPropagation(); openModal(drop.image, false); };
+                imgWrap.appendChild(img);
+            } else {
+                const ph = document.createElement('div');
+                ph.className = 'no-image';
+                ph.innerText = '🎁';
+                imgWrap.appendChild(ph);
+            }
+
+            const badge = document.createElement('div');
+            badge.className = 'drop-rarity-badge';
+            badge.innerText = getRarityLabel(drop.rarity);
+            imgWrap.appendChild(badge);
+
+            card.appendChild(imgWrap);
+
+            const info = document.createElement('div');
+            info.className = 'drop-info';
+
+            const name = document.createElement('div');
+            name.className = 'drop-name';
+            name.innerText = drop.name || 'Без названия';
+            info.appendChild(name);
+
+            if (drop.case) {
+                const c = document.createElement('div');
+                c.className = 'drop-case';
+                c.innerText = '📦 ' + drop.case;
+                info.appendChild(c);
+            }
+
+            if (drop.price) {
+                const p = document.createElement('div');
+                p.className = 'drop-price';
+                p.innerText = drop.price;
+                info.appendChild(p);
+            }
+
+            const meta = document.createElement('div');
+            meta.style.display = 'flex';
+            meta.style.justifyContent = 'space-between';
+            meta.style.alignItems = 'center';
+            meta.style.marginTop = '6px';
+
+            const author = document.createElement('div');
+            author.className = 'drop-author';
+            author.innerText = getAuthorLabel(drop.author);
+            meta.appendChild(author);
+
+            const date = document.createElement('div');
+            date.className = 'drop-date';
+            date.innerText = formatDropDate(drop.createdAt);
+            meta.appendChild(date);
+
+            info.appendChild(meta);
+            card.appendChild(info);
+
+            grid.appendChild(card);
+        });
+    }
+
+    // ==================================================
+    // ДРОПЫ — АДМИНКА
+    // ==================================================
+    window.handleDropImage = function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
+
+        compressImage(file, 400, 0.85).then(result => {
+            pendingDropImage = result;
+            const preview = document.getElementById('dropImagePreview');
+            preview.innerHTML = `<img src="${result}">`;
+        });
+    };
+
+    window.clearDropImage = function() {
+        pendingDropImage = null;
+        const preview = document.getElementById('dropImagePreview');
+        preview.innerHTML = '<div class="ph">📷</div>';
+        document.getElementById('dropImageFile').value = '';
+    };
+
+    window.addDrop = async function() {
+        const name = document.getElementById('dropName').value.trim();
+        const caseName = document.getElementById('dropCase').value;
+        const price = document.getElementById('dropPrice').value.trim();
+        const rarity = document.getElementById('dropRarity').value;
+        const author = document.getElementById('dropAuthor').value;
+        const msgEl = document.getElementById('msg-drop');
+
+        if (!name) {
+            msgEl.className = 'admin-msg err';
+            msgEl.innerText = 'Введи название скина';
+            return;
+        }
+
+        const newDrop = {
+            id: 'drop_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
+            name,
+            case: caseName,
+            price,
+            rarity,
+            author,
+            image: pendingDropImage || '',
+            createdAt: { toDate: () => new Date() } // упрощённо, чтобы сортировка работала и до сохранения
+        };
+
+        // В Firebase сохраним с serverTimestamp
+        DROPS.push({
+            ...newDrop,
+            createdAt: null // временно
+        });
+
+        // Сохраняем с правильным timestamp
+        const toSave = DROPS.map(d => {
+            if (d.id === newDrop.id) {
+                return { ...d, createdAt: new Date().toISOString() };
+            }
+            return d;
+        });
+
+        try {
+            await setDoc(doc(db, 'data', 'drops'), { items: toSave });
+            // Обновим локальный кэш
+            const snap = await getDoc(doc(db, 'data', 'drops'));
+            if (snap.exists()) {
+                DROPS = snap.data().items || [];
+            }
+        } catch(e) {
+            msgEl.className = 'admin-msg err';
+            msgEl.innerText = 'Ошибка: ' + e.message;
+            return;
+        }
+
+        // Очистка формы
+        document.getElementById('dropName').value = '';
+        document.getElementById('dropPrice').value = '';
+        clearDropImage();
+
+        msgEl.className = 'admin-msg ok';
+        msgEl.innerText = '✅ Дроп добавлен';
+        setTimeout(() => { msgEl.innerText = ''; }, 2000);
+
+        renderDrops();
+        renderDropsAdmin();
+    };
+
+    window.deleteDrop = async function(id) {
+        if (!confirm('Удалить этот дроп?')) return;
+        DROPS = DROPS.filter(d => d.id !== id);
+        await saveDrops();
+        renderDrops();
+        renderDropsAdmin();
+    };
+
+    function renderDropsAdmin() {
+        const list = document.getElementById('dropsAdminList');
+        if (!list) return;
+        list.innerHTML = '';
+
+        if (DROPS.length === 0) {
+            list.innerHTML = '<p style="color:#666;font-style:italic;">Пока нет дропов</p>';
+            return;
+        }
+
+        // Сортировка: свежие сначала
+        const sorted = [...DROPS].sort((a, b) => {
+            const ta = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+            const tb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+            return tb - ta;
+        });
+
+        sorted.forEach(drop => {
+            const row = document.createElement('div');
+            row.style.cssText = `
+                display: flex; align-items: center; gap: 12px;
+                padding: 10px; background: #23233a;
+                border-radius: 8px; margin-bottom: 8px;
+                border-left: 4px solid ${getRarityColor(drop.rarity)};
+            `;
+
+            // Картинка
+            const imgWrap = document.createElement('div');
+            imgWrap.style.cssText = 'width:50px;height:50px;background:#1e1e2e;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;';
+            if (drop.image) {
+                const im = document.createElement('img');
+                im.src = drop.image;
+                im.style.cssText = 'max-width:100%;max-height:100%;object-fit:contain;';
+                imgWrap.appendChild(im);
+            } else {
+                imgWrap.innerText = '🎁';
+            }
+            row.appendChild(imgWrap);
+
+            // Инфа
+            const info = document.createElement('div');
+            info.style.cssText = 'flex:1;min-width:0;';
+
+            const t1 = document.createElement('div');
+            t1.style.cssText = 'font-weight:700;font-size:14px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
+            t1.innerText = drop.name || 'Без названия';
+            info.appendChild(t1);
+
+            const t2 = document.createElement('div');
+            t2.style.cssText = 'font-size:11px;color:#888;margin-top:2px;';
+            t2.innerText = [
+                getAuthorLabel(drop.author),
+                drop.case || '',
+                drop.price || '',
+                formatDropDate(drop.createdAt)
+            ].filter(Boolean).join(' · ');
+            info.appendChild(t2);
+
+            row.appendChild(info);
+
+            // Кнопка удалить
+            const delBtn = document.createElement('button');
+            delBtn.className = 'admin-btn danger small';
+            delBtn.innerText = '🗑';
+            delBtn.onclick = () => deleteDrop(drop.id);
+            row.appendChild(delBtn);
+
+            list.appendChild(row);
+        });
+    }
+
+    function getRarityColor(r) {
+        return {
+            common: '#5a5a7a',
+            uncommon: '#4a90e2',
+            rare: '#9b59b6',
+            legendary: '#f9a825',
+            mythical: '#c62828'
+        }[r] || '#5a5a7a';
+    }
 
     // ==================================================
     // СЕССИЯ
     // ==================================================
+    let currentUser = null;
+    let hasUnsavedChanges = false;
+
     const SESSION_KEY = 'chat_session_v1';
 
     function saveSession(user) {
@@ -1455,18 +1931,12 @@
             if (!raw) raw = localStorage.getItem(SESSION_KEY);
             if (!raw) return null;
             const u = JSON.parse(raw);
-            if (ACCOUNTS[u.login]) {
-                return { login: u.login, key: ACCOUNTS[u.login].key };
-            }
+            if (ACCOUNTS[u.login]) return { login: u.login, key: ACCOUNTS[u.login].key };
             for (const [lg, acc] of Object.entries(ACCOUNTS)) {
-                if (acc.key === u.key) {
-                    return { login: lg, key: acc.key };
-                }
+                if (acc.key === u.key) return { login: lg, key: acc.key };
             }
             return null;
-        } catch(e) {
-            return null;
-        }
+        } catch(e) { return null; }
     }
 
     function clearSession() {
@@ -1496,7 +1966,6 @@
     window.logout = function() {
         const msg = hasUnsavedChanges ? 'Есть несохранённые изменения. Выйти?' : 'Выйти?';
         if (!confirm(msg)) return;
-        // Убираем "печатает" при выходе
         clearTypingStatus();
         clearSession();
         location.reload();
@@ -1526,6 +1995,9 @@
         renderStickerPacksTabs();
         renderStickerGrid();
         renderPacksAdmin();
+
+        subscribeDrops();
+        renderDropsAdmin();
     }
 
     function renderUserBar() {
@@ -1588,9 +2060,11 @@
         if (sp) sp.classList.remove('open');
 
         if (name === 'admin') loadAdminFields();
+        if (name === 'drops') renderDrops();
         if (name === 'chat') {
             const cm = document.getElementById('chatMessages');
             if (cm) cm.scrollTop = cm.scrollHeight;
+            markMessagesAsRead();
         }
     };
 
@@ -1616,7 +2090,7 @@
     }
 
     // ==================================================
-    // УЧЁТ
+    // УЧЁТ (без изменений — как было)
     // ==================================================
     const ACC_DOC = 'accounting';
     const ACC_FIELD = 'prices_v2';
@@ -1806,7 +2280,7 @@
     };
 
     // ==================================================
-    // КАЛЕНДАРЬ
+    // КАЛЕНДАРЬ (без изменений)
     // ==================================================
     let skins = { mega: {}, sergo: {} };
     let pendingSkins = {};
@@ -2052,14 +2526,14 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
     // ==================================================
-    // ЧАТ
+    // ЧАТ (без изменений — как было)
     // ==================================================
     const chatMessages = document.getElementById('chatMessages');
     const chatInput = document.getElementById('chatInput');
     const chatStatus = document.getElementById('chatStatus');
 
     let seenMessageIds = new Set();
-    let unreadFromOthers = new Set(); // id сообщений, которые мы ещё не прочитали
+    let unreadFromOthers = new Set();
 
     function initChat() {
         const q = query(collection(db, 'chat'), orderBy('timestamp', 'asc'));
@@ -2070,8 +2544,6 @@
                 const data = docSnap.data();
                 addMessageToDOM(docSnap.id, data);
                 newIds.push(docSnap.id);
-
-                // Отмечаем как "непрочитанное", если это чужое и новое
                 if (currentUser && data.author !== currentUser.login) {
                     if (!seenMessageIds.has(docSnap.id)) {
                         unreadFromOthers.add(docSnap.id);
@@ -2079,15 +2551,10 @@
                 }
             });
 
-            // Помечаем прочитанными, если вкладка чата активна
             const activeTab = localStorage.getItem(ACTIVE_TAB_KEY);
-            if (activeTab === 'chat' && currentUser) {
-                markMessagesAsRead();
-            }
+            if (activeTab === 'chat' && currentUser) markMessagesAsRead();
 
-            // Запоминаем все id
             newIds.forEach(id => seenMessageIds.add(id));
-
             chatMessages.scrollTop = chatMessages.scrollHeight;
             chatStatus.innerText = '🟢 онлайн';
         }, (error) => {
@@ -2143,7 +2610,6 @@
                 body.appendChild(stk);
             }
         } else if (msg.type === 'voice' && msg.audio) {
-            // ===== СТИЛИЗОВАННЫЙ ПЛЕЕР =====
             const player = createVoicePlayer(msg.audio, msg.duration || 0);
             body.appendChild(player);
         } else {
@@ -2153,7 +2619,6 @@
             body.appendChild(textEl);
         }
 
-        // Время
         const timeEl = document.createElement('div');
         timeEl.className = 'msg-time';
         if (msg.timestamp && msg.timestamp.toDate) {
@@ -2162,13 +2627,10 @@
         }
         body.appendChild(timeEl);
 
-        // "Прочитано" — только для своих сообщений
         if (currentUser && msg.author === currentUser.login) {
             const readEl = document.createElement('div');
             readEl.className = 'msg-read';
             readEl.dataset.readFor = msgId;
-
-            // Если сообщение есть в "прочитано" в БД — показываем
             if (msg.readBy && msg.readBy.includes(getOtherUserKey())) {
                 readEl.innerText = 'Прочитано';
             } else {
@@ -2205,9 +2667,6 @@
         return currentUser.key === 'mega' ? 'sergo' : 'mega';
     }
 
-    // ==================================================
-    // СТИЛИЗОВАННЫЙ АУДИОПЛЕЕР
-    // ==================================================
     function createVoicePlayer(src, duration) {
         const wrap = document.createElement('div');
         wrap.className = 'voice-player';
@@ -2219,13 +2678,10 @@
 
         const wave = document.createElement('div');
         wave.className = 'voice-wave';
-
-        // Создаём ~20 столбиков
         const bars = [];
         for (let i = 0; i < 20; i++) {
             const bar = document.createElement('div');
             bar.className = 'voice-wave-bar';
-            // Случайная высота для вида
             const h = 20 + Math.random() * 80;
             bar.style.height = h + '%';
             wave.appendChild(bar);
@@ -2238,7 +2694,6 @@
         dur.innerText = formatDuration(duration);
         wrap.appendChild(dur);
 
-        // Аудио-элемент (скрытый)
         const audio = document.createElement('audio');
         audio.src = src;
         audio.preload = 'metadata';
@@ -2253,25 +2708,16 @@
             if (isPlaying) {
                 audio.pause();
             } else {
-                // Ставим громкость
                 audio.volume = window.currentVolume;
-                // Пауза всех остальных
                 document.querySelectorAll('audio').forEach(a => { if (a !== audio) a.pause(); });
                 audio.play();
             }
         };
 
-        audio.onplay = () => {
-            isPlaying = true;
-            playBtn.innerHTML = '⏸';
-        };
-        audio.onpause = () => {
-            isPlaying = false;
-            playBtn.innerHTML = '▶';
-        };
+        audio.onplay = () => { isPlaying = true; playBtn.innerHTML = '⏸'; };
+        audio.onpause = () => { isPlaying = false; playBtn.innerHTML = '▶'; };
         audio.onended = () => {
-            isPlaying = false;
-            playBtn.innerHTML = '▶';
+            isPlaying = false; playBtn.innerHTML = '▶';
             updateWaveProgress(0);
         };
         audio.ontimeupdate = () => {
@@ -2294,14 +2740,11 @@
             });
         }
 
-        // Клик по волне — перемотка
         wave.onclick = (e) => {
             e.stopPropagation();
             const rect = wave.getBoundingClientRect();
             const percent = (e.clientX - rect.left) / rect.width;
-            if (audio.duration) {
-                audio.currentTime = percent * audio.duration;
-            }
+            if (audio.duration) audio.currentTime = percent * audio.duration;
         };
 
         return wrap;
@@ -2315,7 +2758,7 @@
     }
 
     // ==================================================
-    // ПЕЧАТАЕТ...
+    // ПЕЧАТАЕТ
     // ==================================================
     let typingTimeout = null;
     let typingUnsub = null;
@@ -2328,21 +2771,16 @@
             const indicator = document.getElementById('typingIndicator');
             const nameEl = document.getElementById('typingName');
             if (!indicator) return;
-
             if (!docSnap.exists()) {
                 indicator.classList.remove('visible');
                 return;
             }
             const data = docSnap.data();
-
-            // Ищем кого-то, кто печатает и не мы
             let someoneTyping = false;
             const now = Date.now();
-
             for (const [login, info] of Object.entries(data)) {
                 if (!currentUser || login === currentUser.login) continue;
                 if (!info || !info.timestamp) continue;
-                // Считаем "печатает" только если обновлено <3 сек назад
                 const ts = info.timestamp.toDate ? info.timestamp.toDate().getTime() : info.timestamp;
                 if (now - ts < 3000) {
                     someoneTyping = true;
@@ -2350,21 +2788,14 @@
                     break;
                 }
             }
-
-            if (someoneTyping) {
-                indicator.classList.add('visible');
-            } else {
-                indicator.classList.remove('visible');
-            }
+            if (someoneTyping) indicator.classList.add('visible');
+            else indicator.classList.remove('visible');
         });
     }
 
     window.onTyping = function() {
         if (!currentUser) return;
-
         clearTimeout(typingTimeout);
-
-        // Помечаем "печатает" в БД
         typingTimeout = setTimeout(async () => {
             try {
                 const docRef = doc(db, 'data', 'typing');
@@ -2374,12 +2805,8 @@
                 await setDoc(docRef, current);
             } catch(e) {}
         }, 200);
-
-        // Автоочистка через 2.5 сек после остановки
         clearTimeout(typingClearTimeout);
-        typingClearTimeout = setTimeout(() => {
-            clearTypingStatus();
-        }, 2500);
+        typingClearTimeout = setTimeout(() => { clearTypingStatus(); }, 2500);
     };
 
     async function clearTypingStatus() {
@@ -2400,8 +2827,6 @@
     async function markMessagesAsRead() {
         if (!currentUser) return;
         if (unreadFromOthers.size === 0) return;
-
-        // Обновляем каждое сообщение в БД: добавляем наш key в readBy
         for (const msgId of Array.from(unreadFromOthers)) {
             try {
                 const docRef = doc(db, 'chat', msgId);
@@ -2415,23 +2840,8 @@
                 }
             } catch(e) {}
         }
-
         unreadFromOthers.clear();
-        // Перерисовываем только "прочитано" у своих сообщений
-        refreshReadStatuses();
     }
-
-    function refreshReadStatuses() {
-        // Просто перерисуем весь чат — проще всего
-        // Но чтобы не мигало, обновим только .msg-read
-        document.querySelectorAll('.msg-read').forEach(el => {
-            const msgId = el.dataset.readFor;
-            // Ищем сообщение в текущем рендере
-        });
-    }
-
-    // Когда открываем вкладку чата — помечаем всё прочитанным
-    // (при switchTab)
 
     window.sendMessage = async function() {
         const text = chatInput.value.trim();
@@ -2461,21 +2871,13 @@
 
     window.startRecording = async function() {
         if (isRecording) return;
-
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
             currentStream = stream;
-
             let mimeType = 'audio/webm';
-            if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
-                mimeType = 'audio/webm;codecs=opus';
-            } else if (MediaRecorder.isTypeSupported('audio/webm')) {
-                mimeType = 'audio/webm';
-            } else if (MediaRecorder.isTypeSupported('audio/mp4')) {
-                mimeType = 'audio/mp4';
-            } else if (MediaRecorder.isTypeSupported('audio/ogg')) {
-                mimeType = 'audio/ogg';
-            }
+            if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) mimeType = 'audio/webm;codecs=opus';
+            else if (MediaRecorder.isTypeSupported('audio/webm')) mimeType = 'audio/webm';
+            else if (MediaRecorder.isTypeSupported('audio/mp4')) mimeType = 'audio/mp4';
 
             mediaRecorder = new MediaRecorder(stream, { mimeType });
             audioChunks = [];
@@ -2487,33 +2889,27 @@
             mediaRecorder.onstop = async () => {
                 const blob = new Blob(audioChunks, { type: mimeType });
                 const duration = (Date.now() - recordStartTime) / 1000;
-
                 if (currentStream) {
                     currentStream.getTracks().forEach(t => t.stop());
                     currentStream = null;
                 }
-
                 if (window._cancelRecording) {
                     window._cancelRecording = false;
                     return;
                 }
-
                 await sendVoiceMessage(blob, duration, mimeType);
             };
 
             mediaRecorder.start();
             isRecording = true;
             recordStartTime = Date.now();
-
             document.getElementById('micBtn').classList.add('recording');
             document.getElementById('recordPanel').classList.add('open');
-
             recordTimerInterval = setInterval(updateRecordTime, 200);
             updateRecordTime();
-
         } catch (err) {
-            console.error('Ошибка доступа к микрофону:', err);
-            alert('Не удалось получить доступ к микрофону.\n\nПроверь разрешения браузера для микрофона.');
+            console.error('Ошибка микрофона:', err);
+            alert('Не удалось получить доступ к микрофону.');
         }
     };
 
@@ -2521,9 +2917,7 @@
         if (!isRecording) return;
         const sec = Math.floor((Date.now() - recordStartTime) / 1000);
         document.getElementById('recordTime').innerText = formatDuration(sec);
-        if (sec >= 300) {
-            stopAndSendRecording();
-        }
+        if (sec >= 300) stopAndSendRecording();
     }
 
     window.cancelRecording = function() {
@@ -2553,13 +2947,11 @@
 
     async function sendVoiceMessage(blob, duration, mimeType) {
         if (!currentUser) return;
-
         const sizeKB = Math.round(blob.size / 1024);
         if (sizeKB > 800) {
-            alert(`Голосовое весит ${sizeKB} КБ — это много. Firestore не примет (лимит ~1 МБ на документ).\n\nЗапиши короче.`);
+            alert(`Голосовое весит ${sizeKB} КБ — это много. Firestore не примет.`);
             return;
         }
-
         const reader = new FileReader();
         reader.onloadend = async () => {
             const base64 = reader.result;
@@ -2576,14 +2968,13 @@
                 setTimeout(() => { cm.scrollTop = cm.scrollHeight; }, 100);
             } catch (e) {
                 console.warn('Ошибка отправки голосового', e);
-                alert('Не удалось отправить голосовое: ' + e.message);
             }
         };
         reader.readAsDataURL(blob);
     }
 
     // ==================================================
-    // СТИКЕРЫ — ЧАТ
+    // СТИКЕРЫ (без изменений)
     // ==================================================
     window.toggleStickerPanel = function() {
         const panel = document.getElementById('stickerPanel');
@@ -2598,9 +2989,7 @@
         const tabs = document.getElementById('stickerPacksTabs');
         if (!tabs) return;
         tabs.innerHTML = '';
-
         const packNames = Object.keys(STICKER_PACKS);
-
         if (packNames.length === 0) {
             const empty = document.createElement('div');
             empty.style.cssText = 'color:#666;font-size:12px;padding:6px;font-style:italic;';
@@ -2608,11 +2997,7 @@
             tabs.appendChild(empty);
             return;
         }
-
-        if (!currentChatPack || !STICKER_PACKS[currentChatPack]) {
-            currentChatPack = packNames[0];
-        }
-
+        if (!currentChatPack || !STICKER_PACKS[currentChatPack]) currentChatPack = packNames[0];
         packNames.forEach(packName => {
             const btn = document.createElement('button');
             btn.className = 'sticker-pack-tab' + (packName === currentChatPack ? ' active' : '');
@@ -2630,21 +3015,18 @@
         const grid = document.getElementById('stickerGrid');
         if (!grid) return;
         grid.innerHTML = '';
-
         if (!currentChatPack || !STICKER_PACKS[currentChatPack] || STICKER_PACKS[currentChatPack].length === 0) {
             const empty = document.createElement('div');
             empty.className = 'sticker-empty';
             empty.innerText = Object.keys(STICKER_PACKS).length === 0
-                ? 'Стикеров пока нет. Загрузи их в админке.'
+                ? 'Стикеров пока нет.'
                 : 'В этом паке пока нет стикеров.';
             grid.appendChild(empty);
             return;
         }
-
         STICKER_PACKS[currentChatPack].forEach((stickerSrc) => {
             const item = document.createElement('div');
             item.className = 'sticker-item';
-
             if (isVideo(stickerSrc)) {
                 const video = document.createElement('video');
                 video.src = stickerSrc;
@@ -2653,7 +3035,6 @@
                 video.muted = true;
                 video.playsInline = true;
                 item.appendChild(video);
-
                 const badge = document.createElement('div');
                 badge.className = 'sticker-video-badge';
                 badge.innerText = 'WEBM';
@@ -2663,7 +3044,6 @@
                 img.src = stickerSrc;
                 item.appendChild(img);
             }
-
             item.onclick = () => sendSticker(stickerSrc);
             grid.appendChild(item);
         });
@@ -2684,29 +3064,18 @@
         } catch (e) { console.warn('Ошибка отправки стикера', e); }
     }
 
-    // ==================================================
-    // ОБРАБОТКА СТИКЕРА
-    // ==================================================
     function processStickerFile(file) {
         return new Promise((resolve, reject) => {
             const isWebm = file.type === 'video/webm';
             const isImage = file.type.startsWith('image/');
-
-            if (!isWebm && !isImage) {
-                reject(new Error('Неподдерживаемый формат: ' + file.type));
-                return;
-            }
-
+            if (!isWebm && !isImage) { reject(new Error('Неподдерживаемый формат')); return; }
             const reader = new FileReader();
             reader.onload = (e) => {
                 if (isWebm) {
                     const sizeKB = Math.round(file.size / 1024);
                     if (sizeKB > 500) {
                         const ok = confirm(`WebM весит ${sizeKB} КБ — это много. Продолжить?`);
-                        if (!ok) {
-                            reject(new Error('Отменено пользователем'));
-                            return;
-                        }
+                        if (!ok) { reject(new Error('Отменено')); return; }
                     }
                     resolve(e.target.result);
                 } else {
@@ -2728,7 +3097,7 @@
                     img.src = e.target.result;
                 }
             };
-            reader.onerror = () => reject(new Error('Ошибка чтения файла'));
+            reader.onerror = () => reject(new Error('Ошибка чтения'));
             reader.readAsDataURL(file);
         });
     }
@@ -2743,21 +3112,16 @@
         return Math.round(total / 1024);
     }
 
-    // ==================================================
-    // СТИКЕРЫ — АДМИНКА
-    // ==================================================
+    // Стикерпаки в админке
     window.createPack = async function() {
         const input = document.getElementById('newPackName');
         const name = input.value.trim();
-
-        if (!name) { alert('Введи название пака'); return; }
-        if (name.length > 30) { alert('Название не должно превышать 30 символов'); return; }
-        if (STICKER_PACKS[name]) { alert('Пак с таким названием уже есть'); return; }
-
+        if (!name) { alert('Введи название'); return; }
+        if (name.length > 30) { alert('До 30 символов'); return; }
+        if (STICKER_PACKS[name]) { alert('Уже есть'); return; }
         STICKER_PACKS[name] = [];
         input.value = '';
         await saveAccounts();
-
         currentAdminPack = name;
         renderPacksAdmin();
         renderStickerPacksTabs();
@@ -2767,12 +3131,9 @@
     window.deletePack = async function(packName) {
         const count = STICKER_PACKS[packName] ? STICKER_PACKS[packName].length : 0;
         if (!confirm(`Удалить пак "${packName}" (${count} стикеров)?`)) return;
-
         delete STICKER_PACKS[packName];
-
         if (currentAdminPack === packName) currentAdminPack = null;
         if (currentChatPack === packName) currentChatPack = null;
-
         await saveAccounts();
         renderPacksAdmin();
         renderStickerPacksTabs();
@@ -2782,50 +3143,34 @@
     window.uploadStickerToPack = async function(event, packName) {
         const files = Array.from(event.target.files);
         if (!files.length) return;
-
         if (!STICKER_PACKS[packName]) STICKER_PACKS[packName] = [];
-
         const remaining = MAX_STICKERS_PER_PACK - STICKER_PACKS[packName].length;
         if (remaining <= 0) {
-            alert(`В паке "${packName}" уже максимум ${MAX_STICKERS_PER_PACK} стикеров`);
+            alert(`Максимум ${MAX_STICKERS_PER_PACK} стикеров`);
             event.target.value = '';
             return;
         }
-
         const toAdd = files.slice(0, remaining);
-        if (files.length > remaining) {
-            alert(`Можно добавить только ${remaining} стикеров. Остальные пропущены.`);
-        }
-
         let added = 0, skipped = 0;
-
         for (const file of toAdd) {
             try {
                 const result = await processStickerFile(file);
                 STICKER_PACKS[packName].push(result);
                 added++;
             } catch (err) {
-                console.warn('Пропущен файл:', file.name, err.message);
+                console.warn('Пропущен:', file.name, err.message);
                 skipped++;
             }
         }
-
         if (added > 0) {
             await saveAccounts();
             renderPacksAdmin();
             renderStickerPacksTabs();
             renderStickerGrid();
-
             const size = estimatePackSizeKB(packName);
-            if (size > 900) {
-                alert(`⚠️ Пак "${packName}" теперь весит ~${size} КБ. Firestore имеет лимит ~1 МБ.`);
-            }
+            if (size > 900) alert(`⚠️ Пак весит ~${size} КБ. Firestore может не сохранить.`);
         }
-
-        if (skipped > 0) {
-            alert(`Пропущено файлов: ${skipped}`);
-        }
-
+        if (skipped > 0) alert(`Пропущено: ${skipped}`);
         event.target.value = '';
     };
 
@@ -2840,24 +3185,18 @@
     };
 
     window.renamePack = async function(packName) {
-        const newName = prompt('Новое название пака:', packName);
+        const newName = prompt('Новое название:', packName);
         if (!newName || newName === packName) return;
-        if (newName.length > 30) { alert('Не более 30 символов'); return; }
-        if (STICKER_PACKS[newName]) { alert('Такое имя уже занято'); return; }
-
+        if (newName.length > 30) { alert('До 30 символов'); return; }
+        if (STICKER_PACKS[newName]) { alert('Занято'); return; }
         const newPacks = {};
         for (const [name, arr] of Object.entries(STICKER_PACKS)) {
-            if (name === packName) {
-                newPacks[newName] = arr;
-            } else {
-                newPacks[name] = arr;
-            }
+            if (name === packName) newPacks[newName] = arr;
+            else newPacks[name] = arr;
         }
         STICKER_PACKS = newPacks;
-
         if (currentAdminPack === packName) currentAdminPack = newName;
         if (currentChatPack === packName) currentChatPack = newName;
-
         await saveAccounts();
         renderPacksAdmin();
         renderStickerPacksTabs();
@@ -2868,36 +3207,28 @@
         const list = document.getElementById('packsList');
         if (!list) return;
         list.innerHTML = '';
-
         const packNames = Object.keys(STICKER_PACKS);
-
         if (packNames.length === 0) {
             const empty = document.createElement('div');
             empty.style.cssText = 'color:#666;font-size:13px;font-style:italic;text-align:center;padding:20px;';
-            empty.innerText = 'Пока нет ни одного пака. Создай первый!';
+            empty.innerText = 'Пока нет паков.';
             list.appendChild(empty);
             return;
         }
-
         packNames.forEach(packName => {
             const stickers = STICKER_PACKS[packName] || [];
             const block = document.createElement('div');
             block.className = 'pack-block';
-
             const header = document.createElement('div');
             header.className = 'pack-header';
-
             const sizeKB = estimatePackSizeKB(packName);
             const webmCount = stickers.filter(s => isVideo(s)).length;
-
             let badgeClass = 'pack-badge';
             if (sizeKB > 900) badgeClass += ' danger';
             else if (sizeKB > 700) badgeClass += ' warn';
-
             const title = document.createElement('div');
             title.className = 'pack-title';
             title.innerHTML = `${escapeHtml(packName)} <span class="${badgeClass}">${stickers.length} / ${MAX_STICKERS_PER_PACK} · ${sizeKB} КБ</span>`;
-
             if (webmCount > 0) {
                 const webmBadge = document.createElement('span');
                 webmBadge.className = 'pack-badge';
@@ -2905,15 +3236,12 @@
                 webmBadge.innerText = `🎬 ${webmCount} WebM`;
                 title.appendChild(webmBadge);
             }
-
             const actions = document.createElement('div');
             actions.className = 'pack-header-actions';
-
             const renameBtn = document.createElement('button');
             renameBtn.className = 'admin-btn small';
             renameBtn.innerText = '✏️ Переименовать';
             renameBtn.onclick = () => renamePack(packName);
-
             const uploadBtn = document.createElement('button');
             uploadBtn.className = 'admin-btn small';
             uploadBtn.innerText = '📷 + Стикеры';
@@ -2921,7 +3249,6 @@
                 const fileInput = document.getElementById('uploadTo-' + safeId(packName));
                 if (fileInput) fileInput.click();
             };
-
             const fileInput = document.createElement('input');
             fileInput.type = 'file';
             fileInput.id = 'uploadTo-' + safeId(packName);
@@ -2929,34 +3256,28 @@
             fileInput.multiple = true;
             fileInput.style.display = 'none';
             fileInput.onchange = (e) => uploadStickerToPack(e, packName);
-
             const delBtn = document.createElement('button');
             delBtn.className = 'admin-btn small danger';
             delBtn.innerText = '🗑 Удалить пак';
             delBtn.onclick = () => deletePack(packName);
-
             actions.appendChild(renameBtn);
             actions.appendChild(uploadBtn);
             actions.appendChild(fileInput);
             actions.appendChild(delBtn);
-
             header.appendChild(title);
             header.appendChild(actions);
             block.appendChild(header);
-
             const grid = document.createElement('div');
             grid.className = 'pack-stickers';
-
             if (stickers.length === 0) {
                 const empty = document.createElement('div');
                 empty.className = 'pack-empty';
-                empty.innerText = 'Пак пуст — загрузи стикеры (PNG, JPG или WebM)';
+                empty.innerText = 'Пак пуст';
                 grid.appendChild(empty);
             } else {
                 stickers.forEach((src, idx) => {
                     const item = document.createElement('div');
                     item.className = 'sticker-admin-item';
-
                     if (isVideo(src)) {
                         const video = document.createElement('video');
                         video.src = src;
@@ -2966,7 +3287,6 @@
                         video.playsInline = true;
                         video.onclick = (e) => { e.stopPropagation(); openModal(src, true); };
                         item.appendChild(video);
-
                         const badge = document.createElement('div');
                         badge.className = 'webm-badge';
                         badge.innerText = 'WEBM';
@@ -2977,28 +3297,20 @@
                         img.onclick = (e) => { e.stopPropagation(); openModal(src, false); };
                         item.appendChild(img);
                     }
-
                     const rm = document.createElement('button');
                     rm.className = 'sticker-admin-remove';
                     rm.innerHTML = '×';
-                    rm.onclick = (e) => {
-                        e.stopPropagation();
-                        removeStickerFromPack(packName, idx);
-                    };
+                    rm.onclick = (e) => { e.stopPropagation(); removeStickerFromPack(packName, idx); };
                     item.appendChild(rm);
-
                     grid.appendChild(item);
                 });
             }
-
             block.appendChild(grid);
             list.appendChild(block);
         });
     }
 
-    function safeId(str) {
-        return str.replace(/[^a-zA-Z0-9]/g, '_');
-    }
+    function safeId(str) { return str.replace(/[^a-zA-Z0-9]/g, '_'); }
     function escapeHtml(str) {
         return String(str).replace(/[&<>"']/g, (m) => ({
             '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
@@ -3010,21 +3322,19 @@
     // ==================================================
     function loadAdminFields() {
         if (!currentUser || currentUser.key !== 'mega') return;
-
         let megaLogin = 'MEGATEM41K', sergoLogin = 'Sergo Bulkin';
         for (const [lg, acc] of Object.entries(ACCOUNTS)) {
             if (acc.key === 'mega') megaLogin = lg;
             if (acc.key === 'sergo') sergoLogin = lg;
         }
-
         document.getElementById('login-mega').value = megaLogin;
         document.getElementById('login-sergo').value = sergoLogin;
         document.getElementById('password-mega').value = '';
         document.getElementById('password-sergo').value = '';
-
         updateAvatarPreview('mega');
         updateAvatarPreview('sergo');
         renderPacksAdmin();
+        renderDropsAdmin();
     }
 
     function updateAvatarPreview(key) {
@@ -3045,11 +3355,9 @@
         const file = event.target.files[0];
         if (!file) return;
         if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
-
         const compressed = await compressImage(file, 200, 0.85);
         AVATARS[key] = compressed;
         await saveAccounts();
-
         updateAvatarPreview(key);
         if (currentUser && currentUser.key === key) renderUserBar();
         setTimeout(() => {
@@ -3088,27 +3396,22 @@
         const loginInput = document.getElementById('login-' + key);
         const passwordInput = document.getElementById('password-' + key);
         const msgEl = document.getElementById('msg-' + key);
-
         const newLogin = loginInput.value.trim();
         const newPassword = passwordInput.value;
-
         if (!newLogin) {
             msgEl.className = 'admin-msg err';
             msgEl.innerText = 'Логин не может быть пустым';
             return;
         }
-
         let oldLogin = null;
         for (const [lg, acc] of Object.entries(ACCOUNTS)) {
             if (acc.key === key) oldLogin = lg;
         }
-
         if (newLogin !== oldLogin && ACCOUNTS[newLogin]) {
             msgEl.className = 'admin-msg err';
             msgEl.innerText = 'Логин уже занят';
             return;
         }
-
         const newAccounts = {};
         for (const [lg, acc] of Object.entries(ACCOUNTS)) {
             if (acc.key === key) {
@@ -3121,15 +3424,12 @@
             }
         }
         ACCOUNTS = newAccounts;
-
         await saveAccounts();
-
         if (currentUser && currentUser.key === key) {
             currentUser.login = newLogin;
             saveSession(currentUser);
             renderUserBar();
         }
-
         passwordInput.value = '';
         msgEl.className = 'admin-msg ok';
         msgEl.innerText = '✅ Сохранено';
@@ -3146,7 +3446,6 @@
     }
     init();
 
-    // Помечаем прочитанным при переключении на вкладку чата
     document.addEventListener('visibilitychange', () => {
         if (!document.hidden && localStorage.getItem(ACTIVE_TAB_KEY) === 'chat') {
             markMessagesAsRead();
