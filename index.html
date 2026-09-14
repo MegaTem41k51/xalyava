@@ -22,7 +22,6 @@
     *::-webkit-scrollbar-track { background: #2a2a3e; }
     *::-webkit-scrollbar-thumb { background: #764ba2; border-radius: 5px; }
 
-    /* ЛОГИН */
     .login-overlay {
         position: fixed; inset: 0;
         background: rgba(0,0,0,0.95);
@@ -53,7 +52,6 @@
     .login-box button:hover { background: #5a3a7d; }
     .login-error { color: #ff6b6b; font-size: 13px; margin-top: 12px; min-height: 18px; }
 
-    /* ЮЗЕР */
     .user-bar {
         display: flex; align-items: center; gap: 12px;
         background: #2a2a3e; padding: 8px 16px;
@@ -74,7 +72,6 @@
         background: #c62828; border-radius: 6px;
     }
 
-    /* ВКЛАДКИ */
     .tabs {
         display: flex; gap: 8px; margin-bottom: 20px;
         background: #2a2a3e; padding: 6px;
@@ -107,7 +104,6 @@
     }
     button:hover { background: #5a3a7d; }
 
-    /* ТАБЛИЦА УЧЁТА */
     table.acc-table {
         border-collapse: collapse;
         background: #2a2a3e;
@@ -148,71 +144,33 @@
     .total-value.mega { color: #ff6b6b; }
     .total-value.sergo { color: #4fc3f7; }
 
-    /* ===== ДРОПЫ ===== */
+    /* ДРОПЫ */
     .drops-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        max-width: 1100px;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-        gap: 12px;
+        display: flex; justify-content: space-between; align-items: center;
+        width: 100%; max-width: 1100px;
+        margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
     }
-    .drops-title {
-        font-size: 20px;
-        font-weight: 700;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    .drops-filters {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-    }
+    .drops-title { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .drops-filters { display: flex; gap: 8px; flex-wrap: wrap; }
     .drops-filter-btn {
-        padding: 8px 16px;
-        background: #2a2a3e;
-        color: #aaa;
-        border: 1px solid #3a3a52;
-        border-radius: 8px;
-        font-size: 13px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: 0.2s;
+        padding: 8px 16px; background: #2a2a3e; color: #aaa;
+        border: 1px solid #3a3a52; border-radius: 8px;
+        font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s;
     }
     .drops-filter-btn:hover { color: #fff; border-color: #764ba2; }
-    .drops-filter-btn.active {
-        background: #764ba2;
-        color: #fff;
-        border-color: #764ba2;
-    }
+    .drops-filter-btn.active { background: #764ba2; color: #fff; border-color: #764ba2; }
 
     .drops-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-        gap: 16px;
-        width: 100%;
-        max-width: 1100px;
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        gap: 16px; width: 100%; max-width: 1100px;
     }
 
     .drop-card {
-        background: #2a2a3e;
-        border-radius: 12px;
-        overflow: hidden;
-        border: 2px solid #3a3a52;
-        transition: 0.25s;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
+        background: #2a2a3e; border-radius: 12px; overflow: hidden;
+        border: 2px solid #3a3a52; transition: 0.25s;
+        position: relative; display: flex; flex-direction: column; cursor: pointer;
     }
-    .drop-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 35px rgba(0,0,0,0.6);
-    }
+    .drop-card:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(0,0,0,0.6); }
 
     .drop-card.rarity-shirotreb { border-color: #5a5a7a; }
     .drop-card.rarity-prom { border-color: #4a90e2; }
@@ -223,37 +181,18 @@
     .drop-card.rarity-gold { border-color: #f9a825; box-shadow: 0 0 25px rgba(249,168,37,0.5); }
 
     .drop-image {
-        width: 100%;
-        height: 170px;
-        background: #1e1e2e;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        position: relative;
+        width: 100%; height: 170px; background: #1e1e2e;
+        display: flex; align-items: center; justify-content: center;
+        overflow: hidden; position: relative;
     }
-    .drop-image img {
-        max-width: 90%;
-        max-height: 90%;
-        object-fit: contain;
-    }
-    .drop-image .no-image {
-        font-size: 50px;
-        opacity: 0.3;
-    }
+    .drop-image img { max-width: 90%; max-height: 90%; object-fit: contain; }
+    .drop-image .no-image { font-size: 50px; opacity: 0.3; }
 
     .drop-rarity-badge {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        padding: 3px 10px;
-        border-radius: 12px;
-        font-size: 10px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: #fff;
-        z-index: 5;
+        position: absolute; top: 8px; right: 8px;
+        padding: 3px 10px; border-radius: 12px;
+        font-size: 10px; font-weight: 800; text-transform: uppercase;
+        letter-spacing: 0.5px; color: #fff; z-index: 5;
     }
     .rarity-shirotreb .drop-rarity-badge { background: #5a5a7a; }
     .rarity-prom .drop-rarity-badge { background: #4a90e2; }
@@ -264,85 +203,46 @@
     .rarity-gold .drop-rarity-badge { background: #f9a825; color: #000; }
 
     .drop-info {
-        padding: 12px 14px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
+        padding: 12px 14px; flex: 1;
+        display: flex; flex-direction: column; gap: 6px;
     }
-    .drop-name {
-        font-size: 14px;
-        font-weight: 700;
-        color: #fff;
-        line-height: 1.3;
-    }
-    .drop-case {
-        font-size: 12px;
-        color: #a78bfa;
-    }
-    .drop-giver {
-        font-size: 12px;
-        color: #f9a825;
-        font-weight: 700;
-    }
-    .drop-price {
-        font-size: 16px;
-        font-weight: 800;
-        color: #81c784;
-        margin-top: auto;
-    }
-    .drop-date {
-        font-size: 11px;
-        color: #666;
-    }
-    .drop-author {
-        font-size: 11px;
-        color: #888;
-        font-style: italic;
-    }
+    .drop-name { font-size: 14px; font-weight: 700; line-height: 1.3; }
+    .drop-case { font-size: 12px; color: #a78bfa; }
+    .drop-giver { font-size: 12px; color: #f9a825; font-weight: 700; }
+    .drop-price { font-size: 16px; font-weight: 800; color: #81c784; margin-top: auto; }
+    .drop-date { font-size: 11px; color: #666; }
+    .drop-author { font-size: 11px; color: #888; font-style: italic; }
 
     .drops-empty {
-        text-align: center;
-        padding: 60px 20px;
-        color: #666;
-        font-size: 15px;
-        width: 100%;
-        grid-column: 1 / -1;
+        text-align: center; padding: 60px 20px;
+        color: #666; font-size: 15px;
+        width: 100%; grid-column: 1 / -1;
     }
 
-    /* ===== АУКЦИОН ===== */
+    /* АУКЦИОН */
     .auction-wrap {
         width: 100%; max-width: 1200px;
         display: flex; flex-direction: column; gap: 20px;
     }
     .auction-header {
         background: linear-gradient(135deg, #2a0a0a, #1a0a1a);
-        border: 2px solid #a00000;
-        border-radius: 16px;
-        padding: 24px;
+        border: 2px solid #a00000; border-radius: 16px; padding: 24px;
     }
     .auction-header h2 {
         font-size: 28px; letter-spacing: 2px;
-        color: #fff; text-transform: uppercase;
-        font-weight: 900;
+        text-transform: uppercase; font-weight: 900;
     }
     .auction-header p { color: #888; font-size: 13px; margin-top: 4px; }
 
     .auction-main {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        align-items: start;
+        display: grid; grid-template-columns: 1fr 1fr;
+        gap: 20px; align-items: start;
     }
-    @media (max-width: 900px) {
-        .auction-main { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 900px) { .auction-main { grid-template-columns: 1fr; } }
 
     .auction-info {
-        background: #2a2a3e;
-        border-radius: 14px;
-        padding: 20px;
-        display: flex; flex-direction: column; gap: 16px;
+        background: #2a2a3e; border-radius: 14px;
+        padding: 20px; display: flex; flex-direction: column; gap: 16px;
         border: 1px solid #3a3a52;
     }
     .auction-org { display: flex; align-items: center; gap: 14px; }
@@ -350,8 +250,7 @@
         width: 60px; height: 60px; border-radius: 50%;
         background: linear-gradient(135deg, #ff6b6b, #c62828);
         display: flex; align-items: center; justify-content: center;
-        font-size: 24px; font-weight: 900;
-        overflow: hidden;
+        font-size: 24px; font-weight: 900; overflow: hidden;
     }
     .auction-org .org-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .auction-org .org-info h3 { font-size: 18px; }
@@ -365,16 +264,16 @@
     }
     .auction-timer .timer-value {
         font-size: 20px; font-weight: 800;
-        color: #fff; font-variant-numeric: tabular-nums;
+        font-variant-numeric: tabular-nums;
     }
     .auction-timer .timer-value.running { color: #4ade80; }
+    .auction-timer .timer-value.finished { color: #ffd700; font-size: 15px; }
 
     .auction-price {
         background: linear-gradient(135deg, #2a0a0a, #1a0a1a);
-        border: 1px solid #a00000;
-        border-radius: 12px;
-        padding: 16px 20px;
-        display: flex; justify-content: space-between; align-items: center;
+        border: 1px solid #a00000; border-radius: 12px;
+        padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
+        gap: 12px;
     }
     .auction-price .price-left { display: flex; flex-direction: column; }
     .auction-price .price-val { color: #ff4444; font-size: 22px; font-weight: 900; }
@@ -382,17 +281,37 @@
     .auction-price .dep-btn {
         background: linear-gradient(135deg, #f9a825, #f57c00);
         color: #000; font-size: 14px; font-weight: 800;
-        padding: 12px 24px;
-        border: none; border-radius: 8px;
-        cursor: pointer;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        padding: 12px 24px; border: none; border-radius: 8px;
+        cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
     }
     .auction-price .dep-btn:hover {
         background: linear-gradient(135deg, #ffb300, #f57c00);
         transform: scale(1.05);
     }
     .auction-price .dep-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* Выбор игрока для билета */
+    .player-choose {
+        display: flex; gap: 8px;
+        align-items: center;
+    }
+    .player-choose .pc-btn {
+        padding: 10px 16px; border: 2px solid #3a3a52;
+        background: #23233a; color: #aaa;
+        border-radius: 8px; font-size: 13px; font-weight: 700;
+        cursor: pointer; transition: 0.2s;
+        flex: 1;
+    }
+    .player-choose .pc-btn.active.mega {
+        background: linear-gradient(135deg, #ff6b6b, #c62828);
+        color: #fff;
+        border-color: #ff6b6b;
+    }
+    .player-choose .pc-btn.active.sergo {
+        background: linear-gradient(135deg, #4fc3f7, #0288d1);
+        color: #fff;
+        border-color: #4fc3f7;
+    }
 
     .prizes-title {
         color: #fff; font-size: 14px; font-weight: 700;
@@ -403,26 +322,22 @@
         max-height: 400px; overflow-y: auto;
     }
     .auction-prize {
-        background: #23233a;
-        border-radius: 8px;
-        padding: 10px 14px;
-        display: flex; justify-content: space-between; align-items: center;
-        border-left: 3px solid #a00000;
-        gap: 10px;
+        background: #23233a; border-radius: 8px;
+        padding: 10px 14px; display: flex;
+        justify-content: space-between; align-items: center;
+        border-left: 3px solid #a00000; gap: 10px;
     }
     .auction-prize .prize-info { flex: 1; }
-    .auction-prize .prize-name { font-size: 13px; font-weight: 600; color: #fff; }
+    .auction-prize .prize-name { font-size: 13px; font-weight: 600; }
     .auction-prize .prize-price { color: #4ade80; font-weight: 700; font-size: 14px; white-space: nowrap; }
 
     .auction-tickets {
-        background: #2a2a3e;
-        border-radius: 14px;
-        padding: 20px;
-        border: 1px solid #3a3a52;
+        background: #2a2a3e; border-radius: 14px;
+        padding: 20px; border: 1px solid #3a3a52;
     }
     .tickets-header {
         display: flex; justify-content: space-between; align-items: center;
-        margin-bottom: 14px;
+        margin-bottom: 14px; flex-wrap: wrap; gap: 8px;
     }
     .tickets-header h3 { font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
     .tickets-count {
@@ -430,15 +345,33 @@
         font-size: 18px; font-variant-numeric: tabular-nums;
     }
 
+    .tickets-counters {
+        display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;
+    }
+    .counter-badge {
+        display: flex; align-items: center; gap: 8px;
+        padding: 8px 14px; border-radius: 8px;
+        font-size: 14px; font-weight: 700;
+    }
+    .counter-badge.mega {
+        background: rgba(198,40,40,0.2);
+        border: 1px solid #c62828;
+        color: #ff8888;
+    }
+    .counter-badge.sergo {
+        background: rgba(2,136,209,0.2);
+        border: 1px solid #0288d1;
+        color: #88ccff;
+    }
+    .counter-badge .cnt { font-size: 18px; font-variant-numeric: tabular-nums; }
+
     .tickets-grid {
         display: grid;
         grid-template-columns: repeat(30, 1fr);
         gap: 1px;
         background: #1a1a2a;
-        padding: 4px;
-        border-radius: 6px;
-        max-height: 420px;
-        overflow-y: auto;
+        padding: 4px; border-radius: 6px;
+        max-height: 420px; overflow-y: auto;
         position: relative;
     }
     .ticket-cell {
@@ -446,30 +379,66 @@
         background: #2f2f44;
         transition: 0.1s;
     }
-    .ticket-cell.filled { background: linear-gradient(135deg, #4ade80, #22c55e); }
-    .ticket-cell.prize { background: linear-gradient(135deg, #a78bfa, #764ba2); }
+    /* Билеты MEGATEM41K — красные оттенки */
+    .ticket-cell.mega { background: linear-gradient(135deg, #ff6b6b, #c62828); }
+    /* Билеты Sergo — синие оттенки */
+    .ticket-cell.sergo { background: linear-gradient(135deg, #4fc3f7, #0288d1); }
+    /* Микс — если на одной клетке оба */
+    .ticket-cell.mix {
+        background: linear-gradient(135deg, #a78bfa, #764ba2);
+        box-shadow: inset 0 0 0 1px #fbbf24;
+    }
+
     .ticket-cell.runner {
-        background: rgba(255,255,255,0.8) !important;
+        background: rgba(255,255,255,0.9) !important;
         box-shadow: 0 0 8px rgba(255,255,255,0.9), 0 0 16px rgba(167,139,250,0.8);
         z-index: 2;
     }
 
     .tickets-status {
-        margin-top: 14px;
-        text-align: center;
-        font-size: 14px;
-        color: #888;
-        min-height: 20px;
+        margin-top: 14px; text-align: center;
+        font-size: 14px; color: #888; min-height: 20px;
     }
     .tickets-status.win { color: #4ade80; font-weight: 800; font-size: 18px; }
-    .tickets-status.winner {
-        color: #ffd700; font-weight: 900; font-size: 20px;
-        text-shadow: 0 0 12px rgba(255,215,0,0.6);
-        animation: pulse 0.6s ease 3;
+
+    /* Победитель снизу */
+    .winner-block {
+        margin-top: 20px;
+        display: none;
+        flex-direction: column; align-items: center; gap: 12px;
+        background: linear-gradient(135deg, #2a0a0a, #1a0a1a);
+        border: 2px solid #f9a825;
+        border-radius: 14px;
+        padding: 20px;
+        box-shadow: 0 0 30px rgba(249,168,37,0.4);
+        animation: winnerPop 0.5s ease;
     }
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.08); }
+    .winner-block.visible { display: flex; }
+    @keyframes winnerPop {
+        0% { transform: scale(0.8); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    .winner-block .winner-title {
+        color: #f9a825; font-size: 18px; font-weight: 900;
+        text-transform: uppercase; letter-spacing: 2px;
+    }
+    .winner-block .winner-content {
+        display: flex; flex-direction: column; align-items: center;
+        gap: 10px;
+        background: #1a1a2a;
+        border-radius: 12px;
+        padding: 20px 30px;
+    }
+    .winner-block .winner-skin-name {
+        font-size: 20px; font-weight: 700; color: #fff;
+        text-align: center;
+    }
+    .winner-block .winner-skin-price {
+        font-size: 16px; color: #4ade80; font-weight: 700;
+    }
+    .winner-block .winner-nick {
+        font-size: 24px; font-weight: 900;
+        color: #ffd700; text-shadow: 0 0 10px rgba(255,215,0,0.5);
     }
 
     /* АДМИНКА */
@@ -478,22 +447,17 @@
         display: flex; flex-direction: column; gap: 20px;
     }
     .admin-card {
-        background: #2a2a3e;
-        border-radius: 14px;
-        padding: 24px;
-        border: 1px solid #3a3a52;
+        background: #2a2a3e; border-radius: 14px;
+        padding: 24px; border: 1px solid #3a3a52;
     }
     .admin-card h3 {
-        font-size: 17px;
-        margin-bottom: 16px;
-        color: #f9a825;
+        font-size: 17px; margin-bottom: 16px; color: #f9a825;
     }
     .admin-card h3.mega-color { color: #ff6b6b; }
     .admin-card h3.sergo-color { color: #4fc3f7; }
 
     .admin-field {
-        display: flex; flex-direction: column; gap: 6px;
-        margin-bottom: 12px;
+        display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px;
     }
     .admin-field label { font-size: 13px; color: #888; font-weight: 600; }
     .admin-field input, .admin-field select, .admin-field textarea {
@@ -504,16 +468,11 @@
     .admin-field textarea { font-family: monospace; font-size: 12px; min-height: 160px; resize: vertical; }
     .admin-field select { cursor: pointer; }
 
-    .admin-btn-row {
-        display: flex; gap: 10px; flex-wrap: wrap;
-        margin-top: 8px;
-    }
+    .admin-btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
     .admin-btn {
-        padding: 10px 18px;
-        background: #764ba2; color: #fff;
+        padding: 10px 18px; background: #764ba2; color: #fff;
         border: none; border-radius: 8px;
-        font-size: 14px; font-weight: 600;
-        cursor: pointer;
+        font-size: 14px; font-weight: 600; cursor: pointer;
     }
     .admin-btn:hover { background: #5a3a7d; }
     .admin-btn.danger { background: #c62828; }
@@ -527,57 +486,16 @@
     .avatar-preview {
         width: 80px; height: 80px; border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
-        font-weight: 700; font-size: 28px; color: #fff;
+        font-weight: 700; font-size: 28px;
         flex-shrink: 0; overflow: hidden; border: 3px solid #444;
     }
     .avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* Форма дропа */
-    .drop-form {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-        margin-bottom: 20px;
-    }
+    .drop-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
     .drop-form .full-width { grid-column: 1 / -1; }
-    @media (max-width: 600px) {
-        .drop-form { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 600px) { .drop-form { grid-template-columns: 1fr; } }
 
-    .drop-image-upload {
-        display: flex;
-        align-items: flex-start;
-        gap: 20px;
-        grid-column: 1 / -1;
-        flex-wrap: wrap;
-    }
-    .drop-image-preview {
-        width: 120px;
-        height: 120px;
-        background: #1e1e2e;
-        border: 2px dashed #3a3a52;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        flex-shrink: 0;
-        cursor: pointer;
-    }
-    .drop-image-preview:hover { border-color: #a78bfa; }
-    .drop-image-preview img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-    .drop-image-preview .ph {
-        font-size: 32px;
-        color: #555;
-    }
-    .case-custom-input {
-        display: none;
-        margin-top: 8px;
-    }
+    .case-custom-input { display: none; margin-top: 8px; }
     .case-custom-input.visible { display: block; }
 
     /* ЧАТ */
@@ -607,8 +525,8 @@
     .chat-msg .msg-avatar {
         width: 32px; height: 32px; border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
-        font-weight: 700; font-size: 13px; overflow: hidden;
-        flex-shrink: 0;
+        font-weight: 700; font-size: 13px;
+        overflow: hidden; flex-shrink: 0;
     }
     .chat-msg .msg-avatar.mega { background: linear-gradient(135deg, #ff6b6b, #c62828); }
     .chat-msg .msg-avatar.sergo { background: linear-gradient(135deg, #4fc3f7, #0288d1); }
@@ -620,10 +538,7 @@
     }
     .chat-msg.own .msg-author { color: #e0d4ff; }
     .chat-msg .msg-text { font-size: 14px; word-break: break-word; }
-    .chat-msg .msg-time {
-        font-size: 10px; color: #888;
-        margin-top: 4px; text-align: right;
-    }
+    .chat-msg .msg-time { font-size: 10px; color: #888; margin-top: 4px; text-align: right; }
     .msg-delete {
         position: absolute; top: 4px; right: 4px;
         background: #c62828; color: #fff;
@@ -675,7 +590,6 @@
     <button class="tab-btn admin-tab" data-tab="admin" id="adminTabBtn" style="display:none;" onclick="switchTab('admin', this)">🛠 Админка</button>
 </div>
 
-<!-- УЧЁТ -->
 <div id="tab-accounting" class="tab-content active">
     <table id="myTable" class="acc-table">
         <thead>
@@ -689,7 +603,6 @@
     </table>
 </div>
 
-<!-- ДРОПЫ -->
 <div id="tab-drops" class="tab-content">
     <div class="drops-header">
         <div class="drops-title">🎁 Последние дропы</div>
@@ -702,7 +615,6 @@
     <div class="drops-grid" id="dropsGrid"></div>
 </div>
 
-<!-- АУКЦИОН -->
 <div id="tab-auction" class="tab-content">
     <div class="auction-wrap">
         <div class="auction-header">
@@ -718,7 +630,7 @@
                         <p>Организатор</p>
                     </div>
                     <div class="auction-timer" id="auctionTimerBlock">
-                        <div class="timer-label">До выбора победителей</div>
+                        <div class="timer-label" id="timerLabel">До выбора победителей</div>
                         <div class="timer-value" id="auctionTimer">1 : 00</div>
                     </div>
                 </div>
@@ -729,6 +641,10 @@
                     </div>
                     <button class="dep-btn" id="depBtn" onclick="depositTicket()">💳 DEP</button>
                 </div>
+                <div class="player-choose">
+                    <button class="pc-btn active mega" id="pcMega" onclick="setPlayerForTicket('mega')">🔴 MEGATEM41K</button>
+                    <button class="pc-btn sergo" id="pcSergo" onclick="setPlayerForTicket('sergo')">🔵 Sergo Bulkin</button>
+                </div>
                 <div class="prizes-title">🎁 Призы</div>
                 <div class="auction-prizes" id="auctionPrizes"></div>
             </div>
@@ -737,14 +653,32 @@
                     <h3>🎫 Билеты</h3>
                     <div class="tickets-count" id="ticketsCount">0 / 1000</div>
                 </div>
+
+                <div class="tickets-counters">
+                    <div class="counter-badge mega">
+                        🔴 MEGATEM41K: <span class="cnt" id="cntMega">0</span>
+                    </div>
+                    <div class="counter-badge sergo">
+                        🔵 Sergo Bulkin: <span class="cnt" id="cntSergo">0</span>
+                    </div>
+                </div>
+
                 <div class="tickets-grid" id="ticketsGrid"></div>
-                <div class="tickets-status" id="ticketsStatus">Нажми DEP чтобы получить билеты</div>
+                <div class="tickets-status" id="ticketsStatus">Нажми DEP чтобы получить билет</div>
+
+                <div class="winner-block" id="winnerBlock">
+                    <div class="winner-title">🏆 ПОБЕДИТЕЛЬ</div>
+                    <div class="winner-content">
+                        <div class="winner-skin-name" id="winnerSkinName"></div>
+                        <div class="winner-skin-price" id="winnerSkinPrice"></div>
+                        <div class="winner-nick" id="winnerNick"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- ЧАТ -->
 <div id="tab-chat" class="tab-content">
     <div class="chat-container">
         <div class="chat-header">
@@ -759,7 +693,6 @@
     </div>
 </div>
 
-<!-- АДМИНКА -->
 <div id="tab-admin" class="tab-content">
     <div class="admin-wrap">
 
@@ -772,17 +705,9 @@
                     <input type="file" id="avatarFile-mega" accept="image/*" style="display:none;" onchange="uploadAvatar(event, 'mega')">
                 </div>
             </div>
-            <div class="admin-field">
-                <label>Логин</label>
-                <input type="text" id="login-mega">
-            </div>
-            <div class="admin-field">
-                <label>Новый пароль</label>
-                <input type="password" id="password-mega">
-            </div>
-            <div class="admin-btn-row">
-                <button class="admin-btn" onclick="saveAccount('mega')">💾 Сохранить</button>
-            </div>
+            <div class="admin-field"><label>Логин</label><input type="text" id="login-mega"></div>
+            <div class="admin-field"><label>Новый пароль</label><input type="password" id="password-mega"></div>
+            <div class="admin-btn-row"><button class="admin-btn" onclick="saveAccount('mega')">💾 Сохранить</button></div>
             <div class="admin-msg" id="msg-mega"></div>
         </div>
 
@@ -795,33 +720,21 @@
                     <input type="file" id="avatarFile-sergo" accept="image/*" style="display:none;" onchange="uploadAvatar(event, 'sergo')">
                 </div>
             </div>
-            <div class="admin-field">
-                <label>Логин</label>
-                <input type="text" id="login-sergo">
-            </div>
-            <div class="admin-field">
-                <label>Новый пароль</label>
-                <input type="password" id="password-sergo">
-            </div>
-            <div class="admin-btn-row">
-                <button class="admin-btn" onclick="saveAccount('sergo')">💾 Сохранить</button>
-            </div>
+            <div class="admin-field"><label>Логин</label><input type="text" id="login-sergo"></div>
+            <div class="admin-field"><label>Новый пароль</label><input type="password" id="password-sergo"></div>
+            <div class="admin-btn-row"><button class="admin-btn" onclick="saveAccount('sergo')">💾 Сохранить</button></div>
             <div class="admin-msg" id="msg-sergo"></div>
         </div>
 
-        <!-- ДРОПЫ В АДМИНКЕ -->
         <div class="admin-card">
             <h3>🎁 Добавить дроп</h3>
-            <p style="font-size:13px;color:#888;margin-bottom:16px;">
-                Загружай фото скина — оно сразу появится на карточке.
-            </p>
+            <p style="font-size:13px;color:#888;margin-bottom:16px;">Дроп появится на карточке с названием.</p>
 
             <div class="drop-form">
                 <div class="admin-field full-width">
                     <label>Название скина *</label>
                     <input type="text" id="dropName" placeholder="Например: AWP | Удар молнии">
                 </div>
-
                 <div class="admin-field">
                     <label>Кейс</label>
                     <select class="admin-field" id="dropCaseSelect" onchange="onCaseSelectDropChange()">
@@ -831,17 +744,14 @@
                     </select>
                     <input type="text" id="dropCaseCustom" class="case-custom-input" placeholder="Введи название кейса">
                 </div>
-
                 <div class="admin-field">
                     <label>Ссылка на кейс (необязательно)</label>
                     <input type="text" id="dropCaseUrl" placeholder="https://skinhouse.gg/ru/case/...">
                 </div>
-
                 <div class="admin-field">
                     <label>Цена</label>
                     <input type="text" id="dropPrice" placeholder="Например: 1500 ₽">
                 </div>
-
                 <div class="admin-field">
                     <label>Редкость</label>
                     <select class="admin-field" id="dropRarity">
@@ -854,7 +764,6 @@
                         <option value="gold">Золотое</option>
                     </select>
                 </div>
-
                 <div class="admin-field">
                     <label>Кто выбил</label>
                     <select class="admin-field" id="dropAuthor">
@@ -862,25 +771,8 @@
                         <option value="sergo">Sergo Bulkin</option>
                     </select>
                 </div>
-
-                <div class="drop-image-upload">
-                    <div>
-                        <p style="font-size:12px;color:#888;margin-bottom:8px;font-weight:600;">Фото скина</p>
-                        <div class="drop-image-preview" id="dropImagePreview" onclick="document.getElementById('dropImageFile').click()">
-                            <div class="ph">🎁</div>
-                        </div>
-                        <input type="file" id="dropImageFile" accept="image/*" style="display:none;" onchange="handleDropImage(event)">
-                        <div style="margin-top:8px;">
-                            <button class="admin-btn" onclick="document.getElementById('dropImageFile').click()">📷 Выбрать</button>
-                            <button class="admin-btn danger" onclick="clearDropImage()" style="margin-left:6px;">✖</button>
-                        </div>
-                    </div>
-                </div>
             </div>
-
-            <div class="admin-btn-row">
-                <button class="admin-btn" onclick="addDrop()">➕ Добавить дроп</button>
-            </div>
+            <div class="admin-btn-row"><button class="admin-btn" onclick="addDrop()">➕ Добавить дроп</button></div>
             <div class="admin-msg" id="msg-drop"></div>
         </div>
 
@@ -889,7 +781,6 @@
             <div id="dropsAdminList"></div>
         </div>
 
-        <!-- АДМИНКА АУКЦИОНОВ -->
         <div class="admin-card">
             <h3>🎰 Создать аукцион</h3>
             <div class="admin-field">
@@ -982,7 +873,7 @@
     }
 
     // ==================================================
-    // СПИСКИ СКИНОВ ПО КЕЙСАМ (для аукциона)
+    // СПИСКИ СКИНОВ (для аукциона)
     // ==================================================
     const CASE_SKINS = {
         rainy: [
@@ -1286,7 +1177,6 @@
     // ==================================================
     let DROPS = [];
     let currentDropFilter = 'all';
-    let pendingDropImage = null;
 
     function subscribeDrops() {
         onSnapshot(doc(db, 'data', 'drops'), (docSnap) => {
@@ -1345,33 +1235,17 @@
 
             const giver = getCaseGiver(drop.case);
 
-            card.onclick = (e) => {
-                if (e.target.tagName === 'IMG') return;
+            card.onclick = () => {
                 const url = PROFILE_URLS[drop.author];
                 if (url) window.open(url, '_blank');
             };
 
             const imgWrap = document.createElement('div');
             imgWrap.className = 'drop-image';
-
-            if (drop.image) {
-                const img = document.createElement('img');
-                img.src = drop.image;
-                img.onclick = (e) => {
-                    e.stopPropagation();
-                    if (drop.caseUrl) window.open(drop.caseUrl, '_blank');
-                    else {
-                        const url = PROFILE_URLS[drop.author];
-                        if (url) window.open(url, '_blank');
-                    }
-                };
-                imgWrap.appendChild(img);
-            } else {
-                const ph = document.createElement('div');
-                ph.className = 'no-image';
-                ph.innerText = '🎁';
-                imgWrap.appendChild(ph);
-            }
+            const ph = document.createElement('div');
+            ph.className = 'no-image';
+            ph.innerText = '🎁';
+            imgWrap.appendChild(ph);
 
             const badge = document.createElement('div');
             badge.className = 'drop-rarity-badge';
@@ -1415,13 +1289,6 @@
             const author = document.createElement('div');
             author.className = 'drop-author';
             author.innerText = getAuthorLabel(drop.author);
-            author.style.cursor = 'pointer';
-            author.style.textDecoration = 'underline';
-            author.onclick = (e) => {
-                e.stopPropagation();
-                const url = PROFILE_URLS[drop.author];
-                if (url) window.open(url, '_blank');
-            };
             meta.appendChild(author);
 
             const date = document.createElement('div');
@@ -1436,28 +1303,11 @@
         });
     }
 
-    // ===== АДМИНКА ДРОПОВ =====
     window.onCaseSelectDropChange = function() {
         const sel = document.getElementById('dropCaseSelect');
         const custom = document.getElementById('dropCaseCustom');
         if (sel.value === '__other__') custom.classList.add('visible');
         else custom.classList.remove('visible');
-    };
-
-    window.handleDropImage = function(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
-        compressImage(file, 400, 0.85).then(result => {
-            pendingDropImage = result;
-            document.getElementById('dropImagePreview').innerHTML = `<img src="${result}">`;
-        });
-    };
-
-    window.clearDropImage = function() {
-        pendingDropImage = null;
-        document.getElementById('dropImagePreview').innerHTML = '<div class="ph">🎁</div>';
-        document.getElementById('dropImageFile').value = '';
     };
 
     window.addDrop = async function() {
@@ -1481,7 +1331,6 @@
         DROPS.push({
             id: 'drop_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
             name, case: caseName, caseUrl: caseUrl || '', price, rarity, author,
-            image: pendingDropImage || '',
             createdAt: new Date().toISOString()
         });
 
@@ -1494,7 +1343,6 @@
         document.getElementById('dropCaseCustom').value = '';
         document.getElementById('dropCaseSelect').value = 'Дождливый мегаполис';
         document.getElementById('dropCaseCustom').classList.remove('visible');
-        clearDropImage();
 
         msgEl.className = 'admin-msg ok';
         msgEl.innerText = '✅ Дроп добавлен';
@@ -1537,16 +1385,6 @@
                 border-left: 4px solid ${getRarityColor(drop.rarity)};
             `;
 
-            const imgWrap = document.createElement('div');
-            imgWrap.style.cssText = 'width:50px;height:50px;background:#1e1e2e;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;';
-            if (drop.image) {
-                const im = document.createElement('img');
-                im.src = drop.image;
-                im.style.cssText = 'max-width:100%;max-height:100%;object-fit:contain;';
-                imgWrap.appendChild(im);
-            } else imgWrap.innerText = '🎁';
-            row.appendChild(imgWrap);
-
             const info = document.createElement('div');
             info.style.cssText = 'flex:1;min-width:0;';
             const t1 = document.createElement('div');
@@ -1570,7 +1408,7 @@
     }
 
     // ==================================================
-    // АУКЦИОН
+    // АУКЦИОН — ВАРИАНТ Б (у каждого свои билеты)
     // ==================================================
     let auctionData = {
         title: 'Дамасская сталь',
@@ -1580,12 +1418,24 @@
         timerMinutes: 1,
         prizes: []
     };
-    let tickets = 0;
+    let ticketsMega = 0;
+    let ticketsSergo = 0;
+    let chosenPlayer = 'mega'; // для DEP — чей билет сейчас
     let timerRunning = false;
+    let timerFinished = false;
     let timerInterval = null;
     let runnerInterval = null;
     let runnerIndex = 0;
     let isRolling = false;
+    let currentWinner = null;
+
+    function totalTickets() { return ticketsMega + ticketsSergo; }
+
+    window.setPlayerForTicket = function(key) {
+        chosenPlayer = key;
+        document.getElementById('pcMega').classList.toggle('active', key === 'mega');
+        document.getElementById('pcSergo').classList.toggle('active', key === 'sergo');
+    };
 
     function subscribeAuction() {
         onSnapshot(doc(db, 'data', 'auction'), (docSnap) => {
@@ -1597,7 +1447,16 @@
                         auctionData.prizes = CASE_SKINS[auctionData.case] || CASE_SKINS.rainy;
                     }
                 }
-                if (typeof data.tickets === 'number') tickets = data.tickets;
+                if (typeof data.ticketsMega === 'number') ticketsMega = data.ticketsMega;
+                if (typeof data.ticketsSergo === 'number') ticketsSergo = data.ticketsSergo;
+                if (data.winner) currentWinner = data.winner;
+                if (data.timerFinished) timerFinished = data.timerFinished;
+                if (data.isRolling) isRolling = data.isRolling;
+                if (data.chosenPlayer) {
+                    chosenPlayer = data.chosenPlayer;
+                    document.getElementById('pcMega').classList.toggle('active', chosenPlayer === 'mega');
+                    document.getElementById('pcSergo').classList.toggle('active', chosenPlayer === 'sergo');
+                }
             } else {
                 auctionData.prizes = CASE_SKINS.rainy;
             }
@@ -1608,28 +1467,46 @@
 
     async function saveAuction() {
         try {
-            await setDoc(doc(db, 'data', 'auction'), { auction: auctionData, tickets: tickets });
+            await setDoc(doc(db, 'data', 'auction'), {
+                auction: auctionData,
+                ticketsMega: ticketsMega,
+                ticketsSergo: ticketsSergo,
+                winner: currentWinner,
+                timerFinished: timerFinished,
+                isRolling: isRolling,
+                chosenPlayer: chosenPlayer
+            });
         } catch(e) { console.warn(e); }
     }
 
     function renderAuction() {
         document.getElementById('ticketPrice').innerText = '₽' + auctionData.ticketPrice.toFixed(2);
-        document.getElementById('ticketsCount').innerText = tickets + ' / ' + auctionData.totalTickets;
+        document.getElementById('ticketsCount').innerText = totalTickets() + ' / ' + auctionData.totalTickets;
+
+        document.getElementById('cntMega').innerText = ticketsMega;
+        document.getElementById('cntSergo').innerText = ticketsSergo;
 
         document.getElementById('orgName').innerText = 'MEGATEM41K';
         const orgAv = AVATARS.mega;
         const orgEl = document.getElementById('orgAvatar');
-        if (orgAv) {
-            orgEl.innerHTML = `<img src="${orgAv}">`;
-        } else {
-            orgEl.innerText = 'M';
-        }
+        if (orgAv) orgEl.innerHTML = `<img src="${orgAv}">`;
+        else orgEl.innerText = 'M';
 
         const timerBlock = document.getElementById('auctionTimerBlock');
-        if (tickets >= auctionData.totalTickets) {
+        const timerLabel = document.getElementById('timerLabel');
+        const timerVal = document.getElementById('auctionTimer');
+
+        if (totalTickets() >= auctionData.totalTickets || timerFinished || currentWinner) {
             timerBlock.classList.add('visible');
         } else {
             timerBlock.classList.remove('visible');
+        }
+
+        if (timerFinished && !isRolling) {
+            timerLabel.innerText = '';
+            timerVal.innerText = 'Итоги были завершены';
+            timerVal.classList.add('finished');
+            timerVal.classList.remove('running');
         }
 
         const container = document.getElementById('auctionPrizes');
@@ -1653,7 +1530,17 @@
             container.appendChild(el);
         });
 
-        document.getElementById('depBtn').disabled = tickets >= auctionData.totalTickets || isRolling;
+        const winnerBlock = document.getElementById('winnerBlock');
+        if (currentWinner) {
+            winnerBlock.classList.add('visible');
+            document.getElementById('winnerSkinName').innerText = currentWinner.skinName;
+            document.getElementById('winnerSkinPrice').innerText = currentWinner.skinPrice ? '₽' + Number(currentWinner.skinPrice).toLocaleString('ru-RU') : '';
+            document.getElementById('winnerNick').innerText = '👤 ' + currentWinner.nick;
+        } else {
+            winnerBlock.classList.remove('visible');
+        }
+
+        document.getElementById('depBtn').disabled = totalTickets() >= auctionData.totalTickets || isRolling;
     }
 
     function renderTickets() {
@@ -1661,36 +1548,52 @@
         grid.innerHTML = '';
         const total = auctionData.totalTickets;
 
+        // Сначала рисуем все красные (Mega), потом синие (Sergo)
+        // Если оба — фиолетовый "микс"
+        const megaCount = ticketsMega;
+        const sergoCount = ticketsSergo;
+
         for (let i = 0; i < total; i++) {
             const cell = document.createElement('div');
             cell.className = 'ticket-cell';
-            cell.dataset.index = i;
-            if (i < tickets) {
-                cell.classList.add(i % 3 === 0 ? 'prize' : 'filled');
-            }
+
+            const isMega = i < megaCount;
+            const isSergo = i >= total - sergoCount; // синие с конца
+
+            if (isMega && isSergo) cell.classList.add('mix');
+            else if (isMega) cell.classList.add('mega');
+            else if (isSergo) cell.classList.add('sergo');
+
             grid.appendChild(cell);
         }
 
         const status = document.getElementById('ticketsStatus');
-        if (isRolling) {
+        if (currentWinner) {
+            status.className = 'tickets-status win';
+            status.innerText = '✅ Итоги были завершены';
+        } else if (isRolling) {
             status.className = 'tickets-status';
             status.innerText = '🎲 Выбираем победителя...';
-        } else if (tickets >= total) {
+        } else if (totalTickets() >= total) {
             status.className = 'tickets-status win';
             status.innerText = '🎉 Все билеты выкуплены!';
         } else {
             status.className = 'tickets-status';
-            status.innerText = `Ещё ${total - tickets} билетов до старта`;
+            status.innerText = `Ещё ${total - totalTickets()} билетов до старта`;
         }
     }
 
     window.depositTicket = async function() {
-        if (tickets >= auctionData.totalTickets || isRolling) return;
-        tickets++;
+        if (totalTickets() >= auctionData.totalTickets || isRolling || currentWinner) return;
+
+        if (chosenPlayer === 'mega') ticketsMega++;
+        else ticketsSergo++;
+
         await saveAuction();
         renderTickets();
+        renderAuction();
 
-        if (tickets >= auctionData.totalTickets && !timerRunning && !isRolling) {
+        if (totalTickets() >= auctionData.totalTickets && !timerRunning && !isRolling) {
             startTimer();
         }
     };
@@ -1705,6 +1608,7 @@
 
         const el = document.getElementById('auctionTimer');
         el.classList.add('running');
+        el.classList.remove('finished');
 
         const updateEl = () => {
             const m = Math.floor(remaining / 60);
@@ -1753,35 +1657,56 @@
             const finalIndex = Math.floor(Math.random() * total);
             cells[finalIndex].classList.add('runner');
 
-            setTimeout(() => {
+            setTimeout(async () => {
                 isRolling = false;
-                const winnerPrize = auctionData.prizes[Math.floor(Math.random() * auctionData.prizes.length)];
-                const status = document.getElementById('ticketsStatus');
-                status.className = 'tickets-status winner';
-                status.innerText = '🏆 Выиграл: ' + winnerPrize.name + (winnerPrize.price ? ' (₽' + Number(winnerPrize.price).toLocaleString('ru-RU') + ')' : '');
-                document.getElementById('depBtn').disabled = true;
+                timerFinished = true;
 
-                setTimeout(() => {
-                    status.className = 'tickets-status';
-                    status.innerText = 'Розыгрыш завершён. Создай новый аукцион в админке.';
-                }, 5000);
+                const winnerPrize = auctionData.prizes[Math.floor(Math.random() * auctionData.prizes.length)];
+
+                // Победитель — взвешенно по билетам
+                let winnerNick;
+                if (ticketsMega === 0 && ticketsSergo === 0) {
+                    winnerNick = 'MEGATEM41K';
+                } else if (ticketsMega === 0) {
+                    winnerNick = 'Sergo Bulkin';
+                } else if (ticketsSergo === 0) {
+                    winnerNick = 'MEGATEM41K';
+                } else {
+                    const total = ticketsMega + ticketsSergo;
+                    const r = Math.random() * total;
+                    winnerNick = r < ticketsMega ? 'MEGATEM41K' : 'Sergo Bulkin';
+                }
+
+                currentWinner = {
+                    skinName: winnerPrize.name,
+                    skinPrice: winnerPrize.price,
+                    nick: winnerNick
+                };
+
+                await saveAuction();
+                renderAuction();
+                renderTickets();
             }, 1000);
         }, rollDuration);
     }
 
     window.resetTickets = async function() {
-        tickets = 0;
+        ticketsMega = 0;
+        ticketsSergo = 0;
         timerRunning = false;
+        timerFinished = false;
         isRolling = false;
+        currentWinner = null;
         if (timerInterval) clearInterval(timerInterval);
         if (runnerInterval) clearInterval(runnerInterval);
         document.querySelectorAll('#ticketsGrid .ticket-cell').forEach(c => c.classList.remove('runner'));
         await saveAuction();
         renderTickets();
+        renderAuction();
         document.getElementById('auctionTimer').innerText = '1 : 00';
         document.getElementById('auctionTimerBlock').classList.remove('visible');
         document.getElementById('ticketsStatus').className = 'tickets-status';
-        document.getElementById('ticketsStatus').innerText = 'Нажми DEP чтобы получить билеты';
+        document.getElementById('ticketsStatus').innerText = 'Нажми DEP чтобы получить билет';
     };
 
     window.onCaseSelectAdmin = function() {
@@ -1822,9 +1747,12 @@
             timerMinutes: timerMin,
             prizes: prizes.length ? prizes : CASE_SKINS[caseKey]
         };
-        tickets = 0;
+        ticketsMega = 0;
+        ticketsSergo = 0;
         timerRunning = false;
+        timerFinished = false;
         isRolling = false;
+        currentWinner = null;
         if (timerInterval) clearInterval(timerInterval);
         if (runnerInterval) clearInterval(runnerInterval);
 
@@ -2001,31 +1929,6 @@
         msgEl.innerText = '✅ Сохранено';
         setTimeout(() => { msgEl.innerText = ''; }, 2000);
     };
-
-    // ==================================================
-    // УТИЛИТЫ
-    // ==================================================
-    function compressImage(file, maxSize = 512, quality = 0.8) {
-        return new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    let w = img.width, h = img.height;
-                    if (w > h && w > maxSize) { h = Math.round(h * maxSize / w); w = maxSize; }
-                    else if (h > maxSize) { w = Math.round(w * maxSize / h); h = maxSize; }
-                    canvas.width = w; canvas.height = h;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, w, h);
-                    let result = (file.type === 'image/png') ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg', quality);
-                    resolve(result);
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        });
-    }
 
     // ==================================================
     // ИНИЦИАЛИЗАЦИЯ
