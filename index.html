@@ -181,11 +181,10 @@
     .drop-card.rarity-gold { border-color: #f9a825; box-shadow: 0 0 25px rgba(249,168,37,0.5); }
 
     .drop-image {
-        width: 100%; height: 170px; background: #1e1e2e;
+        width: 100%; height: 140px; background: #1e1e2e;
         display: flex; align-items: center; justify-content: center;
         overflow: hidden; position: relative;
     }
-    .drop-image img { max-width: 90%; max-height: 90%; object-fit: contain; }
     .drop-image .no-image { font-size: 50px; opacity: 0.3; }
 
     .drop-rarity-badge {
@@ -290,29 +289,6 @@
     }
     .auction-price .dep-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-    /* Выбор игрока для билета */
-    .player-choose {
-        display: flex; gap: 8px;
-        align-items: center;
-    }
-    .player-choose .pc-btn {
-        padding: 10px 16px; border: 2px solid #3a3a52;
-        background: #23233a; color: #aaa;
-        border-radius: 8px; font-size: 13px; font-weight: 700;
-        cursor: pointer; transition: 0.2s;
-        flex: 1;
-    }
-    .player-choose .pc-btn.active.mega {
-        background: linear-gradient(135deg, #ff6b6b, #c62828);
-        color: #fff;
-        border-color: #ff6b6b;
-    }
-    .player-choose .pc-btn.active.sergo {
-        background: linear-gradient(135deg, #4fc3f7, #0288d1);
-        color: #fff;
-        border-color: #4fc3f7;
-    }
-
     .prizes-title {
         color: #fff; font-size: 14px; font-weight: 700;
         text-transform: uppercase; letter-spacing: 1px;
@@ -379,19 +355,28 @@
         background: #2f2f44;
         transition: 0.1s;
     }
-    /* Билеты MEGATEM41K — красные оттенки */
-    .ticket-cell.mega { background: linear-gradient(135deg, #ff6b6b, #c62828); }
-    /* Билеты Sergo — синие оттенки */
-    .ticket-cell.sergo { background: linear-gradient(135deg, #4fc3f7, #0288d1); }
-    /* Микс — если на одной клетке оба */
-    .ticket-cell.mix {
-        background: linear-gradient(135deg, #a78bfa, #764ba2);
-        box-shadow: inset 0 0 0 1px #fbbf24;
-    }
+
+    /* Много цветов для билетов */
+    .ticket-cell.c0  { background: #4ade80; }
+    .ticket-cell.c1  { background: #f87171; }
+    .ticket-cell.c2  { background: #fbbf24; }
+    .ticket-cell.c3  { background: #a78bfa; }
+    .ticket-cell.c4  { background: #60a5fa; }
+    .ticket-cell.c5  { background: #f472b6; }
+    .ticket-cell.c6  { background: #34d399; }
+    .ticket-cell.c7  { background: #fb923c; }
+    .ticket-cell.c8  { background: #c084fc; }
+    .ticket-cell.c9  { background: #22d3ee; }
+    .ticket-cell.c10 { background: #a3e635; }
+    .ticket-cell.c11 { background: #e879f9; }
+    .ticket-cell.c12 { background: #facc15; }
+    .ticket-cell.c13 { background: #38bdf8; }
+    .ticket-cell.c14 { background: #fb7185; }
+    .ticket-cell.c15 { background: #86efac; }
 
     .ticket-cell.runner {
-        background: rgba(255,255,255,0.9) !important;
-        box-shadow: 0 0 8px rgba(255,255,255,0.9), 0 0 16px rgba(167,139,250,0.8);
+        background: rgba(255,255,255,0.95) !important;
+        box-shadow: 0 0 8px rgba(255,255,255,0.9), 0 0 16px rgba(167,139,250,0.9);
         z-index: 2;
     }
 
@@ -424,20 +409,20 @@
     }
     .winner-block .winner-content {
         display: flex; flex-direction: column; align-items: center;
-        gap: 10px;
+        gap: 8px;
         background: #1a1a2a;
         border-radius: 12px;
-        padding: 20px 30px;
+        padding: 18px 28px;
     }
     .winner-block .winner-skin-name {
-        font-size: 20px; font-weight: 700; color: #fff;
+        font-size: 18px; font-weight: 700; color: #fff;
         text-align: center;
     }
     .winner-block .winner-skin-price {
-        font-size: 16px; color: #4ade80; font-weight: 700;
+        font-size: 14px; color: #4ade80; font-weight: 700;
     }
     .winner-block .winner-nick {
-        font-size: 24px; font-weight: 900;
+        font-size: 22px; font-weight: 900;
         color: #ffd700; text-shadow: 0 0 10px rgba(255,215,0,0.5);
     }
 
@@ -465,7 +450,7 @@
         border-radius: 8px; background: #1e1e2e;
         color: #fff; font-size: 14px; outline: none;
     }
-    .admin-field textarea { font-family: monospace; font-size: 12px; min-height: 160px; resize: vertical; }
+    .admin-field textarea { font-family: monospace; font-size: 12px; min-height: 200px; resize: vertical; }
     .admin-field select { cursor: pointer; }
 
     .admin-btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
@@ -641,11 +626,7 @@
                     </div>
                     <button class="dep-btn" id="depBtn" onclick="depositTicket()">💳 DEP</button>
                 </div>
-                <div class="player-choose">
-                    <button class="pc-btn active mega" id="pcMega" onclick="setPlayerForTicket('mega')">🔴 MEGATEM41K</button>
-                    <button class="pc-btn sergo" id="pcSergo" onclick="setPlayerForTicket('sergo')">🔵 Sergo Bulkin</button>
-                </div>
-                <div class="prizes-title">🎁 Призы</div>
+                <div class="prizes-title">🎁 Призы (от меньшего шанса к большему)</div>
                 <div class="auction-prizes" id="auctionPrizes"></div>
             </div>
             <div class="auction-tickets">
@@ -728,8 +709,6 @@
 
         <div class="admin-card">
             <h3>🎁 Добавить дроп</h3>
-            <p style="font-size:13px;color:#888;margin-bottom:16px;">Дроп появится на карточке с названием.</p>
-
             <div class="drop-form">
                 <div class="admin-field full-width">
                     <label>Название скина *</label>
@@ -743,10 +722,6 @@
                         <option value="__other__">Другое...</option>
                     </select>
                     <input type="text" id="dropCaseCustom" class="case-custom-input" placeholder="Введи название кейса">
-                </div>
-                <div class="admin-field">
-                    <label>Ссылка на кейс (необязательно)</label>
-                    <input type="text" id="dropCaseUrl" placeholder="https://skinhouse.gg/ru/case/...">
                 </div>
                 <div class="admin-field">
                     <label>Цена</label>
@@ -807,7 +782,7 @@
                 <input type="number" id="aucTimer" placeholder="1" value="1" min="1" max="10">
             </div>
             <div class="admin-field">
-                <label>Призы (Название;Цена, по одной на строку)</label>
+                <label>Призы (Название;Цена, по одной на строку) — идут от меньшего шанса к большему</label>
                 <textarea id="aucPrizes"></textarea>
             </div>
             <div class="admin-btn-row">
@@ -823,9 +798,6 @@
 </div>
 
 <script type="module">
-    // ==================================================
-    // FIREBASE
-    // ==================================================
     const firebaseConfig = {
         apiKey: "AIzaSyCp06hFJwxSppjYpsI1yBQobSMb2hDZkmZE",
         authDomain: "xalyava.firebaseapp.com",
@@ -842,9 +814,7 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // ==================================================
-    // ДРОПЫ — константы
-    // ==================================================
+    // ===== ДРОПЫ — константы =====
     const PROFILE_URLS = {
         mega: 'https://skinhouse.gg/ru/user/2181',
         sergo: 'https://skinhouse.gg/ru/user/26587'
@@ -872,66 +842,64 @@
         return '';
     }
 
-    // ==================================================
-    // СПИСКИ СКИНОВ (для аукциона)
-    // ==================================================
+    // ===== СПИСКИ СКИНОВ — от меньшего шанса к большему =====
+    // Сверху — дорогие/редкие (маленький шанс), снизу — дешёвые (большой шанс)
     const CASE_SKINS = {
         rainy: [
-            { name: 'Штык-нож M9 | Чистая вода', price: 14918.98 },
-            { name: 'Складной нож | Городская маскировка', price: 21902.59 },
-            { name: 'Нож с лезвием-крюком | Чистая вода', price: 8668.49 },
-            { name: 'AWP | Удар молнии', price: 0 },
-            { name: 'M4A4 | Дождь из пуль', price: 0 },
-            { name: 'AK-47 | Неоновая революция', price: 0 },
-            { name: 'Капитан Фрэнк «Мокрый» | Боевые пловцы SEAL', price: 0 },
-            { name: 'G3SG1 | Поток', price: 0 },
-            { name: 'MP9 | Бегом за латте', price: 0 },
-            { name: 'Автомат «Галиль» | Радужная ложка', price: 0 },
-            { name: 'USP-S | Следы асфальта', price: 0 },
-            { name: 'MP9 | Цветное стекло', price: 0 },
-            { name: 'ПП-19 «Бизон» | Синяя струя', price: 0 },
-            { name: 'Dual Berettas | Городской шок', price: 0 },
-            { name: 'M4A4 | Тусклые полосы', price: 0 },
-            { name: 'Desert Eagle | Городской щебень', price: 0 },
-            { name: 'UMP-45 | Поздняя поездка', price: 0 },
-            { name: 'P90 | Мрак', price: 0 },
-            { name: 'MP7 | Городская опасность', price: 0 },
-            { name: 'MP9 | Гроза', price: 0 },
-            { name: 'AUG | Гроза', price: 0 }
+            // Редкие/дорогие
+            { name: 'Штык-нож M9 | Чистая вода', price: 14918.98, chance: 0.072 },
+            { name: 'Складной нож | Городская маскировка', price: 21902.59, chance: 0.2 },
+            { name: 'Нож с лезвием-крюком | Чистая вода', price: 8668.49, chance: 0.4 },
+            { name: 'AWP | Удар молнии', price: 0, chance: 0.02 },
+            { name: 'M4A4 | Дождь из пуль', price: 0, chance: 0.28 },
+            { name: 'AK-47 | Неоновая революция', price: 0, chance: 0.25 },
+            { name: 'Капитан Фрэнк «Мокрый» | Боевые пловцы SEAL', price: 0, chance: 0.06 },
+            { name: 'G3SG1 | Поток', price: 0, chance: 7.107 },
+            { name: 'MP9 | Бегом за латте', price: 0, chance: 5.887 },
+            { name: 'Автомат «Галиль» | Радужная ложка', price: 0, chance: 1.06 },
+            { name: 'USP-S | Следы асфальта', price: 0, chance: 1.3 },
+            { name: 'MP9 | Цветное стекло', price: 0, chance: 0.1 },
+            { name: 'ПП-19 «Бизон» | Синяя струя', price: 0, chance: 13.249 },
+            { name: 'Dual Berettas | Городской шок', price: 0, chance: 14.856 },
+            { name: 'M4A4 | Тусклые полосы', price: 0, chance: 10.041 },
+            { name: 'Desert Eagle | Городской щебень', price: 0, chance: 7.007 },
+            { name: 'UMP-45 | Поздняя поездка', price: 0, chance: 6.428 },
+            { name: 'P90 | Мрак', price: 0, chance: 8.535 },
+            { name: 'MP7 | Городская опасность', price: 0, chance: 14.533 },
+            { name: 'MP9 | Гроза', price: 0, chance: 7.008 },
+            { name: 'AUG | Гроза', price: 0, chance: 1.607 }
         ],
         atelier: [
-            { name: 'Фальшион | Волны', price: 0 },
-            { name: 'Медвежий нож | Волны', price: 0 },
-            { name: 'Паракорд-нож | Волны', price: 0 },
-            { name: 'Нож выживания | Волны', price: 0 },
-            { name: 'Нож с лезвием-крюком | Волны', price: 0 },
-            { name: 'Тычковые ножи | Волны', price: 0 },
-            { name: 'AWP | CMYK', price: 0 },
-            { name: 'USP-S | Поток информации', price: 0 },
-            { name: 'AK-47 | Наследство', price: 0 },
-            { name: 'Glock-18 | Полный раскрас', price: 0 },
-            { name: 'Брелок | Крошка Привидение', price: 0 },
-            { name: 'M4A4 | Безлюдный космос', price: 0 },
-            { name: 'M4A1-S | Стратосфера', price: 0 },
-            { name: 'M4A1-S | Дикий тусовщик', price: 0 },
-            { name: 'Брелок | Бриллиантовая колба', price: 0 },
-            { name: 'M4A4 | Зубная фея', price: 0 },
-            { name: 'Брелок | Литой калаш', price: 0 },
-            { name: 'P90 | Неокоролева', price: 0 },
-            { name: 'USP-S | Неисправность', price: 0 }
+            // Редкие/дорогие
+            { name: 'Фальшион | Волны', price: 0, chance: 0.002 },
+            { name: 'Медвежий нож | Волны', price: 0, chance: 0.002 },
+            { name: 'Паракорд-нож | Волны', price: 0, chance: 0.003 },
+            { name: 'Нож выживания | Волны', price: 0, chance: 0.013 },
+            { name: 'Нож с лезвием-крюком | Волны', price: 0, chance: 0.011 },
+            { name: 'Тычковые ножи | Волны', price: 0, chance: 0.03 },
+            { name: 'AWP | CMYK', price: 0, chance: 0.051 },
+            { name: 'USP-S | Поток информации', price: 0, chance: 0.89 },
+            { name: 'AK-47 | Наследство', price: 0, chance: 0.84 },
+            { name: 'Glock-18 | Полный раскрас', price: 0, chance: 1.69 },
+            { name: 'Брелок | Крошка Привидение', price: 0, chance: 1 },
+            { name: 'M4A4 | Безлюдный космос', price: 0, chance: 3.38 },
+            { name: 'M4A1-S | Стратосфера', price: 0, chance: 19.748 },
+            { name: 'M4A1-S | Дикий тусовщик', price: 0, chance: 5.05 },
+            { name: 'Брелок | Бриллиантовая колба', price: 0, chance: 5 },
+            { name: 'M4A4 | Зубная фея', price: 0, chance: 6.229 },
+            { name: 'Брелок | Литой калаш', price: 0, chance: 6.229 },
+            { name: 'P90 | Неокоролева', price: 0, chance: 18.687 },
+            { name: 'USP-S | Неисправность', price: 0, chance: 31.145 }
         ]
     };
 
-    // ==================================================
-    // АККАУНТЫ
-    // ==================================================
+    // ===== АККАУНТЫ =====
     let ACCOUNTS = {
         'Sergo Bulkin': { password: 'sosyXUI322', key: 'sergo' },
         'MEGATEM41K':    { password: '322sosyXUI322', key: 'mega' }
     };
     let AVATARS = { mega: '', sergo: '' };
     let currentUser = null;
-
     const SESSION_KEY = 'chat_session_v1';
 
     async function loadAccounts() {
@@ -946,7 +914,6 @@
             }
         } catch(e) { console.warn(e); }
     }
-
     async function saveAccounts() {
         try {
             await setDoc(doc(db, 'data', 'accounts'), { accounts: ACCOUNTS, avatars: AVATARS });
@@ -1033,9 +1000,7 @@
         if (e.key === 'Enter') tryLogin();
     });
 
-    // ==================================================
-    // ВКЛАДКИ
-    // ==================================================
+    // ===== ВКЛАДКИ =====
     const ACTIVE_TAB_KEY = 'activeTab';
 
     window.switchTab = function(name, btn) {
@@ -1059,9 +1024,7 @@
         if (btn) switchTab(saved, btn);
     }
 
-    // ==================================================
-    // УЧЁТ
-    // ==================================================
+    // ===== УЧЁТ =====
     const ACC_DOC = 'accounting';
     const ACC_FIELD = 'prices_v2';
     const DAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
@@ -1172,9 +1135,7 @@
         renderTable();
     }
 
-    // ==================================================
-    // ДРОПЫ
-    // ==================================================
+    // ===== ДРОПЫ =====
     let DROPS = [];
     let currentDropFilter = 'all';
 
@@ -1314,7 +1275,6 @@
         const name = document.getElementById('dropName').value.trim();
         const caseSelect = document.getElementById('dropCaseSelect').value;
         const caseCustom = document.getElementById('dropCaseCustom').value.trim();
-        const caseUrl = document.getElementById('dropCaseUrl').value.trim();
         const price = document.getElementById('dropPrice').value.trim();
         const rarity = document.getElementById('dropRarity').value;
         const author = document.getElementById('dropAuthor').value;
@@ -1330,7 +1290,7 @@
 
         DROPS.push({
             id: 'drop_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
-            name, case: caseName, caseUrl: caseUrl || '', price, rarity, author,
+            name, case: caseName, price, rarity, author,
             createdAt: new Date().toISOString()
         });
 
@@ -1339,7 +1299,6 @@
 
         document.getElementById('dropName').value = '';
         document.getElementById('dropPrice').value = '';
-        document.getElementById('dropCaseUrl').value = '';
         document.getElementById('dropCaseCustom').value = '';
         document.getElementById('dropCaseSelect').value = 'Дождливый мегаполис';
         document.getElementById('dropCaseCustom').classList.remove('visible');
@@ -1352,594 +1311,4 @@
         renderDropsAdmin();
     };
 
-    window.deleteDrop = async function(id) {
-        if (!confirm('Удалить этот дроп?')) return;
-        DROPS = DROPS.filter(d => d.id !== id);
-        await saveDrops();
-        renderDrops();
-        renderDropsAdmin();
-    };
-
-    function renderDropsAdmin() {
-        const list = document.getElementById('dropsAdminList');
-        if (!list) return;
-        list.innerHTML = '';
-
-        if (DROPS.length === 0) {
-            list.innerHTML = '<p style="color:#666;font-style:italic;">Пока нет дропов</p>';
-            return;
-        }
-
-        const sorted = [...DROPS].sort((a, b) => {
-            const ta = a.createdAt ? new Date(a.createdAt).getTime() : 0;
-            const tb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
-            return tb - ta;
-        });
-
-        sorted.forEach(drop => {
-            const row = document.createElement('div');
-            row.style.cssText = `
-                display: flex; align-items: center; gap: 12px;
-                padding: 10px; background: #23233a;
-                border-radius: 8px; margin-bottom: 8px;
-                border-left: 4px solid ${getRarityColor(drop.rarity)};
-            `;
-
-            const info = document.createElement('div');
-            info.style.cssText = 'flex:1;min-width:0;';
-            const t1 = document.createElement('div');
-            t1.style.cssText = 'font-weight:700;font-size:14px;color:#fff;';
-            t1.innerText = drop.name || 'Без названия';
-            info.appendChild(t1);
-            const t2 = document.createElement('div');
-            t2.style.cssText = 'font-size:11px;color:#888;margin-top:2px;';
-            t2.innerText = [getAuthorLabel(drop.author), drop.case || '', drop.price || '', getRarityLabel(drop.rarity), formatDropDate(drop.createdAt)].filter(Boolean).join(' · ');
-            info.appendChild(t2);
-            row.appendChild(info);
-
-            const delBtn = document.createElement('button');
-            delBtn.className = 'admin-btn danger small';
-            delBtn.innerText = '🗑';
-            delBtn.onclick = () => deleteDrop(drop.id);
-            row.appendChild(delBtn);
-
-            list.appendChild(row);
-        });
-    }
-
-    // ==================================================
-    // АУКЦИОН — ВАРИАНТ Б (у каждого свои билеты)
-    // ==================================================
-    let auctionData = {
-        title: 'Дамасская сталь',
-        case: 'rainy',
-        ticketPrice: 8.78,
-        totalTickets: 1000,
-        timerMinutes: 1,
-        prizes: []
-    };
-    let ticketsMega = 0;
-    let ticketsSergo = 0;
-    let chosenPlayer = 'mega'; // для DEP — чей билет сейчас
-    let timerRunning = false;
-    let timerFinished = false;
-    let timerInterval = null;
-    let runnerInterval = null;
-    let runnerIndex = 0;
-    let isRolling = false;
-    let currentWinner = null;
-
-    function totalTickets() { return ticketsMega + ticketsSergo; }
-
-    window.setPlayerForTicket = function(key) {
-        chosenPlayer = key;
-        document.getElementById('pcMega').classList.toggle('active', key === 'mega');
-        document.getElementById('pcSergo').classList.toggle('active', key === 'sergo');
-    };
-
-    function subscribeAuction() {
-        onSnapshot(doc(db, 'data', 'auction'), (docSnap) => {
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                if (data.auction) {
-                    auctionData = { ...auctionData, ...data.auction };
-                    if (!auctionData.prizes || auctionData.prizes.length === 0) {
-                        auctionData.prizes = CASE_SKINS[auctionData.case] || CASE_SKINS.rainy;
-                    }
-                }
-                if (typeof data.ticketsMega === 'number') ticketsMega = data.ticketsMega;
-                if (typeof data.ticketsSergo === 'number') ticketsSergo = data.ticketsSergo;
-                if (data.winner) currentWinner = data.winner;
-                if (data.timerFinished) timerFinished = data.timerFinished;
-                if (data.isRolling) isRolling = data.isRolling;
-                if (data.chosenPlayer) {
-                    chosenPlayer = data.chosenPlayer;
-                    document.getElementById('pcMega').classList.toggle('active', chosenPlayer === 'mega');
-                    document.getElementById('pcSergo').classList.toggle('active', chosenPlayer === 'sergo');
-                }
-            } else {
-                auctionData.prizes = CASE_SKINS.rainy;
-            }
-            renderAuction();
-            renderTickets();
-        });
-    }
-
-    async function saveAuction() {
-        try {
-            await setDoc(doc(db, 'data', 'auction'), {
-                auction: auctionData,
-                ticketsMega: ticketsMega,
-                ticketsSergo: ticketsSergo,
-                winner: currentWinner,
-                timerFinished: timerFinished,
-                isRolling: isRolling,
-                chosenPlayer: chosenPlayer
-            });
-        } catch(e) { console.warn(e); }
-    }
-
-    function renderAuction() {
-        document.getElementById('ticketPrice').innerText = '₽' + auctionData.ticketPrice.toFixed(2);
-        document.getElementById('ticketsCount').innerText = totalTickets() + ' / ' + auctionData.totalTickets;
-
-        document.getElementById('cntMega').innerText = ticketsMega;
-        document.getElementById('cntSergo').innerText = ticketsSergo;
-
-        document.getElementById('orgName').innerText = 'MEGATEM41K';
-        const orgAv = AVATARS.mega;
-        const orgEl = document.getElementById('orgAvatar');
-        if (orgAv) orgEl.innerHTML = `<img src="${orgAv}">`;
-        else orgEl.innerText = 'M';
-
-        const timerBlock = document.getElementById('auctionTimerBlock');
-        const timerLabel = document.getElementById('timerLabel');
-        const timerVal = document.getElementById('auctionTimer');
-
-        if (totalTickets() >= auctionData.totalTickets || timerFinished || currentWinner) {
-            timerBlock.classList.add('visible');
-        } else {
-            timerBlock.classList.remove('visible');
-        }
-
-        if (timerFinished && !isRolling) {
-            timerLabel.innerText = '';
-            timerVal.innerText = 'Итоги были завершены';
-            timerVal.classList.add('finished');
-            timerVal.classList.remove('running');
-        }
-
-        const container = document.getElementById('auctionPrizes');
-        container.innerHTML = '';
-        auctionData.prizes.forEach(prize => {
-            const el = document.createElement('div');
-            el.className = 'auction-prize';
-            const info = document.createElement('div');
-            info.className = 'prize-info';
-            const name = document.createElement('div');
-            name.className = 'prize-name';
-            name.innerText = prize.name;
-            info.appendChild(name);
-            el.appendChild(info);
-            if (prize.price) {
-                const price = document.createElement('div');
-                price.className = 'prize-price';
-                price.innerText = '₽' + Number(prize.price).toLocaleString('ru-RU');
-                el.appendChild(price);
-            }
-            container.appendChild(el);
-        });
-
-        const winnerBlock = document.getElementById('winnerBlock');
-        if (currentWinner) {
-            winnerBlock.classList.add('visible');
-            document.getElementById('winnerSkinName').innerText = currentWinner.skinName;
-            document.getElementById('winnerSkinPrice').innerText = currentWinner.skinPrice ? '₽' + Number(currentWinner.skinPrice).toLocaleString('ru-RU') : '';
-            document.getElementById('winnerNick').innerText = '👤 ' + currentWinner.nick;
-        } else {
-            winnerBlock.classList.remove('visible');
-        }
-
-        document.getElementById('depBtn').disabled = totalTickets() >= auctionData.totalTickets || isRolling;
-    }
-
-    function renderTickets() {
-        const grid = document.getElementById('ticketsGrid');
-        grid.innerHTML = '';
-        const total = auctionData.totalTickets;
-
-        // Сначала рисуем все красные (Mega), потом синие (Sergo)
-        // Если оба — фиолетовый "микс"
-        const megaCount = ticketsMega;
-        const sergoCount = ticketsSergo;
-
-        for (let i = 0; i < total; i++) {
-            const cell = document.createElement('div');
-            cell.className = 'ticket-cell';
-
-            const isMega = i < megaCount;
-            const isSergo = i >= total - sergoCount; // синие с конца
-
-            if (isMega && isSergo) cell.classList.add('mix');
-            else if (isMega) cell.classList.add('mega');
-            else if (isSergo) cell.classList.add('sergo');
-
-            grid.appendChild(cell);
-        }
-
-        const status = document.getElementById('ticketsStatus');
-        if (currentWinner) {
-            status.className = 'tickets-status win';
-            status.innerText = '✅ Итоги были завершены';
-        } else if (isRolling) {
-            status.className = 'tickets-status';
-            status.innerText = '🎲 Выбираем победителя...';
-        } else if (totalTickets() >= total) {
-            status.className = 'tickets-status win';
-            status.innerText = '🎉 Все билеты выкуплены!';
-        } else {
-            status.className = 'tickets-status';
-            status.innerText = `Ещё ${total - totalTickets()} билетов до старта`;
-        }
-    }
-
-    window.depositTicket = async function() {
-        if (totalTickets() >= auctionData.totalTickets || isRolling || currentWinner) return;
-
-        if (chosenPlayer === 'mega') ticketsMega++;
-        else ticketsSergo++;
-
-        await saveAuction();
-        renderTickets();
-        renderAuction();
-
-        if (totalTickets() >= auctionData.totalTickets && !timerRunning && !isRolling) {
-            startTimer();
-        }
-    };
-
-    function startTimer() {
-        if (timerRunning || isRolling) return;
-        timerRunning = true;
-
-        const minutes = Math.min(10, Math.max(1, parseInt(auctionData.timerMinutes) || 1));
-        const totalSec = minutes * 60;
-        let remaining = totalSec;
-
-        const el = document.getElementById('auctionTimer');
-        el.classList.add('running');
-        el.classList.remove('finished');
-
-        const updateEl = () => {
-            const m = Math.floor(remaining / 60);
-            const s = remaining % 60;
-            el.innerText = m + ' : ' + String(s).padStart(2, '0');
-        };
-        updateEl();
-
-        timerInterval = setInterval(() => {
-            remaining--;
-            updateEl();
-            if (remaining <= 0) {
-                clearInterval(timerInterval);
-                timerRunning = false;
-                el.classList.remove('running');
-                startRolling();
-            }
-        }, 1000);
-    }
-
-    function startRolling() {
-        if (isRolling) return;
-        isRolling = true;
-        runnerIndex = 0;
-
-        const cells = document.querySelectorAll('#ticketsGrid .ticket-cell');
-        const total = cells.length;
-
-        const rollDuration = 3000 + Math.random() * 3000;
-        const speed = 40;
-
-        function clearRunner() {
-            cells.forEach(c => c.classList.remove('runner'));
-        }
-
-        runnerInterval = setInterval(() => {
-            clearRunner();
-            cells[runnerIndex % total].classList.add('runner');
-            runnerIndex++;
-        }, speed);
-
-        setTimeout(() => {
-            clearInterval(runnerInterval);
-            clearRunner();
-
-            const finalIndex = Math.floor(Math.random() * total);
-            cells[finalIndex].classList.add('runner');
-
-            setTimeout(async () => {
-                isRolling = false;
-                timerFinished = true;
-
-                const winnerPrize = auctionData.prizes[Math.floor(Math.random() * auctionData.prizes.length)];
-
-                // Победитель — взвешенно по билетам
-                let winnerNick;
-                if (ticketsMega === 0 && ticketsSergo === 0) {
-                    winnerNick = 'MEGATEM41K';
-                } else if (ticketsMega === 0) {
-                    winnerNick = 'Sergo Bulkin';
-                } else if (ticketsSergo === 0) {
-                    winnerNick = 'MEGATEM41K';
-                } else {
-                    const total = ticketsMega + ticketsSergo;
-                    const r = Math.random() * total;
-                    winnerNick = r < ticketsMega ? 'MEGATEM41K' : 'Sergo Bulkin';
-                }
-
-                currentWinner = {
-                    skinName: winnerPrize.name,
-                    skinPrice: winnerPrize.price,
-                    nick: winnerNick
-                };
-
-                await saveAuction();
-                renderAuction();
-                renderTickets();
-            }, 1000);
-        }, rollDuration);
-    }
-
-    window.resetTickets = async function() {
-        ticketsMega = 0;
-        ticketsSergo = 0;
-        timerRunning = false;
-        timerFinished = false;
-        isRolling = false;
-        currentWinner = null;
-        if (timerInterval) clearInterval(timerInterval);
-        if (runnerInterval) clearInterval(runnerInterval);
-        document.querySelectorAll('#ticketsGrid .ticket-cell').forEach(c => c.classList.remove('runner'));
-        await saveAuction();
-        renderTickets();
-        renderAuction();
-        document.getElementById('auctionTimer').innerText = '1 : 00';
-        document.getElementById('auctionTimerBlock').classList.remove('visible');
-        document.getElementById('ticketsStatus').className = 'tickets-status';
-        document.getElementById('ticketsStatus').innerText = 'Нажми DEP чтобы получить билет';
-    };
-
-    window.onCaseSelectAdmin = function() {
-        const caseKey = document.getElementById('aucCase').value;
-        const prizes = CASE_SKINS[caseKey] || [];
-        const textarea = document.getElementById('aucPrizes');
-        textarea.value = prizes.map(p => `${p.name};${p.price}`).join('\n');
-    };
-
-    window.createAuction = async function() {
-        const title = document.getElementById('aucTitle').value.trim() || 'Аукцион';
-        const caseKey = document.getElementById('aucCase').value;
-        const price = parseFloat(document.getElementById('aucPrice').value) || 8.78;
-        const total = parseInt(document.getElementById('aucTotal').value) || 1000;
-        let timerMin = parseInt(document.getElementById('aucTimer').value) || 1;
-        timerMin = Math.min(10, Math.max(1, timerMin));
-        const prizesRaw = document.getElementById('aucPrizes').value.trim();
-        const msgEl = document.getElementById('msg-auction');
-
-        const prizes = [];
-        prizesRaw.split('\n').forEach(line => {
-            line = line.trim();
-            if (!line) return;
-            const parts = line.split(';');
-            if (parts.length >= 1) {
-                prizes.push({
-                    name: parts[0].trim(),
-                    price: parseFloat(parts[1]) || 0
-                });
-            }
-        });
-
-        auctionData = {
-            title,
-            case: caseKey,
-            ticketPrice: price,
-            totalTickets: total,
-            timerMinutes: timerMin,
-            prizes: prizes.length ? prizes : CASE_SKINS[caseKey]
-        };
-        ticketsMega = 0;
-        ticketsSergo = 0;
-        timerRunning = false;
-        timerFinished = false;
-        isRolling = false;
-        currentWinner = null;
-        if (timerInterval) clearInterval(timerInterval);
-        if (runnerInterval) clearInterval(runnerInterval);
-
-        await saveAuction();
-        renderAuction();
-        renderTickets();
-
-        msgEl.className = 'admin-msg ok';
-        msgEl.innerText = '✅ Аукцион создан (таймер ' + timerMin + ' мин)';
-        setTimeout(() => { msgEl.innerText = ''; }, 2000);
-    };
-
-    // ==================================================
-    // ЧАТ
-    // ==================================================
-    function subscribeChat() {
-        const chatMessages = document.getElementById('chatMessages');
-        const chatStatus = document.getElementById('chatStatus');
-        const q = query(collection(db, 'chat'), orderBy('timestamp', 'asc'));
-        onSnapshot(q, (snapshot) => {
-            chatMessages.innerHTML = '';
-            snapshot.forEach((docSnap) => {
-                const msg = docSnap.data();
-                const div = document.createElement('div');
-                div.className = 'chat-msg' + (currentUser && msg.author === currentUser.login ? ' own' : '');
-
-                const authorKey = (() => {
-                    for (const [lg, acc] of Object.entries(ACCOUNTS)) {
-                        if (lg === msg.author) return acc.key;
-                    }
-                    return '';
-                })();
-                const avatar = AVATARS[authorKey] || '';
-
-                const av = document.createElement('div');
-                av.className = 'msg-avatar' + (avatar ? '' : ' ' + authorKey);
-                if (avatar) {
-                    const img = document.createElement('img');
-                    img.src = avatar;
-                    av.appendChild(img);
-                } else {
-                    av.innerText = (msg.author[0] || '?').toUpperCase();
-                }
-                div.appendChild(av);
-
-                const body = document.createElement('div');
-                body.className = 'msg-body';
-                const author = document.createElement('div');
-                author.className = 'msg-author';
-                author.innerText = msg.author;
-                body.appendChild(author);
-                const text = document.createElement('div');
-                text.className = 'msg-text';
-                text.innerText = msg.text;
-                body.appendChild(text);
-                const time = document.createElement('div');
-                time.className = 'msg-time';
-                if (msg.timestamp && msg.timestamp.toDate) {
-                    const t = msg.timestamp.toDate();
-                    time.innerText = t.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
-                }
-                body.appendChild(time);
-                div.appendChild(body);
-
-                if (currentUser && (currentUser.key === 'mega' || msg.author === currentUser.login)) {
-                    const delBtn = document.createElement('button');
-                    delBtn.className = 'msg-delete';
-                    delBtn.innerHTML = '×';
-                    delBtn.onclick = (e) => {
-                        e.stopPropagation();
-                        if (confirm('Удалить?')) deleteDoc(doc(db, 'chat', docSnap.id));
-                    };
-                    div.appendChild(delBtn);
-                }
-
-                chatMessages.appendChild(div);
-            });
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            chatStatus.innerText = '🟢 онлайн';
-        }, (err) => {
-            chatStatus.innerText = '🔴 ошибка';
-            console.warn(err);
-        });
-    }
-
-    window.sendMessage = async function() {
-        const input = document.getElementById('chatInput');
-        const text = input.value.trim();
-        if (!text || !currentUser) return;
-        input.value = '';
-        try {
-            await addDoc(collection(db, 'chat'), {
-                author: currentUser.login,
-                text: text,
-                timestamp: serverTimestamp()
-            });
-        } catch(e) { console.warn(e); }
-    };
-
-    // ==================================================
-    // АДМИНКА
-    // ==================================================
-    function loadAdminFields() {
-        if (!currentUser || currentUser.key !== 'mega') return;
-        let megaLogin = 'MEGATEM41K', sergoLogin = 'Sergo Bulkin';
-        for (const [lg, acc] of Object.entries(ACCOUNTS)) {
-            if (acc.key === 'mega') megaLogin = lg;
-            if (acc.key === 'sergo') sergoLogin = lg;
-        }
-        document.getElementById('login-mega').value = megaLogin;
-        document.getElementById('login-sergo').value = sergoLogin;
-        updateAvatarPreview('mega');
-        updateAvatarPreview('sergo');
-        const textarea = document.getElementById('aucPrizes');
-        if (!textarea.value) onCaseSelectAdmin();
-    }
-
-    function updateAvatarPreview(key) {
-        const el = document.getElementById('preview-' + key);
-        const av = AVATARS[key];
-        if (av) {
-            el.innerHTML = `<img src="${av}">`;
-            el.style.background = 'none';
-        } else {
-            el.innerHTML = key === 'mega' ? 'M' : 'S';
-            el.className = 'avatar-preview ' + (key === 'mega' ? 'mega' : 'sergo');
-            if (key === 'mega') el.style.background = 'linear-gradient(135deg, #ff6b6b, #c62828)';
-            else el.style.background = 'linear-gradient(135deg, #4fc3f7, #0288d1)';
-        }
-    }
-
-    window.uploadAvatar = async function(event, key) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = async (e) => {
-            AVATARS[key] = e.target.result;
-            await saveAccounts();
-            updateAvatarPreview(key);
-            if (currentUser && currentUser.key === key) renderUserBar();
-        };
-        reader.readAsDataURL(file);
-    };
-
-    window.saveAccount = async function(key) {
-        const newLogin = document.getElementById('login-' + key).value.trim();
-        const newPassword = document.getElementById('password-' + key).value;
-        const msgEl = document.getElementById('msg-' + key);
-        if (!newLogin) { msgEl.className = 'admin-msg err'; msgEl.innerText = 'Логин пустой'; return; }
-
-        let oldLogin = null;
-        for (const [lg, acc] of Object.entries(ACCOUNTS)) {
-            if (acc.key === key) oldLogin = lg;
-        }
-        if (newLogin !== oldLogin && ACCOUNTS[newLogin]) {
-            msgEl.className = 'admin-msg err'; msgEl.innerText = 'Логин занят'; return;
-        }
-
-        const newAccounts = {};
-        for (const [lg, acc] of Object.entries(ACCOUNTS)) {
-            if (acc.key === key) newAccounts[newLogin] = { password: newPassword || acc.password, key: acc.key };
-            else newAccounts[lg] = acc;
-        }
-        ACCOUNTS = newAccounts;
-        await saveAccounts();
-
-        if (currentUser && currentUser.key === key) {
-            currentUser.login = newLogin;
-            saveSession(currentUser);
-            renderUserBar();
-        }
-        document.getElementById('password-' + key).value = '';
-        msgEl.className = 'admin-msg ok';
-        msgEl.innerText = '✅ Сохранено';
-        setTimeout(() => { msgEl.innerText = ''; }, 2000);
-    };
-
-    // ==================================================
-    // ИНИЦИАЛИЗАЦИЯ
-    // ==================================================
-    async function init() {
-        await loadAccounts();
-        restoreSession();
-    }
-    init();
-
-</script>
-
-</body>
-</html>
+   
