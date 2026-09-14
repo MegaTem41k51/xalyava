@@ -299,10 +299,10 @@
         box-shadow: 0 12px 35px rgba(0,0,0,0.6);
     }
 
-    /* Цвета редкостей */
+    /* Редкости: армейское теперь СИНЕВАТОЕ */
     .drop-card.rarity-shirotreb { border-color: #5a5a7a; }
     .drop-card.rarity-prom { border-color: #4a90e2; }
-    .drop-card.rarity-army { border-color: #4caf50; }
+    .drop-card.rarity-army { border-color: #5b8dd6; }
     .drop-card.rarity-forbidden { border-color: #9b59b6; }
     .drop-card.rarity-classified { border-color: #e91e63; }
     .drop-card.rarity-secret { border-color: #c62828; box-shadow: 0 0 20px rgba(198,40,40,0.35); }
@@ -324,7 +324,7 @@
         object-fit: contain;
         transition: opacity 0.25s ease;
     }
-    /* Слой для фото кейса (показывается пока не наведёшь) */
+    /* Слой для фото кейса */
     .drop-image .case-img {
         position: absolute;
         inset: 0;
@@ -366,7 +366,7 @@
     }
     .rarity-shirotreb .drop-rarity-badge { background: #5a5a7a; }
     .rarity-prom .drop-rarity-badge { background: #4a90e2; }
-    .rarity-army .drop-rarity-badge { background: #4caf50; }
+    .rarity-army .drop-rarity-badge { background: #5b8dd6; }
     .rarity-forbidden .drop-rarity-badge { background: #9b59b6; }
     .rarity-classified .drop-rarity-badge { background: #e91e63; }
     .rarity-secret .drop-rarity-badge { background: #c62828; }
@@ -388,6 +388,11 @@
     .drop-case {
         font-size: 12px;
         color: #a78bfa;
+    }
+    .drop-giver {
+        font-size: 12px;
+        color: #f9a825;
+        font-weight: 700;
     }
     .drop-price {
         font-size: 16px;
@@ -427,9 +432,10 @@
 
     .drop-image-upload {
         display: flex;
-        align-items: center;
-        gap: 16px;
+        align-items: flex-start;
+        gap: 20px;
         grid-column: 1 / -1;
+        flex-wrap: wrap;
     }
     .drop-image-preview {
         width: 120px;
@@ -468,7 +474,6 @@
     }
     .admin-select:focus { border-color: #a78bfa; }
 
-    /* Остальное из прошлого кода */
     .player-tabs {
         display: flex; gap: 10px; margin-bottom: 20px;
         background: #2a2a3e; padding: 6px; border-radius: 12px;
@@ -1196,8 +1201,7 @@
 
 <div class="tabs">
     <button class="tab-btn active" data-tab="accounting" onclick="switchTab('accounting', this)">Учёт халявы</button>
-    <button class="tab-btn" data-tab="calendar" onclick="switchTab('calendar', this)">Календарь скинов</button>
-    <button class="tab-btn" data-tab="drops" onclick="switchTab('drops', this)">🎁 Дропы</button>
+    <button class="tab-btn" data-tab="drops" onclick="switchTab('drops', this)">Дропы</button>
     <button class="tab-btn" data-tab="chat" onclick="switchTab('chat', this)">Чат</button>
     <button class="tab-btn admin-tab" data-tab="admin" id="adminTabBtn" style="display:none;" onclick="switchTab('admin', this)">Админка</button>
 </div>
@@ -1214,33 +1218,6 @@
         <tbody id="tableBody"></tbody>
     </table>
     <p class="hint">Сумма считается автоматически.</p>
-</div>
-
-<div id="tab-calendar" class="tab-content">
-    <div class="player-tabs">
-        <button class="player-btn mega" data-player="mega" onclick="switchPlayer('mega', this)">
-            <span class="dot"></span> MEGATEM41K
-        </button>
-        <button class="player-btn sergo" data-player="sergo" onclick="switchPlayer('sergo', this)">
-            <span class="dot"></span> Sergo Bulkin
-        </button>
-    </div>
-    <div id="player-mega" class="player-view">
-        <div class="cal-header">
-            <button onclick="changeMonth('mega', -1)">◀</button>
-            <div class="cal-title" id="calTitle-mega"></div>
-            <button onclick="changeMonth('mega', 1)">▶</button>
-        </div>
-        <div class="calendar" id="calendar-mega"></div>
-    </div>
-    <div id="player-sergo" class="player-view">
-        <div class="cal-header">
-            <button onclick="changeMonth('sergo', -1)">◀</button>
-            <div class="cal-title" id="calTitle-sergo"></div>
-            <button onclick="changeMonth('sergo', 1)">▶</button>
-        </div>
-        <div class="calendar" id="calendar-sergo"></div>
-    </div>
 </div>
 
 <!-- ДРОПЫ -->
@@ -1368,7 +1345,7 @@
         <div class="admin-card">
             <h3>🎁 Добавить дроп</h3>
             <p style="font-size:13px;color:#888;margin-bottom:16px;">
-                Заполни поля и нажми «Добавить». Фото скина и фото кейса — необязательны.
+                Заполни поля и нажми «Добавить». Фото кейса подставляется автоматически по названию.
             </p>
 
             <div class="drop-form">
@@ -1380,8 +1357,8 @@
                 <div class="admin-field">
                     <label>Кейс</label>
                     <select class="admin-select" id="dropCaseSelect" onchange="onCaseSelectChange()">
-                        <option value="Ателье колдовских колпаков">Ателье колдовских колпаков</option>
                         <option value="Дождливый мегаполис">Дождливый мегаполис</option>
+                        <option value="Ателье колдовских колпаков">Ателье колдовских колпаков</option>
                         <option value="__other__">Другое...</option>
                     </select>
                     <input type="text" id="dropCaseCustom" class="case-custom-input" placeholder="Введи название кейса">
@@ -1428,18 +1405,6 @@
                         <div style="margin-top:8px;">
                             <button class="admin-btn small" onclick="document.getElementById('dropImageFile').click()">📷 Выбрать</button>
                             <button class="admin-btn small danger" onclick="clearDropImage()" style="margin-left:6px;">✖</button>
-                        </div>
-                    </div>
-
-                    <div>
-                        <p style="font-size:12px;color:#888;margin-bottom:8px;font-weight:600;">Фото кейса</p>
-                        <div class="drop-image-preview" id="dropCaseImagePreview" onclick="document.getElementById('dropCaseImageFile').click()">
-                            <div class="ph">📦</div>
-                        </div>
-                        <input type="file" id="dropCaseImageFile" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none;" onchange="handleDropCaseImage(event)">
-                        <div style="margin-top:8px;">
-                            <button class="admin-btn small" onclick="document.getElementById('dropCaseImageFile').click()">📷 Выбрать</button>
-                            <button class="admin-btn small danger" onclick="clearDropCaseImage()" style="margin-left:6px;">✖</button>
                         </div>
                     </div>
                 </div>
@@ -1502,12 +1467,36 @@
     const db = getFirestore(app);
 
     // ==================================================
-    // ССЫЛКИ НА ПРОФИЛИ ИГРОКОВ
+    // ССЫЛКИ НА ПРОФИЛИ И ФОТО КЕЙСОВ
     // ==================================================
     const PROFILE_URLS = {
         mega: 'https://skinhouse.gg/ru/user/2181',
         sergo: 'https://skinhouse.gg/ru/user/26587'
     };
+
+    // Встроенные фото кейсов (data-url)
+    // Дождливый мегаполис (PNG без фона)
+    const CASE_IMAGE_RAINY = 'data:image/png;base64,__RAINY__';
+    // Ателье (PNG без фона)
+    const CASE_IMAGE_ATELIER = 'data:image/png;base64,__ATELIER__';
+
+    // Маппинг кейсов на фото и подпись дропа
+    function getCaseInfo(caseName) {
+        const n = (caseName || '').toLowerCase();
+        if (n.includes('дождлив') || n.includes('мегаполис') || n.includes('rainy')) {
+            return {
+                image: CASE_IMAGE_RAINY,
+                giver: 'Дроп от Алика'
+            };
+        }
+        if (n.includes('ателье') || n.includes('колдовск') || n.includes('atelier')) {
+            return {
+                image: CASE_IMAGE_ATELIER,
+                giver: 'Дроп от Жидкого'
+            };
+        }
+        return { image: '', giver: '' };
+    }
 
     // ==================================================
     // ГРОМКОСТЬ
@@ -1629,7 +1618,6 @@
     // ==================================================
     let currentDropFilter = 'all';
     let pendingDropImage = null;
-    let pendingDropCaseImage = null;
 
     function subscribeDrops() {
         const docRef = doc(db, 'data', 'drops');
@@ -1684,7 +1672,7 @@
     const RARITY_COLORS = {
         shirotreb: '#5a5a7a',
         prom: '#4a90e2',
-        army: '#4caf50',
+        army: '#5b8dd6',
         forbidden: '#9b59b6',
         classified: '#e91e63',
         secret: '#c62828',
@@ -1730,9 +1718,10 @@
             const card = document.createElement('div');
             card.className = 'drop-card rarity-' + (drop.rarity || 'shirotreb');
 
-            // Клик по карточке — переход на профиль автора
+            const caseInfo = getCaseInfo(drop.case);
+            const caseImage = caseInfo.image;
+
             card.onclick = (e) => {
-                // Если клик был по картинке — не переходим
                 if (e.target.tagName === 'IMG' || e.target.closest('.case-img')) return;
                 const url = PROFILE_URLS[drop.author];
                 if (url) window.open(url, '_blank');
@@ -1741,15 +1730,14 @@
             const imgWrap = document.createElement('div');
             imgWrap.className = 'drop-image';
 
-            // Если есть фото кейса — оно сверху, при наведении исчезает и показывается скин
-            if (drop.caseImage) {
+            // Если есть фото кейса — оно сверху, при наведении исчезает
+            if (caseImage) {
                 const caseLayer = document.createElement('div');
                 caseLayer.className = 'case-img';
                 const cimg = document.createElement('img');
-                cimg.src = drop.caseImage;
+                cimg.src = caseImage;
                 caseLayer.appendChild(cimg);
 
-                // Клик по фото кейса — открыть ссылку кейса или профиль
                 caseLayer.onclick = (e) => {
                     e.stopPropagation();
                     if (drop.caseUrl) {
@@ -1763,7 +1751,6 @@
                 imgWrap.appendChild(caseLayer);
             }
 
-            // Основное фото (скин)
             if (drop.image) {
                 const img = document.createElement('img');
                 img.src = drop.image;
@@ -1776,7 +1763,7 @@
                     }
                 };
                 imgWrap.appendChild(img);
-            } else if (!drop.caseImage) {
+            } else if (!caseImage) {
                 const ph = document.createElement('div');
                 ph.className = 'no-image';
                 ph.innerText = '🎁';
@@ -1803,6 +1790,14 @@
                 c.className = 'drop-case';
                 c.innerText = '📦 ' + drop.case;
                 info.appendChild(c);
+            }
+
+            // Подпись "Дроп от Алика/Жидкого" — по кейсу
+            if (caseInfo.giver) {
+                const g = document.createElement('div');
+                g.className = 'drop-giver';
+                g.innerText = '🎁 ' + caseInfo.giver;
+                info.appendChild(g);
             }
 
             if (drop.price) {
@@ -1870,24 +1865,6 @@
         document.getElementById('dropImageFile').value = '';
     };
 
-    window.handleDropCaseImage = function(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
-        compressImage(file, 400, 0.85).then(result => {
-            pendingDropCaseImage = result;
-            const preview = document.getElementById('dropCaseImagePreview');
-            preview.innerHTML = `<img src="${result}">`;
-        });
-    };
-
-    window.clearDropCaseImage = function() {
-        pendingDropCaseImage = null;
-        const preview = document.getElementById('dropCaseImagePreview');
-        preview.innerHTML = '<div class="ph">📦</div>';
-        document.getElementById('dropCaseImageFile').value = '';
-    };
-
     window.addDrop = async function() {
         const name = document.getElementById('dropName').value.trim();
         const caseSelect = document.getElementById('dropCaseSelect').value;
@@ -1923,7 +1900,6 @@
             rarity,
             author,
             image: pendingDropImage || '',
-            caseImage: pendingDropCaseImage || '',
             createdAt: new Date().toISOString()
         };
 
@@ -1937,15 +1913,13 @@
             return;
         }
 
-        // Очистка
         document.getElementById('dropName').value = '';
         document.getElementById('dropPrice').value = '';
         document.getElementById('dropCaseUrl').value = '';
         document.getElementById('dropCaseCustom').value = '';
-        document.getElementById('dropCaseSelect').value = 'Ателье колдовских колпаков';
+        document.getElementById('dropCaseSelect').value = 'Дождливый мегаполис';
         document.getElementById('dropCaseCustom').classList.remove('visible');
         clearDropImage();
-        clearDropCaseImage();
 
         msgEl.className = 'admin-msg ok';
         msgEl.innerText = '✅ Дроп добавлен';
@@ -2106,12 +2080,9 @@
         }
 
         loadTable();
-        loadSkins();
         initChat();
         initTyping();
         restoreActiveTab();
-        renderCalendar('mega');
-        renderCalendar('sergo');
 
         renderStickerPacksTabs();
         renderStickerGrid();
@@ -2401,183 +2372,8 @@
     };
 
     // ==================================================
-    // КАЛЕНДАРЬ
+    // КАЛЕНДАРЬ — УДАЛЁН (оставлены только вспомогательные функции)
     // ==================================================
-    let skins = { mega: {}, sergo: {} };
-    let pendingSkins = {};
-    let currentDate = { mega: new Date(), sergo: new Date() };
-    currentDate.mega.setDate(1);
-    currentDate.sergo.setDate(1);
-
-    const MONTHS = ['Январь','Февраль','Март','Апрель','Май','Июнь',
-                    'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
-    const CAL_DAYS = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
-
-    window.switchPlayer = function(playerKey, btn) {
-        document.querySelectorAll('.player-view').forEach(v => v.classList.remove('active'));
-        document.querySelectorAll('.player-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById('player-' + playerKey).classList.add('active');
-        btn.classList.add('active');
-    };
-
-    function loadSkins() {
-        const docRef = doc(db, 'data', 'skins');
-        onSnapshot(docRef, (docSnap) => {
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                skins.mega = data.mega || {};
-                skins.sergo = data.sergo || {};
-            } else {
-                skins = { mega: {}, sergo: {} };
-            }
-            renderCalendar('mega');
-            renderCalendar('sergo');
-        }, (error) => { console.warn('Ошибка загрузки скинов', error); });
-    }
-
-    async function saveSkins() {
-        try { await setDoc(doc(db, 'data', 'skins'), skins); }
-        catch (e) { alert('Ошибка: ' + e.message); }
-    }
-
-    function dateKey(y, m, d) {
-        return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    }
-
-    function pendingKey(playerKey, dateKeyStr, personKey) {
-        return playerKey + '|' + dateKeyStr + '|' + personKey;
-    }
-
-    function renderCalendar(playerKey) {
-        const y = currentDate[playerKey].getFullYear();
-        const m = currentDate[playerKey].getMonth();
-        document.getElementById('calTitle-' + playerKey).innerText = `${MONTHS[m]} ${y}`;
-
-        const cal = document.getElementById('calendar-' + playerKey);
-        cal.innerHTML = '';
-
-        CAL_DAYS.forEach(d => {
-            const el = document.createElement('div');
-            el.className = 'cal-dayname';
-            el.innerText = d;
-            cal.appendChild(el);
-        });
-
-        let firstDay = new Date(y, m, 1).getDay();
-        firstDay = (firstDay === 0) ? 6 : firstDay - 1;
-
-        const daysInMonth = new Date(y, m + 1, 0).getDate();
-        const today = new Date();
-
-        for (let i = 0; i < firstDay; i++) {
-            const empty = document.createElement('div');
-            empty.className = 'cal-cell empty';
-            cal.appendChild(empty);
-        }
-
-        for (let d = 1; d <= daysInMonth; d++) {
-            const cell = document.createElement('div');
-            cell.className = 'cal-cell';
-            if (currentUser && playerKey !== currentUser.key) cell.classList.add('locked');
-            if (d === today.getDate() && m === today.getMonth() && y === today.getFullYear()) {
-                cell.classList.add('today');
-            }
-            const dateEl = document.createElement('div');
-            dateEl.className = 'cal-date';
-            dateEl.innerText = d;
-            cell.appendChild(dateEl);
-
-            const key = dateKey(y, m, d);
-            cell.appendChild(createPersonBlock(playerKey, 'alik', 'Алик', key));
-            cell.appendChild(createPersonBlock(playerKey, 'zhidkiy', 'Жидкий', key));
-            cal.appendChild(cell);
-        }
-    }
-
-    function createPersonBlock(playerKey, personKey, personName, dateKeyStr) {
-        const wrap = document.createElement('div');
-        wrap.className = 'cal-person';
-
-        const nameEl = document.createElement('div');
-        nameEl.className = 'cal-person-name ' + personKey;
-        nameEl.innerText = personName;
-        wrap.appendChild(nameEl);
-
-        const box = document.createElement('div');
-        box.className = 'skin-box';
-
-        const pKey = pendingKey(playerKey, dateKeyStr, personKey);
-        const savedSrc = skins[playerKey][dateKeyStr] && skins[playerKey][dateKeyStr][personKey];
-        const pendingSrc = pendingSkins[pKey];
-        const imgSrc = pendingSrc || savedSrc;
-        const canEdit = currentUser && playerKey === currentUser.key;
-
-        if (imgSrc) {
-            box.classList.add('has-image');
-            const img = document.createElement('img');
-            img.src = imgSrc;
-            img.onclick = (e) => { e.stopPropagation(); openModal(img.src, false); };
-            box.appendChild(img);
-
-            if (savedSrc && canEdit) {
-                const removeBtn = document.createElement('button');
-                removeBtn.className = 'skin-remove';
-                removeBtn.innerHTML = '×';
-                removeBtn.onclick = (e) => {
-                    e.stopPropagation();
-                    if (confirm('Удалить скин?')) {
-                        delete skins[playerKey][dateKeyStr][personKey];
-                        if (Object.keys(skins[playerKey][dateKeyStr]).length === 0) {
-                            delete skins[playerKey][dateKeyStr];
-                        }
-                        saveSkins();
-                    }
-                };
-                box.appendChild(removeBtn);
-            }
-
-            if (pendingSrc && canEdit) {
-                box.classList.add('pending');
-                const saveBtn = document.createElement('button');
-                saveBtn.className = 'skin-save';
-                saveBtn.innerHTML = '💾 Сохранить';
-                saveBtn.onclick = (e) => {
-                    e.stopPropagation();
-                    if (!skins[playerKey][dateKeyStr]) skins[playerKey][dateKeyStr] = {};
-                    skins[playerKey][dateKeyStr][personKey] = pendingSrc;
-                    delete pendingSkins[pKey];
-                    saveSkins();
-                    renderCalendar(playerKey);
-                };
-                box.appendChild(saveBtn);
-            }
-        } else {
-            const ph = document.createElement('div');
-            ph.className = 'placeholder';
-            ph.innerText = canEdit ? '+ скин' : '— пусто —';
-            box.appendChild(ph);
-        }
-
-        if (canEdit) {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/png, image/jpeg, image/jpg, image/webp';
-            input.onchange = (e) => handleFileUpload(e, playerKey, personKey, dateKeyStr);
-            box.appendChild(input);
-            box.onclick = (e) => {
-                if (e.target.tagName === 'IMG' ||
-                    e.target.classList.contains('skin-remove') ||
-                    e.target.classList.contains('skin-save')) return;
-                input.click();
-            };
-        } else {
-            box.style.cursor = 'default';
-        }
-
-        wrap.appendChild(box);
-        return wrap;
-    }
-
     function compressImage(file, maxSize = 512, quality = 0.8) {
         return new Promise((resolve) => {
             const reader = new FileReader();
@@ -2601,21 +2397,6 @@
             reader.readAsDataURL(file);
         });
     }
-
-    async function handleFileUpload(event, playerKey, personKey, dateKeyStr) {
-        const file = event.target.files[0];
-        if (!file) return;
-        if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
-        const compressed = await compressImage(file, 512, 0.8);
-        const pKey = pendingKey(playerKey, dateKeyStr, personKey);
-        pendingSkins[pKey] = compressed;
-        renderCalendar(playerKey);
-    }
-
-    window.changeMonth = function(playerKey, delta) {
-        currentDate[playerKey].setMonth(currentDate[playerKey].getMonth() + delta);
-        renderCalendar(playerKey);
-    };
 
     window.openModal = function(src, isVideoSrc) {
         const content = document.getElementById('modalContent');
