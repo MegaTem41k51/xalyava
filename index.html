@@ -2841,15 +2841,15 @@
     }
 
     function restoreSession() {
-        const session = loadSession();
-        if (session) {
-            currentUser = session;
-            saveSession(session);
-            showMainSite();
-            return;
-        }
-        document.getElementById('loginOverlay').classList.remove('hidden');
+    const session = loadSession();
+    if (session) {
+        currentUser = session;
+        saveSession(session);
+        showMainSite();
+        return;
     }
+    document.getElementById('loginOverlay').classList.remove('hidden');
+}
 
     document.getElementById('passwordInput').addEventListener('keydown', (e) => {
         if (e.key === 'Enter') tryLogin();
