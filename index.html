@@ -1202,35 +1202,6 @@
         flex-direction: column;
         gap: 0;
     }
-    .demo-balance {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 18px;
-        flex-wrap: wrap;
-        background: transparent;
-        border: 0;
-        box-shadow: none;
-        padding: 18px 0 24px;
-    }
-    .demo-balance-title { display:none; }
-    .demo-balance-value { display:none; }
-    .demo-balance-actions { display:flex; gap:18px; align-items:center; }
-    .demo-btn {
-        border: 1px solid #39445c;
-        background: #111a2b;
-        color: #dfe7f7;
-        border-radius: 999px;
-        padding: 11px 20px;
-        font-size: 13px;
-        font-weight: 800;
-        cursor: pointer;
-        transition: .18s ease;
-    }
-    .demo-btn:hover { border-color:#667799; transform:translateY(-1px); }
-    .demo-btn.primary { background:#ffc857; color:#12151d; border-color:#ffc857; }
-    .demo-btn.primary:hover { background:#ffd36e; }
-
     .demo-case-tabs {
         display:flex;
         gap:8px;
@@ -1252,15 +1223,12 @@
     .demo-case-tab:hover { color:#fff; border-color:#596781; }
     .demo-case-tab.active { color:#fff; border-color:#ffc857; background:#172136; box-shadow:0 0 0 1px rgba(255,200,87,.08); }
     .demo-case-tab-title { font-weight:800; font-size:12px; }
-    .demo-case-tab-meta { display:none; }
 
     .demo-case {
         width:100%;
         background:transparent;
         border:0;
-        border-radius:0;
         overflow:visible;
-        box-shadow:none;
     }
     .demo-case-page-head {
         position:relative;
@@ -1299,7 +1267,6 @@
         text-align:center;
     }
     .demo-case-title-icon { font-size:24px; }
-    .demo-case-url { display:none; }
 
     .demo-case-stage {
         position:relative;
@@ -1415,7 +1382,6 @@
         font-weight:900;
         border:0;
         cursor:pointer;
-        box-shadow:none;
         transition:.18s ease;
     }
     .demo-open:hover { background:#ffd36e; transform:translateY(-1px); }
@@ -1446,7 +1412,6 @@
     .demo-roulette-item img { width:100%; height:84px; object-fit:contain; filter:drop-shadow(0 7px 10px rgba(0,0,0,.45)); }
     .demo-roulette-item b { display:block; width:100%; font-size:9px; line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .demo-roulette-item span { color:#aeb9ce; font-size:8px; margin-top:3px; }
-    .demo-case-stage.is-opening + .demo-case-actions { opacity:.35; pointer-events:none; }
     @keyframes demoRouletteIn { from {opacity:0; transform:scale(.985)} to {opacity:1; transform:scale(1)} }
 
     .demo-drop-result-center {
@@ -1469,38 +1434,10 @@
         object-fit:contain;
         filter:drop-shadow(0 12px 18px rgba(0,0,0,.6));
     }
-    .demo-drop-result-weapon {
-        color:#aab5c9;
-        font-size:10px;
-        font-weight:700;
-        margin-top:-2px;
-    }
-    .demo-drop-result-name {
-        color:#fff;
-        font-size:15px;
-        font-weight:900;
-        margin-top:2px;
-        max-width:320px;
-        white-space:nowrap;
-        overflow:hidden;
-        text-overflow:ellipsis;
-    }
-    .demo-drop-result-chance {
-        margin-top:4px;
-        color:#ffc857;
-        font-size:10px;
-        font-weight:900;
-    }
-    @keyframes demoDropAppear {
-        from { opacity:0; transform:scale(.82); }
-        to { opacity:1; transform:scale(1); }
-    }
-
-    .demo-result { display:none; margin:0 0 26px; padding:18px; border-radius:12px; background:#111a2a; border:1px solid #45536e; text-align:center; }
-    .demo-result.open { display:block; }
-    .demo-result-label { color:#9ba7bc; font-size:10px; font-weight:800; letter-spacing:.8px; }
-    .demo-result-name { font-size:20px; font-weight:900; margin-top:4px; }
-    .demo-result-chance { color:#ffc857; font-weight:800; margin-top:5px; font-size:12px; }
+    .demo-drop-result-weapon { color:#aab5c9; font-size:10px; font-weight:700; margin-top:-2px; }
+    .demo-drop-result-name { color:#fff; font-size:15px; font-weight:900; margin-top:2px; max-width:320px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .demo-drop-result-chance { margin-top:4px; color:#ffc857; font-size:10px; font-weight:900; }
+    @keyframes demoDropAppear { from { opacity:0; transform:scale(.82); } to { opacity:1; transform:scale(1); } }
 
     .demo-content-title {
         display:flex;
@@ -1542,7 +1479,7 @@
     .demo-feature-card.rarity-blue,.demo-item.rarity-blue,.demo-roulette-item.rarity-blue{border-color:#4f75d8;box-shadow:0 0 0 1px rgba(79,117,216,.14),inset 0 0 22px rgba(79,117,216,.06)}
     .demo-feature-card.rarity-lightblue,.demo-item.rarity-lightblue,.demo-roulette-item.rarity-lightblue{border-color:#55a8d8;box-shadow:0 0 0 1px rgba(85,168,216,.13),inset 0 0 22px rgba(85,168,216,.05)}
     .demo-feature-card.rarity-gray,.demo-item.rarity-gray,.demo-roulette-item.rarity-gray{border-color:#5d6675;box-shadow:0 0 0 1px rgba(130,140,155,.08),inset 0 0 18px rgba(130,140,155,.035)}
-    .demo-rarity-badge{position:absolute;left:7px;top:7px;z-index:3;font-size:7px;line-height:1;font-weight:900;letter-spacing:.4px;text-transform:uppercase;padding:4px 5px;border-radius:5px;background:rgba(7,11,19,.74);color:#dce4f2;backdrop-filter:blur(4px)}
+    .demo-rarity-badge{position:absolute;left:7px;top:7px;z-index:3;font-size:7px;line-height:1;font-weight:900;letter-spacing:.4px;text-transform:uppercase;padding:4px 5px;border-radius:5px;background:rgba(7,11,19,.74);color:#dce4f2}
     .rarity-gold .demo-rarity-badge{color:#ffd76c}.rarity-red .demo-rarity-badge{color:#ff7272}.rarity-pink .demo-rarity-badge{color:#f18be1}.rarity-purple .demo-rarity-badge{color:#bb8cff}.rarity-blue .demo-rarity-badge{color:#79a0ff}.rarity-lightblue .demo-rarity-badge{color:#7fd2ff}.rarity-gray .demo-rarity-badge{color:#b8c0cc}
 
     @media (max-width: 980px) {
@@ -1561,7 +1498,6 @@
         .demo-case-actions { flex-direction:column; gap:10px; padding-bottom:24px; }
         .demo-insufficient,.demo-open,.demo-case-actions .demo-btn { width:100%; }
         .demo-items { grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
-        .demo-balance-actions { gap:8px; }
         .demo-case-tabs { justify-content:flex-start; }
     }
 </style>
@@ -1604,7 +1540,6 @@
         </thead>
         <tbody id="tableBody"></tbody>
     </table>
-    <p class="hint">Сумма считается автоматически.</p>
 </div>
 
 <div id="tab-calendar" class="tab-content">
@@ -1674,12 +1609,6 @@
                 <div class="demo-insufficient" id="demoBalanceMessage">Баланс ₽1000.00</div>
                 <button class="demo-btn primary" id="demoAddBalanceBtn" style="padding:13px 18px;" onclick="demoAddBalance()">Пополнить баланс&nbsp; +</button>
                 <button class="demo-open" id="demoOpenBtn" onclick="openDemoCase()">Открыть кейс за 1 ₽ &nbsp;◉</button>
-            </div>
-
-            <div class="demo-result" id="demoResult">
-                <div class="demo-result-label">ВЫПАЛО</div>
-                <div class="demo-result-name" id="demoResultName"></div>
-                <div class="demo-result-chance" id="demoResultChance"></div>
             </div>
 
             <div class="demo-content-title">Содержимое кейса</div>
@@ -1790,18 +1719,7 @@
         </div>
 
         <div class="admin-card">
-            <h3>💬 Управление чатом</h3>
-            <p style="font-size:13px;color:#888;">
-                В самом чате наведи на сообщение — появится <b>×</b>, чтобы удалить.
-            </p>
-        </div>
-
-        <div class="admin-card">
             <h3>🎁 Добавить дроп</h3>
-            <p style="font-size:13px;color:#888;margin-bottom:16px;">
-                Заполни поля и нажми «Добавить». Фото скина и фото кейса — необязательны.
-            </p>
-
             <div class="drop-form">
                 <div class="admin-field full-width">
                     <label>Название скина *</label>
@@ -1819,7 +1737,7 @@
                 </div>
 
                 <div class="admin-field">
-                    <label>Ссылка на кейс (необязательно)</label>
+                    <label>Ссылка на кейс</label>
                     <input type="text" id="dropCaseUrl" placeholder="https://skinhouse.gg/ru/case/...">
                 </div>
 
@@ -1856,10 +1774,6 @@
                             <div class="ph">🎁</div>
                         </div>
                         <input type="file" id="dropImageFile" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none;" onchange="handleDropImage(event)">
-                        <div style="margin-top:8px;">
-                            <button class="admin-btn small" onclick="document.getElementById('dropImageFile').click()">📷 Выбрать</button>
-                            <button class="admin-btn small danger" onclick="clearDropImage()" style="margin-left:6px;">✖</button>
-                        </div>
                     </div>
 
                     <div>
@@ -1868,10 +1782,6 @@
                             <div class="ph">📦</div>
                         </div>
                         <input type="file" id="dropCaseImageFile" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none;" onchange="handleDropCaseImage(event)">
-                        <div style="margin-top:8px;">
-                            <button class="admin-btn small" onclick="document.getElementById('dropCaseImageFile').click()">📷 Выбрать</button>
-                            <button class="admin-btn small danger" onclick="clearDropCaseImage()" style="margin-left:6px;">✖</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1888,33 +1798,7 @@
         </div>
 
         <div class="admin-card">
-            <h3>🎰 Редактор кейсов</h3>
-            <p class="case-editor-hint">Здесь можно менять существующие кейсы: название, иконку, обложку, цену, а также каждый скин.</p>
-            <div class="case-editor-toolbar"><select class="case-editor-select" id="caseEditorSelect" onchange="selectCaseForEdit()"></select></div>
-            <div id="caseEditorBody" class="case-editor">
-                <div class="case-editor-head">
-                    <div class="case-editor-field"><div class="case-editor-label">Название кейса</div><input id="caseEditorName" type="text" maxlength="80"></div>
-                    <div class="case-editor-field"><div class="case-editor-label">Иконка</div><input id="caseEditorIcon" type="text" maxlength="8"></div>
-                    <div class="case-editor-field case-cover-field"><div class="case-editor-label">Обложка (URL)</div><input id="caseEditorCover" type="text"></div>
-                    <div class="case-editor-field case-cost-field"><div class="case-editor-label">Цена открытия, ₽</div><input id="caseEditorCost" type="number" min="0" step="0.01"></div>
-                </div>
-                <div class="case-editor-toolbar">
-                    <button class="admin-btn" onclick="document.getElementById('caseEditorCoverFile').click()">📷 Загрузить обложку</button>
-                    <input id="caseEditorCoverFile" type="file" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none" onchange="handleCaseCoverUpload(event)">
-                    <button class="admin-btn" onclick="addCaseItemEditor()">➕ Добавить скин</button>
-                    <button class="admin-btn" onclick="saveCaseEditor()">💾 Сохранить кейс</button>
-                </div>
-                <div id="caseEditorItems" class="case-editor-items"></div>
-                <div class="case-editor-add" onclick="addCaseItemEditor()">＋ Добавить предмет в кейс</div>
-                <div id="caseEditorStatus" class="case-editor-status"></div>
-            </div>
-        </div>
-
-        <div class="admin-card">
             <h3>😀 Стикерпаки</h3>
-            <p style="font-size:13px;color:#888;margin-bottom:14px;">
-                Загружай <b>PNG</b>, <b>JPG</b> или <b>WebM</b>. Максимум <b>200 стикеров в паке</b>.
-            </p>
             <div class="pack-create">
                 <input type="text" id="newPackName" placeholder="Название нового пака" maxlength="30">
                 <button class="admin-btn" onclick="createPack()">➕ Создать пак</button>
@@ -1936,9 +1820,6 @@
 <div class="save-toast" id="saveToast">✅ Сохранено!</div>
 
 <script type="module">
-    // ==================================================
-    // FIREBASE
-    // ==================================================
     const firebaseConfig = {
         apiKey: "AIzaSyCp06hFJwxSppjYpsI1yBQobSMb2hDZkmZE",
         authDomain: "xalyava.firebaseapp.com",
@@ -1960,9 +1841,7 @@
         sergo: 'https://skinhouse.gg/ru/user/26587'
     };
 
-    // ==================================================
-    // ГРОМКОСТЬ
-    // ==================================================
+    // ============ ГРОМКОСТЬ ============
     let currentVolume = parseFloat(localStorage.getItem('chatVolume') || '1.0');
     window.currentVolume = currentVolume;
 
@@ -1992,22 +1871,7 @@
         document.querySelectorAll('audio').forEach(a => { a.volume = currentVolume; });
     };
 
-    (function initVolume() {
-        const val = Math.round(currentVolume * 100);
-        const slider = document.getElementById('volumeSlider');
-        const label = document.getElementById('volumeValue');
-        const btn = document.getElementById('volumeBtn');
-        if (slider) { slider.value = val; label.innerText = val + '%'; }
-        if (btn) {
-            if (currentVolume === 0) btn.innerText = '🔇';
-            else if (currentVolume < 0.5) btn.innerText = '🔉';
-            else btn.innerText = '🔊';
-        }
-    })();
-
-    // ==================================================
-    // АККАУНТЫ
-    // ==================================================
+    // ============ АККАУНТЫ ============
     let ACCOUNTS = {
         'Sergo Bulkin': { password: 'sosyXUI322', key: 'sergo' },
         'MEGATEM41K':    { password: '322sosyXUI322', key: 'mega' }
@@ -2015,14 +1879,9 @@
     let AVATARS = { mega: '', sergo: '' };
     let STICKER_PACKS = {};
     let DROPS = [];
-
-    let currentAdminPack = null;
     let currentChatPack = null;
     const MAX_STICKERS_PER_PACK = 200;
 
-    function isWebm(src) {
-        return typeof src === 'string' && (src.startsWith('data:video/webm') || src.includes('.webm'));
-    }
     function isVideo(src) {
         return typeof src === 'string' && (src.startsWith('data:video/') || (src.includes('.webm') && !src.includes('voice')));
     }
@@ -2037,27 +1896,17 @@
                 if (data.avatars) AVATARS = data.avatars;
                 if (data.stickerPacks) STICKER_PACKS = data.stickerPacks;
             } else {
-                await setDoc(docRef, {
-                    accounts: ACCOUNTS,
-                    avatars: AVATARS,
-                    stickerPacks: {}
-                });
+                await setDoc(docRef, { accounts: ACCOUNTS, avatars: AVATARS, stickerPacks: {} });
             }
-        } catch(e) {
-            console.warn('Не удалось загрузить аккаунты', e);
-        }
+        } catch(e) { console.warn('loadAccounts error', e); }
     }
 
     async function saveAccounts() {
         try {
             await setDoc(doc(db, 'data', 'accounts'), {
-                accounts: ACCOUNTS,
-                avatars: AVATARS,
-                stickerPacks: STICKER_PACKS
+                accounts: ACCOUNTS, avatars: AVATARS, stickerPacks: STICKER_PACKS
             });
-        } catch(e) {
-            console.warn('Ошибка сохранения', e);
-        }
+        } catch(e) { console.warn('saveAccounts error', e); }
     }
 
     function subscribeStickers() {
@@ -2075,9 +1924,7 @@
         });
     }
 
-    // ==================================================
-    // ДРОПЫ
-    // ==================================================
+    // ============ ДРОПЫ ============
     let currentDropFilter = 'all';
     let pendingDropImage = null;
     let pendingDropCaseImage = null;
@@ -2085,26 +1932,15 @@
     function subscribeDrops() {
         const docRef = doc(db, 'data', 'drops');
         onSnapshot(docRef, (docSnap) => {
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                DROPS = data.items || [];
-            } else {
-                DROPS = [];
-            }
+            DROPS = docSnap.exists() ? (docSnap.data().items || []) : [];
             renderDrops();
             renderDropsAdmin();
-        }, (err) => {
-            console.warn('Ошибка дропов', err);
-        });
+        }, (err) => console.warn('drops error', err));
     }
 
     async function saveDrops() {
-        try {
-            await setDoc(doc(db, 'data', 'drops'), { items: DROPS });
-        } catch(e) {
-            console.warn('Ошибка сохранения дропов', e);
-            alert('Не удалось сохранить: ' + e.message);
-        }
+        try { await setDoc(doc(db, 'data', 'drops'), { items: DROPS }); }
+        catch(e) { alert('Не удалось сохранить: ' + e.message); }
     }
 
     window.setDropFilter = function(filter, btn) {
@@ -2124,27 +1960,15 @@
     }
 
     const RARITY_LABELS = {
-        shirotreb: 'Ширпотреб',
-        prom: 'Промышленное',
-        army: 'Армейское',
-        forbidden: 'Запрещённое',
-        classified: 'Засекреченное',
-        secret: 'Тайное',
-        gold: 'Золотое'
+        shirotreb: 'Ширпотреб', prom: 'Промышленное', army: 'Армейское',
+        forbidden: 'Запрещённое', classified: 'Засекреченное', secret: 'Тайное', gold: 'Золотое'
     };
     const RARITY_COLORS = {
-        shirotreb: '#5a5a7a',
-        prom: '#4a90e2',
-        army: '#4caf50',
-        forbidden: '#9b59b6',
-        classified: '#e91e63',
-        secret: '#c62828',
-        gold: '#f9a825'
+        shirotreb: '#5a5a7a', prom: '#4a90e2', army: '#4caf50',
+        forbidden: '#9b59b6', classified: '#e91e63', secret: '#c62828', gold: '#f9a825'
     };
-
     function getRarityLabel(r) { return RARITY_LABELS[r] || 'Ширпотреб'; }
     function getRarityColor(r) { return RARITY_COLORS[r] || '#5a5a7a'; }
-
     function getAuthorLabel(key) {
         if (key === 'mega') return 'MEGATEM41K';
         if (key === 'sergo') return 'Sergo Bulkin';
@@ -2155,18 +1979,12 @@
         const grid = document.getElementById('dropsGrid');
         if (!grid) return;
         grid.innerHTML = '';
-
-        let filtered = DROPS.filter(d => {
-            if (currentDropFilter === 'all') return true;
-            return d.author === currentDropFilter;
-        });
-
+        let filtered = DROPS.filter(d => currentDropFilter === 'all' || d.author === currentDropFilter);
         filtered.sort((a, b) => {
-            const ta = a.createdAt ? (a.createdAt.toDate ? a.createdAt.toDate().getTime() : new Date(a.createdAt).getTime()) : 0;
-            const tb = b.createdAt ? (b.createdAt.toDate ? b.createdAt.toDate().getTime() : new Date(b.createdAt).getTime()) : 0;
+            const ta = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+            const tb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
             return tb - ta;
         });
-
         if (filtered.length === 0) {
             const empty = document.createElement('div');
             empty.className = 'drops-empty';
@@ -2176,51 +1994,27 @@
             grid.appendChild(empty);
             return;
         }
-
         filtered.forEach(drop => {
             const card = document.createElement('div');
             card.className = 'drop-card rarity-' + (drop.rarity || 'shirotreb');
-
             card.onclick = (e) => {
-                if (e.target.tagName === 'IMG' || e.target.closest('.case-img')) return;
+                if (e.target.tagName === 'IMG') return;
                 const url = PROFILE_URLS[drop.author];
                 if (url) window.open(url, '_blank');
             };
-
             const imgWrap = document.createElement('div');
             imgWrap.className = 'drop-image';
-
             if (drop.caseImage) {
                 const caseLayer = document.createElement('div');
                 caseLayer.className = 'case-img';
                 const cimg = document.createElement('img');
                 cimg.src = drop.caseImage;
                 caseLayer.appendChild(cimg);
-
-                caseLayer.onclick = (e) => {
-                    e.stopPropagation();
-                    if (drop.caseUrl) {
-                        window.open(drop.caseUrl, '_blank');
-                    } else {
-                        const url = PROFILE_URLS[drop.author];
-                        if (url) window.open(url, '_blank');
-                    }
-                };
-
                 imgWrap.appendChild(caseLayer);
             }
-
             if (drop.image) {
                 const img = document.createElement('img');
                 img.src = drop.image;
-                img.onclick = (e) => {
-                    e.stopPropagation();
-                    if (drop.caseUrl) window.open(drop.caseUrl, '_blank');
-                    else {
-                        const url = PROFILE_URLS[drop.author];
-                        if (url) window.open(url, '_blank');
-                    }
-                };
                 imgWrap.appendChild(img);
             } else if (!drop.caseImage) {
                 const ph = document.createElement('div');
@@ -2228,59 +2022,42 @@
                 ph.innerText = '🎁';
                 imgWrap.appendChild(ph);
             }
-
             const badge = document.createElement('div');
             badge.className = 'drop-rarity-badge';
             badge.innerText = getRarityLabel(drop.rarity);
             imgWrap.appendChild(badge);
-
             card.appendChild(imgWrap);
 
             const info = document.createElement('div');
             info.className = 'drop-info';
-
             const name = document.createElement('div');
             name.className = 'drop-name';
             name.innerText = drop.name || 'Без названия';
             info.appendChild(name);
-
             if (drop.case) {
                 const c = document.createElement('div');
                 c.className = 'drop-case';
                 c.innerText = '📦 ' + drop.case;
                 info.appendChild(c);
             }
-
             if (drop.price) {
                 const p = document.createElement('div');
                 p.className = 'drop-price';
                 p.innerText = drop.price;
                 info.appendChild(p);
             }
-
             const meta = document.createElement('div');
             meta.style.cssText = 'display:flex;justify-content:space-between;align-items:center;margin-top:6px;';
-
             const author = document.createElement('div');
             author.className = 'drop-author';
             author.innerText = getAuthorLabel(drop.author);
-            author.style.cursor = 'pointer';
-            author.style.textDecoration = 'underline';
-            author.onclick = (e) => {
-                e.stopPropagation();
-                const url = PROFILE_URLS[drop.author];
-                if (url) window.open(url, '_blank');
-            };
             meta.appendChild(author);
-
             const date = document.createElement('div');
             date.className = 'drop-date';
             date.innerText = formatDropDate(drop.createdAt);
             meta.appendChild(date);
-
             info.appendChild(meta);
             card.appendChild(info);
-
             grid.appendChild(card);
         });
     }
@@ -2288,47 +2065,26 @@
     window.onCaseSelectChange = function() {
         const sel = document.getElementById('dropCaseSelect');
         const custom = document.getElementById('dropCaseCustom');
-        if (sel.value === '__other__') {
-            custom.classList.add('visible');
-        } else {
-            custom.classList.remove('visible');
-        }
+        if (sel.value === '__other__') custom.classList.add('visible');
+        else custom.classList.remove('visible');
     };
 
     window.handleDropImage = function(event) {
         const file = event.target.files[0];
-        if (!file) return;
-        if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
+        if (!file || !file.type.startsWith('image/')) return;
         compressImage(file, 400, 0.85).then(result => {
             pendingDropImage = result;
-            const preview = document.getElementById('dropImagePreview');
-            preview.innerHTML = `<img src="${result}">`;
+            document.getElementById('dropImagePreview').innerHTML = `<img src="${result}">`;
         });
-    };
-
-    window.clearDropImage = function() {
-        pendingDropImage = null;
-        const preview = document.getElementById('dropImagePreview');
-        preview.innerHTML = '<div class="ph">🎁</div>';
-        document.getElementById('dropImageFile').value = '';
     };
 
     window.handleDropCaseImage = function(event) {
         const file = event.target.files[0];
-        if (!file) return;
-        if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
+        if (!file || !file.type.startsWith('image/')) return;
         compressImage(file, 400, 0.85).then(result => {
             pendingDropCaseImage = result;
-            const preview = document.getElementById('dropCaseImagePreview');
-            preview.innerHTML = `<img src="${result}">`;
+            document.getElementById('dropCaseImagePreview').innerHTML = `<img src="${result}">`;
         });
-    };
-
-    window.clearDropCaseImage = function() {
-        pendingDropCaseImage = null;
-        const preview = document.getElementById('dropCaseImagePreview');
-        preview.innerHTML = '<div class="ph">📦</div>';
-        document.getElementById('dropCaseImageFile').value = '';
     };
 
     window.addDrop = async function() {
@@ -2343,42 +2099,18 @@
 
         let caseName = caseSelect;
         if (caseSelect === '__other__') {
-            if (!caseCustom) {
-                msgEl.className = 'admin-msg err';
-                msgEl.innerText = 'Введи название кейса';
-                return;
-            }
+            if (!caseCustom) { msgEl.className = 'admin-msg err'; msgEl.innerText = 'Введи название кейса'; return; }
             caseName = caseCustom;
         }
+        if (!name) { msgEl.className = 'admin-msg err'; msgEl.innerText = 'Введи название скина'; return; }
 
-        if (!name) {
-            msgEl.className = 'admin-msg err';
-            msgEl.innerText = 'Введи название скина';
-            return;
-        }
-
-        const newDrop = {
+        DROPS.push({
             id: 'drop_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
-            name,
-            case: caseName,
-            caseUrl: caseUrl || '',
-            price,
-            rarity,
-            author,
-            image: pendingDropImage || '',
-            caseImage: pendingDropCaseImage || '',
+            name, case: caseName, caseUrl: caseUrl || '', price, rarity, author,
+            image: pendingDropImage || '', caseImage: pendingDropCaseImage || '',
             createdAt: new Date().toISOString()
-        };
-
-        DROPS.push(newDrop);
-
-        try {
-            await saveDrops();
-        } catch(e) {
-            msgEl.className = 'admin-msg err';
-            msgEl.innerText = 'Ошибка: ' + e.message;
-            return;
-        }
+        });
+        await saveDrops();
 
         document.getElementById('dropName').value = '';
         document.getElementById('dropPrice').value = '';
@@ -2386,13 +2118,14 @@
         document.getElementById('dropCaseCustom').value = '';
         document.getElementById('dropCaseSelect').value = 'Ателье колдовских колпаков';
         document.getElementById('dropCaseCustom').classList.remove('visible');
-        clearDropImage();
-        clearDropCaseImage();
+        pendingDropImage = null;
+        pendingDropCaseImage = null;
+        document.getElementById('dropImagePreview').innerHTML = '<div class="ph">🎁</div>';
+        document.getElementById('dropCaseImagePreview').innerHTML = '<div class="ph">📦</div>';
 
         msgEl.className = 'admin-msg ok';
         msgEl.innerText = '✅ Дроп добавлен';
         setTimeout(() => { msgEl.innerText = ''; }, 2000);
-
         renderDrops();
         renderDropsAdmin();
     };
@@ -2409,58 +2142,37 @@
         const list = document.getElementById('dropsAdminList');
         if (!list) return;
         list.innerHTML = '';
-
         if (DROPS.length === 0) {
             list.innerHTML = '<p style="color:#666;font-style:italic;">Пока нет дропов</p>';
             return;
         }
-
-        const sorted = [...DROPS].sort((a, b) => {
+        [...DROPS].sort((a, b) => {
             const ta = a.createdAt ? new Date(a.createdAt).getTime() : 0;
             const tb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
             return tb - ta;
-        });
-
-        sorted.forEach(drop => {
+        }).forEach(drop => {
             const row = document.createElement('div');
-            row.style.cssText = `
-                display: flex; align-items: center; gap: 12px;
-                padding: 10px; background: #23233a;
-                border-radius: 8px; margin-bottom: 8px;
-                border-left: 4px solid ${getRarityColor(drop.rarity)};
-            `;
-
+            row.style.cssText = `display:flex;align-items:center;gap:12px;padding:10px;background:#23233a;border-radius:8px;margin-bottom:8px;border-left:4px solid ${getRarityColor(drop.rarity)};`;
             const imgWrap = document.createElement('div');
-            imgWrap.style.cssText = 'width:50px;height:50px;background:#1e1e2e;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;position:relative;';
+            imgWrap.style.cssText = 'width:50px;height:50px;background:#1e1e2e;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;';
             if (drop.image) {
                 const im = document.createElement('img');
                 im.src = drop.image;
                 im.style.cssText = 'max-width:100%;max-height:100%;object-fit:contain;';
                 imgWrap.appendChild(im);
-            } else {
-                imgWrap.innerText = '🎁';
-            }
+            } else imgWrap.innerText = '🎁';
             row.appendChild(imgWrap);
 
             const info = document.createElement('div');
             info.style.cssText = 'flex:1;min-width:0;';
-
             const t1 = document.createElement('div');
             t1.style.cssText = 'font-weight:700;font-size:14px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
             t1.innerText = drop.name || 'Без названия';
             info.appendChild(t1);
-
             const t2 = document.createElement('div');
             t2.style.cssText = 'font-size:11px;color:#888;margin-top:2px;';
-            t2.innerText = [
-                getAuthorLabel(drop.author),
-                drop.case || '',
-                drop.price || '',
-                getRarityLabel(drop.rarity),
-                formatDropDate(drop.createdAt)
-            ].filter(Boolean).join(' · ');
+            t2.innerText = [getAuthorLabel(drop.author), drop.case || '', drop.price || '', getRarityLabel(drop.rarity), formatDropDate(drop.createdAt)].filter(Boolean).join(' · ');
             info.appendChild(t2);
-
             row.appendChild(info);
 
             const delBtn = document.createElement('button');
@@ -2468,14 +2180,11 @@
             delBtn.innerText = '🗑';
             delBtn.onclick = () => deleteDrop(drop.id);
             row.appendChild(delBtn);
-
             list.appendChild(row);
         });
     }
 
-    // ==================================================
-    // ДЕМО ШАНСЫ
-    // ==================================================
+    // ============ ДЕМО ШАНСЫ ============
     const DEMO_BALANCE_KEY = 'demoChanceBalance_v2';
     const DEMO_CASE_COST = 1;
 
@@ -2483,16 +2192,15 @@
         {
             id:'rainy', name:'Дождливый мегаполис', icon:'🌧️',
             cover:'https://img.skinhouse.gg/images/c3c0f713-6962-4df5-b67c-70a26f70e92f',
-            items:[{weapon:'Штык-нож M9', name:'Чистая вода', chance:0.072, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMW-J_uF1teBncCK9nBsijGTVpYL8JSLSMxhzDMYhTLUD4Re6ktTkMbvh5AyI394UmSv9hiJK63k_4O8CVaMm__eFkUifZn6YDkD1'},
+            items:[
+                {weapon:'Штык-нож M9', name:'Чистая вода', chance:0.072, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMW-J_uF1teBncCK9nBsijGTVpYL8JSLSMxhzDMYhTLUD4Re6ktTkMbvh5AyI394UmSv9hiJK63k_4O8CVaMm__eFkUifZn6YDkD1'},
                 {weapon:'Складной нож', name:'Городская маскировка', chance:0.2, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d4_u-V7d9H-SSHmKv1Px0se9WQyC0nQlp5DnWw46pIy2SOwBxW5VwFOcP5hC4x92zM-6ztVbYjtoTmST_iSNA6DErvbgg2ar9PQ'},
                 {weapon:'Нож с лезвием-крюком', name:'Чистая вода', chance:0.4, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRYL1SL_OWD2mvyuB_tuRWQiy3nAgq_W_SmNz4d3meb1R2AsEhF7QNsEa_xILnNu_qtQfaj9pFz3mvjShL63t1o7FVym_1LUs'},
                 {weapon:'AWP', name:'Удар молнии', chance:0.02, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf_C9k4_upYLBjKf6UMWaH0dF6ueZhW2frwU1_sW2EmNyvc32RZwMpCpcjQ-EJ4xbtmt3gYezk4wzb3tpAy3mrkGoXubsGIfVN'},
                 {weapon:'M4A4', name:'Дождь из пуль', chance:0.28, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMW-J_uF1teBncCK9nBsijGTVpYL8JSLSMxhzDMYhTLUD4Re6ktTkMbvh5AyI394UmSv9hiJK63k_4O8CVaMm__eFkUifZn6YDkD1'},
                 {weapon:'AK-47', name:'Неоновая революция', chance:0.25, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwiFO0PC7ZKhoNM-BD26e_uMisbBWQyC0nQlp4GmGydioIH3DPFMjDMd2QrQO5hDtkNK2Ne_htAXd3d0Uyiiriysb5zErvbh6fsb98Q'},
-                {weapon:'Капитан Фрэнк «Мокрые носки» Бару', name:'Боевые пловцы SEAL', chance:0.06, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIa-2lmxU-LR0dnuNm6E8Vl45Iv181z1fh7lk6nk9DRe_c24abZkIf6HDCmSkrh35uRvHXG1lkp_6zjUzY2gcimRP1N2XJJxTOYKuhDsxNC2YePi-UWA3IGWyCLX'},
                 {weapon:'G3SG1', name:'Поток', chance:7.107, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIa-2lmxU-LR0dnuNm6E8Vl45Iv181z1fh7lk6nk9DRe_c24abZkIf6HDCmSkrh35uRvHXG1lkp_6zjUzY2gcimRP1N2XJJxTOYKuhDsxNC2YePi-UWA3IGWyCLX'},
                 {weapon:'MP9', name:'Бегом за латте', chance:5.887, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2zYXnrB1c_M2pO7dqcc-VAnKI_v5jovFlSha_nBovp3ODz9uoc3vGOgMmApp3QrFe5xftm9bjNOm24Afb3YlBn3mqjS8dvy1p_a9cBmtTF-_C'},
-                {weapon:'Автомат «Галиль»', name:'Радужная ложка', chance:1.06, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8js_f_jdk4uL3V6hsNOSWMWuZxuZi_rdrGCyxxER252ncw9arJC-QOAcmXsF2ROAP4RbrlNOzNbzq5VDb2YJbjXKpzLFi2t8'},
                 {weapon:'USP-S', name:'Следы асфальта', chance:1.3, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2n5rp8SNJ0PO_V7BkNPGdB3Kd_vx3ue9rQD6MkhwrujGEiLD1KCzPKhhxCMclQeAPtUK-xoWxPrvkslOKg4tHzXn-3Xsbvyo647sLVqoh_6XekUifZrx5Pjj5'},
                 {weapon:'MP9', name:'Цветное стекло', chance:0.1, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL0kp_0-B1Y-s2rZK15JeOsG3WSwOBlpO57Qha_nBovp3PQzI6pc3iRZ1cjC5dzQe4CsxPtwdHjMevq41CLjIpMm3_5jypN7Cxp_a9cBoxgoAoS'},
                 {weapon:'ПП-19 «Бизон»', name:'Синяя струя', chance:13.249, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFL0OirarZsI_GeMWWH_uJ_t-l9AXu3zBkhsDyHz4z9dXmVagJzW8MiQbFetBfrkNHhZbjr51CMiN8TyS_gznQeEoYBjXk'},
@@ -2503,12 +2211,14 @@
                 {weapon:'P90', name:'Мрак', chance:8.535, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLhx8bf_jdk_6v-V6N_Kf2eMWuZxuZi_rA9GHDrlh8h6m7dw4qpciiUOgQkAsF2ELYPsBjploe2P7ngsQaIjN5bjXKpNUOMolU'},
                 {weapon:'MP7', name:'Городская опасность', chance:14.533, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8jsHf_jdk4uL5JadiLf2SAGOV09F6ueZhW2fgx0gl4WTczdj7I3LFaQYjDcQiE-Beuhe6xIXnP-_l41eKi9pEyH79kGoXuW6iY_I1'},
                 {weapon:'MP9', name:'Гроза', chance:7.008, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL0kp_0-B1Y-s2rZK15JeOsG3WSwOBlpO57Qha_nBovp3PQzI6pc3iRZ1cjC5dzQe4CsxPtwdHjMevq41CLjIpMm3_5jypN7Cxp_a9cBoxgoAoS'},
-                {weapon:'AUG', name:'Гроза', chance:1.607, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8js_f7i1k_OaheqlrMv-dGlicyOl-pK8_S3zjxRh_5mmGn9epIymQPQBxDpQlFuUJ5xa6kt2yZLjkswLY2ooT02yg2WH9Y1dp'}]
+                {weapon:'AUG', name:'Гроза', chance:1.607, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8js_f7i1k_OaheqlrMv-dGlicyOl-pK8_S3zjxRh_5mmGn9epIymQPQBxDpQlFuUJ5xa6kt2yZLjkswLY2ooT02yg2WH9Y1dp'}
+            ]
         },
         {
             id:'usp', name:'USP-S Шанс', icon:'🔫',
             cover:'https://img.skinhouse.gg/images/a119e066-c856-4496-e8f8-49df92aa9c00',
-            items:[{weapon:'USP-S', name:'Подтвержденное убийство', chance:0.008, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_uV_vO1WTCa9kxQ1vjiBpYL8JSLSMxghCMEjEeNe5hHpw9zhYuOz5VfcitpBmyqt3X9O6itrsesFUfYmrKzTkUifZqPQtnZK'},
+            items:[
+                {weapon:'USP-S', name:'Подтвержденное убийство', chance:0.008, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_uV_vO1WTCa9kxQ1vjiBpYL8JSLSMxghCMEjEeNe5hHpw9zhYuOz5VfcitpBmyqt3X9O6itrsesFUfYmrKzTkUifZqPQtnZK'},
                 {weapon:'USP-S', name:'Поток информации', chance:0.02, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_v5kue99XD2hkBwqjDGMnYftb3yUPFR0XsNyRrNc5kO5ltziMenr5lONj4kXyi2riywc7y9o5LtQAqQ7uvqAkScWnv4'},
                 {weapon:'USP-S', name:'Предатель', chance:0.5, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSJ-OsG3SA0tF-se9uSi2-lBMYvjiBk5r0b3yQaABxCsdyR-dc4BS5l4DlYujntgCMi49AmCv5ii0buik54ucAVfI7uvqAawge80M'},
                 {weapon:'USP-S', name:'Кайман', chance:0.1, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsBWaZzO94j-1gSCGn20t-4WyBn4mocC6XbVN0CMB2RLYMsUG5x9DgN-20tQSNiI1GzS2q3XtXrnE8NAiGp64'},
@@ -2521,30 +2231,26 @@
                 {weapon:'USP-S', name:'Проводник', chance:6.222, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSIf2sCmOAwPpJoPR7XyW2qhAitzSQl8GpeC2SbQ8hC5clRuYJsxi-kNHkNenhsgPbi4wXmCqvinhN6iZt670CT-N7rT1W344r'},
                 {weapon:'USP-S', name:'Неисправность', chance:6, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSNeODMWGZxOJyj_JnTiK2qhAitzSQl8Gvcn_Ebg9xApB5RO8O4Ra-moDmY7nr7gDYjYxMyHis3yhO6Htv5OYAT-N7rT8xDMmb'},
                 {weapon:'USP-S', name:'Горный камуфляж', chance:7, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSJ-OsG3SA_vh5vPVoSCyMmBgjuiiI1NmoIH7CbVVxCpFwQuMN5Bbrl9OxZbvg41fYjotEny38i3kf631pse4cEf1yrW6rYNs'},
-                {weapon:'USP-S', name:'27', chance:6.952, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_v5kue99XD2hkBwqjDGMnYftb3yUPFR0XsNyRrNc5kO5ltziMenr5lONj4kXyi2riywc7y9o5LtQAqQ7uvqAkScWnv4'}]}
+                {weapon:'USP-S', name:'27', chance:6.952, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_v5kue99XD2hkBwqjDGMnYftb3yUPFR0XsNyRrNc5kO5ltziMenr5lONj4kXyi2riywc7y9o5LtQAqQ7uvqAkScWnv4'}
+            ]
         },
         {
             id:'atelier', name:'Ателье колдовских колпаков', icon:'🧙',
             cover:'https://img.skinhouse.gg/images/9f0662d5-c272-480c-e3de-97135a970b00',
-            items:[{weapon:'Фальшион', name:'Волны', chance:0.002, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SA1iDwP5muOh7Sha-lA8lvziMgIr9HifOOV5kFMB1TeAIsxi5w4K0Y7_jtVTc3d1MzX_3iSxAuy85seYDA6Bxq6eCjV7fcepqbrrX6Yc'},
+            items:[
+                {weapon:'Фальшион', name:'Волны', chance:0.002, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1d7v6tYK1iLs-SA1iDwP5muOh7Sha-lA8lvziMgIr9HifOOV5kFMB1TeAIsxi5w4K0Y7_jtVTc3d1MzX_3iSxAuy85seYDA6Bxq6eCjV7fcepqbrrX6Yc'},
                 {weapon:'Медвежий нож', name:'Волны', chance:0.002, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1O_eG7e5tsLc-AD3eAyedktd5kTjuxmRguqTiBpYPwJiPTcAB2DpUkRrYK50awk9LhZrjg4lPZ2I1Dzyr_3X8Y6n1j4roFUKcl_qPJz1aWr6Afqe0'},
-                {weapon:'Паракорд-нож', name:'Волны', chance:0.003, image:'https://community.akamai.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf0PzadQJD4eOllZCbn_7mNoTcl3lT5MB4kOzFyoD8j1yg5UBrZ2imJdfDIAI8Zw3Q_Ve4kuzn1JO6upzLnCBgvnYqs3zayxC-hktSLrs4UIqIpQQ'},
-                {weapon:'Нож выживания', name:'Волны', chance:0.013, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Y7vyne5tsLc-AD3eAyedktd5kTjuxmRguqTiBpYPwJiPTcAUjCpohTOYPtES7ldzvYrjl5laLi4JBnC_6iS1PvHtst7wDV_Ui-fLJz1aWWu-XwP8'},
-                {weapon:'Нож с лезвием-крюком', name:'Волны', chance:0.011, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRaalSM_GDHm-Z0-tJveB7TSW2nAcitwKJk4jxNWWQO1IjW5d4RLUOsEG_lYCxZbjq5QDejYlBnn6o2y9LvCti4OtRUfUl5OSJ2CIbbpiB'},
-                {weapon:'Тычковые ножи', name:'Волны', chance:0.03, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf-jFk5vyqbbRoLvSWMWaH0dF6ueZhW2e1zElxtmzQmIv8J3qQalRzW5t0RrYOsBCwlte2Mbmw5AbXiYlAnnn4kGoXuYBQOb0Q'},
                 {weapon:'AWP', name:'CMYK', chance:0.051, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf7itX6vytbbZSJ-OsG3SA_uV_vO1WTCa9kxQ1vjiBpYL8JSLSMxghCMEjEeNe5hHpw9zhYuOz5VfcitpBmyqt3X9O6itrsesFUfYmrKzTkUifZqPQtnZK'},
                 {weapon:'USP-S', name:'Поток информации', chance:0.89, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf7itX6vytbbZSI-WsG3SA_uV_vO1WTCa9kxQ1vjiBpYL8JSLSMxghCMEjEeNe5hHpw9zhYuOz5VfcitpBmyqt3X9O6itrsesFUfYmrKzTkUifZqPQtnZK'},
                 {weapon:'AK-47', name:'Наследство', chance:0.84, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwiFO0P_6afBSJPWAAWuR1etJo_FoTCyMmRQguynLnNepJXPEaQJyDZJ0QOdbsxi7ktS0Y-Li4ADegthGn32ojCJJ7CxosfFCD_SyjfEkHg'},
                 {weapon:'Glock-18', name:'Полный раскрас', chance:1.69, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGC1iD1fx3pO56XyG2hxgYvzSCkpu3eSjEOgUkDsRxR7RYsRexwNe0Y-O05VeNg90UmX2q33lJ7itvt-cKB71lpPNheQHx2Q'},
-                {weapon:'Брелок', name:'Крошка Привидение', chance:1, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_iKC1iRz-d7se1WXzu6mwkY6m2WpYPwJiPTcFNxDcMjEeUIuxK-wNWyPrzj4wePiIxGmCj5jngcuCpvt7wBAKFw-KbJz1aW-PVDUm8'},
                 {weapon:'M4A4', name:'Безлюдный космос', chance:3.38, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGI6zwki4Uf_a0IWsPGiE7Fhy-I764WbkThD8i5jp6Ttkv6PhY6dSLfmAHW6exuJ_vupWQjynkBovvC6R1NatdHuTPQAiCJF1Re8KsBOwlda0M7vm7gOMj4kUnC__jysf5ytv4OccEf1yvJT6JNo'},
                 {weapon:'M4A1-S', name:'Стратосфера', chance:19.748, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGC1iD1fx3pO56XyG2hxgYvzSCkpu3eSjEOgUkDsRxR7RYsRexwNe0Y-O05VeNg90UmX2q33lJ7itvt-cKB71lpPNheQHx2Q'},
                 {weapon:'M4A1-S', name:'Дикий тусовщик', chance:5.05, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf-jFk5vyqbbRoLvSWMWaH0dF6ueZhW2e1zElxtmzQmIv8J3qQalRzW5t0RrYOsBCwlte2Mbmw5AbXiYlAnnn4kGoXuYBQOb0Q'},
-                {weapon:'Брелок', name:'Бриллиантовая колб...', chance:5, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwiFO0P_6afBSJPWAAWuR1etJo_FoTCyMmRQguynLnNepJXPEaQJyDZJ0QOdbsxi7ktS0Y-Li4ADegthGn32ojCJJ7CxosfFCD_SyjfEkHg'},
                 {weapon:'M4A4', name:'Зубная фея', chance:6.229, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGI6zwki4Uf_a0IWsPGiE7Fhy-I764RbsQiL8l4Xz9Cxc4_ugY5t-If2sCm6RzOF4tK9sFyi3wUki4TvSnNytdC7FPQBzApIkQuRfukTql93vMung4FTXjIlC02yg2RVCPh13'},
-                {weapon:'Брелок', name:'Литой калаш', chance:6.229, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGC1iD1fx3pO56XyG2hxgYvzSCkpu3eSjEOgUkDsRxR7RYsRexwNe0Y-O05VeNg90UmX2q33lJ7itvt-cKB71lpPNheQHx2Q'},
                 {weapon:'P90', name:'Неокоролева', chance:18.687, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGC1iD1fx3pO56XyG2hxgYvzSCkpu3eSjEOgUkDsRxR7RYsRexwNe0Y-O05VeNg90UmX2q33lJ7itvt-cKB71lpPNheQHx2Q'},
-                {weapon:'USP-S', name:'Неисправность', chance:31.145, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLhx8bf-jFk5vyqbbRoLvSWMWaH0dF6ueZhW2e1zElxtmzQmIv8J3qQalRzW5t0RrYOsBCwlte2Mbmw5AbXiYlAnnn4kGoXuYBQOb0Q'}]}
+                {weapon:'USP-S', name:'Неисправность', chance:31.145, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLhx8bf-jFk5vyqbbRoLvSWMWaH0dF6ueZhW2e1zElxtmzQmIv8J3qQalRzW5t0RrYOsBCwlte2Mbmw5AbXiYlAnnn4kGoXuYBQOb0Q'}
+            ]
         }
     ];
 
@@ -2552,8 +2258,7 @@
     let demoOpening = false;
 
     function getDemoBalance() {
-        const raw = localStorage.getItem(DEMO_BALANCE_KEY);
-        const n = Number(raw);
+        const n = Number(localStorage.getItem(DEMO_BALANCE_KEY));
         return Number.isFinite(n) && n >= 0 ? n : 1000;
     }
 
@@ -2563,31 +2268,25 @@
         const msg = document.getElementById('demoBalanceMessage');
         const addBtn = document.getElementById('demoAddBalanceBtn');
         const openBtn = document.getElementById('demoOpenBtn');
-        const caseCost = (Number(getDemoCase()?.cost ?? DEMO_CASE_COST) || 0);
-        if (msg) msg.innerText = safe < caseCost ? 'Не хватает ₽' + (caseCost - safe).toFixed(2) + ' на балансе' : 'Баланс ₽' + safe.toFixed(2);
+        const caseCost = Number(getDemoCase()?.cost ?? DEMO_CASE_COST) || 0;
+        if (msg) msg.innerText = safe < caseCost ? 'Не хватает ₽' + (caseCost - safe).toFixed(2) : 'Баланс ₽' + safe.toFixed(2);
         if (addBtn) addBtn.style.display = safe >= caseCost ? 'none' : 'inline-flex';
         if (openBtn) { openBtn.disabled = demoOpening || safe < caseCost; openBtn.innerText = 'Открыть за ' + caseCost + ' ₽'; }
     }
 
     window.demoAddBalance = function() { setDemoBalance(getDemoBalance() + 100); };
-    window.demoResetBalance = function() { setDemoBalance(1000); };
-
     function getDemoCase() { return DEMO_CASES.find(c => c.id === demoCurrentCase) || DEMO_CASES[0]; }
 
     function demoRarity(item) {
-        if (item && ['gray','lightblue','blue','purple','pink','red','gold'].includes(item.rarity)) {
-            const labels = {gray:'Ширпотреб',lightblue:'Промышленное',blue:'Армейское',purple:'Запрещённое',pink:'Засекреченное',red:'Тайное',gold:'Золотое качество'};
-            return [item.rarity, labels[item.rarity]];
-        }
         const w = String(item.weapon || '').toLowerCase();
         if (/нож|перчат|агент|брелок|charm/.test(w)) return ['gold', 'Золотое качество'];
         const c = Number(item.chance) || 0;
-        if (c <= 0.5) return ['red','Тайное'];
-        if (c <= 1.5) return ['pink','Засекреченное'];
-        if (c <= 8) return ['purple','Запрещённое'];
-        if (c <= 20) return ['blue','Армейское'];
-        if (c <= 35) return ['lightblue','Промышленное'];
-        return ['gray','Ширпотреб'];
+        if (c <= 0.5) return ['red', 'Тайное'];
+        if (c <= 1.5) return ['pink', 'Засекреченное'];
+        if (c <= 8) return ['purple', 'Запрещённое'];
+        if (c <= 20) return ['blue', 'Армейское'];
+        if (c <= 35) return ['lightblue', 'Промышленное'];
+        return ['gray', 'Ширпотреб'];
     }
 
     function renderDemoCaseTabs() {
@@ -2605,9 +2304,9 @@
 
     function makeFeatureCard(item) {
         const card = document.createElement('div');
-        const [rarity, label] = demoRarity(item);
-        card.className = 'demo-feature-card rarity-' + rarity;
-        card.innerHTML = '<span class="demo-rarity-badge">' + escapeHtml(label) + '</span><span class="demo-feature-chance">' + item.chance + '%</span><img src="' + item.image + '" alt=""><div class="demo-feature-info"><div class="demo-feature-weapon">' + escapeHtml(item.weapon) + '</div><div class="demo-feature-name">' + escapeHtml(item.name) + '</div></div>';
+        const r = demoRarity(item);
+        card.className = 'demo-feature-card rarity-' + r[0];
+        card.innerHTML = '<span class="demo-rarity-badge">' + escapeHtml(r[1]) + '</span><span class="demo-feature-chance">' + item.chance + '%</span><img src="' + item.image + '" alt=""><div class="demo-feature-info"><div class="demo-feature-weapon">' + escapeHtml(item.weapon) + '</div><div class="demo-feature-name">' + escapeHtml(item.name) + '</div></div>';
         return card;
     }
 
@@ -2618,7 +2317,6 @@
         const cover = document.getElementById('demoCaseCover');
         const items = document.getElementById('demoItems');
         const feature = document.getElementById('demoFeatureItems');
-        const result = document.getElementById('demoResult');
         const roulette = document.getElementById('demoRouletteWrap');
         if (!name || !items || !feature) return;
         name.innerText = c.name;
@@ -2626,34 +2324,29 @@
         cover.innerHTML = '<img src="' + c.cover + '" alt="' + escapeHtml(c.name) + '">';
 
         feature.innerHTML = '';
-        const left = c.items.slice(0, 3);
-        const right = c.items.slice(-3);
-        left.forEach(item => feature.appendChild(makeFeatureCard(item)));
+        c.items.slice(0, 3).forEach(item => feature.appendChild(makeFeatureCard(item)));
         const centerSlot = document.createElement('div');
         centerSlot.className = 'demo-feature-center-slot';
         feature.appendChild(centerSlot);
-        right.forEach(item => feature.appendChild(makeFeatureCard(item)));
+        c.items.slice(-3).forEach(item => feature.appendChild(makeFeatureCard(item)));
 
         items.innerHTML = '';
         c.items.forEach(item => {
-            const [rarity, label] = demoRarity(item);
+            const r = demoRarity(item);
             const card = document.createElement('div');
-            card.className = 'demo-item rarity-' + rarity;
-            card.innerHTML = '<span class="demo-rarity-badge">' + escapeHtml(label) + '</span><div class="demo-item-chance">' + item.chance + '%</div><img src="' + item.image + '" alt=""><div class="demo-item-weapon">' + escapeHtml(item.weapon) + '</div><div class="demo-item-name">' + escapeHtml(item.name) + '</div>';
+            card.className = 'demo-item rarity-' + r[0];
+            card.innerHTML = '<span class="demo-rarity-badge">' + escapeHtml(r[1]) + '</span><div class="demo-item-chance">' + item.chance + '%</div><img src="' + item.image + '" alt=""><div class="demo-item-weapon">' + escapeHtml(item.weapon) + '</div><div class="demo-item-name">' + escapeHtml(item.name) + '</div>';
             items.appendChild(card);
         });
-
-        if (result) result.classList.remove('open');
         if (roulette) roulette.classList.remove('open');
-        cover.innerHTML = '<img src="' + c.cover + '" alt="' + escapeHtml(c.name) + '">';
         setDemoBalance(getDemoBalance());
         renderDemoCaseTabs();
     }
 
-    function demoBackToCases() {
+    window.demoBackToCases = function() {
         const tabs = document.getElementById('demoCaseTabs');
         if (tabs) tabs.scrollIntoView({behavior: 'smooth', block: 'center'});
-    }
+    };
 
     function pickDemoItem(items) {
         const total = items.reduce((s, item) => s + item.chance, 0);
@@ -2672,9 +2365,9 @@
         sequence[winnerIndex] = winner;
         sequence.forEach(item => {
             const el = document.createElement('div');
-            const [rarity, label] = demoRarity(item);
-            el.className = 'demo-roulette-item rarity-' + rarity;
-            el.innerHTML = '<span class="demo-rarity-badge">' + escapeHtml(label) + '</span><img src="' + item.image + '" alt=""><b>' + escapeHtml(item.weapon) + ' — ' + escapeHtml(item.name) + '</b><span>' + item.chance + '%</span>';
+            const r = demoRarity(item);
+            el.className = 'demo-roulette-item rarity-' + r[0];
+            el.innerHTML = '<span class="demo-rarity-badge">' + escapeHtml(r[1]) + '</span><img src="' + item.image + '" alt=""><b>' + escapeHtml(item.weapon) + ' — ' + escapeHtml(item.name) + '</b><span>' + item.chance + '%</span>';
             track.appendChild(el);
         });
         track.style.transition = 'none';
@@ -2690,7 +2383,7 @@
     window.openDemoCase = function() {
         if (demoOpening) return;
         const balance = getDemoBalance();
-        const caseCost = (Number(getDemoCase()?.cost ?? DEMO_CASE_COST) || 0);
+        const caseCost = Number(getDemoCase()?.cost ?? DEMO_CASE_COST) || 0;
         if (balance < caseCost) { alert('Недостаточно демо-баланса.'); return; }
         const c = getDemoCase();
         const winner = pickDemoItem(c.items);
@@ -2698,23 +2391,15 @@
         setDemoBalance(balance - caseCost);
         const stage = document.getElementById('demoCaseStage');
         const roulette = document.getElementById('demoRouletteWrap');
-        const result = document.getElementById('demoResult');
         const cover = document.getElementById('demoCaseCover');
-        result.classList.remove('open');
         stage.classList.add('is-opening');
         roulette.classList.add('open');
         renderRoulette(c, winner);
         setTimeout(() => {
             roulette.classList.remove('open');
             stage.classList.remove('is-opening');
-            cover.innerHTML = `
-                <div class="demo-drop-result-center rarity-${demoRarity(winner)[0]}"><span class="demo-rarity-badge">${escapeHtml(demoRarity(winner)[1])}</span>
-                    <img src="${winner.image}" alt="${escapeHtml(winner.name)}">
-                    <div class="demo-drop-result-weapon">${escapeHtml(winner.weapon)}</div>
-                    <div class="demo-drop-result-name">${escapeHtml(winner.name)}</div>
-                    <div class="demo-drop-result-chance">${winner.chance}%</div>
-                </div>`;
-            result.classList.remove('open');
+            const r = demoRarity(winner);
+            cover.innerHTML = '<div class="demo-drop-result-center rarity-' + r[0] + '"><span class="demo-rarity-badge">' + escapeHtml(r[1]) + '</span><img src="' + winner.image + '" alt=""><div class="demo-drop-result-weapon">' + escapeHtml(winner.weapon) + '</div><div class="demo-drop-result-name">' + escapeHtml(winner.name) + '</div><div class="demo-drop-result-chance">' + winner.chance + '%</div></div>';
             demoOpening = false;
             setDemoBalance(getDemoBalance());
         }, 2950);
@@ -2722,12 +2407,9 @@
 
     function initDemoTab() { renderDemoCaseTabs(); renderDemoCase(); }
 
-    // ==================================================
-    // СЕССИЯ
-    // ==================================================
+    // ============ СЕССИЯ ============
     let currentUser = null;
     let hasUnsavedChanges = false;
-
     const SESSION_KEY = 'chat_session_v1';
 
     function saveSession(user) {
@@ -2739,8 +2421,7 @@
 
     function loadSession() {
         try {
-            let raw = sessionStorage.getItem(SESSION_KEY);
-            if (!raw) raw = localStorage.getItem(SESSION_KEY);
+            let raw = sessionStorage.getItem(SESSION_KEY) || localStorage.getItem(SESSION_KEY);
             if (!raw) return null;
             const u = JSON.parse(raw);
             if (ACCOUNTS[u.login]) return { login: u.login, key: ACCOUNTS[u.login].key };
@@ -2762,12 +2443,10 @@
         const login = document.getElementById('loginInput').value.trim();
         const password = document.getElementById('passwordInput').value;
         const errEl = document.getElementById('loginError');
-
         const acc = ACCOUNTS[login];
         if (!acc) { errEl.innerText = 'Неверный логин'; return; }
         if (acc.password !== password) { errEl.innerText = 'Неверный пароль'; return; }
-
-        currentUser = { login: login, key: acc.key };
+        currentUser = { login, key: acc.key };
         saveSession(currentUser);
         errEl.innerText = '';
         document.getElementById('loginInput').value = '';
@@ -2776,8 +2455,7 @@
     };
 
     window.logout = function() {
-        const msg = hasUnsavedChanges ? 'Есть несохранённые изменения. Выйти?' : 'Выйти?';
-        if (!confirm(msg)) return;
+        if (!confirm(hasUnsavedChanges ? 'Есть несохранённые изменения. Выйти?' : 'Выйти?')) return;
         clearTypingStatus();
         clearSession();
         location.reload();
@@ -2786,16 +2464,13 @@
     function showMainSite() {
         document.getElementById('loginOverlay').classList.add('hidden');
         document.getElementById('mainSite').style.display = 'flex';
-
         renderUserBar();
-
         if (currentUser.key === 'mega') {
             document.getElementById('adminTabBtn').style.display = '';
             loadAdminFields();
         } else {
             document.getElementById('adminTabBtn').style.display = 'none';
         }
-
         loadTable();
         loadSkins();
         initChat();
@@ -2803,12 +2478,9 @@
         restoreActiveTab();
         renderCalendar('mega');
         renderCalendar('sergo');
-
         renderStickerPacksTabs();
         renderStickerGrid();
         renderPacksAdmin();
-        if (currentUser && currentUser.key === 'mega') renderCaseEditor();
-
         subscribeDrops();
         renderDropsAdmin();
         initDemoTab();
@@ -2820,20 +2492,11 @@
         const avatarStyle = av ? `background-image: url('${av}'); background-size: cover; background-position: center;` : '';
         const avatarClass = av ? '' : currentUser.key;
         const avatarContent = av ? '' : currentUser.login[0];
-
-        bar.innerHTML = `
-            <div class="avatar ${avatarClass}" style="${avatarStyle}">
-                ${av ? '' : avatarContent}
-            </div>
-            <span>${currentUser.login}</span>
-            <button class="logout" onclick="logout()">Выйти</button>
-        `;
+        bar.innerHTML = `<div class="avatar ${avatarClass}" style="${avatarStyle}">${av ? '' : avatarContent}</div><span>${currentUser.login}</span><button class="logout" onclick="logout()">Выйти</button>`;
     }
 
     function findUserKeyByLogin(login) {
-        for (const [lg, acc] of Object.entries(ACCOUNTS)) {
-            if (lg === login) return acc.key;
-        }
+        for (const [lg, acc] of Object.entries(ACCOUNTS)) if (lg === login) return acc.key;
         return null;
     }
 
@@ -2848,16 +2511,10 @@
         document.getElementById('loginOverlay').classList.remove('hidden');
     }
 
-    document.getElementById('passwordInput').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') tryLogin();
-    });
-    document.getElementById('loginInput').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') document.getElementById('passwordInput').focus();
-    });
+    document.getElementById('passwordInput').addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+    document.getElementById('loginInput').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('passwordInput').focus(); });
 
-    // ==================================================
-    // ВКЛАДКИ
-    // ==================================================
+    // ============ ВКЛАДКИ ============
     const ACTIVE_TAB_KEY = 'activeTab';
 
     window.switchTab = function(name, btn) {
@@ -2867,10 +2524,8 @@
         if (btn) btn.classList.add('active');
         localStorage.setItem(ACTIVE_TAB_KEY, name);
         updateSaveButtonVisibility();
-
         const sp = document.getElementById('stickerPanel');
         if (sp) sp.classList.remove('open');
-
         if (name === 'admin') loadAdminFields();
         if (name === 'drops') renderDrops();
         if (name === 'demo') initDemoTab();
@@ -2895,16 +2550,11 @@
     function updateSaveButtonVisibility() {
         const saveFloat = document.getElementById('saveFloat');
         const activeTab = localStorage.getItem(ACTIVE_TAB_KEY) || 'accounting';
-        if (activeTab === 'accounting' && hasUnsavedChanges) {
-            saveFloat.classList.add('visible');
-        } else {
-            saveFloat.classList.remove('visible');
-        }
+        if (activeTab === 'accounting' && hasUnsavedChanges) saveFloat.classList.add('visible');
+        else saveFloat.classList.remove('visible');
     }
 
-    // ==================================================
-    // УЧЁТ
-    // ==================================================
+    // ============ УЧЁТ ============
     const ACC_DOC = 'accounting';
     const ACC_FIELD = 'prices_v2';
     const DAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
@@ -2918,13 +2568,11 @@
     function renderTable() {
         const tbody = document.getElementById('tableBody');
         tbody.innerHTML = '';
-
         DAYS.forEach(day => {
             const tr = document.createElement('tr');
             const dayTd = document.createElement('td');
             dayTd.innerText = day;
             tr.appendChild(dayTd);
-
             ['mega', 'sergo'].forEach(ownerKey => {
                 const td = document.createElement('td');
                 const canEdit = currentUser && currentUser.key === ownerKey;
@@ -2937,13 +2585,11 @@
             });
             tbody.appendChild(tr);
         });
-
         const totalTr = document.createElement('tr');
         totalTr.className = 'total-row';
         const totalLabel = document.createElement('td');
         totalLabel.innerText = 'Сумма';
         totalTr.appendChild(totalLabel);
-
         const megaTd = document.createElement('td');
         const megaSpan = document.createElement('span');
         megaSpan.className = 'total-value mega';
@@ -2951,7 +2597,6 @@
         megaSpan.innerText = '0 ₽';
         megaTd.appendChild(megaSpan);
         totalTr.appendChild(megaTd);
-
         const sergoTd = document.createElement('td');
         const sergoSpan = document.createElement('span');
         sergoSpan.className = 'total-value sergo';
@@ -2959,7 +2604,6 @@
         sergoSpan.innerText = '0 ₽';
         sergoTd.appendChild(sergoSpan);
         totalTr.appendChild(sergoTd);
-
         tbody.appendChild(totalTr);
         updateTotals();
     }
@@ -2971,7 +2615,6 @@
         label.className = 'label ' + personKey;
         label.innerText = personName + ' — ';
         row.appendChild(label);
-
         const input = document.createElement('input');
         input.type = 'text';
         input.className = 'price-input';
@@ -2988,12 +2631,9 @@
 
     function onPriceInput(e) {
         const input = e.target;
-        const ownerKey = input.dataset.owner;
-        const day = input.dataset.day;
-        const personKey = input.dataset.person;
-        tableData[ownerKey][day][personKey] = input.value;
+        tableData[input.dataset.owner][input.dataset.day][input.dataset.person] = input.value;
         updateTotals();
-        if (currentUser && currentUser.key === ownerKey) {
+        if (currentUser && currentUser.key === input.dataset.owner) {
             hasUnsavedChanges = true;
             updateSaveButtonVisibility();
         }
@@ -3028,17 +2668,12 @@
                     DAYS.forEach(day => {
                         ['mega', 'sergo'].forEach(ownerKey => {
                             const src = cloud[ownerKey][day];
-                            if (src) {
-                                tableData[ownerKey][day] = {
-                                    alik: src.alik || '',
-                                    zhidkiy: src.zhidkiy || ''
-                                };
-                            }
+                            if (src) tableData[ownerKey][day] = { alik: src.alik || '', zhidkiy: src.zhidkiy || '' };
                         });
                     });
                 }
             }
-        } catch (e) { console.warn('Ошибка загрузки', e); }
+        } catch (e) { console.warn('loadTable', e); }
         renderTable();
     }
 
@@ -3049,7 +2684,6 @@
             cloud.mega[day] = { alik: '', zhidkiy: '' };
             cloud.sergo[day] = { alik: '', zhidkiy: '' };
         });
-
         try {
             const docRef = doc(db, 'data', ACC_DOC);
             const docSnap = await getDoc(docRef);
@@ -3059,25 +2693,20 @@
                     DAYS.forEach(day => {
                         ['mega', 'sergo'].forEach(ownerKey => {
                             const src = c[ownerKey] && c[ownerKey][day];
-                            if (src) {
-                                cloud[ownerKey][day] = { alik: src.alik || '', zhidkiy: src.zhidkiy || '' };
-                            }
+                            if (src) cloud[ownerKey][day] = { alik: src.alik || '', zhidkiy: src.zhidkiy || '' };
                         });
                     });
                 }
             }
         } catch(e) {}
-
         DAYS.forEach(day => {
             cloud[currentUser.key][day] = {
                 alik: tableData[currentUser.key][day].alik,
                 zhidkiy: tableData[currentUser.key][day].zhidkiy
             };
         });
-
-        try {
-            await setDoc(doc(db, 'data', ACC_DOC), { [ACC_FIELD]: cloud }, { merge: true });
-        } catch (e) { console.warn('Ошибка сохранения', e); }
+        try { await setDoc(doc(db, 'data', ACC_DOC), { [ACC_FIELD]: cloud }, { merge: true }); }
+        catch (e) { console.warn('saveTable', e); }
     }
 
     window.manualSave = async function() {
@@ -3092,17 +2721,14 @@
         setTimeout(() => toast.classList.remove('visible'), 2000);
     };
 
-    // ==================================================
-    // КАЛЕНДАРЬ
-    // ==================================================
+    // ============ КАЛЕНДАРЬ ============
     let skins = { mega: {}, sergo: {} };
     let pendingSkins = {};
     let currentDate = { mega: new Date(), sergo: new Date() };
     currentDate.mega.setDate(1);
     currentDate.sergo.setDate(1);
 
-    const MONTHS = ['Январь','Февраль','Март','Апрель','Май','Июнь',
-                    'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+    const MONTHS = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
     const CAL_DAYS = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
 
     window.switchPlayer = function(playerKey, btn) {
@@ -3119,12 +2745,10 @@
                 const data = docSnap.data();
                 skins.mega = data.mega || {};
                 skins.sergo = data.sergo || {};
-            } else {
-                skins = { mega: {}, sergo: {} };
-            }
+            } else skins = { mega: {}, sergo: {} };
             renderCalendar('mega');
             renderCalendar('sergo');
-        }, (error) => { console.warn('Ошибка загрузки скинов', error); });
+        }, (error) => console.warn('skins', error));
     }
 
     async function saveSkins() {
@@ -3144,41 +2768,32 @@
         const y = currentDate[playerKey].getFullYear();
         const m = currentDate[playerKey].getMonth();
         document.getElementById('calTitle-' + playerKey).innerText = `${MONTHS[m]} ${y}`;
-
         const cal = document.getElementById('calendar-' + playerKey);
         cal.innerHTML = '';
-
         CAL_DAYS.forEach(d => {
             const el = document.createElement('div');
             el.className = 'cal-dayname';
             el.innerText = d;
             cal.appendChild(el);
         });
-
         let firstDay = new Date(y, m, 1).getDay();
         firstDay = (firstDay === 0) ? 6 : firstDay - 1;
-
         const daysInMonth = new Date(y, m + 1, 0).getDate();
         const today = new Date();
-
         for (let i = 0; i < firstDay; i++) {
             const empty = document.createElement('div');
             empty.className = 'cal-cell empty';
             cal.appendChild(empty);
         }
-
         for (let d = 1; d <= daysInMonth; d++) {
             const cell = document.createElement('div');
             cell.className = 'cal-cell';
             if (currentUser && playerKey !== currentUser.key) cell.classList.add('locked');
-            if (d === today.getDate() && m === today.getMonth() && y === today.getFullYear()) {
-                cell.classList.add('today');
-            }
+            if (d === today.getDate() && m === today.getMonth() && y === today.getFullYear()) cell.classList.add('today');
             const dateEl = document.createElement('div');
             dateEl.className = 'cal-date';
             dateEl.innerText = d;
             cell.appendChild(dateEl);
-
             const key = dateKey(y, m, d);
             cell.appendChild(createPersonBlock(playerKey, 'alik', 'Алик', key));
             cell.appendChild(createPersonBlock(playerKey, 'zhidkiy', 'Жидкий', key));
@@ -3189,28 +2804,23 @@
     function createPersonBlock(playerKey, personKey, personName, dateKeyStr) {
         const wrap = document.createElement('div');
         wrap.className = 'cal-person';
-
         const nameEl = document.createElement('div');
         nameEl.className = 'cal-person-name ' + personKey;
         nameEl.innerText = personName;
         wrap.appendChild(nameEl);
-
         const box = document.createElement('div');
         box.className = 'skin-box';
-
         const pKey = pendingKey(playerKey, dateKeyStr, personKey);
         const savedSrc = skins[playerKey][dateKeyStr] && skins[playerKey][dateKeyStr][personKey];
         const pendingSrc = pendingSkins[pKey];
         const imgSrc = pendingSrc || savedSrc;
         const canEdit = currentUser && playerKey === currentUser.key;
-
         if (imgSrc) {
             box.classList.add('has-image');
             const img = document.createElement('img');
             img.src = imgSrc;
             img.onclick = (e) => { e.stopPropagation(); openModal(img.src, false); };
             box.appendChild(img);
-
             if (savedSrc && canEdit) {
                 const removeBtn = document.createElement('button');
                 removeBtn.className = 'skin-remove';
@@ -3219,15 +2829,12 @@
                     e.stopPropagation();
                     if (confirm('Удалить скин?')) {
                         delete skins[playerKey][dateKeyStr][personKey];
-                        if (Object.keys(skins[playerKey][dateKeyStr]).length === 0) {
-                            delete skins[playerKey][dateKeyStr];
-                        }
+                        if (Object.keys(skins[playerKey][dateKeyStr]).length === 0) delete skins[playerKey][dateKeyStr];
                         saveSkins();
                     }
                 };
                 box.appendChild(removeBtn);
             }
-
             if (pendingSrc && canEdit) {
                 box.classList.add('pending');
                 const saveBtn = document.createElement('button');
@@ -3249,7 +2856,6 @@
             ph.innerText = canEdit ? '+ скин' : '— пусто —';
             box.appendChild(ph);
         }
-
         if (canEdit) {
             const input = document.createElement('input');
             input.type = 'file';
@@ -3257,15 +2863,10 @@
             input.onchange = (e) => handleFileUpload(e, playerKey, personKey, dateKeyStr);
             box.appendChild(input);
             box.onclick = (e) => {
-                if (e.target.tagName === 'IMG' ||
-                    e.target.classList.contains('skin-remove') ||
-                    e.target.classList.contains('skin-save')) return;
+                if (e.target.tagName === 'IMG' || e.target.classList.contains('skin-remove') || e.target.classList.contains('skin-save')) return;
                 input.click();
             };
-        } else {
-            box.style.cursor = 'default';
-        }
-
+        } else box.style.cursor = 'default';
         wrap.appendChild(box);
         return wrap;
     }
@@ -3283,10 +2884,7 @@
                     canvas.width = w; canvas.height = h;
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, w, h);
-                    let result = (file.type === 'image/png')
-                        ? canvas.toDataURL('image/png')
-                        : canvas.toDataURL('image/jpeg', quality);
-                    resolve(result);
+                    resolve((file.type === 'image/png') ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg', quality));
                 };
                 img.src = e.target.result;
             };
@@ -3299,8 +2897,7 @@
         if (!file) return;
         if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
         const compressed = await compressImage(file, 512, 0.8);
-        const pKey = pendingKey(playerKey, dateKeyStr, personKey);
-        pendingSkins[pKey] = compressed;
+        pendingSkins[pendingKey(playerKey, dateKeyStr, personKey)] = compressed;
         renderCalendar(playerKey);
     }
 
@@ -3312,7 +2909,6 @@
     window.openModal = function(src, isVideoSrc) {
         const content = document.getElementById('modalContent');
         content.innerHTML = '';
-
         if (isVideoSrc || isVideo(src)) {
             const video = document.createElement('video');
             video.src = src;
@@ -3326,7 +2922,6 @@
             img.src = src;
             content.appendChild(img);
         }
-
         document.getElementById('modal').classList.add('active');
     };
 
@@ -3338,9 +2933,7 @@
 
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-    // ==================================================
-    // ЧАТ
-    // ==================================================
+    // ============ ЧАТ ============
     const chatMessages = document.getElementById('chatMessages');
     const chatInput = document.getElementById('chatInput');
     const chatStatus = document.getElementById('chatStatus');
@@ -3358,21 +2951,17 @@
                 addMessageToDOM(docSnap.id, data);
                 newIds.push(docSnap.id);
                 if (currentUser && data.author !== currentUser.login) {
-                    if (!seenMessageIds.has(docSnap.id)) {
-                        unreadFromOthers.add(docSnap.id);
-                    }
+                    if (!seenMessageIds.has(docSnap.id)) unreadFromOthers.add(docSnap.id);
                 }
             });
-
             const activeTab = localStorage.getItem(ACTIVE_TAB_KEY);
             if (activeTab === 'chat' && currentUser) markMessagesAsRead();
-
             newIds.forEach(id => seenMessageIds.add(id));
             chatMessages.scrollTop = chatMessages.scrollHeight;
             chatStatus.innerText = '🟢 онлайн';
         }, (error) => {
             chatStatus.innerText = '🔴 ошибка';
-            console.warn('Ошибка чата', error);
+            console.warn('chat', error);
         });
     }
 
@@ -3380,10 +2969,8 @@
         const div = document.createElement('div');
         div.className = 'chat-msg' + (currentUser && msg.author === currentUser.login ? ' own' : '');
         div.dataset.msgId = msgId;
-
         const authorKey = findUserKeyByLogin(msg.author) || '';
         const avatar = AVATARS[authorKey] || '';
-
         const av = document.createElement('div');
         av.className = 'msg-avatar' + (avatar ? '' : ' ' + authorKey);
         av.dataset.author = msg.author;
@@ -3391,19 +2978,14 @@
             const img = document.createElement('img');
             img.src = avatar;
             av.appendChild(img);
-        } else {
-            av.innerText = (msg.author[0] || '?').toUpperCase();
-        }
+        } else av.innerText = (msg.author[0] || '?').toUpperCase();
         div.appendChild(av);
-
         const body = document.createElement('div');
         body.className = 'msg-body';
-
         const authorEl = document.createElement('div');
         authorEl.className = 'msg-author';
         authorEl.innerText = msg.author;
         body.appendChild(authorEl);
-
         if (msg.type === 'sticker' && msg.sticker) {
             if (isVideo(msg.sticker)) {
                 const video = document.createElement('video');
@@ -3431,47 +3013,32 @@
             textEl.innerText = msg.text || '';
             body.appendChild(textEl);
         }
-
         const timeEl = document.createElement('div');
         timeEl.className = 'msg-time';
         if (msg.timestamp && msg.timestamp.toDate) {
-            const t = msg.timestamp.toDate();
-            timeEl.innerText = t.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+            timeEl.innerText = msg.timestamp.toDate().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
         }
         body.appendChild(timeEl);
-
         if (currentUser && msg.author === currentUser.login) {
             const readEl = document.createElement('div');
             readEl.className = 'msg-read';
-            readEl.dataset.readFor = msgId;
-            if (msg.readBy && msg.readBy.includes(getOtherUserKey())) {
-                readEl.innerText = 'Прочитано';
-            } else {
-                readEl.innerText = 'Отправлено';
-                readEl.style.opacity = '0.5';
-            }
+            if (msg.readBy && msg.readBy.includes(getOtherUserKey())) readEl.innerText = 'Прочитано';
+            else { readEl.innerText = 'Отправлено'; readEl.style.opacity = '0.5'; }
             body.appendChild(readEl);
         }
-
         div.appendChild(body);
-
         const isAdmin = currentUser && currentUser.key === 'mega';
         const isOwn = currentUser && msg.author === currentUser.login;
-
         if (isAdmin || isOwn) {
             const delBtn = document.createElement('button');
             delBtn.className = 'msg-delete';
             delBtn.innerHTML = '×';
-            delBtn.title = 'Удалить';
             delBtn.onclick = (e) => {
                 e.stopPropagation();
-                if (confirm('Удалить сообщение?')) {
-                    deleteDoc(doc(db, 'chat', msgId));
-                }
+                if (confirm('Удалить сообщение?')) deleteDoc(doc(db, 'chat', msgId));
             };
             div.appendChild(delBtn);
         }
-
         chatMessages.appendChild(div);
     }
 
@@ -3483,96 +3050,69 @@
     function createVoicePlayer(src, duration) {
         const wrap = document.createElement('div');
         wrap.className = 'voice-player';
-
         const playBtn = document.createElement('button');
         playBtn.className = 'voice-play-btn';
         playBtn.innerHTML = '▶';
         wrap.appendChild(playBtn);
-
         const wave = document.createElement('div');
         wave.className = 'voice-wave';
         const bars = [];
         for (let i = 0; i < 20; i++) {
             const bar = document.createElement('div');
             bar.className = 'voice-wave-bar';
-            const h = 20 + Math.random() * 80;
-            bar.style.height = h + '%';
+            bar.style.height = (20 + Math.random() * 80) + '%';
             wave.appendChild(bar);
             bars.push(bar);
         }
         wrap.appendChild(wave);
-
         const dur = document.createElement('div');
         dur.className = 'voice-duration';
         dur.innerText = formatDuration(duration);
         wrap.appendChild(dur);
-
         const audio = document.createElement('audio');
         audio.src = src;
         audio.preload = 'metadata';
         audio.volume = window.currentVolume;
         audio.style.display = 'none';
         wrap.appendChild(audio);
-
         let isPlaying = false;
-
         playBtn.onclick = (e) => {
             e.stopPropagation();
-            if (isPlaying) {
-                audio.pause();
-            } else {
+            if (isPlaying) audio.pause();
+            else {
                 audio.volume = window.currentVolume;
                 document.querySelectorAll('audio').forEach(a => { if (a !== audio) a.pause(); });
                 audio.play();
             }
         };
-
         audio.onplay = () => { isPlaying = true; playBtn.innerHTML = '⏸'; };
         audio.onpause = () => { isPlaying = false; playBtn.innerHTML = '▶'; };
-        audio.onended = () => {
-            isPlaying = false; playBtn.innerHTML = '▶';
-            updateWaveProgress(0);
-        };
+        audio.onended = () => { isPlaying = false; playBtn.innerHTML = '▶'; updateWaveProgress(0); };
         audio.ontimeupdate = () => {
             if (audio.duration) {
-                const progress = audio.currentTime / audio.duration;
-                updateWaveProgress(progress);
-                const remaining = Math.max(0, Math.ceil(audio.duration - audio.currentTime));
-                dur.innerText = formatDuration(remaining);
+                updateWaveProgress(audio.currentTime / audio.duration);
+                dur.innerText = formatDuration(Math.max(0, Math.ceil(audio.duration - audio.currentTime)));
             }
         };
-        audio.onloadedmetadata = () => {
-            dur.innerText = formatDuration(Math.round(audio.duration));
-        };
-
+        audio.onloadedmetadata = () => { dur.innerText = formatDuration(Math.round(audio.duration)); };
         function updateWaveProgress(progress) {
-            const playedBars = Math.round(progress * bars.length);
-            bars.forEach((bar, i) => {
-                if (i < playedBars) bar.classList.add('played');
-                else bar.classList.remove('played');
-            });
+            const played = Math.round(progress * bars.length);
+            bars.forEach((b, i) => i < played ? b.classList.add('played') : b.classList.remove('played'));
         }
-
         wave.onclick = (e) => {
             e.stopPropagation();
             const rect = wave.getBoundingClientRect();
-            const percent = (e.clientX - rect.left) / rect.width;
-            if (audio.duration) audio.currentTime = percent * audio.duration;
+            if (audio.duration) audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
         };
-
         return wrap;
     }
 
     function formatDuration(sec) {
         sec = Math.max(0, Math.floor(sec));
-        const m = Math.floor(sec / 60);
-        const s = sec % 60;
-        return `${m}:${String(s).padStart(2, '0')}`;
+        return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
     }
 
-    // ==================================================
-    // ПЕЧАТАЕТ
-    // ==================================================
+    // ============ ПЕЧАТАЕТ ============
     let typingTimeout = null;
     let typingUnsub = null;
     let typingClearTimeout = null;
@@ -3584,25 +3124,20 @@
             const indicator = document.getElementById('typingIndicator');
             const nameEl = document.getElementById('typingName');
             if (!indicator) return;
-            if (!docSnap.exists()) {
-                indicator.classList.remove('visible');
-                return;
-            }
+            if (!docSnap.exists()) { indicator.classList.remove('visible'); return; }
             const data = docSnap.data();
-            let someoneTyping = false;
             const now = Date.now();
             for (const [login, info] of Object.entries(data)) {
                 if (!currentUser || login === currentUser.login) continue;
                 if (!info || !info.timestamp) continue;
                 const ts = info.timestamp.toDate ? info.timestamp.toDate().getTime() : info.timestamp;
                 if (now - ts < 3000) {
-                    someoneTyping = true;
                     nameEl.innerText = login + ' печатает';
-                    break;
+                    indicator.classList.add('visible');
+                    return;
                 }
             }
-            if (someoneTyping) indicator.classList.add('visible');
-            else indicator.classList.remove('visible');
+            indicator.classList.remove('visible');
         });
     }
 
@@ -3619,7 +3154,7 @@
             } catch(e) {}
         }, 200);
         clearTimeout(typingClearTimeout);
-        typingClearTimeout = setTimeout(() => { clearTypingStatus(); }, 2500);
+        typingClearTimeout = setTimeout(() => clearTypingStatus(), 2500);
     };
 
     async function clearTypingStatus() {
@@ -3635,8 +3170,7 @@
     }
 
     async function markMessagesAsRead() {
-        if (!currentUser) return;
-        if (unreadFromOthers.size === 0) return;
+        if (!currentUser || unreadFromOthers.size === 0) return;
         for (const msgId of Array.from(unreadFromOthers)) {
             try {
                 const docRef = doc(db, 'chat', msgId);
@@ -3662,16 +3196,14 @@
             await addDoc(collection(db, 'chat'), {
                 author: currentUser.login,
                 type: 'text',
-                text: text,
+                text,
                 readBy: [currentUser.key],
                 timestamp: serverTimestamp()
             });
-        } catch (e) { console.warn('Ошибка отправки', e); }
+        } catch (e) { console.warn('send', e); }
     };
 
-    // ==================================================
-    // ГОЛОСОВЫЕ
-    // ==================================================
+    // ============ ГОЛОСОВЫЕ ============
     let mediaRecorder = null;
     let audioChunks = [];
     let recordStartTime = 0;
@@ -3686,30 +3218,17 @@
             currentStream = stream;
             let mimeType = 'audio/webm';
             if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) mimeType = 'audio/webm;codecs=opus';
-            else if (MediaRecorder.isTypeSupported('audio/webm')) mimeType = 'audio/webm';
             else if (MediaRecorder.isTypeSupported('audio/mp4')) mimeType = 'audio/mp4';
-
             mediaRecorder = new MediaRecorder(stream, { mimeType });
             audioChunks = [];
-
-            mediaRecorder.ondataavailable = (e) => {
-                if (e.data.size > 0) audioChunks.push(e.data);
-            };
-
+            mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) audioChunks.push(e.data); };
             mediaRecorder.onstop = async () => {
                 const blob = new Blob(audioChunks, { type: mimeType });
                 const duration = (Date.now() - recordStartTime) / 1000;
-                if (currentStream) {
-                    currentStream.getTracks().forEach(t => t.stop());
-                    currentStream = null;
-                }
-                if (window._cancelRecording) {
-                    window._cancelRecording = false;
-                    return;
-                }
-                await sendVoiceMessage(blob, duration, mimeType);
+                if (currentStream) { currentStream.getTracks().forEach(t => t.stop()); currentStream = null; }
+                if (window._cancelRecording) { window._cancelRecording = false; return; }
+                await sendVoiceMessage(blob, duration);
             };
-
             mediaRecorder.start();
             isRecording = true;
             recordStartTime = Date.now();
@@ -3718,7 +3237,7 @@
             recordTimerInterval = setInterval(updateRecordTime, 200);
             updateRecordTime();
         } catch (err) {
-            console.error('Ошибка микрофона:', err);
+            console.error(err);
             alert('Не удалось получить доступ к микрофону.');
         }
     };
@@ -3749,43 +3268,34 @@
         document.getElementById('micBtn').classList.remove('recording');
         document.getElementById('recordPanel').classList.remove('open');
         document.getElementById('recordTime').innerText = '0:00';
-        if (recordTimerInterval) {
-            clearInterval(recordTimerInterval);
-            recordTimerInterval = null;
-        }
+        if (recordTimerInterval) { clearInterval(recordTimerInterval); recordTimerInterval = null; }
     }
 
-    async function sendVoiceMessage(blob, duration, mimeType) {
+    async function sendVoiceMessage(blob, duration) {
         if (!currentUser) return;
-        const sizeKB = Math.round(blob.size / 1024);
-        if (sizeKB > 800) {
-            alert(`Голосовое весит ${sizeKB} КБ — это много. Firestore не примет.`);
+        if (Math.round(blob.size / 1024) > 800) {
+            alert('Голосовое слишком большое.');
             return;
         }
         const reader = new FileReader();
         reader.onloadend = async () => {
-            const base64 = reader.result;
             try {
                 await addDoc(collection(db, 'chat'), {
                     author: currentUser.login,
                     type: 'voice',
-                    audio: base64,
+                    audio: reader.result,
                     duration: Math.round(duration),
                     readBy: [currentUser.key],
                     timestamp: serverTimestamp()
                 });
                 const cm = document.getElementById('chatMessages');
                 setTimeout(() => { cm.scrollTop = cm.scrollHeight; }, 100);
-            } catch (e) {
-                console.warn('Ошибка отправки голосового', e);
-            }
+            } catch (e) { console.warn('voice', e); }
         };
         reader.readAsDataURL(blob);
     }
 
-    // ==================================================
-    // СТИКЕРЫ
-    // ==================================================
+    // ============ СТИКЕРЫ ============
     window.toggleStickerPanel = function() {
         const panel = document.getElementById('stickerPanel');
         panel.classList.toggle('open');
@@ -3812,11 +3322,7 @@
             const btn = document.createElement('button');
             btn.className = 'sticker-pack-tab' + (packName === currentChatPack ? ' active' : '');
             btn.innerHTML = `${escapeHtml(packName)} <span class="pack-count">${STICKER_PACKS[packName].length}</span>`;
-            btn.onclick = () => {
-                currentChatPack = packName;
-                renderStickerPacksTabs();
-                renderStickerGrid();
-            };
+            btn.onclick = () => { currentChatPack = packName; renderStickerPacksTabs(); renderStickerGrid(); };
             tabs.appendChild(btn);
         });
     }
@@ -3828,9 +3334,7 @@
         if (!currentChatPack || !STICKER_PACKS[currentChatPack] || STICKER_PACKS[currentChatPack].length === 0) {
             const empty = document.createElement('div');
             empty.className = 'sticker-empty';
-            empty.innerText = Object.keys(STICKER_PACKS).length === 0
-                ? 'Стикеров пока нет.'
-                : 'В этом паке пока нет стикеров.';
+            empty.innerText = Object.keys(STICKER_PACKS).length === 0 ? 'Стикеров пока нет.' : 'В этом паке пока нет стикеров.';
             grid.appendChild(empty);
             return;
         }
@@ -3845,10 +3349,6 @@
                 video.muted = true;
                 video.playsInline = true;
                 item.appendChild(video);
-                const badge = document.createElement('div');
-                badge.className = 'sticker-video-badge';
-                badge.innerText = 'WEBM';
-                item.appendChild(badge);
             } else {
                 const img = document.createElement('img');
                 img.src = stickerSrc;
@@ -3869,9 +3369,7 @@
                 readBy: [currentUser.key],
                 timestamp: serverTimestamp()
             });
-            const cm = document.getElementById('chatMessages');
-            setTimeout(() => { cm.scrollTop = cm.scrollHeight; }, 100);
-        } catch (e) { console.warn('Ошибка отправки стикера', e); }
+        } catch (e) { console.warn('sticker', e); }
     }
 
     function processStickerFile(file) {
@@ -3881,14 +3379,8 @@
             if (!isWebm && !isImage) { reject(new Error('Неподдерживаемый формат')); return; }
             const reader = new FileReader();
             reader.onload = (e) => {
-                if (isWebm) {
-                    const sizeKB = Math.round(file.size / 1024);
-                    if (sizeKB > 500) {
-                        const ok = confirm(`WebM весит ${sizeKB} КБ — это много. Продолжить?`);
-                        if (!ok) { reject(new Error('Отменено')); return; }
-                    }
-                    resolve(e.target.result);
-                } else {
+                if (isWebm) resolve(e.target.result);
+                else {
                     const img = new Image();
                     img.onload = () => {
                         const canvas = document.createElement('canvas');
@@ -3896,13 +3388,10 @@
                         let w = img.width, h = img.height;
                         if (w > h && w > maxSize) { h = Math.round(h * maxSize / w); w = maxSize; }
                         else if (h > maxSize) { w = Math.round(w * maxSize / h); h = maxSize; }
-                        canvas.width = w; canvas.height = h;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, w, h);
-                        let result = (file.type === 'image/png')
-                            ? canvas.toDataURL('image/png')
-                            : canvas.toDataURL('image/jpeg', 0.85);
-                        resolve(result);
+                        canvas.width = w;
+                        canvas.height = h;
+                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                        resolve(file.type === 'image/png' ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg', 0.85));
                     };
                     img.src = e.target.result;
                 }
@@ -3912,36 +3401,22 @@
         });
     }
 
-    function estimatePackSizeKB(packName) {
-        if (!STICKER_PACKS[packName]) return 0;
-        let total = 0;
-        STICKER_PACKS[packName].forEach(src => {
-            const base64Part = src.split(',')[1] || '';
-            total += (base64Part.length * 3) / 4;
-        });
-        return Math.round(total / 1024);
-    }
-
     window.createPack = async function() {
         const input = document.getElementById('newPackName');
         const name = input.value.trim();
         if (!name) { alert('Введи название'); return; }
-        if (name.length > 30) { alert('До 30 символов'); return; }
         if (STICKER_PACKS[name]) { alert('Уже есть'); return; }
         STICKER_PACKS[name] = [];
         input.value = '';
         await saveAccounts();
-        currentAdminPack = name;
         renderPacksAdmin();
         renderStickerPacksTabs();
         renderStickerGrid();
     };
 
     window.deletePack = async function(packName) {
-        const count = STICKER_PACKS[packName] ? STICKER_PACKS[packName].length : 0;
-        if (!confirm(`Удалить пак "${packName}" (${count} стикеров)?`)) return;
+        if (!confirm(`Удалить пак "${packName}"?`)) return;
         delete STICKER_PACKS[packName];
-        if (currentAdminPack === packName) currentAdminPack = null;
         if (currentChatPack === packName) currentChatPack = null;
         await saveAccounts();
         renderPacksAdmin();
@@ -3954,38 +3429,21 @@
         if (!files.length) return;
         if (!STICKER_PACKS[packName]) STICKER_PACKS[packName] = [];
         const remaining = MAX_STICKERS_PER_PACK - STICKER_PACKS[packName].length;
-        if (remaining <= 0) {
-            alert(`Максимум ${MAX_STICKERS_PER_PACK} стикеров`);
-            event.target.value = '';
-            return;
-        }
-        const toAdd = files.slice(0, remaining);
-        let added = 0, skipped = 0;
-        for (const file of toAdd) {
+        for (const file of files.slice(0, remaining)) {
             try {
                 const result = await processStickerFile(file);
                 STICKER_PACKS[packName].push(result);
-                added++;
-            } catch (err) {
-                console.warn('Пропущен:', file.name, err.message);
-                skipped++;
-            }
+            } catch (err) { console.warn('Пропущен:', file.name); }
         }
-        if (added > 0) {
-            await saveAccounts();
-            renderPacksAdmin();
-            renderStickerPacksTabs();
-            renderStickerGrid();
-            const size = estimatePackSizeKB(packName);
-            if (size > 900) alert(`⚠️ Пак весит ~${size} КБ. Firestore может не сохранить.`);
-        }
-        if (skipped > 0) alert(`Пропущено: ${skipped}`);
+        await saveAccounts();
+        renderPacksAdmin();
+        renderStickerPacksTabs();
+        renderStickerGrid();
         event.target.value = '';
     };
 
     window.removeStickerFromPack = async function(packName, idx) {
         if (!confirm('Удалить стикер?')) return;
-        if (!STICKER_PACKS[packName]) return;
         STICKER_PACKS[packName].splice(idx, 1);
         await saveAccounts();
         renderPacksAdmin();
@@ -3995,16 +3453,10 @@
 
     window.renamePack = async function(packName) {
         const newName = prompt('Новое название:', packName);
-        if (!newName || newName === packName) return;
-        if (newName.length > 30) { alert('До 30 символов'); return; }
-        if (STICKER_PACKS[newName]) { alert('Занято'); return; }
+        if (!newName || newName === packName || STICKER_PACKS[newName]) return;
         const newPacks = {};
-        for (const [name, arr] of Object.entries(STICKER_PACKS)) {
-            if (name === packName) newPacks[newName] = arr;
-            else newPacks[name] = arr;
-        }
+        for (const [name, arr] of Object.entries(STICKER_PACKS)) newPacks[name === packName ? newName : name] = arr;
         STICKER_PACKS = newPacks;
-        if (currentAdminPack === packName) currentAdminPack = newName;
         if (currentChatPack === packName) currentChatPack = newName;
         await saveAccounts();
         renderPacksAdmin();
@@ -4018,10 +3470,7 @@
         list.innerHTML = '';
         const packNames = Object.keys(STICKER_PACKS);
         if (packNames.length === 0) {
-            const empty = document.createElement('div');
-            empty.style.cssText = 'color:#666;font-size:13px;font-style:italic;text-align:center;padding:20px;';
-            empty.innerText = 'Пока нет паков.';
-            list.appendChild(empty);
+            list.innerHTML = '<p style="color:#666;font-size:13px;font-style:italic;text-align:center;padding:20px;">Пока нет паков.</p>';
             return;
         }
         packNames.forEach(packName => {
@@ -4030,44 +3479,28 @@
             block.className = 'pack-block';
             const header = document.createElement('div');
             header.className = 'pack-header';
-            const sizeKB = estimatePackSizeKB(packName);
-            const webmCount = stickers.filter(s => isVideo(s)).length;
-            let badgeClass = 'pack-badge';
-            if (sizeKB > 900) badgeClass += ' danger';
-            else if (sizeKB > 700) badgeClass += ' warn';
             const title = document.createElement('div');
             title.className = 'pack-title';
-            title.innerHTML = `${escapeHtml(packName)} <span class="${badgeClass}">${stickers.length} / ${MAX_STICKERS_PER_PACK} · ${sizeKB} КБ</span>`;
-            if (webmCount > 0) {
-                const webmBadge = document.createElement('span');
-                webmBadge.className = 'pack-badge';
-                webmBadge.style.background = '#0288d1';
-                webmBadge.innerText = `🎬 ${webmCount} WebM`;
-                title.appendChild(webmBadge);
-            }
+            title.innerHTML = `${escapeHtml(packName)} <span class="pack-badge">${stickers.length} / ${MAX_STICKERS_PER_PACK}</span>`;
             const actions = document.createElement('div');
             actions.className = 'pack-header-actions';
             const renameBtn = document.createElement('button');
             renameBtn.className = 'admin-btn small';
-            renameBtn.innerText = '✏️ Переименовать';
+            renameBtn.innerText = '✏️';
             renameBtn.onclick = () => renamePack(packName);
             const uploadBtn = document.createElement('button');
             uploadBtn.className = 'admin-btn small';
-            uploadBtn.innerText = '📷 + Стикеры';
-            uploadBtn.onclick = () => {
-                const fileInput = document.getElementById('uploadTo-' + safeId(packName));
-                if (fileInput) fileInput.click();
-            };
+            uploadBtn.innerText = '📷 +';
             const fileInput = document.createElement('input');
             fileInput.type = 'file';
-            fileInput.id = 'uploadTo-' + safeId(packName);
             fileInput.accept = 'image/png,image/jpeg,image/jpg,image/webp,video/webm,.webm';
             fileInput.multiple = true;
             fileInput.style.display = 'none';
             fileInput.onchange = (e) => uploadStickerToPack(e, packName);
+            uploadBtn.onclick = () => fileInput.click();
             const delBtn = document.createElement('button');
             delBtn.className = 'admin-btn small danger';
-            delBtn.innerText = '🗑 Удалить пак';
+            delBtn.innerText = '🗑';
             delBtn.onclick = () => deletePack(packName);
             actions.appendChild(renameBtn);
             actions.appendChild(uploadBtn);
@@ -4076,40 +3509,32 @@
             header.appendChild(title);
             header.appendChild(actions);
             block.appendChild(header);
+
             const grid = document.createElement('div');
             grid.className = 'pack-stickers';
             if (stickers.length === 0) {
-                const empty = document.createElement('div');
-                empty.className = 'pack-empty';
-                empty.innerText = 'Пак пуст';
-                grid.appendChild(empty);
+                grid.innerHTML = '<div class="pack-empty">Пак пуст</div>';
             } else {
                 stickers.forEach((src, idx) => {
                     const item = document.createElement('div');
                     item.className = 'sticker-admin-item';
                     if (isVideo(src)) {
-                        const video = document.createElement('video');
-                        video.src = src;
-                        video.autoplay = true;
-                        video.loop = true;
-                        video.muted = true;
-                        video.playsInline = true;
-                        video.onclick = (e) => { e.stopPropagation(); openModal(src, true); };
-                        item.appendChild(video);
-                        const badge = document.createElement('div');
-                        badge.className = 'webm-badge';
-                        badge.innerText = 'WEBM';
-                        item.appendChild(badge);
+                        const v = document.createElement('video');
+                        v.src = src;
+                        v.autoplay = true;
+                        v.loop = true;
+                        v.muted = true;
+                        v.playsInline = true;
+                        item.appendChild(v);
                     } else {
-                        const img = document.createElement('img');
-                        img.src = src;
-                        img.onclick = (e) => { e.stopPropagation(); openModal(src, false); };
-                        item.appendChild(img);
+                        const im = document.createElement('img');
+                        im.src = src;
+                        item.appendChild(im);
                     }
                     const rm = document.createElement('button');
                     rm.className = 'sticker-admin-remove';
                     rm.innerHTML = '×';
-                    rm.onclick = (e) => { e.stopPropagation(); removeStickerFromPack(packName, idx); };
+                    rm.onclick = () => removeStickerFromPack(packName, idx);
                     item.appendChild(rm);
                     grid.appendChild(item);
                 });
@@ -4119,16 +3544,11 @@
         });
     }
 
-    function safeId(str) { return str.replace(/[^a-zA-Z0-9]/g, '_'); }
     function escapeHtml(str) {
-        return String(str).replace(/[&<>"']/g, (m) => ({
-            '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-        }[m]));
+        return String(str).replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
     }
 
-    // ==================================================
-    // АДМИНКА — аккаунты
-    // ==================================================
+    // ============ АДМИНКА ============
     function loadAdminFields() {
         if (!currentUser || currentUser.key !== 'mega') return;
         let megaLogin = 'MEGATEM41K', sergoLogin = 'Sergo Bulkin';
@@ -4154,31 +3574,18 @@
             el.style.background = 'none';
         } else {
             el.innerHTML = key === 'mega' ? 'M' : 'S';
-            el.className = 'avatar-preview ' + (key === 'mega' ? 'mega' : 'sergo');
-            if (key === 'mega') el.style.background = 'linear-gradient(135deg, #ff6b6b, #c62828)';
-            else el.style.background = 'linear-gradient(135deg, #4fc3f7, #0288d1)';
+            el.className = 'avatar-preview ' + key;
+            el.style.background = key === 'mega' ? 'linear-gradient(135deg, #ff6b6b, #c62828)' : 'linear-gradient(135deg, #4fc3f7, #0288d1)';
         }
     }
 
     window.uploadAvatar = async function(event, key) {
         const file = event.target.files[0];
-        if (!file) return;
-        if (!file.type.startsWith('image/')) { alert('Только картинки'); return; }
-        const compressed = await compressImage(file, 200, 0.85);
-        AVATARS[key] = compressed;
+        if (!file || !file.type.startsWith('image/')) return;
+        AVATARS[key] = await compressImage(file, 200, 0.85);
         await saveAccounts();
         updateAvatarPreview(key);
         if (currentUser && currentUser.key === key) renderUserBar();
-        setTimeout(() => {
-            document.querySelectorAll('.chat-msg .msg-avatar').forEach(el => {
-                const author = el.dataset.author;
-                const k = findUserKeyByLogin(author);
-                if (k && AVATARS[k]) {
-                    el.innerHTML = `<img src="${AVATARS[k]}">`;
-                    el.style.background = 'none';
-                }
-            });
-        }, 100);
     };
 
     window.removeAvatar = async function(key) {
@@ -4187,18 +3594,6 @@
         await saveAccounts();
         updateAvatarPreview(key);
         if (currentUser && currentUser.key === key) renderUserBar();
-        setTimeout(() => {
-            document.querySelectorAll('.chat-msg .msg-avatar').forEach(el => {
-                const author = el.dataset.author;
-                const k = findUserKeyByLogin(author);
-                if (k === key) {
-                    el.innerHTML = (author[0] || '?').toUpperCase();
-                    el.style.background = k === 'mega'
-                        ? 'linear-gradient(135deg, #ff6b6b, #c62828)'
-                        : 'linear-gradient(135deg, #4fc3f7, #0288d1)';
-                }
-            });
-        }, 100);
     };
 
     window.saveAccount = async function(key) {
@@ -4207,30 +3602,14 @@
         const msgEl = document.getElementById('msg-' + key);
         const newLogin = loginInput.value.trim();
         const newPassword = passwordInput.value;
-        if (!newLogin) {
-            msgEl.className = 'admin-msg err';
-            msgEl.innerText = 'Логин не может быть пустым';
-            return;
-        }
+        if (!newLogin) { msgEl.className = 'admin-msg err'; msgEl.innerText = 'Логин пустой'; return; }
         let oldLogin = null;
-        for (const [lg, acc] of Object.entries(ACCOUNTS)) {
-            if (acc.key === key) oldLogin = lg;
-        }
-        if (newLogin !== oldLogin && ACCOUNTS[newLogin]) {
-            msgEl.className = 'admin-msg err';
-            msgEl.innerText = 'Логин уже занят';
-            return;
-        }
+        for (const [lg, acc] of Object.entries(ACCOUNTS)) if (acc.key === key) oldLogin = lg;
+        if (newLogin !== oldLogin && ACCOUNTS[newLogin]) { msgEl.className = 'admin-msg err'; msgEl.innerText = 'Занято'; return; }
         const newAccounts = {};
         for (const [lg, acc] of Object.entries(ACCOUNTS)) {
-            if (acc.key === key) {
-                newAccounts[newLogin] = {
-                    password: newPassword || acc.password,
-                    key: acc.key
-                };
-            } else {
-                newAccounts[lg] = acc;
-            }
+            if (acc.key === key) newAccounts[newLogin] = { password: newPassword || acc.password, key: acc.key };
+            else newAccounts[lg] = acc;
         }
         ACCOUNTS = newAccounts;
         await saveAccounts();
@@ -4245,289 +3624,21 @@
         setTimeout(() => { msgEl.innerText = ''; }, 2000);
     };
 
-    // ==================================================
-    // РЕДАКТОР КЕЙСОВ
-    // ==================================================
-    const DEMO_RARITIES = {gray:'Ширпотреб',lightblue:'Промышленное',blue:'Армейское',purple:'Запрещённое',pink:'Засекреченное',red:'Тайное',gold:'Золотое'};
-    let caseEditorCurrentId = 'rainy';
-
-    function caseRarity(it) {
-        if (it && DEMO_RARITIES[it.rarity]) return it.rarity;
-        const w = String(it?.weapon || '').toLowerCase();
-        const c = Number(it?.chance) || 0;
-        if (/нож|перчат|агент|брелок|charm/.test(w)) return 'gold';
-        if (c <= .5) return 'red';
-        if (c <= 1.5) return 'pink';
-        if (c <= 8) return 'purple';
-        if (c <= 20) return 'blue';
-        if (c <= 35) return 'lightblue';
-        return 'gray';
-    }
-
-    async function loadEditableCases() {
-        try {
-            const snap = await getDoc(doc(db, 'data', 'cases'));
-            if (!snap.exists() || !Array.isArray(snap.data().items)) return;
-            const saved = snap.data().items;
-            DEMO_CASES = DEMO_CASES.map(base => {
-                const x = saved.find(v => v && v.id === base.id);
-                if (!x) return base;
-                return {
-                    ...base,
-                    name: String(x.name ?? base.name),
-                    icon: String(x.icon ?? base.icon),
-                    cover: String(x.cover ?? base.cover),
-                    cost: Math.max(0, Number(x.cost ?? base.cost ?? DEMO_CASE_COST) || 0),
-                    items: Array.isArray(x.items) ? x.items.map((it, i) => ({
-                        id: it.id || ('item_' + base.id + '_' + i),
-                        weapon: String(it.weapon || 'Оружие'),
-                        name: String(it.name || 'Без названия'),
-                        chance: Math.max(0, Number(it.chance) || 0),
-                        image: String(it.image || ''),
-                        rarity: caseRarity(it)
-                    })) : base.items
-                };
-            });
-        } catch(e) { console.warn('Не удалось загрузить настройки кейсов', e); }
-    }
-
-    async function saveEditableCases() {
-        const items = DEMO_CASES.map(c => ({
-            id: c.id, name: c.name, icon: c.icon, cover: c.cover,
-            cost: Math.max(0, Number(c.cost ?? DEMO_CASE_COST) || 0),
-            items: (c.items || []).map((it, i) => ({
-                id: it.id || ('item_' + c.id + '_' + i),
-                weapon: it.weapon, name: it.name,
-                chance: Math.max(0, Number(it.chance) || 0),
-                image: it.image, rarity: caseRarity(it)
-            }))
-        }));
-        await setDoc(doc(db, 'data', 'cases'), {items}, {merge: true});
-    }
-
-    function getCaseEditorCase() { return DEMO_CASES.find(c => c.id === caseEditorCurrentId) || DEMO_CASES[0] || null; }
-
-    function renderCaseEditor() {
-        const s = document.getElementById('caseEditorSelect');
-        const b = document.getElementById('caseEditorBody');
-        if (!s || !b) return;
-        s.innerHTML = '';
-        DEMO_CASES.forEach(c => {
-            const o = document.createElement('option');
-            o.value = c.id;
-            o.textContent = c.icon + ' ' + c.name;
-            s.appendChild(o);
-        });
-        if (!DEMO_CASES.length) { b.style.display = 'none'; return; }
-        if (!DEMO_CASES.some(c => c.id === caseEditorCurrentId)) caseEditorCurrentId = DEMO_CASES[0].id;
-        s.value = caseEditorCurrentId;
-        const c = getCaseEditorCase();
-        document.getElementById('caseEditorName').value = c.name || '';
-        document.getElementById('caseEditorIcon').value = c.icon || '🎁';
-        document.getElementById('caseEditorCover').value = c.cover || '';
-        document.getElementById('caseEditorCost').value = c.cost ?? DEMO_CASE_COST;
-        renderCaseEditorItems(c);
-    }
-
-    function renderCaseEditorItems(c) {
-        const list = document.getElementById('caseEditorItems');
-        if (!list) return;
-        list.innerHTML = '';
-        (c.items || []).forEach((it, idx) => {
-            const row = document.createElement('div');
-            row.className = 'case-editor-item';
-            const thumb = document.createElement('div');
-            thumb.className = 'case-editor-thumb';
-            if (it.image) {
-                const im = document.createElement('img');
-                im.src = it.image;
-                thumb.appendChild(im);
-            } else {
-                thumb.innerText = '🎁';
-            }
-            const field = (label, cls) => {
-                const w = document.createElement('div');
-                w.className = 'case-editor-field ' + (cls || '');
-                const l = document.createElement('div');
-                l.className = 'case-editor-label';
-                l.innerText = label;
-                w.appendChild(l);
-                return w;
-            };
-            const nw = field('Название');
-            const ni = document.createElement('input');
-            ni.className = 'editor-name';
-            ni.value = it.name || '';
-            nw.appendChild(ni);
-
-            const ww = field('Оружие', 'editor-weapon');
-            const wi = document.createElement('input');
-            wi.className = 'editor-weapon-input';
-            wi.value = it.weapon || '';
-            ww.appendChild(wi);
-
-            const cw = field('Шанс %', 'editor-chance');
-            const ci = document.createElement('input');
-            ci.className = 'editor-chance-input';
-            ci.type = 'number';
-            ci.step = '.001';
-            ci.min = '0';
-            ci.value = it.chance ?? 0;
-            cw.appendChild(ci);
-
-            const rw = field('Качество', 'editor-rarity');
-            const rs = document.createElement('select');
-            rs.className = 'editor-rarity-select';
-            Object.entries(DEMO_RARITIES).forEach(([k, v]) => {
-                const o = document.createElement('option');
-                o.value = k;
-                o.textContent = v;
-                if (caseRarity(it) === k) o.selected = true;
-                rs.appendChild(o);
-            });
-            rw.appendChild(rs);
-
-            const iw = field('Фото (URL)', 'editor-image');
-            const ii = document.createElement('input');
-            ii.className = 'editor-image-input';
-            ii.value = it.image || '';
-            iw.appendChild(ii);
-
-            const up = document.createElement('div');
-            up.className = 'case-editor-upload';
-            const fi = document.createElement('input');
-            fi.type = 'file';
-            fi.accept = 'image/png,image/jpeg,image/jpg,image/webp';
-            fi.style.display = 'none';
-            const ub = document.createElement('button');
-            ub.type = 'button';
-            ub.className = 'admin-btn small';
-            ub.innerText = '📷';
-            ub.onclick = () => fi.click();
-            fi.onchange = async e => {
-                const f = e.target.files?.[0];
-                if (!f) return;
-                try {
-                    ii.value = await compressImage(f, 420, .82);
-                    thumb.innerHTML = '';
-                    const im = document.createElement('img');
-                    im.src = ii.value;
-                    thumb.appendChild(im);
-                } catch(err) { alert('Не удалось обработать фото'); }
-                e.target.value = '';
-            };
-            up.appendChild(ub);
-            up.appendChild(fi);
-            iw.appendChild(up);
-
-            const del = document.createElement('button');
-            del.type = 'button';
-            del.className = 'case-editor-remove';
-            del.innerText = '×';
-            del.onclick = () => { c.items.splice(idx, 1); renderCaseEditorItems(c); };
-
-            [thumb, nw, ww, cw, rw, iw, del].forEach(x => row.appendChild(x));
-            list.appendChild(row);
-        });
-    }
-
-    window.selectCaseForEdit = () => {
-        const s = document.getElementById('caseEditorSelect');
-        if (s) { caseEditorCurrentId = s.value; renderCaseEditor(); }
-    };
-
-    window.addCaseItemEditor = () => {
-        const c = getCaseEditorCase();
-        if (!c) return;
-        c.items.push({id: 'item_' + Date.now(), weapon: 'AK-47', name: 'Новый скин', chance: 1, image: '', rarity: 'gray'});
-        renderCaseEditorItems(c);
-    };
-
-    window.handleCaseCoverUpload = async e => {
-        const f = e.target.files?.[0];
-        if (!f) return;
-        try {
-            const x = await compressImage(f, 520, .84);
-            document.getElementById('caseEditorCover').value = x;
-        } catch(err) { alert('Не удалось обработать обложку'); }
-        e.target.value = '';
-    };
-
-    window.saveCaseEditor = async () => {
-        if (!currentUser || currentUser.key !== 'mega') { alert('Только администратор'); return; }
-        const c = getCaseEditorCase();
-        if (!c) return;
-        const st = document.getElementById('caseEditorStatus');
-        try {
-            c.name = document.getElementById('caseEditorName').value.trim();
-            if (!c.name) { st.className = 'case-editor-status err'; st.innerText = '❌ Введи название кейса'; return; }
-            c.icon = document.getElementById('caseEditorIcon').value.trim() || '🎁';
-            c.cover = document.getElementById('caseEditorCover').value.trim();
-            c.cost = Math.max(0, Number(document.getElementById('caseEditorCost').value) || 0);
-
-            const rows = [...document.querySelectorAll('#caseEditorItems .case-editor-item')];
-            c.items = rows.map((r, i) => {
-                const old = c.items[i] || {};
-                return {
-                    id: old.id || ('item_' + Date.now() + '_' + i),
-                    name: r.querySelector('.editor-name')?.value.trim() || 'Без названия',
-                    weapon: r.querySelector('.editor-weapon-input')?.value.trim() || 'Оружие',
-                    chance: Math.max(0, Number(r.querySelector('.editor-chance-input')?.value) || 0),
-                    rarity: r.querySelector('.editor-rarity-select')?.value || 'gray',
-                    image: r.querySelector('.editor-image-input')?.value.trim() || ''
-                };
-            });
-            if (!c.items.length) { st.className = 'case-editor-status err'; st.innerText = '❌ В кейсе должен быть хотя бы один предмет'; return; }
-            if (c.items.reduce((a, x) => a + Number(x.chance || 0), 0) <= 0) { st.className = 'case-editor-status err'; st.innerText = '❌ Сумма шансов должна быть больше 0'; return; }
-
-            await saveEditableCases();
-            renderDemoCaseTabs();
-            renderDemoCase();
-            renderCaseEditor();
-            st.className = 'case-editor-status ok';
-            st.innerText = '✅ Кейс сохранён';
-            setTimeout(() => st.innerText = '', 2000);
-        } catch(e) {
-            console.error(e);
-            st.className = 'case-editor-status err';
-            st.innerText = '❌ Ошибка сохранения: ' + (e.message || e);
-        }
-    };
-
-    // ==================================================
-    // ИНИЦИАЛИЗАЦИЯ
-    // ==================================================
+    // ============ ИНИЦИАЛИЗАЦИЯ ============
     async function init() {
-        try {
-            await loadAccounts();
-        } catch(e) {
-            console.warn('Firebase недоступен, работаем локально', e);
-        }
-
-        loadEditableCases().then(() => {
-            if (currentUser && currentUser.key === 'mega') renderCaseEditor();
-            if (typeof renderDemoCase === 'function') renderDemoCase();
-            if (typeof renderDemoCaseTabs === 'function') renderDemoCaseTabs();
-        });
-
+        try { await loadAccounts(); } catch(e) { console.warn(e); }
         try { subscribeStickers(); } catch(e) { console.warn(e); }
-
         restoreSession();
     }
 
     init();
 
     document.addEventListener('visibilitychange', () => {
-        if (!document.hidden && localStorage.getItem(ACTIVE_TAB_KEY) === 'chat') {
-            markMessagesAsRead();
-        }
+        if (!document.hidden && localStorage.getItem(ACTIVE_TAB_KEY) === 'chat') markMessagesAsRead();
     });
 
     window.addEventListener('beforeunload', (e) => {
-        if (hasUnsavedChanges) {
-            e.preventDefault();
-            e.returnValue = '';
-        }
+        if (hasUnsavedChanges) { e.preventDefault(); e.returnValue = ''; }
         clearTypingStatus();
     });
 </script>
