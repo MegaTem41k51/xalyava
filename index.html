@@ -45,9 +45,7 @@
     table.acc-table th:first-child { background: #5a3a7d; min-width: 100px; }
     table.acc-table th[data-owner="mega"] { background: linear-gradient(135deg, #ff6b6b, #c62828); }
     table.acc-table th[data-owner="sergo"] { background: linear-gradient(135deg, #4fc3f7, #0288d1); }
-    table.acc-table th.save-col { background: #4a3a6b; min-width: 140px; }
     table.acc-table td:first-child { background: #3a3a52; font-weight: 700; color: #fff; text-align: center; font-size: 15px; min-width: 100px; }
-    table.acc-table td.save-col { background: #35354d; text-align: center; min-width: 140px; }
     .cell-pair { display: flex; flex-direction: column; gap: 6px; }
     .cell-row { display: flex; align-items: center; gap: 6px; }
     .cell-row .label { font-weight: 700; font-size: 14px; white-space: nowrap; min-width: 60px; }
@@ -58,22 +56,13 @@
     .price-input:disabled { color: #e0e0e0; cursor: not-allowed; background: #23233a; border-color: #3a3a52; }
     tr.total-row td { border-top: 3px solid #f9a825; padding: 16px; }
     tr.total-row td:first-child { background: #4a3a6b !important; font-size: 16px; }
-    tr.total-row td.save-col { background: #35354d !important; }
     .total-value { font-size: 22px; font-weight: 800; color: #f9a825; display: block; text-align: center; }
     .total-value.mega { color: #ff6b6b; }
     .total-value.sergo { color: #4fc3f7; }
 
-    .save-btn-inline {
-        padding: 10px 18px; font-size: 14px; font-weight: 700;
-        background: linear-gradient(135deg, #f9a825, #f57c00);
-        color: #000; border: none; border-radius: 8px; cursor: pointer;
-        width: 100%; max-width: 130px;
-    }
-    .save-btn-inline:hover { background: linear-gradient(135deg, #ffb300, #f57c00); }
-    .save-btn-inline:disabled { opacity: 0.5; cursor: not-allowed; }
-    .save-status { font-size: 11px; color: #81c784; margin-top: 6px; min-height: 14px; }
-
-    .save-toast { position: fixed; bottom: 30px; right: 30px; background: #2e7d32; color: #fff; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; z-index: 101; display: none; box-shadow: 0 8px 25px rgba(0,0,0,0.5); }
+    .save-float { position: fixed; bottom: 20px; right: 20px; padding: 14px 24px; background: linear-gradient(135deg, #f9a825, #f57c00); color: #000; border: none; border-radius: 50px; font-size: 15px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 25px rgba(245,124,0,0.5); z-index: 100; display: none; }
+    .save-float.visible { display: block; }
+    .save-toast { position: fixed; bottom: 90px; right: 20px; background: #2e7d32; color: #fff; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; z-index: 101; display: none; }
     .save-toast.visible { display: block; }
 
     /* ===== ДРОПЫ ===== */
@@ -263,7 +252,6 @@
                 <th>День / Кто</th>
                 <th data-owner="mega">MEGATEM41K</th>
                 <th data-owner="sergo">Sergo Bulkin</th>
-                <th class="save-col">Действия</th>
             </tr>
         </thead>
         <tbody id="tableBody"></tbody>
@@ -436,6 +424,7 @@
 
 </div>
 
+<button class="save-float" id="saveFloat" onclick="manualSave()">💾 Сохранить</button>
 <div class="save-toast" id="saveToast">✅ Сохранено!</div>
 
 <script type="module">
@@ -760,6 +749,7 @@
         tableData.mega[d] = { alik: '', zhidkiy: '' };
         tableData.sergo[d] = { alik: '', zhidkiy: '' };
     });
+    let hasUnsavedChanges = false;
 
     function renderTable() {
         const tbody = document.getElementById('tableBody');
@@ -771,7 +761,11 @@
             tr.appendChild(tdd);
             ['mega', 'sergo'].forEach(ownerKey => {
                 const td = document.createElement('td');
-                const canEdit = currentUser && currentUser.key === ownerKey;
+                // mega может править обе колонки, sergo — только свою
+                const canEdit = currentUser && (
+                    currentUser.key === ownerKey ||
+                    currentUser.key === 'mega'
+                );
                 const pair = document.createElement('div');
                 pair.className = 'cell-pair';
                 pair.appendChild(createPersonInput(ownerKey, day, 'alik', 'Алик', canEdit));
@@ -779,23 +773,6 @@
                 td.appendChild(pair);
                 tr.appendChild(td);
             });
-            // Колонка с кнопкой сохранения — только если юзер мега
-            const saveTd = document.createElement('td');
-            saveTd.className = 'save-col';
-            if (currentUser && currentUser.key === 'mega') {
-                const btn = document.createElement('button');
-                btn.className = 'save-btn-inline';
-                btn.innerText = '💾 Сохранить';
-                btn.onclick = () => manualSaveRow(btn);
-                saveTd.appendChild(btn);
-                const st = document.createElement('div');
-                st.className = 'save-status';
-                st.id = 'save-status-' + day;
-                saveTd.appendChild(st);
-            } else {
-                saveTd.innerText = '—';
-            }
-            tr.appendChild(saveTd);
             tbody.appendChild(tr);
         });
         const totalTr = document.createElement('tr');
@@ -807,14 +784,10 @@
         const ms = document.createElement('span');
         ms.className = 'total-value mega'; ms.id = 'total-mega'; ms.innerText = '0 ₽';
         mt.appendChild(ms); totalTr.appendChild(mt);
-        const st2 = document.createElement('td');
+        const st = document.createElement('td');
         const ss = document.createElement('span');
         ss.className = 'total-value sergo'; ss.id = 'total-sergo'; ss.innerText = '0 ₽';
-        st2.appendChild(ss); totalTr.appendChild(st2);
-        // Пустая ячейка под колонку действий в строке суммы
-        const empty = document.createElement('td');
-        empty.className = 'save-col';
-        totalTr.appendChild(empty);
+        st.appendChild(ss); totalTr.appendChild(st);
         tbody.appendChild(totalTr);
         updateTotals();
     }
@@ -841,6 +814,9 @@
         const i = e.target;
         tableData[i.dataset.owner][i.dataset.day][i.dataset.person] = i.value;
         updateTotals();
+        hasUnsavedChanges = true;
+        const sf = document.getElementById('saveFloat');
+        if (sf) sf.classList.add('visible');
     }
     function parsePrice(s) {
         if (!s) return 0;
@@ -882,6 +858,7 @@
             cloud.mega[d] = { alik: '', zhidkiy: '' };
             cloud.sergo[d] = { alik: '', zhidkiy: '' };
         });
+        // Загружаем текущее из Firebase, чтобы не потерять данные другого игрока
         try {
             const snap = await getDoc(doc(db, 'data', 'accounting'));
             if (snap.exists() && snap.data().prices_v2) {
@@ -893,24 +870,38 @@
                 });
             }
         } catch(e) {}
-        DAYS.forEach(d => {
-            cloud[currentUser.key][d] = {
-                alik: tableData[currentUser.key][d].alik,
-                zhidkiy: tableData[currentUser.key][d].zhidkiy
-            };
-        });
+        // mega сохраняет обе колонки, sergo — только свою
+        if (currentUser.key === 'mega') {
+            ['mega', 'sergo'].forEach(o => {
+                DAYS.forEach(d => {
+                    cloud[o][d] = {
+                        alik: tableData[o][d].alik,
+                        zhidkiy: tableData[o][d].zhidkiy
+                    };
+                });
+            });
+        } else {
+            DAYS.forEach(d => {
+                cloud[currentUser.key][d] = {
+                    alik: tableData[currentUser.key][d].alik,
+                    zhidkiy: tableData[currentUser.key][d].zhidkiy
+                };
+            });
+        }
         try { await setDoc(doc(db, 'data', 'accounting'), { prices_v2: cloud }, { merge: true }); } catch(e) {}
     }
-    window.manualSaveRow = async function(btn) {
-        const old = btn.innerText;
-        btn.innerText = '⏳...';
-        btn.disabled = true;
+    window.manualSave = async function() {
+        const b = document.getElementById('saveFloat');
+        b.innerHTML = '⏳...';
+        b.disabled = true;
         await saveTable();
-        btn.innerText = '✅ Готово';
-        setTimeout(() => { btn.innerText = old; btn.disabled = false; }, 1500);
-        const toast = document.getElementById('saveToast');
-        toast.classList.add('visible');
-        setTimeout(() => toast.classList.remove('visible'), 2000);
+        b.innerHTML = '💾 Сохранить';
+        b.disabled = false;
+        b.classList.remove('visible');
+        hasUnsavedChanges = false;
+        const t = document.getElementById('saveToast');
+        t.classList.add('visible');
+        setTimeout(() => t.classList.remove('visible'), 2000);
     };
 
     // ===== СЕССИЯ =====
