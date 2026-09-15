@@ -4310,12 +4310,21 @@
     // ИНИЦИАЛИЗАЦИЯ
     // ==================================================
     async function init() {
+    try {
         await loadAccounts();
-        loadEditableCases().then(() => { if (currentUser && currentUser.key === 'mega') renderCaseEditor(); if (typeof renderDemoCase === 'function') renderDemoCase(); if (typeof renderDemoCaseTabs === 'function') renderDemoCaseTabs(); });
+        loadEditableCases().then(() => {
+            if (currentUser && currentUser.key === 'mega') renderCaseEditor();
+            if (typeof renderDemoCase === 'function') renderDemoCase();
+            if (typeof renderDemoCaseTabs === 'function') renderDemoCaseTabs();
+        });
         subscribeStickers();
-        restoreSession();
+    } catch (e) {
+        console.error('Firebase error:', e);
     }
-    init();
+    // Всегда показываем логин, даже если Firebase упал
+    restoreSession();
+}
+init();
 
     document.addEventListener('visibilitychange', () => {
         if (!document.hidden && localStorage.getItem(ACTIVE_TAB_KEY) === 'chat') {
