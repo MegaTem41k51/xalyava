@@ -232,7 +232,6 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ДРОПЫ */
     .drops-header {
         display: flex;
         justify-content: space-between;
@@ -576,7 +575,6 @@
     .skin-box.pending .skin-save { display: block; }
     .cal-cell.locked .skin-box { cursor: not-allowed; opacity: 0.85; }
 
-    /* ЧАТ */
     .chat-container {
         width: 100%; max-width: 600px;
         background: #2a2a3e; border-radius: 12px;
@@ -1147,7 +1145,6 @@
     }
     .sticker-admin-remove:hover { background: #9b1f1f; }
 
-    /* CASE EDITOR */
     .case-editor-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
     .case-editor-select{flex:1;min-width:220px;padding:10px 14px;border:1px solid #444;border-radius:8px;background:#1e1e2e;color:#fff;font-size:14px;outline:none}
     .case-editor{display:flex;flex-direction:column;gap:14px}
@@ -1191,9 +1188,6 @@
     }
     .case-custom-input.visible { display: block; }
 
-    /* ==================================================
-       ДЕМО ШАНСЫ — ДИЗАЙН КЕЙСА
-       ================================================== */
     #tab-demo {
         align-items: flex-start;
         padding: 0;
@@ -1370,7 +1364,6 @@
     .demo-feature-center-slot { min-width:0; }
     .demo-case-center {
         position:relative;
-        z-index:6;
         z-index:5;
         display:flex;
         align-items:center;
@@ -1504,7 +1497,7 @@
     }
 
     .demo-result { display:none; margin:0 0 26px; padding:18px; border-radius:12px; background:#111a2a; border:1px solid #45536e; text-align:center; }
-    .demo-result.open { display:block; animation:demoPop .35s ease; }
+    .demo-result.open { display:block; }
     .demo-result-label { color:#9ba7bc; font-size:10px; font-weight:800; letter-spacing:.8px; }
     .demo-result-name { font-size:20px; font-weight:900; margin-top:4px; }
     .demo-result-chance { color:#ffc857; font-weight:800; margin-top:5px; font-size:12px; }
@@ -1539,10 +1532,9 @@
     .demo-item:hover { transform:translateY(-2px); border-color:#60708f; }
     .demo-item::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 35%,rgba(8,12,22,.52)); pointer-events:none; }
     .demo-item img { display:block; width:100%; height:62px; object-fit:contain; position:relative; z-index:1; filter:drop-shadow(0 5px 7px rgba(0,0,0,.35)); }
-    .demo-item-weapon { position:relative; z-index:2; color:#9ca8c0; font-size:8px; font-weight:700; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-transform:none; }
-    .demo-item-name { position:relative; z-index:2; color:#f4f6fb; font-size:10px; font-weight:800; line-height:1.2; padding-right:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .demo-item-weapon { position:relative; z-index:2; color:#9ca8c0; font-size:8px; font-weight:700; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .demo-item-name { position:relative; z-index:2; color:#f4f6fb; font-size:10px; font-weight:800; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .demo-item-chance { position:absolute; right:6px; top:6px; z-index:3; padding:3px 5px; border-radius:5px; background:rgba(7,11,19,.75); color:#d9e1ef; font-size:8px; font-weight:900; }
-    .demo-item.rare,.demo-item.epic,.demo-item.common { border-color:#2d3a57; }
     .demo-feature-card.rarity-gold,.demo-item.rarity-gold,.demo-roulette-item.rarity-gold{border-color:#e7b84b;box-shadow:0 0 0 1px rgba(231,184,75,.18),inset 0 0 22px rgba(231,184,75,.08)}
     .demo-feature-card.rarity-red,.demo-item.rarity-red,.demo-roulette-item.rarity-red{border-color:#e05252;box-shadow:0 0 0 1px rgba(224,82,82,.16),inset 0 0 22px rgba(224,82,82,.07)}
     .demo-feature-card.rarity-pink,.demo-item.rarity-pink,.demo-roulette-item.rarity-pink{border-color:#d85bc5;box-shadow:0 0 0 1px rgba(216,91,197,.15),inset 0 0 22px rgba(216,91,197,.07)}
@@ -1552,8 +1544,6 @@
     .demo-feature-card.rarity-gray,.demo-item.rarity-gray,.demo-roulette-item.rarity-gray{border-color:#5d6675;box-shadow:0 0 0 1px rgba(130,140,155,.08),inset 0 0 18px rgba(130,140,155,.035)}
     .demo-rarity-badge{position:absolute;left:7px;top:7px;z-index:3;font-size:7px;line-height:1;font-weight:900;letter-spacing:.4px;text-transform:uppercase;padding:4px 5px;border-radius:5px;background:rgba(7,11,19,.74);color:#dce4f2;backdrop-filter:blur(4px)}
     .rarity-gold .demo-rarity-badge{color:#ffd76c}.rarity-red .demo-rarity-badge{color:#ff7272}.rarity-pink .demo-rarity-badge{color:#f18be1}.rarity-purple .demo-rarity-badge{color:#bb8cff}.rarity-blue .demo-rarity-badge{color:#79a0ff}.rarity-lightblue .demo-rarity-badge{color:#7fd2ff}.rarity-gray .demo-rarity-badge{color:#b8c0cc}
-
-    .demo-note { display:none; }
 
     @media (max-width: 980px) {
         .demo-feature-items { grid-template-columns:repeat(2,minmax(0,1fr)) 220px repeat(2,minmax(0,1fr)); }
@@ -1574,7 +1564,6 @@
         .demo-balance-actions { gap:8px; }
         .demo-case-tabs { justify-content:flex-start; }
     }
-
 </style>
 </head>
 <body>
@@ -1645,7 +1634,6 @@
     </div>
 </div>
 
-<!-- ДРОПЫ -->
 <div id="tab-drops" class="tab-content">
     <div class="drops-header">
         <div class="drops-title">🎁 Последние дропы</div>
@@ -1658,8 +1646,6 @@
     <div class="drops-grid" id="dropsGrid"></div>
 </div>
 
-
-<!-- ДЕМО ШАНСЫ -->
 <div id="tab-demo" class="tab-content">
     <div class="demo-wrap">
         <div class="demo-case-tabs" id="demoCaseTabs"></div>
@@ -1676,7 +1662,6 @@
                     <div class="demo-case-cover" id="demoCaseCover"></div>
                 </div>
 
-                <!-- Во время открытия рулетка появляется прямо внутри блока кейса -->
                 <div class="demo-roulette-wrap" id="demoRouletteWrap">
                     <div class="demo-roulette-title">Открытие кейса…</div>
                     <div class="demo-roulette">
@@ -1807,11 +1792,10 @@
         <div class="admin-card">
             <h3>💬 Управление чатом</h3>
             <p style="font-size:13px;color:#888;">
-                В самом чате наведи на сообщение — появится <b>×</b>, чтобы удалить. Тебе (как админу) показывается <b>×</b> на всех сообщениях, включая чужие.
+                В самом чате наведи на сообщение — появится <b>×</b>, чтобы удалить.
             </p>
         </div>
 
-        <!-- ДРОПЫ В АДМИНКЕ -->
         <div class="admin-card">
             <h3>🎁 Добавить дроп</h3>
             <p style="font-size:13px;color:#888;margin-bottom:16px;">
@@ -1905,7 +1889,7 @@
 
         <div class="admin-card">
             <h3>🎰 Редактор кейсов</h3>
-            <p class="case-editor-hint">Здесь можно менять существующие кейсы: название, иконку, обложку, цену, а также каждый скин — название, оружие, шанс, качество и фото. Новые кейсы автоматически не создаются.</p>
+            <p class="case-editor-hint">Здесь можно менять существующие кейсы: название, иконку, обложку, цену, а также каждый скин.</p>
             <div class="case-editor-toolbar"><select class="case-editor-select" id="caseEditorSelect" onchange="selectCaseForEdit()"></select></div>
             <div id="caseEditorBody" class="case-editor">
                 <div class="case-editor-head">
@@ -1971,9 +1955,6 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // ==================================================
-    // ССЫЛКИ НА ПРОФИЛИ ИГРОКОВ
-    // ==================================================
     const PROFILE_URLS = {
         mega: 'https://skinhouse.gg/ru/user/2181',
         sergo: 'https://skinhouse.gg/ru/user/26587'
@@ -2304,9 +2285,6 @@
         });
     }
 
-    // ==================================================
-    // ДРОПЫ — АДМИНКА
-    // ==================================================
     window.onCaseSelectChange = function() {
         const sel = document.getElementById('dropCaseSelect');
         const custom = document.getElementById('dropCaseCustom');
@@ -2495,7 +2473,6 @@
         });
     }
 
-
     // ==================================================
     // ДЕМО ШАНСЫ
     // ==================================================
@@ -2563,7 +2540,7 @@
                 {weapon:'M4A4', name:'Безлюдный космос', chance:3.38, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGI6zwki4Uf_a0IWsPGiE7Fhy-I764WbkThD8i5jp6Ttkv6PhY6dSLfmAHW6exuJ_vupWQjynkBovvC6R1NatdHuTPQAiCJF1Re8KsBOwlda0M7vm7gOMj4kUnC__jysf5ytv4OccEf1yvJT6JNo'},
                 {weapon:'M4A1-S', name:'Стратосфера', chance:19.748, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGC1iD1fx3pO56XyG2hxgYvzSCkpu3eSjEOgUkDsRxR7RYsRexwNe0Y-O05VeNg90UmX2q33lJ7itvt-cKB71lpPNheQHx2Q'},
                 {weapon:'M4A1-S', name:'Дикий тусовщик', chance:5.05, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf-jFk5vyqbbRoLvSWMWaH0dF6ueZhW2e1zElxtmzQmIv8J3qQalRzW5t0RrYOsBCwlte2Mbmw5AbXiYlAnnn4kGoXuYBQOb0Q'},
-                {weapon:'Брелок', name:'Бриллиантовая колб... ', chance:5, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwiFO0P_6afBSJPWAAWuR1etJo_FoTCyMmRQguynLnNepJXPEaQJyDZJ0QOdbsxi7ktS0Y-Li4ADegthGn32ojCJJ7CxosfFCD_SyjfEkHg'},
+                {weapon:'Брелок', name:'Бриллиантовая колб...', chance:5, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwiFO0P_6afBSJPWAAWuR1etJo_FoTCyMmRQguynLnNepJXPEaQJyDZJ0QOdbsxi7ktS0Y-Li4ADegthGn32ojCJJ7CxosfFCD_SyjfEkHg'},
                 {weapon:'M4A4', name:'Зубная фея', chance:6.229, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGI6zwki4Uf_a0IWsPGiE7Fhy-I764RbsQiL8l4Xz9Cxc4_ugY5t-If2sCm6RzOF4tK9sFyi3wUki4TvSnNytdC7FPQBzApIkQuRfukTql93vMung4FTXjIlC02yg2RVCPh13'},
                 {weapon:'Брелок', name:'Литой калаш', chance:6.229, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGC1iD1fx3pO56XyG2hxgYvzSCkpu3eSjEOgUkDsRxR7RYsRexwNe0Y-O05VeNg90UmX2q33lJ7itvt-cKB71lpPNheQHx2Q'},
                 {weapon:'P90', name:'Неокоролева', chance:18.687, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGC1iD1fx3pO56XyG2hxgYvzSCkpu3eSjEOgUkDsRxR7RYsRexwNe0Y-O05VeNg90UmX2q33lJ7itvt-cKB71lpPNheQHx2Q'},
@@ -2575,139 +2552,161 @@
     let demoOpening = false;
 
     function getDemoBalance() {
-        const raw=localStorage.getItem(DEMO_BALANCE_KEY);
-        const n=Number(raw);
-        return Number.isFinite(n) && n>=0 ? n : 1000;
+        const raw = localStorage.getItem(DEMO_BALANCE_KEY);
+        const n = Number(raw);
+        return Number.isFinite(n) && n >= 0 ? n : 1000;
     }
-    function setDemoBalance(value) {
-        const safe=Math.max(0,Math.floor(Number(value)||0));
-        localStorage.setItem(DEMO_BALANCE_KEY,String(safe));
-        const msg=document.getElementById('demoBalanceMessage');
-        const addBtn=document.getElementById('demoAddBalanceBtn');
-        const openBtn=document.getElementById('demoOpenBtn');
-        const caseCost=(Number(getDemoCase()?.cost ?? DEMO_CASE_COST)||0);
-        if(msg) msg.innerText=safe < caseCost ? 'Не хватает ₽'+(caseCost-safe).toFixed(2)+' на балансе' : 'Баланс ₽'+safe.toFixed(2);
-        if(addBtn) addBtn.style.display = safe >= caseCost ? 'none' : 'inline-flex';
-        if(openBtn) { openBtn.disabled=demoOpening || safe<caseCost; openBtn.innerText='Открыть за '+caseCost+' ₽'; }
-    }
-    window.demoAddBalance=function(){ setDemoBalance(getDemoBalance()+100); };
-    window.demoResetBalance=function(){ setDemoBalance(1000); };
-    function getDemoCase(){ return DEMO_CASES.find(c=>c.id===demoCurrentCase)||DEMO_CASES[0]; }
-    function demoRarity(item){
-        if(item && ['gray','lightblue','blue','purple','pink','red','gold'].includes(item.rarity)){
-            const labels={gray:'Ширпотреб',lightblue:'Промышленное',blue:'Армейское',purple:'Запрещённое',pink:'Засекреченное',red:'Тайное',gold:'Золотое качество'};
-            return [item.rarity,labels[item.rarity]];
-        }
-        const w=String(item.weapon||'').toLowerCase();
-        if(/нож|перчат|агент|брелок|charm/.test(w)) return ['gold','Золотое качество'];
-        const c=Number(item.chance)||0;
-        if(c<=0.5)return['red','Тайное'];
-        if(c<=1.5)return['pink','Засекреченное'];
-        if(c<=8)return['purple','Запрещённое'];
-        if(c<=20)return['blue','Армейское'];
-        if(c<=35)return['lightblue','Промышленное'];
-        return['gray','Ширпотреб'];
-    }
-    function demoRarityClass(item){return demoRarity(item)[0];}
 
-    function renderDemoCaseTabs(){
-        const tabs=document.getElementById('demoCaseTabs'); if(!tabs)return; tabs.innerHTML='';
-        DEMO_CASES.forEach(c=>{
-            const btn=document.createElement('button');
-            btn.className='demo-case-tab'+(c.id===demoCurrentCase?' active':'');
-            btn.innerHTML='<div class="demo-case-tab-title">'+escapeHtml(c.icon+' '+c.name)+'</div>';
-            btn.onclick=()=>{ if(demoOpening)return; demoCurrentCase=c.id; renderDemoCase(); };
+    function setDemoBalance(value) {
+        const safe = Math.max(0, Math.floor(Number(value) || 0));
+        localStorage.setItem(DEMO_BALANCE_KEY, String(safe));
+        const msg = document.getElementById('demoBalanceMessage');
+        const addBtn = document.getElementById('demoAddBalanceBtn');
+        const openBtn = document.getElementById('demoOpenBtn');
+        const caseCost = (Number(getDemoCase()?.cost ?? DEMO_CASE_COST) || 0);
+        if (msg) msg.innerText = safe < caseCost ? 'Не хватает ₽' + (caseCost - safe).toFixed(2) + ' на балансе' : 'Баланс ₽' + safe.toFixed(2);
+        if (addBtn) addBtn.style.display = safe >= caseCost ? 'none' : 'inline-flex';
+        if (openBtn) { openBtn.disabled = demoOpening || safe < caseCost; openBtn.innerText = 'Открыть за ' + caseCost + ' ₽'; }
+    }
+
+    window.demoAddBalance = function() { setDemoBalance(getDemoBalance() + 100); };
+    window.demoResetBalance = function() { setDemoBalance(1000); };
+
+    function getDemoCase() { return DEMO_CASES.find(c => c.id === demoCurrentCase) || DEMO_CASES[0]; }
+
+    function demoRarity(item) {
+        if (item && ['gray','lightblue','blue','purple','pink','red','gold'].includes(item.rarity)) {
+            const labels = {gray:'Ширпотреб',lightblue:'Промышленное',blue:'Армейское',purple:'Запрещённое',pink:'Засекреченное',red:'Тайное',gold:'Золотое качество'};
+            return [item.rarity, labels[item.rarity]];
+        }
+        const w = String(item.weapon || '').toLowerCase();
+        if (/нож|перчат|агент|брелок|charm/.test(w)) return ['gold', 'Золотое качество'];
+        const c = Number(item.chance) || 0;
+        if (c <= 0.5) return ['red','Тайное'];
+        if (c <= 1.5) return ['pink','Засекреченное'];
+        if (c <= 8) return ['purple','Запрещённое'];
+        if (c <= 20) return ['blue','Армейское'];
+        if (c <= 35) return ['lightblue','Промышленное'];
+        return ['gray','Ширпотреб'];
+    }
+
+    function renderDemoCaseTabs() {
+        const tabs = document.getElementById('demoCaseTabs');
+        if (!tabs) return;
+        tabs.innerHTML = '';
+        DEMO_CASES.forEach(c => {
+            const btn = document.createElement('button');
+            btn.className = 'demo-case-tab' + (c.id === demoCurrentCase ? ' active' : '');
+            btn.innerHTML = '<div class="demo-case-tab-title">' + escapeHtml(c.icon + ' ' + c.name) + '</div>';
+            btn.onclick = () => { if (demoOpening) return; demoCurrentCase = c.id; renderDemoCase(); };
             tabs.appendChild(btn);
         });
     }
 
-    function makeFeatureCard(item){
-        const card=document.createElement('div'); const [rarity,label]=demoRarity(item); card.className='demo-feature-card rarity-'+rarity;
-        card.innerHTML='<span class="demo-rarity-badge">'+escapeHtml(label)+'</span><span class="demo-feature-chance">'+item.chance+'%</span><img src="'+item.image+'" alt=""><div class="demo-feature-info"><div class="demo-feature-weapon">'+escapeHtml(item.weapon)+'</div><div class="demo-feature-name">'+escapeHtml(item.name)+'</div></div>';
+    function makeFeatureCard(item) {
+        const card = document.createElement('div');
+        const [rarity, label] = demoRarity(item);
+        card.className = 'demo-feature-card rarity-' + rarity;
+        card.innerHTML = '<span class="demo-rarity-badge">' + escapeHtml(label) + '</span><span class="demo-feature-chance">' + item.chance + '%</span><img src="' + item.image + '" alt=""><div class="demo-feature-info"><div class="demo-feature-weapon">' + escapeHtml(item.weapon) + '</div><div class="demo-feature-name">' + escapeHtml(item.name) + '</div></div>';
         return card;
     }
 
-    function renderDemoCase(){
-        const c=getDemoCase();
-        const name=document.getElementById('demoCaseName');
-        const icon=document.getElementById('demoCaseIcon');
-        const cover=document.getElementById('demoCaseCover');
-        const items=document.getElementById('demoItems');
-        const feature=document.getElementById('demoFeatureItems');
-        const result=document.getElementById('demoResult');
-        const roulette=document.getElementById('demoRouletteWrap');
-        if(!name||!items||!feature)return;
-        name.innerText=c.name; icon.innerText=c.icon;
-        cover.innerHTML='<img src="'+c.cover+'" alt="'+escapeHtml(c.name)+'">';
+    function renderDemoCase() {
+        const c = getDemoCase();
+        const name = document.getElementById('demoCaseName');
+        const icon = document.getElementById('demoCaseIcon');
+        const cover = document.getElementById('demoCaseCover');
+        const items = document.getElementById('demoItems');
+        const feature = document.getElementById('demoFeatureItems');
+        const result = document.getElementById('demoResult');
+        const roulette = document.getElementById('demoRouletteWrap');
+        if (!name || !items || !feature) return;
+        name.innerText = c.name;
+        icon.innerText = c.icon;
+        cover.innerHTML = '<img src="' + c.cover + '" alt="' + escapeHtml(c.name) + '">';
 
-        feature.innerHTML='';
-        const left=c.items.slice(0,3), right=c.items.slice(-3);
-        left.forEach(item=>feature.appendChild(makeFeatureCard(item)));
-        const centerSlot=document.createElement('div'); centerSlot.className='demo-feature-center-slot'; feature.appendChild(centerSlot);
-        right.forEach(item=>feature.appendChild(makeFeatureCard(item)));
+        feature.innerHTML = '';
+        const left = c.items.slice(0, 3);
+        const right = c.items.slice(-3);
+        left.forEach(item => feature.appendChild(makeFeatureCard(item)));
+        const centerSlot = document.createElement('div');
+        centerSlot.className = 'demo-feature-center-slot';
+        feature.appendChild(centerSlot);
+        right.forEach(item => feature.appendChild(makeFeatureCard(item)));
 
-        items.innerHTML='';
-        c.items.forEach(item=>{
-            const [rarity,label]=demoRarity(item);
-            const card=document.createElement('div'); card.className='demo-item rarity-'+rarity;
-            card.innerHTML='<span class="demo-rarity-badge">'+escapeHtml(label)+'</span><div class="demo-item-chance">'+item.chance+'%</div><img src="'+item.image+'" alt=""><div class="demo-item-weapon">'+escapeHtml(item.weapon)+'</div><div class="demo-item-name">'+escapeHtml(item.name)+'</div>';
+        items.innerHTML = '';
+        c.items.forEach(item => {
+            const [rarity, label] = demoRarity(item);
+            const card = document.createElement('div');
+            card.className = 'demo-item rarity-' + rarity;
+            card.innerHTML = '<span class="demo-rarity-badge">' + escapeHtml(label) + '</span><div class="demo-item-chance">' + item.chance + '%</div><img src="' + item.image + '" alt=""><div class="demo-item-weapon">' + escapeHtml(item.weapon) + '</div><div class="demo-item-name">' + escapeHtml(item.name) + '</div>';
             items.appendChild(card);
         });
-        if(result)result.classList.remove('open');
-        if(roulette)roulette.classList.remove('open');
-        cover.innerHTML='<img src="'+c.cover+'" alt="'+escapeHtml(c.name)+'">';
-        setDemoBalance(getDemoBalance()); renderDemoCaseTabs();
+
+        if (result) result.classList.remove('open');
+        if (roulette) roulette.classList.remove('open');
+        cover.innerHTML = '<img src="' + c.cover + '" alt="' + escapeHtml(c.name) + '">';
+        setDemoBalance(getDemoBalance());
+        renderDemoCaseTabs();
     }
 
-    function demoBackToCases(){
-        const tabs=document.getElementById('demoCaseTabs');
-        if(tabs) tabs.scrollIntoView({behavior:'smooth',block:'center'});
+    function demoBackToCases() {
+        const tabs = document.getElementById('demoCaseTabs');
+        if (tabs) tabs.scrollIntoView({behavior: 'smooth', block: 'center'});
     }
 
-    function pickDemoItem(items){
-        const total=items.reduce((s,item)=>s+item.chance,0);
-        let r=Math.random()*total;
-        for(const item of items){ r-=item.chance; if(r<=0)return item; }
-        return items[items.length-1];
+    function pickDemoItem(items) {
+        const total = items.reduce((s, item) => s + item.chance, 0);
+        let r = Math.random() * total;
+        for (const item of items) { r -= item.chance; if (r <= 0) return item; }
+        return items[items.length - 1];
     }
-    function renderRoulette(c,winner){
-        const track=document.getElementById('demoRouletteTrack'); if(!track)return; track.innerHTML='';
-        const sequence=[]; for(let i=0;i<34;i++)sequence.push(c.items[Math.floor(Math.random()*c.items.length)]);
-        const winnerIndex=29; sequence[winnerIndex]=winner;
-        sequence.forEach(item=>{
-            const el=document.createElement('div');
-            const [rarity,label]=demoRarity(item);
-            el.className='demo-roulette-item rarity-'+rarity;
-            el.innerHTML='<span class="demo-rarity-badge">'+escapeHtml(label)+'</span><img src="'+item.image+'" alt=""><b>'+escapeHtml(item.weapon)+' — '+escapeHtml(item.name)+'</b><span>'+item.chance+'%</span>';
+
+    function renderRoulette(c, winner) {
+        const track = document.getElementById('demoRouletteTrack');
+        if (!track) return;
+        track.innerHTML = '';
+        const sequence = [];
+        for (let i = 0; i < 34; i++) sequence.push(c.items[Math.floor(Math.random() * c.items.length)]);
+        const winnerIndex = 29;
+        sequence[winnerIndex] = winner;
+        sequence.forEach(item => {
+            const el = document.createElement('div');
+            const [rarity, label] = demoRarity(item);
+            el.className = 'demo-roulette-item rarity-' + rarity;
+            el.innerHTML = '<span class="demo-rarity-badge">' + escapeHtml(label) + '</span><img src="' + item.image + '" alt=""><b>' + escapeHtml(item.weapon) + ' — ' + escapeHtml(item.name) + '</b><span>' + item.chance + '%</span>';
             track.appendChild(el);
         });
-        track.style.transition='none'; track.style.transform='translateX(0px)'; void track.offsetWidth;
-        const itemWidth=132+8, container=track.parentElement.getBoundingClientRect().width;
-        const target=-(winnerIndex*itemWidth-container/2+66);
-        track.style.transition='transform 2.8s cubic-bezier(.08,.72,.12,1)';
-        track.style.transform='translateX('+target+'px)';
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(0px)';
+        void track.offsetWidth;
+        const itemWidth = 132 + 8;
+        const container = track.parentElement.getBoundingClientRect().width;
+        const target = -(winnerIndex * itemWidth - container / 2 + 66);
+        track.style.transition = 'transform 2.8s cubic-bezier(.08,.72,.12,1)';
+        track.style.transform = 'translateX(' + target + 'px)';
     }
-    window.openDemoCase=function(){
-        if(demoOpening)return; const balance=getDemoBalance();
-        const caseCost=(Number(getDemoCase()?.cost ?? DEMO_CASE_COST)||0);
-        if(balance<caseCost){ alert('Недостаточно демо-баланса.'); return; }
-        const c=getDemoCase(), winner=pickDemoItem(c.items);
-        demoOpening=true;
-        setDemoBalance(balance-caseCost);
-        const stage=document.getElementById('demoCaseStage');
-        const roulette=document.getElementById('demoRouletteWrap');
-        const result=document.getElementById('demoResult');
-        const resultName=document.getElementById('demoResultName');
-        const resultChance=document.getElementById('demoResultChance');
-        const cover=document.getElementById('demoCaseCover');
+
+    window.openDemoCase = function() {
+        if (demoOpening) return;
+        const balance = getDemoBalance();
+        const caseCost = (Number(getDemoCase()?.cost ?? DEMO_CASE_COST) || 0);
+        if (balance < caseCost) { alert('Недостаточно демо-баланса.'); return; }
+        const c = getDemoCase();
+        const winner = pickDemoItem(c.items);
+        demoOpening = true;
+        setDemoBalance(balance - caseCost);
+        const stage = document.getElementById('demoCaseStage');
+        const roulette = document.getElementById('demoRouletteWrap');
+        const result = document.getElementById('demoResult');
+        const cover = document.getElementById('demoCaseCover');
         result.classList.remove('open');
         stage.classList.add('is-opening');
         roulette.classList.add('open');
-        renderRoulette(c,winner);
-        setTimeout(()=>{
+        renderRoulette(c, winner);
+        setTimeout(() => {
             roulette.classList.remove('open');
             stage.classList.remove('is-opening');
-
             cover.innerHTML = `
                 <div class="demo-drop-result-center rarity-${demoRarity(winner)[0]}"><span class="demo-rarity-badge">${escapeHtml(demoRarity(winner)[1])}</span>
                     <img src="${winner.image}" alt="${escapeHtml(winner.name)}">
@@ -2715,13 +2714,13 @@
                     <div class="demo-drop-result-name">${escapeHtml(winner.name)}</div>
                     <div class="demo-drop-result-chance">${winner.chance}%</div>
                 </div>`;
-
             result.classList.remove('open');
-            demoOpening=false;
+            demoOpening = false;
             setDemoBalance(getDemoBalance());
-        },2950);
+        }, 2950);
     };
-    function initDemoTab(){ renderDemoCaseTabs(); renderDemoCase(); }
+
+    function initDemoTab() { renderDemoCaseTabs(); renderDemoCase(); }
 
     // ==================================================
     // СЕССИЯ
@@ -2818,9 +2817,7 @@
     function renderUserBar() {
         const bar = document.getElementById('userBar');
         const av = AVATARS[currentUser.key];
-        const avatarStyle = av
-            ? `background-image: url('${av}'); background-size: cover; background-position: center;`
-            : '';
+        const avatarStyle = av ? `background-image: url('${av}'); background-size: cover; background-position: center;` : '';
         const avatarClass = av ? '' : currentUser.key;
         const avatarContent = av ? '' : currentUser.login[0];
 
@@ -2841,15 +2838,15 @@
     }
 
     function restoreSession() {
-    const session = loadSession();
-    if (session) {
-        currentUser = session;
-        saveSession(session);
-        showMainSite();
-        return;
+        const session = loadSession();
+        if (session) {
+            currentUser = session;
+            saveSession(session);
+            showMainSite();
+            return;
+        }
+        document.getElementById('loginOverlay').classList.remove('hidden');
     }
-    document.getElementById('loginOverlay').classList.remove('hidden');
-}
 
     document.getElementById('passwordInput').addEventListener('keydown', (e) => {
         if (e.key === 'Enter') tryLogin();
@@ -3637,9 +3634,6 @@
         } catch(e) {}
     }
 
-    // ==================================================
-    // ПРОЧИТАНО
-    // ==================================================
     async function markMessagesAsRead() {
         if (!currentUser) return;
         if (unreadFromOthers.size === 0) return;
@@ -4252,79 +4246,276 @@
     };
 
     // ==================================================
-    // РЕДАКТОР КЕЙСОВ — ТОЛЬКО АДМИНКА
+    // РЕДАКТОР КЕЙСОВ
     // ==================================================
-    const DEMO_RARITIES={gray:'Ширпотреб',lightblue:'Промышленное',blue:'Армейское',purple:'Запрещённое',pink:'Засекреченное',red:'Тайное',gold:'Золотое'};
-    let caseEditorCurrentId='rainy';
-    function caseRarity(it){
-        if(it&&DEMO_RARITIES[it.rarity]) return it.rarity;
-        const w=String(it?.weapon||'').toLowerCase(), c=Number(it?.chance)||0;
-        if(/нож|перчат|агент|брелок|charm/.test(w))return'gold';
-        if(c<=.5)return'red';if(c<=1.5)return'pink';if(c<=8)return'purple';if(c<=20)return'blue';if(c<=35)return'lightblue';return'gray';
+    const DEMO_RARITIES = {gray:'Ширпотреб',lightblue:'Промышленное',blue:'Армейское',purple:'Запрещённое',pink:'Засекреченное',red:'Тайное',gold:'Золотое'};
+    let caseEditorCurrentId = 'rainy';
+
+    function caseRarity(it) {
+        if (it && DEMO_RARITIES[it.rarity]) return it.rarity;
+        const w = String(it?.weapon || '').toLowerCase();
+        const c = Number(it?.chance) || 0;
+        if (/нож|перчат|агент|брелок|charm/.test(w)) return 'gold';
+        if (c <= .5) return 'red';
+        if (c <= 1.5) return 'pink';
+        if (c <= 8) return 'purple';
+        if (c <= 20) return 'blue';
+        if (c <= 35) return 'lightblue';
+        return 'gray';
     }
-    async function loadEditableCases(){
-        try{const snap=await getDoc(doc(db,'data','cases'));if(!snap.exists()||!Array.isArray(snap.data().items))return;const saved=snap.data().items;
-            DEMO_CASES=DEMO_CASES.map(base=>{const x=saved.find(v=>v&&v.id===base.id);if(!x)return base;return{...base,name:String(x.name??base.name),icon:String(x.icon??base.icon),cover:String(x.cover??base.cover),cost:Math.max(0,Number(x.cost??base.cost??DEMO_CASE_COST)||0),items:Array.isArray(x.items)?x.items.map((it,i)=>({id:it.id||('item_'+base.id+'_'+i),weapon:String(it.weapon||'Оружие'),name:String(it.name||'Без названия'),chance:Math.max(0,Number(it.chance)||0),image:String(it.image||''),rarity:caseRarity(it)})):base.items};});
-        }catch(e){console.warn('Не удалось загрузить настройки кейсов',e);}
+
+    async function loadEditableCases() {
+        try {
+            const snap = await getDoc(doc(db, 'data', 'cases'));
+            if (!snap.exists() || !Array.isArray(snap.data().items)) return;
+            const saved = snap.data().items;
+            DEMO_CASES = DEMO_CASES.map(base => {
+                const x = saved.find(v => v && v.id === base.id);
+                if (!x) return base;
+                return {
+                    ...base,
+                    name: String(x.name ?? base.name),
+                    icon: String(x.icon ?? base.icon),
+                    cover: String(x.cover ?? base.cover),
+                    cost: Math.max(0, Number(x.cost ?? base.cost ?? DEMO_CASE_COST) || 0),
+                    items: Array.isArray(x.items) ? x.items.map((it, i) => ({
+                        id: it.id || ('item_' + base.id + '_' + i),
+                        weapon: String(it.weapon || 'Оружие'),
+                        name: String(it.name || 'Без названия'),
+                        chance: Math.max(0, Number(it.chance) || 0),
+                        image: String(it.image || ''),
+                        rarity: caseRarity(it)
+                    })) : base.items
+                };
+            });
+        } catch(e) { console.warn('Не удалось загрузить настройки кейсов', e); }
     }
-    async function saveEditableCases(){
-        const items=DEMO_CASES.map(c=>({id:c.id,name:c.name,icon:c.icon,cover:c.cover,cost:Math.max(0,Number(c.cost??DEMO_CASE_COST)||0),items:(c.items||[]).map((it,i)=>({id:it.id||('item_'+c.id+'_'+i),weapon:it.weapon,name:it.name,chance:Math.max(0,Number(it.chance)||0),image:it.image,rarity:caseRarity(it)}))}));
-        await setDoc(doc(db,'data','cases'),{items},{merge:true});
+
+    async function saveEditableCases() {
+        const items = DEMO_CASES.map(c => ({
+            id: c.id, name: c.name, icon: c.icon, cover: c.cover,
+            cost: Math.max(0, Number(c.cost ?? DEMO_CASE_COST) || 0),
+            items: (c.items || []).map((it, i) => ({
+                id: it.id || ('item_' + c.id + '_' + i),
+                weapon: it.weapon, name: it.name,
+                chance: Math.max(0, Number(it.chance) || 0),
+                image: it.image, rarity: caseRarity(it)
+            }))
+        }));
+        await setDoc(doc(db, 'data', 'cases'), {items}, {merge: true});
     }
-    function getCaseEditorCase(){return DEMO_CASES.find(c=>c.id===caseEditorCurrentId)||DEMO_CASES[0]||null;}
-    function renderCaseEditor(){
-        const s=document.getElementById('caseEditorSelect'),b=document.getElementById('caseEditorBody');if(!s||!b)return;s.innerHTML='';
-        DEMO_CASES.forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.icon+' '+c.name;s.appendChild(o);});if(!DEMO_CASES.length){b.style.display='none';return;}
-        if(!DEMO_CASES.some(c=>c.id===caseEditorCurrentId))caseEditorCurrentId=DEMO_CASES[0].id;s.value=caseEditorCurrentId;const c=getCaseEditorCase();
-        document.getElementById('caseEditorName').value=c.name||'';document.getElementById('caseEditorIcon').value=c.icon||'🎁';document.getElementById('caseEditorCover').value=c.cover||'';document.getElementById('caseEditorCost').value=c.cost??DEMO_CASE_COST;renderCaseEditorItems(c);
+
+    function getCaseEditorCase() { return DEMO_CASES.find(c => c.id === caseEditorCurrentId) || DEMO_CASES[0] || null; }
+
+    function renderCaseEditor() {
+        const s = document.getElementById('caseEditorSelect');
+        const b = document.getElementById('caseEditorBody');
+        if (!s || !b) return;
+        s.innerHTML = '';
+        DEMO_CASES.forEach(c => {
+            const o = document.createElement('option');
+            o.value = c.id;
+            o.textContent = c.icon + ' ' + c.name;
+            s.appendChild(o);
+        });
+        if (!DEMO_CASES.length) { b.style.display = 'none'; return; }
+        if (!DEMO_CASES.some(c => c.id === caseEditorCurrentId)) caseEditorCurrentId = DEMO_CASES[0].id;
+        s.value = caseEditorCurrentId;
+        const c = getCaseEditorCase();
+        document.getElementById('caseEditorName').value = c.name || '';
+        document.getElementById('caseEditorIcon').value = c.icon || '🎁';
+        document.getElementById('caseEditorCover').value = c.cover || '';
+        document.getElementById('caseEditorCost').value = c.cost ?? DEMO_CASE_COST;
+        renderCaseEditorItems(c);
     }
-    function renderCaseEditorItems(c){
-        const list=document.getElementById('caseEditorItems');if(!list)return;list.innerHTML='';
-        (c.items||[]).forEach((it,idx)=>{
-            const row=document.createElement('div');row.className='case-editor-item';
-            const thumb=document.createElement('div');thumb.className='case-editor-thumb';if(it.image){const im=document.createElement('img');im.src=it.image;thumb.appendChild(im);}else thumb.innerText='🎁';
-            const field=(label,cls)=>{const w=document.createElement('div');w.className='case-editor-field '+(cls||'');const l=document.createElement('div');l.className='case-editor-label';l.innerText=label;w.appendChild(l);return w;};
-            const nw=field('Название'),ni=document.createElement('input');ni.className='editor-name';ni.value=it.name||'';nw.appendChild(ni);
-            const ww=field('Оружие','editor-weapon'),wi=document.createElement('input');wi.className='editor-weapon-input';wi.value=it.weapon||'';ww.appendChild(wi);
-            const cw=field('Шанс %','editor-chance'),ci=document.createElement('input');ci.className='editor-chance-input';ci.type='number';ci.step='.001';ci.min='0';ci.value=it.chance??0;cw.appendChild(ci);
-            const rw=field('Качество','editor-rarity'),rs=document.createElement('select');rs.className='editor-rarity-select';Object.entries(DEMO_RARITIES).forEach(([k,v])=>{const o=document.createElement('option');o.value=k;o.textContent=v;if(caseRarity(it)===k)o.selected=true;rs.appendChild(o);});rw.appendChild(rs);
-            const iw=field('Фото (URL)','editor-image'),ii=document.createElement('input');ii.className='editor-image-input';ii.value=it.image||'';iw.appendChild(ii);
-            const up=document.createElement('div');up.className='case-editor-upload';const fi=document.createElement('input');fi.type='file';fi.accept='image/png,image/jpeg,image/jpg,image/webp';fi.style.display='none';const ub=document.createElement('button');ub.type='button';ub.className='admin-btn small';ub.innerText='📷';ub.onclick=()=>fi.click();fi.onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{ii.value=await compressImage(f,420,.82);thumb.innerHTML='';const im=document.createElement('img');im.src=ii.value;thumb.appendChild(im);}catch(err){alert('Не удалось обработать фото');}e.target.value='';};up.appendChild(ub);up.appendChild(fi);iw.appendChild(up);
-            const del=document.createElement('button');del.type='button';del.className='case-editor-remove';del.innerText='×';del.onclick=()=>{c.items.splice(idx,1);renderCaseEditorItems(c);};
-            [thumb,nw,ww,cw,rw,iw,del].forEach(x=>row.appendChild(x));list.appendChild(row);
+
+    function renderCaseEditorItems(c) {
+        const list = document.getElementById('caseEditorItems');
+        if (!list) return;
+        list.innerHTML = '';
+        (c.items || []).forEach((it, idx) => {
+            const row = document.createElement('div');
+            row.className = 'case-editor-item';
+            const thumb = document.createElement('div');
+            thumb.className = 'case-editor-thumb';
+            if (it.image) {
+                const im = document.createElement('img');
+                im.src = it.image;
+                thumb.appendChild(im);
+            } else {
+                thumb.innerText = '🎁';
+            }
+            const field = (label, cls) => {
+                const w = document.createElement('div');
+                w.className = 'case-editor-field ' + (cls || '');
+                const l = document.createElement('div');
+                l.className = 'case-editor-label';
+                l.innerText = label;
+                w.appendChild(l);
+                return w;
+            };
+            const nw = field('Название');
+            const ni = document.createElement('input');
+            ni.className = 'editor-name';
+            ni.value = it.name || '';
+            nw.appendChild(ni);
+
+            const ww = field('Оружие', 'editor-weapon');
+            const wi = document.createElement('input');
+            wi.className = 'editor-weapon-input';
+            wi.value = it.weapon || '';
+            ww.appendChild(wi);
+
+            const cw = field('Шанс %', 'editor-chance');
+            const ci = document.createElement('input');
+            ci.className = 'editor-chance-input';
+            ci.type = 'number';
+            ci.step = '.001';
+            ci.min = '0';
+            ci.value = it.chance ?? 0;
+            cw.appendChild(ci);
+
+            const rw = field('Качество', 'editor-rarity');
+            const rs = document.createElement('select');
+            rs.className = 'editor-rarity-select';
+            Object.entries(DEMO_RARITIES).forEach(([k, v]) => {
+                const o = document.createElement('option');
+                o.value = k;
+                o.textContent = v;
+                if (caseRarity(it) === k) o.selected = true;
+                rs.appendChild(o);
+            });
+            rw.appendChild(rs);
+
+            const iw = field('Фото (URL)', 'editor-image');
+            const ii = document.createElement('input');
+            ii.className = 'editor-image-input';
+            ii.value = it.image || '';
+            iw.appendChild(ii);
+
+            const up = document.createElement('div');
+            up.className = 'case-editor-upload';
+            const fi = document.createElement('input');
+            fi.type = 'file';
+            fi.accept = 'image/png,image/jpeg,image/jpg,image/webp';
+            fi.style.display = 'none';
+            const ub = document.createElement('button');
+            ub.type = 'button';
+            ub.className = 'admin-btn small';
+            ub.innerText = '📷';
+            ub.onclick = () => fi.click();
+            fi.onchange = async e => {
+                const f = e.target.files?.[0];
+                if (!f) return;
+                try {
+                    ii.value = await compressImage(f, 420, .82);
+                    thumb.innerHTML = '';
+                    const im = document.createElement('img');
+                    im.src = ii.value;
+                    thumb.appendChild(im);
+                } catch(err) { alert('Не удалось обработать фото'); }
+                e.target.value = '';
+            };
+            up.appendChild(ub);
+            up.appendChild(fi);
+            iw.appendChild(up);
+
+            const del = document.createElement('button');
+            del.type = 'button';
+            del.className = 'case-editor-remove';
+            del.innerText = '×';
+            del.onclick = () => { c.items.splice(idx, 1); renderCaseEditorItems(c); };
+
+            [thumb, nw, ww, cw, rw, iw, del].forEach(x => row.appendChild(x));
+            list.appendChild(row);
         });
     }
-    window.selectCaseForEdit=()=>{const s=document.getElementById('caseEditorSelect');if(s){caseEditorCurrentId=s.value;renderCaseEditor();}};
-    window.addCaseItemEditor=()=>{const c=getCaseEditorCase();if(!c)return;c.items.push({id:'item_'+Date.now(),weapon:'AK-47',name:'Новый скин',chance:1,image:'',rarity:'gray'});renderCaseEditorItems(c);};
-    window.handleCaseCoverUpload=async e=>{const f=e.target.files?.[0];if(!f)return;try{const x=await compressImage(f,520,.84);document.getElementById('caseEditorCover').value=x;}catch(err){alert('Не удалось обработать обложку');}e.target.value='';};
-    window.saveCaseEditor=async()=>{
-        if(!currentUser||currentUser.key!=='mega'){alert('Только администратор');return;}const c=getCaseEditorCase();if(!c)return;const st=document.getElementById('caseEditorStatus');
-        try{c.name=document.getElementById('caseEditorName').value.trim();if(!c.name){st.className='case-editor-status err';st.innerText='❌ Введи название кейса';return;}c.icon=document.getElementById('caseEditorIcon').value.trim()||'🎁';c.cover=document.getElementById('caseEditorCover').value.trim();c.cost=Math.max(0,Number(document.getElementById('caseEditorCost').value)||0);
-            const rows=[...document.querySelectorAll('#caseEditorItems .case-editor-item')];c.items=rows.map((r,i)=>{const old=c.items[i]||{};return{id:old.id||('item_'+Date.now()+'_'+i),name:r.querySelector('.editor-name')?.value.trim()||'Без названия',weapon:r.querySelector('.editor-weapon-input')?.value.trim()||'Оружие',chance:Math.max(0,Number(r.querySelector('.editor-chance-input')?.value)||0),rarity:r.querySelector('.editor-rarity-select')?.value||'gray',image:r.querySelector('.editor-image-input')?.value.trim()||''};});
-            if(!c.items.length){st.className='case-editor-status err';st.innerText='❌ В кейсе должен быть хотя бы один предмет';return;}if(c.items.reduce((a,x)=>a+Number(x.chance||0),0)<=0){st.className='case-editor-status err';st.innerText='❌ Сумма шансов должна быть больше 0';return;}
-            await saveEditableCases();renderDemoCaseTabs();renderDemoCase();renderCaseEditor();st.className='case-editor-status ok';st.innerText='✅ Кейс сохранён';setTimeout(()=>st.innerText='',2000);
-        }catch(e){console.error(e);st.className='case-editor-status err';st.innerText='❌ Ошибка сохранения: '+(e.message||e);}
+
+    window.selectCaseForEdit = () => {
+        const s = document.getElementById('caseEditorSelect');
+        if (s) { caseEditorCurrentId = s.value; renderCaseEditor(); }
+    };
+
+    window.addCaseItemEditor = () => {
+        const c = getCaseEditorCase();
+        if (!c) return;
+        c.items.push({id: 'item_' + Date.now(), weapon: 'AK-47', name: 'Новый скин', chance: 1, image: '', rarity: 'gray'});
+        renderCaseEditorItems(c);
+    };
+
+    window.handleCaseCoverUpload = async e => {
+        const f = e.target.files?.[0];
+        if (!f) return;
+        try {
+            const x = await compressImage(f, 520, .84);
+            document.getElementById('caseEditorCover').value = x;
+        } catch(err) { alert('Не удалось обработать обложку'); }
+        e.target.value = '';
+    };
+
+    window.saveCaseEditor = async () => {
+        if (!currentUser || currentUser.key !== 'mega') { alert('Только администратор'); return; }
+        const c = getCaseEditorCase();
+        if (!c) return;
+        const st = document.getElementById('caseEditorStatus');
+        try {
+            c.name = document.getElementById('caseEditorName').value.trim();
+            if (!c.name) { st.className = 'case-editor-status err'; st.innerText = '❌ Введи название кейса'; return; }
+            c.icon = document.getElementById('caseEditorIcon').value.trim() || '🎁';
+            c.cover = document.getElementById('caseEditorCover').value.trim();
+            c.cost = Math.max(0, Number(document.getElementById('caseEditorCost').value) || 0);
+
+            const rows = [...document.querySelectorAll('#caseEditorItems .case-editor-item')];
+            c.items = rows.map((r, i) => {
+                const old = c.items[i] || {};
+                return {
+                    id: old.id || ('item_' + Date.now() + '_' + i),
+                    name: r.querySelector('.editor-name')?.value.trim() || 'Без названия',
+                    weapon: r.querySelector('.editor-weapon-input')?.value.trim() || 'Оружие',
+                    chance: Math.max(0, Number(r.querySelector('.editor-chance-input')?.value) || 0),
+                    rarity: r.querySelector('.editor-rarity-select')?.value || 'gray',
+                    image: r.querySelector('.editor-image-input')?.value.trim() || ''
+                };
+            });
+            if (!c.items.length) { st.className = 'case-editor-status err'; st.innerText = '❌ В кейсе должен быть хотя бы один предмет'; return; }
+            if (c.items.reduce((a, x) => a + Number(x.chance || 0), 0) <= 0) { st.className = 'case-editor-status err'; st.innerText = '❌ Сумма шансов должна быть больше 0'; return; }
+
+            await saveEditableCases();
+            renderDemoCaseTabs();
+            renderDemoCase();
+            renderCaseEditor();
+            st.className = 'case-editor-status ok';
+            st.innerText = '✅ Кейс сохранён';
+            setTimeout(() => st.innerText = '', 2000);
+        } catch(e) {
+            console.error(e);
+            st.className = 'case-editor-status err';
+            st.innerText = '❌ Ошибка сохранения: ' + (e.message || e);
+        }
     };
 
     // ==================================================
     // ИНИЦИАЛИЗАЦИЯ
     // ==================================================
     async function init() {
-    try {
-        await loadAccounts();
+        try {
+            await loadAccounts();
+        } catch(e) {
+            console.warn('Firebase недоступен, работаем локально', e);
+        }
+
         loadEditableCases().then(() => {
             if (currentUser && currentUser.key === 'mega') renderCaseEditor();
             if (typeof renderDemoCase === 'function') renderDemoCase();
             if (typeof renderDemoCaseTabs === 'function') renderDemoCaseTabs();
         });
-        subscribeStickers();
-    } catch (e) {
-        console.error('Firebase error:', e);
+
+        try { subscribeStickers(); } catch(e) { console.warn(e); }
+
+        restoreSession();
     }
-    // Всегда показываем логин, даже если Firebase упал
-    restoreSession();
-}
-init();
+
+    init();
 
     document.addEventListener('visibilitychange', () => {
         if (!document.hidden && localStorage.getItem(ACTIVE_TAB_KEY) === 'chat') {
