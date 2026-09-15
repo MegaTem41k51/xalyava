@@ -1797,6 +1797,31 @@
             <div id="dropsAdminList"></div>
         </div>
 
+               <div class="admin-card">
+            <h3>🎰 Редактор кейсов</h3>
+            <p class="case-editor-hint">Меняй название, иконку, обложку, цену и содержимое кейсов. Изменения применяются к вкладке «Демо шансы» и сохраняются в облаке.</p>
+            <div class="case-editor-toolbar">
+                <select class="case-editor-select" id="caseEditorSelect" onchange="selectCaseForEdit()"></select>
+            </div>
+            <div id="caseEditorBody" class="case-editor">
+                <div class="case-editor-head">
+                    <div class="case-editor-field"><div class="case-editor-label">Название кейса</div><input id="caseEditorName" type="text" maxlength="80"></div>
+                    <div class="case-editor-field"><div class="case-editor-label">Иконка</div><input id="caseEditorIcon" type="text" maxlength="8"></div>
+                    <div class="case-editor-field case-cover-field"><div class="case-editor-label">Обложка (URL)</div><input id="caseEditorCover" type="text"></div>
+                    <div class="case-editor-field case-cost-field"><div class="case-editor-label">Цена открытия, ₽</div><input id="caseEditorCost" type="number" min="0" step="0.01"></div>
+                </div>
+                <div class="case-editor-toolbar">
+                    <button class="admin-btn" onclick="document.getElementById('caseEditorCoverFile').click()">📷 Загрузить обложку</button>
+                    <input id="caseEditorCoverFile" type="file" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none" onchange="handleCaseCoverUpload(event)">
+                    <button class="admin-btn" onclick="addCaseItemEditor()">➕ Добавить скин</button>
+                    <button class="admin-btn" onclick="saveCaseEditor()">💾 Сохранить кейс</button>
+                </div>
+                <div id="caseEditorItems" class="case-editor-items"></div>
+                <div class="case-editor-add" onclick="addCaseItemEditor()">＋ Добавить предмет в кейс</div>
+                <div id="caseEditorStatus" class="case-editor-status"></div>
+            </div>
+        </div>
+
         <div class="admin-card">
             <h3>😀 Стикерпаки</h3>
             <div class="pack-create">
