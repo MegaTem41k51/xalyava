@@ -38,6 +38,33 @@
     .tab-content.active { display: flex; }
     button { padding: 10px 18px; border: none; border-radius: 8px; background: #764ba2; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; }
 
+    /* ===== УЧЁТ ===== */
+    table.acc-table { border-collapse: collapse; background: #2a2a3e; box-shadow: 0 10px 40px rgba(0,0,0,0.5); border-radius: 8px; overflow: hidden; }
+    table.acc-table th, table.acc-table td { border: 1px solid #444; padding: 12px 16px; min-width: 260px; vertical-align: middle; font-size: 15px; }
+    table.acc-table th { color: #fff; font-weight: 700; text-align: center; font-size: 15px; padding: 16px 12px; }
+    table.acc-table th:first-child { background: #5a3a7d; min-width: 100px; }
+    table.acc-table th[data-owner="mega"] { background: linear-gradient(135deg, #ff6b6b, #c62828); }
+    table.acc-table th[data-owner="sergo"] { background: linear-gradient(135deg, #4fc3f7, #0288d1); }
+    table.acc-table td:first-child { background: #3a3a52; font-weight: 700; color: #fff; text-align: center; font-size: 15px; min-width: 100px; }
+    .cell-pair { display: flex; flex-direction: column; gap: 6px; }
+    .cell-row { display: flex; align-items: center; gap: 6px; }
+    .cell-row .label { font-weight: 700; font-size: 14px; white-space: nowrap; min-width: 60px; }
+    .cell-row .label.alik { color: #4fc3f7; }
+    .cell-row .label.zhidkiy { color: #81c784; }
+    .price-input { flex: 1; background: #1e1e2e; border: 1px solid #444; outline: none; color: #fff; font-size: 15px; font-weight: 600; padding: 6px 10px; border-radius: 6px; min-width: 60px; }
+    .price-input:focus { border-color: #a78bfa; }
+    .price-input:disabled { color: #e0e0e0; cursor: not-allowed; background: #23233a; border-color: #3a3a52; }
+    tr.total-row td { border-top: 3px solid #f9a825; padding: 16px; }
+    tr.total-row td:first-child { background: #4a3a6b !important; font-size: 16px; }
+    .total-value { font-size: 22px; font-weight: 800; color: #f9a825; display: block; text-align: center; }
+    .total-value.mega { color: #ff6b6b; }
+    .total-value.sergo { color: #4fc3f7; }
+
+    .save-float { position: fixed; bottom: 20px; right: 20px; padding: 14px 24px; background: linear-gradient(135deg, #f9a825, #f57c00); color: #000; border: none; border-radius: 50px; font-size: 15px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 25px rgba(245,124,0,0.5); z-index: 100; display: none; }
+    .save-float.visible { display: block; }
+    .save-toast { position: fixed; bottom: 90px; right: 20px; background: #2e7d32; color: #fff; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; z-index: 101; display: none; }
+    .save-toast.visible { display: block; }
+
     /* ===== ДРОПЫ ===== */
     .drops-header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1100px; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
     .drops-title { font-size: 20px; font-weight: 700; }
@@ -75,14 +102,39 @@
     .drop-author { font-size: 11px; color: #888; font-style: italic; }
     .drops-empty { text-align: center; padding: 60px 20px; color: #666; font-size: 15px; width: 100%; grid-column: 1 / -1; }
 
-    .drop-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
-    .drop-form .full-width { grid-column: 1 / -1; }
-    @media (max-width: 600px) { .drop-form { grid-template-columns: 1fr; } }
-    .drop-image-upload { display: flex; align-items: center; gap: 16px; grid-column: 1 / -1; }
-    .drop-image-preview { width: 120px; height: 120px; background: #1e1e2e; border: 2px dashed #3a3a52; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; cursor: pointer; }
-    .drop-image-preview img { max-width: 100%; max-height: 100%; object-fit: contain; }
-    .drop-image-preview .ph { font-size: 32px; color: #555; }
-    .admin-select { padding: 10px 14px; border: 1px solid #444; border-radius: 8px; background: #1e1e2e; color: #fff; font-size: 14px; outline: none; width: 100%; cursor: pointer; }
+    /* ===== КАЛЕНДАРЬ ===== */
+    .player-tabs { display: flex; gap: 10px; margin-bottom: 20px; background: #2a2a3e; padding: 6px; border-radius: 12px; }
+    .player-btn { padding: 12px 28px; border: none; border-radius: 8px; background: transparent; color: #aaa; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+    .player-btn.active.mega { background: linear-gradient(135deg, #ff6b6b, #c62828); color: #fff; }
+    .player-btn.active.sergo { background: linear-gradient(135deg, #4fc3f7, #0288d1); color: #fff; }
+    .player-btn .dot { width: 10px; height: 10px; border-radius: 50%; background: #ff6b6b; }
+    .player-btn.sergo .dot { background: #4fc3f7; }
+    .player-view { display: none; flex-direction: column; align-items: center; width: 100%; }
+    .player-view.active { display: flex; }
+    .cal-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; background: #2a2a3e; padding: 12px 20px; border-radius: 12px; }
+    .cal-header button { padding: 8px 14px; font-size: 18px; background: #5a3a7d; }
+    .cal-title { font-size: 20px; font-weight: 700; min-width: 220px; text-align: center; }
+    .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; width: 100%; max-width: 1100px; }
+    .cal-dayname { text-align: center; font-weight: 700; color: #a78bfa; padding: 8px 0; font-size: 14px; }
+    .cal-cell { background: #2a2a3e; border-radius: 10px; padding: 8px; min-height: 240px; border: 1px solid #3a3a52; display: flex; flex-direction: column; }
+    .cal-cell.empty { background: transparent; border: none; }
+    .cal-cell.today { border: 2px solid #a78bfa; }
+    .cal-date { font-size: 14px; font-weight: 700; color: #a78bfa; margin-bottom: 6px; text-align: right; }
+    .cal-cell.today .cal-date { color: #fff; background: #764ba2; border-radius: 50%; width: 26px; height: 26px; line-height: 26px; text-align: center; align-self: flex-end; }
+    .cal-person { background: #35354d; border-radius: 8px; padding: 6px; margin-bottom: 6px; flex: 1; display: flex; flex-direction: column; }
+    .cal-person-name { font-size: 12px; font-weight: 700; margin-bottom: 4px; text-align: center; }
+    .cal-person-name.alik { color: #4fc3f7; }
+    .cal-person-name.zhidkiy { color: #81c784; }
+    .skin-box { flex: 1; background: #1e1e2e; border: 1px dashed #555; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; overflow: hidden; min-height: 60px; }
+    .skin-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .skin-box .placeholder { font-size: 10px; color: #666; text-align: center; padding: 4px; pointer-events: none; }
+    .skin-box input[type="file"] { display: none; }
+    .skin-remove { position: absolute; top: 2px; right: 2px; background: #c62828; color: #fff; border: none; border-radius: 50%; width: 18px; height: 18px; font-size: 12px; cursor: pointer; padding: 0; z-index: 5; display: none; }
+    .skin-box.has-image .skin-remove { display: block; }
+    .skin-save { position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); background: #f9a825; color: #000; border: none; border-radius: 6px; padding: 3px 10px; font-size: 11px; font-weight: 700; cursor: pointer; display: none; z-index: 6; }
+    .skin-box.pending { border: 2px solid #f9a825; }
+    .skin-box.pending .skin-save { display: block; }
+    .cal-cell.locked .skin-box { cursor: not-allowed; opacity: 0.85; }
 
     /* ===== АДМИНКА ===== */
     .admin-wrap { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 20px; }
@@ -103,6 +155,38 @@
     .avatar-edit { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
     .avatar-preview { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 28px; color: #fff; flex-shrink: 0; overflow: hidden; border: 3px solid #444; }
     .avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
+    .drop-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+    .drop-form .full-width { grid-column: 1 / -1; }
+    @media (max-width: 600px) { .drop-form { grid-template-columns: 1fr; } }
+    .drop-image-upload { display: flex; align-items: center; gap: 16px; grid-column: 1 / -1; }
+    .drop-image-preview { width: 120px; height: 120px; background: #1e1e2e; border: 2px dashed #3a3a52; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; cursor: pointer; }
+    .drop-image-preview img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .drop-image-preview .ph { font-size: 32px; color: #555; }
+    .admin-select { padding: 10px 14px; border: 1px solid #444; border-radius: 8px; background: #1e1e2e; color: #fff; font-size: 14px; outline: none; width: 100%; cursor: pointer; }
+    .drop-edit-row { display: flex; align-items: center; gap: 12px; padding: 10px; background: #23233a; border-radius: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+    .drop-edit-thumb { width: 50px; height: 50px; background: #1e1e2e; border-radius: 6px; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+    .drop-edit-thumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .drop-edit-fields { flex: 1; min-width: 0; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; }
+    .drop-edit-fields input, .drop-edit-fields select { padding: 7px 9px; border: 1px solid #444; border-radius: 6px; background: #1e1e2e; color: #fff; font-size: 12px; outline: none; width: 100%; box-sizing: border-box; }
+    .drop-edit-label { font-size: 10px; color: #666; margin-bottom: 2px; display: block; }
+    .drop-edit-actions { display: flex; gap: 6px; flex-shrink: 0; }
+    @media(max-width: 900px) { .drop-edit-fields { grid-template-columns: 1fr 1fr; } }
+
+    .case-editor-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+    .case-editor-select{flex:1;min-width:220px;padding:10px 14px;border:1px solid #444;border-radius:8px;background:#1e1e2e;color:#fff;font-size:14px;outline:none}
+    .case-editor{display:flex;flex-direction:column;gap:14px}
+    .case-editor-head{display:grid;grid-template-columns:1fr 110px 1fr 120px;gap:10px}
+    .case-editor-items{display:flex;flex-direction:column;gap:8px;max-height:620px;overflow:auto}
+    .case-editor-item{display:grid;grid-template-columns:56px minmax(120px,1fr) minmax(120px,1fr) 90px 150px minmax(170px,1fr) 40px;gap:8px;align-items:center;background:#23233a;border:1px solid #3a3a52;border-radius:10px;padding:8px}
+    .case-editor-thumb{width:52px;height:52px;border-radius:7px;background:#1e1e2e;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #444}
+    .case-editor-thumb img{max-width:100%;max-height:100%;object-fit:contain}
+    .case-editor-item input,.case-editor-item select,.case-editor-head input{width:100%;padding:8px 9px;border:1px solid #444;border-radius:7px;background:#1e1e2e;color:#fff;outline:none;font-size:12px;box-sizing:border-box}
+    .case-editor-label{font-size:11px;color:#777;margin:0 0 4px}
+    .case-editor-remove{width:32px;height:32px;padding:0;border-radius:7px;background:#c62828;color:#fff;font-size:18px;border:0;cursor:pointer}
+    .case-editor-add{border:1px dashed #4b5670;background:#111a2a;color:#cbd5e1;border-radius:9px;padding:10px;cursor:pointer;font-weight:700;text-align:center}
+    .case-editor-status{min-height:18px;font-size:13px}
+    .case-editor-status.ok{color:#81c784}.case-editor-status.err{color:#ff6b6b}
+    .case-editor-hint{color:#777;font-size:12px;line-height:1.45;margin-bottom:12px}
 
     .pack-create { display: flex; gap: 8px; margin-bottom: 16px; }
     .pack-create input { flex: 1; padding: 10px 14px; border: 1px solid #444; border-radius: 8px; background: #1e1e2e; color: #fff; font-size: 14px; outline: none; }
@@ -118,34 +202,8 @@
     .sticker-admin-item img, .sticker-admin-item video { max-width: 100%; max-height: 100%; object-fit: contain; }
     .sticker-admin-remove { position: absolute; top: 3px; right: 3px; background: #c62828; color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 13px; cursor: pointer; padding: 0; line-height: 1; }
 
-    .case-editor-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
-    .case-editor-select{flex:1;min-width:220px;padding:10px 14px;border:1px solid #444;border-radius:8px;background:#1e1e2e;color:#fff;font-size:14px;outline:none}
-    .case-editor{display:flex;flex-direction:column;gap:14px}
-    .case-editor-head{display:grid;grid-template-columns:1fr 110px 1fr 120px;gap:10px}
-    .case-editor-items{display:flex;flex-direction:column;gap:8px;max-height:620px;overflow:auto}
-    .case-editor-item{display:grid;grid-template-columns:56px minmax(120px,1fr) minmax(120px,1fr) 90px 150px minmax(170px,1fr) 40px;gap:8px;align-items:center;background:#23233a;border:1px solid #3a3a52;border-radius:10px;padding:8px}
-    .case-editor-thumb{width:52px;height:52px;border-radius:7px;background:#1e1e2e;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #444}
-    .case-editor-thumb img{max-width:100%;max-height:100%;object-fit:contain}
-    .case-editor-item input,.case-editor-item select,.case-editor-head input{width:100%;padding:8px 9px;border:1px solid #444;border-radius:7px;background:#1e1e2e;color:#fff;outline:none;font-size:12px;box-sizing:border-box}
-    .case-editor-label{font-size:11px;color:#777;margin:0 0 4px}.case-editor-field{min-width:0}
-    .case-editor-upload{display:flex;gap:5px;align-items:center;margin-top:5px}
-    .case-editor-remove{width:32px;height:32px;padding:0;border-radius:7px;background:#c62828;color:#fff;font-size:18px;border:0;cursor:pointer}
-    .case-editor-add{border:1px dashed #4b5670;background:#111a2a;color:#cbd5e1;border-radius:9px;padding:10px;cursor:pointer;font-weight:700;text-align:center}
-    .case-editor-status{min-height:18px;font-size:13px}
-    .case-editor-status.ok{color:#81c784}.case-editor-status.err{color:#ff6b6b}
-    .case-editor-hint{color:#777;font-size:12px;line-height:1.45;margin-bottom:12px}
-
-    .drop-edit-row { display: flex; align-items: center; gap: 12px; padding: 10px; background: #23233a; border-radius: 8px; margin-bottom: 8px; flex-wrap: wrap; }
-    .drop-edit-thumb { width: 50px; height: 50px; background: #1e1e2e; border-radius: 6px; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
-    .drop-edit-thumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
-    .drop-edit-fields { flex: 1; min-width: 0; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; }
-    .drop-edit-fields input, .drop-edit-fields select { padding: 7px 9px; border: 1px solid #444; border-radius: 6px; background: #1e1e2e; color: #fff; font-size: 12px; outline: none; width: 100%; box-sizing: border-box; }
-    .drop-edit-label { font-size: 10px; color: #666; margin-bottom: 2px; display: block; }
-    .drop-edit-actions { display: flex; gap: 6px; flex-shrink: 0; }
-    @media(max-width: 900px) { .drop-edit-fields { grid-template-columns: 1fr 1fr; } }
-
     /* ===== ЧАТ ===== */
-    .chat-container { width: 100%; max-width: 600px; background: #2a2a3e; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; height: 70vh; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); position: relative; }
+    .chat-container { width: 100%; max-width: 600px; background: #2a2a3e; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; height: 70vh; box-shadow: 0 10px 40px rgba(0,0,0,0.5); position: relative; }
     .chat-header { background: #764ba2; padding: 12px 20px; font-weight: 700; font-size: 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
     .chat-header-left { display: flex; align-items: center; gap: 10px; }
     .chat-status { font-size: 12px; color: #e0d4ff; }
@@ -153,9 +211,7 @@
     .volume-btn { background: rgba(0,0,0,0.2); border: none; color: #fff; font-size: 16px; cursor: pointer; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 0; }
     .volume-slider-wrap { position: absolute; top: 100%; right: 0; margin-top: 8px; background: #2f2f44; border: 1px solid #4a4a66; border-radius: 10px; padding: 10px 14px; display: none; align-items: center; gap: 10px; z-index: 100; }
     .volume-slider-wrap.open { display: flex; }
-    .volume-slider-wrap input[type="range"] { width: 120px; }
     .volume-value { font-size: 12px; color: #a78bfa; font-weight: 700; min-width: 36px; text-align: right; }
-
     .chat-messages { flex: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; }
     .chat-msg { background: #35354d; padding: 10px 14px; border-radius: 12px; max-width: 80%; align-self: flex-start; position: relative; display: flex; gap: 10px; }
     .chat-msg.own { background: #764ba2; align-self: flex-end; }
@@ -174,17 +230,14 @@
     .chat-msg:hover .msg-delete { opacity: 1; }
     .msg-read { font-size: 10px; color: #ccc; margin-top: 4px; text-align: right; font-style: italic; }
     .chat-msg.own .msg-read { color: #e0d4ff; }
-
     .voice-player { display: flex; align-items: center; gap: 10px; margin-top: 6px; background: rgba(0,0,0,0.25); padding: 8px 12px; border-radius: 20px; min-width: 200px; max-width: 260px; }
     .voice-play-btn { width: 34px; height: 34px; border-radius: 50%; background: #a78bfa; border: none; color: #fff; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
     .voice-wave { flex: 1; height: 24px; display: flex; align-items: center; gap: 2px; cursor: pointer; }
     .voice-wave-bar { flex: 1; background: #555; border-radius: 2px; }
     .voice-wave-bar.played { background: #a78bfa; }
     .voice-duration { font-size: 11px; color: #ccc; font-weight: 700; min-width: 32px; text-align: right; }
-
     .typing-indicator { display: none; align-items: center; gap: 8px; padding: 8px 14px; margin: 0 15px 8px; background: #35354d; border-radius: 20px; align-self: flex-start; max-width: fit-content; font-size: 13px; color: #a78bfa; font-style: italic; }
     .typing-indicator.visible { display: flex; }
-
     .chat-input-area { display: flex; gap: 8px; padding: 12px; background: #35354d; border-top: 1px solid #444; align-items: center; }
     .chat-input-area input { flex: 1; padding: 12px 16px; border: none; border-radius: 8px; background: #1e1e2e; color: #fff; font-size: 14px; outline: none; }
     .sticker-btn, .mic-btn { width: 44px; height: 44px; border-radius: 50%; background: #4a3a6b; border: none; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; color: #fff; }
@@ -196,7 +249,6 @@
     .record-cancel, .record-send { padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; border: none; }
     .record-cancel { background: #4a4a66; color: #fff; }
     .record-send { background: #4caf50; color: #fff; }
-
     .sticker-panel { position: absolute; bottom: 76px; left: 12px; right: 12px; height: 340px; background: #2f2f44; border: 1px solid #4a4a66; border-radius: 12px; z-index: 50; display: none; flex-direction: column; overflow: hidden; }
     .sticker-panel.open { display: flex; }
     .sticker-panel-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #3a3a55; }
@@ -209,12 +261,10 @@
     .sticker-item img, .sticker-item video { max-width: 100%; max-height: 100%; object-fit: contain; pointer-events: none; }
     .sticker-empty { color: #666; text-align: center; padding: 30px 10px; font-size: 13px; grid-column: 1 / -1; }
 
-    /* ===== МОДАЛ ===== */
     .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
     .modal.active { display: flex; }
     .modal img, .modal video { max-width: 90vw; max-height: 90vh; border-radius: 12px; }
     .modal-close { position: absolute; top: 20px; right: 30px; font-size: 36px; color: #fff; cursor: pointer; background: none; border: none; padding: 0; line-height: 1; }
-
     .case-custom-input { display: none; margin-top: 8px; }
     .case-custom-input.visible { display: block; }
 
@@ -302,16 +352,53 @@
 <div class="user-bar" id="userBar"></div>
 
 <div class="tabs">
-    <button class="tab-btn active" data-tab="accounting" onclick="switchTab('accounting', this)">Учёт</button>
-    <button class="tab-btn" data-tab="drops" onclick="switchTab('drops', this)">Дропы</button>
+    <button class="tab-btn active" data-tab="accounting" onclick="switchTab('accounting', this)">Учёт халявы</button>
+    <button class="tab-btn" data-tab="calendar" onclick="switchTab('calendar', this)">📅 Календарь</button>
+    <button class="tab-btn" data-tab="drops" onclick="switchTab('drops', this)">🎁 Дропы</button>
+    <button class="tab-btn" data-tab="demo" onclick="switchTab('demo', this)">🎲 Демо шансы</button>
     <button class="tab-btn" data-tab="chat" onclick="switchTab('chat', this)">Чат</button>
     <button class="tab-btn admin-tab" data-tab="admin" id="adminTabBtn" style="display:none;" onclick="switchTab('admin', this)">Админка</button>
 </div>
 
+<!-- УЧЁТ -->
 <div id="tab-accounting" class="tab-content active">
-    <p style="color:#666;padding:40px;">Учёт — как раньше.</p>
+    <table id="myTable" class="acc-table">
+        <thead>
+            <tr>
+                <th>День / Кто</th>
+                <th data-owner="mega">MEGATEM41K</th>
+                <th data-owner="sergo">Sergo Bulkin</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
 </div>
 
+<!-- КАЛЕНДАРЬ -->
+<div id="tab-calendar" class="tab-content">
+    <div class="player-tabs">
+        <button class="player-btn mega active" data-player="mega" onclick="switchPlayer('mega', this)"><span class="dot"></span> MEGATEM41K</button>
+        <button class="player-btn sergo" data-player="sergo" onclick="switchPlayer('sergo', this)"><span class="dot"></span> Sergo Bulkin</button>
+    </div>
+    <div id="player-mega" class="player-view active">
+        <div class="cal-header">
+            <button onclick="changeMonth('mega', -1)">◀</button>
+            <div class="cal-title" id="calTitle-mega"></div>
+            <button onclick="changeMonth('mega', 1)">▶</button>
+        </div>
+        <div class="calendar" id="calendar-mega"></div>
+    </div>
+    <div id="player-sergo" class="player-view">
+        <div class="cal-header">
+            <button onclick="changeMonth('sergo', -1)">◀</button>
+            <div class="cal-title" id="calTitle-sergo"></div>
+            <button onclick="changeMonth('sergo', 1)">▶</button>
+        </div>
+        <div class="calendar" id="calendar-sergo"></div>
+    </div>
+</div>
+
+<!-- ДРОПЫ -->
 <div id="tab-drops" class="tab-content">
     <div class="drops-header">
         <div class="drops-title">🎁 Последние дропы</div>
@@ -324,6 +411,7 @@
     <div class="drops-grid" id="dropsGrid"></div>
 </div>
 
+<!-- ДЕМО -->
 <div id="tab-demo" class="tab-content">
     <div class="demo-wrap">
         <div class="demo-case-tabs" id="demoCaseTabs"></div>
@@ -351,7 +439,7 @@
     </div>
 </div>
 
-<!-- ============ ЧАТ ============ -->
+<!-- ЧАТ -->
 <div id="tab-chat" class="tab-content">
     <div class="chat-container">
         <div class="chat-header">
@@ -368,26 +456,21 @@
             </div>
         </div>
         <div class="chat-messages" id="chatMessages"></div>
-        <div class="typing-indicator" id="typingIndicator">
-            <span id="typingName">Кто-то</span> печатает...
-        </div>
-
+        <div class="typing-indicator" id="typingIndicator"><span id="typingName">Кто-то</span> печатает...</div>
         <div class="sticker-panel" id="stickerPanel">
             <div class="sticker-panel-header">
-                <span class="sticker-panel-title">😀 Стикеры</span>
+                <span>😀 Стикеры</span>
                 <button class="sticker-panel-close" onclick="toggleStickerPanel()">×</button>
             </div>
             <div class="sticker-packs-tabs" id="stickerPacksTabs"></div>
             <div class="sticker-grid" id="stickerGrid"></div>
         </div>
-
         <div class="record-panel" id="recordPanel">
             <div class="record-time" id="recordTime">0:00</div>
             <div class="record-label">🎤 Идёт запись...</div>
             <button class="record-cancel" onclick="cancelRecording()">Отмена</button>
             <button class="record-send" onclick="stopAndSendRecording()">➤ Отправить</button>
         </div>
-
         <div class="chat-input-area">
             <button class="sticker-btn" onclick="toggleStickerPanel()">😀</button>
             <button class="mic-btn" id="micBtn" onclick="startRecording()">🎤</button>
@@ -397,13 +480,14 @@
     </div>
 </div>
 
+<!-- АДМИНКА -->
 <div id="tab-admin" class="tab-content">
     <div class="admin-wrap">
 
         <div class="admin-card">
             <h3 class="mega-color">👤 MEGATEM41K</h3>
             <div class="avatar-edit">
-                <div class="avatar-preview mega" id="preview-mega">M</div>
+                <div class="avatar-preview" id="preview-mega">M</div>
                 <div>
                     <button class="admin-btn" onclick="document.getElementById('avatarFile-mega').click()">📷 Аватар</button>
                     <input type="file" id="avatarFile-mega" accept="image/*" style="display:none;" onchange="uploadAvatar(event, 'mega')">
@@ -419,7 +503,7 @@
         <div class="admin-card">
             <h3 class="sergo-color">👤 Sergo Bulkin</h3>
             <div class="avatar-edit">
-                <div class="avatar-preview sergo" id="preview-sergo">S</div>
+                <div class="avatar-preview" id="preview-sergo">S</div>
                 <div>
                     <button class="admin-btn" onclick="document.getElementById('avatarFile-sergo').click()">📷 Аватар</button>
                     <input type="file" id="avatarFile-sergo" accept="image/*" style="display:none;" onchange="uploadAvatar(event, 'sergo')">
@@ -485,7 +569,7 @@
 
         <div class="admin-card">
             <h3>📋 Редактировать дропы</h3>
-            <p style="font-size:13px;color:#888;margin-bottom:16px;">Меняй любые поля — редкость, цену, автора и т.д. Не забудь нажать 💾.</p>
+            <p style="font-size:13px;color:#888;margin-bottom:16px;">Меняй любые поля — цену, редкость, автора и т.д. Не забудь 💾.</p>
             <div id="dropsAdminList"></div>
         </div>
 
@@ -494,10 +578,10 @@
             <div class="case-editor-toolbar"><select class="case-editor-select" id="caseEditorSelect" onchange="selectCaseForEdit()"></select></div>
             <div id="caseEditorBody" class="case-editor">
                 <div class="case-editor-head">
-                    <div class="case-editor-field"><div class="case-editor-label">Название</div><input id="caseEditorName" type="text"></div>
-                    <div class="case-editor-field"><div class="case-editor-label">Иконка</div><input id="caseEditorIcon" type="text"></div>
-                    <div class="case-editor-field"><div class="case-editor-label">Обложка</div><input id="caseEditorCover" type="text"></div>
-                    <div class="case-editor-field"><div class="case-editor-label">Цена, ₽</div><input id="caseEditorCost" type="number" min="0" step="0.01"></div>
+                    <div><div class="case-editor-label">Название</div><input id="caseEditorName" type="text"></div>
+                    <div><div class="case-editor-label">Иконка</div><input id="caseEditorIcon" type="text"></div>
+                    <div><div class="case-editor-label">Обложка</div><input id="caseEditorCover" type="text"></div>
+                    <div><div class="case-editor-label">Цена, ₽</div><input id="caseEditorCost" type="number" min="0" step="0.01"></div>
                 </div>
                 <div class="case-editor-toolbar">
                     <button class="admin-btn" onclick="document.getElementById('caseEditorCoverFile').click()">📷 Загрузить обложку</button>
@@ -530,6 +614,9 @@
 
 </div>
 
+<button class="save-float" id="saveFloat" onclick="manualSave()">💾 Сохранить</button>
+<div class="save-toast" id="saveToast">✅ Сохранено!</div>
+
 <script type="module">
     const firebaseConfig = {
         apiKey: "AIzaSyCp06hFJwxSppjYpsI1yBQobSMb2hDZkmZE",
@@ -546,7 +633,6 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const PROFILE_URLS = { mega: 'https://skinhouse.gg/ru/user/2181', sergo: 'https://skinhouse.gg/ru/user/26587' };
 
     // ===== ГРОМКОСТЬ =====
     let currentVolume = parseFloat(localStorage.getItem('chatVolume') || '1.0');
@@ -556,9 +642,9 @@
         document.getElementById('volumeSliderWrap').classList.toggle('open');
     };
     document.addEventListener('click', (e) => {
-        const wrap = document.getElementById('volumeSliderWrap');
-        const btn = document.getElementById('volumeBtn');
-        if (wrap && wrap.classList.contains('open') && !wrap.contains(e.target) && e.target !== btn) wrap.classList.remove('open');
+        const w = document.getElementById('volumeSliderWrap');
+        const b = document.getElementById('volumeBtn');
+        if (w && w.classList.contains('open') && !w.contains(e.target) && e.target !== b) w.classList.remove('open');
     });
     window.setVolume = function(val) {
         currentVolume = parseInt(val) / 100;
@@ -566,8 +652,7 @@
         localStorage.setItem('chatVolume', String(currentVolume));
         document.getElementById('volumeSlider').value = val;
         document.getElementById('volumeValue').innerText = val + '%';
-        const btn = document.getElementById('volumeBtn');
-        btn.innerText = currentVolume === 0 ? '🔇' : currentVolume < 0.5 ? '🔉' : '🔊';
+        document.getElementById('volumeBtn').innerText = currentVolume === 0 ? '🔇' : currentVolume < 0.5 ? '🔉' : '🔊';
         document.querySelectorAll('audio').forEach(a => { a.volume = currentVolume; });
     };
 
@@ -594,11 +679,10 @@
             } else {
                 await setDoc(doc(db, 'data', 'accounts'), { accounts: ACCOUNTS, avatars: AVATARS, stickerPacks: {} });
             }
-        } catch(e) { console.warn(e); }
+        } catch(e) {}
     }
     async function saveAccounts() {
-        try { await setDoc(doc(db, 'data', 'accounts'), { accounts: ACCOUNTS, avatars: AVATARS, stickerPacks: STICKER_PACKS }); }
-        catch(e) { console.warn(e); }
+        try { await setDoc(doc(db, 'data', 'accounts'), { accounts: ACCOUNTS, avatars: AVATARS, stickerPacks: STICKER_PACKS }); } catch(e) {}
     }
     function subscribeStickers() {
         onSnapshot(doc(db, 'data', 'accounts'), (snap) => {
@@ -630,14 +714,12 @@
         try { await setDoc(doc(db, 'data', 'drops'), { items: DROPS }); }
         catch(e) { alert('Ошибка: ' + e.message); }
     }
-
     window.setDropFilter = function(filter, btn) {
         currentDropFilter = filter;
         document.querySelectorAll('.drops-filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         renderDrops();
     };
-
     function formatDropDate(ts) {
         if (!ts) return '';
         try {
@@ -645,12 +727,11 @@
             return d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: '2-digit' }) + ' ' + d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
         } catch(e) { return ''; }
     }
-
     const RARITY_LABELS = { shirotreb:'Ширпотреб', prom:'Промышленное', army:'Армейское', forbidden:'Запрещённое', classified:'Засекреченное', secret:'Тайное', gold:'Золотое' };
     const RARITY_COLORS = { shirotreb:'#5a5a7a', prom:'#4a90e2', army:'#4caf50', forbidden:'#9b59b6', classified:'#e91e63', secret:'#c62828', gold:'#f9a825' };
     function getRarityLabel(r) { return RARITY_LABELS[r] || 'Ширпотреб'; }
     function getRarityColor(r) { return RARITY_COLORS[r] || '#5a5a7a'; }
-    function getAuthorLabel(key) { return key === 'mega' ? 'MEGATEM41K' : key === 'sergo' ? 'Sergo Bulkin' : key; }
+    function getAuthorLabel(k) { return k === 'mega' ? 'MEGATEM41K' : k === 'sergo' ? 'Sergo Bulkin' : k; }
 
     function renderDrops() {
         const grid = document.getElementById('dropsGrid');
@@ -662,45 +743,38 @@
             const tb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
             return tb - ta;
         });
-        if (filtered.length === 0) {
-            grid.innerHTML = '<div class="drops-empty">Пока нет дропов.</div>';
-            return;
-        }
+        if (!filtered.length) { grid.innerHTML = '<div class="drops-empty">Пока нет дропов.</div>'; return; }
         filtered.forEach(drop => {
             const card = document.createElement('div');
             card.className = 'drop-card rarity-' + (drop.rarity || 'shirotreb');
-            const imgWrap = document.createElement('div');
-            imgWrap.className = 'drop-image';
+            const iw = document.createElement('div');
+            iw.className = 'drop-image';
             if (drop.caseImage) {
                 const cl = document.createElement('div');
                 cl.className = 'case-img';
                 const ci = document.createElement('img');
                 ci.src = drop.caseImage;
                 cl.appendChild(ci);
-                imgWrap.appendChild(cl);
+                iw.appendChild(cl);
             }
             if (drop.image) {
-                const img = document.createElement('img');
-                img.src = drop.image;
-                imgWrap.appendChild(img);
+                const im = document.createElement('img');
+                im.src = drop.image;
+                iw.appendChild(im);
             } else if (!drop.caseImage) {
-                imgWrap.innerHTML = '<div class="no-image">🎁</div>';
+                iw.innerHTML = '<div class="no-image">🎁</div>';
             }
             const badge = document.createElement('div');
             badge.className = 'drop-rarity-badge';
             badge.innerText = getRarityLabel(drop.rarity);
-            imgWrap.appendChild(badge);
-            card.appendChild(imgWrap);
-
+            iw.appendChild(badge);
+            card.appendChild(iw);
             const info = document.createElement('div');
             info.className = 'drop-info';
             info.innerHTML = `<div class="drop-name">${escapeHtml(drop.name || 'Без названия')}</div>` +
                 (drop.case ? `<div class="drop-case">📦 ${escapeHtml(drop.case)}</div>` : '') +
                 (drop.price ? `<div class="drop-price">${escapeHtml(drop.price)}</div>` : '') +
-                `<div style="display:flex;justify-content:space-between;margin-top:6px;">
-                    <div class="drop-author">${escapeHtml(getAuthorLabel(drop.author))}</div>
-                    <div class="drop-date">${formatDropDate(drop.createdAt)}</div>
-                </div>`;
+                `<div style="display:flex;justify-content:space-between;margin-top:6px;"><div class="drop-author">${escapeHtml(getAuthorLabel(drop.author))}</div><div class="drop-date">${formatDropDate(drop.createdAt)}</div></div>`;
             card.appendChild(info);
             grid.appendChild(card);
         });
@@ -708,21 +782,18 @@
 
     window.onCaseSelectChange = function() {
         const sel = document.getElementById('dropCaseSelect');
-        const custom = document.getElementById('dropCaseCustom');
-        if (sel.value === '__other__') custom.classList.add('visible');
-        else custom.classList.remove('visible');
+        const cu = document.getElementById('dropCaseCustom');
+        if (sel.value === '__other__') cu.classList.add('visible'); else cu.classList.remove('visible');
     };
     window.handleDropImage = function(event) {
-        const f = event.target.files[0];
-        if (!f || !f.type.startsWith('image/')) return;
+        const f = event.target.files[0]; if (!f) return;
         compressImage(f, 400, 0.85).then(r => {
             pendingDropImage = r;
             document.getElementById('dropImagePreview').innerHTML = `<img src="${r}">`;
         });
     };
     window.handleDropCaseImage = function(event) {
-        const f = event.target.files[0];
-        if (!f || !f.type.startsWith('image/')) return;
+        const f = event.target.files[0]; if (!f) return;
         compressImage(f, 400, 0.85).then(r => {
             pendingDropCaseImage = r;
             document.getElementById('dropCaseImagePreview').innerHTML = `<img src="${r}">`;
@@ -738,17 +809,9 @@
         const author = document.getElementById('dropAuthor').value;
         const msg = document.getElementById('msg-drop');
         let caseName = cs;
-        if (cs === '__other__') {
-            if (!cc) { msg.className = 'admin-msg err'; msg.innerText = 'Введи кейс'; return; }
-            caseName = cc;
-        }
+        if (cs === '__other__') { if (!cc) { msg.className = 'admin-msg err'; msg.innerText = 'Введи кейс'; return; } caseName = cc; }
         if (!name) { msg.className = 'admin-msg err'; msg.innerText = 'Введи название'; return; }
-        DROPS.push({
-            id: 'drop_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
-            name, case: caseName, caseUrl: cu || '', price, rarity, author,
-            image: pendingDropImage || '', caseImage: pendingDropCaseImage || '',
-            createdAt: new Date().toISOString()
-        });
+        DROPS.push({ id: 'drop_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8), name, case: caseName, caseUrl: cu || '', price, rarity, author, image: pendingDropImage || '', caseImage: pendingDropCaseImage || '', createdAt: new Date().toISOString() });
         await saveDrops();
         document.getElementById('dropName').value = '';
         document.getElementById('dropPrice').value = '';
@@ -756,13 +819,11 @@
         document.getElementById('dropCaseCustom').value = '';
         document.getElementById('dropCaseSelect').value = 'Ателье колдовских колпаков';
         document.getElementById('dropCaseCustom').classList.remove('visible');
-        pendingDropImage = null;
-        pendingDropCaseImage = null;
+        pendingDropImage = null; pendingDropCaseImage = null;
         document.getElementById('dropImagePreview').innerHTML = '<div class="ph">🎁</div>';
         document.getElementById('dropCaseImagePreview').innerHTML = '<div class="ph">📦</div>';
-        msg.className = 'admin-msg ok';
-        msg.innerText = '✅ Дроп добавлен';
-        setTimeout(() => { msg.innerText = ''; }, 2000);
+        msg.className = 'admin-msg ok'; msg.innerText = '✅ Дроп добавлен';
+        setTimeout(() => msg.innerText = '', 2000);
     };
     window.deleteDrop = async function(id) {
         if (!confirm('Удалить?')) return;
@@ -773,7 +834,7 @@
         const list = document.getElementById('dropsAdminList');
         if (!list) return;
         list.innerHTML = '';
-        if (DROPS.length === 0) { list.innerHTML = '<p style="color:#666;font-style:italic;">Пока нет дропов</p>'; return; }
+        if (!DROPS.length) { list.innerHTML = '<p style="color:#666;font-style:italic;">Пока нет дропов</p>'; return; }
         [...DROPS].sort((a, b) => {
             const ta = a.createdAt ? new Date(a.createdAt).getTime() : 0;
             const tb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
@@ -782,144 +843,381 @@
             const row = document.createElement('div');
             row.className = 'drop-edit-row';
             row.style.borderLeft = '4px solid ' + getRarityColor(drop.rarity);
-
             const thumb = document.createElement('div');
             thumb.className = 'drop-edit-thumb';
-            if (drop.image) {
-                const im = document.createElement('img');
-                im.src = drop.image;
-                thumb.appendChild(im);
-            } else thumb.innerText = '🎁';
+            if (drop.image) { const im = document.createElement('img'); im.src = drop.image; thumb.appendChild(im); } else thumb.innerText = '🎁';
             row.appendChild(thumb);
-
             const fields = document.createElement('div');
             fields.className = 'drop-edit-fields';
-
-            function makeField(label, el) {
+            function fld(label, el) {
                 const w = document.createElement('div');
                 const l = document.createElement('span');
                 l.className = 'drop-edit-label';
                 l.innerText = label;
-                w.appendChild(l);
-                w.appendChild(el);
+                w.appendChild(l); w.appendChild(el);
                 return w;
             }
-
-            const nameInput = document.createElement('input');
-            nameInput.value = drop.name || '';
-            nameInput.className = 'drop-edit-name';
-            fields.appendChild(makeField('Название', nameInput));
-
-            const caseInput = document.createElement('input');
-            caseInput.value = drop.case || '';
-            caseInput.className = 'drop-edit-case';
-            fields.appendChild(makeField('Кейс', caseInput));
-
-            const priceInput = document.createElement('input');
-            priceInput.value = drop.price || '';
-            priceInput.className = 'drop-edit-price';
-            fields.appendChild(makeField('Цена', priceInput));
-
+            const nameIn = document.createElement('input'); nameIn.value = drop.name || '';
+            fields.appendChild(fld('Название', nameIn));
+            const caseIn = document.createElement('input'); caseIn.value = drop.case || '';
+            fields.appendChild(fld('Кейс', caseIn));
+            const priceIn = document.createElement('input'); priceIn.value = drop.price || '';
+            fields.appendChild(fld('Цена', priceIn));
             const raritySel = document.createElement('select');
-            raritySel.className = 'drop-edit-rarity';
             Object.keys(RARITY_LABELS).forEach(k => {
                 const o = document.createElement('option');
-                o.value = k;
-                o.textContent = RARITY_LABELS[k];
+                o.value = k; o.textContent = RARITY_LABELS[k];
                 if (drop.rarity === k) o.selected = true;
                 raritySel.appendChild(o);
             });
-            fields.appendChild(makeField('Редкость', raritySel));
-
+            fields.appendChild(fld('Редкость', raritySel));
             const authorSel = document.createElement('select');
-            authorSel.className = 'drop-edit-author';
             [['mega', 'MEGATEM41K'], ['sergo', 'Sergo Bulkin']].forEach(([k, v]) => {
                 const o = document.createElement('option');
-                o.value = k;
-                o.textContent = v;
+                o.value = k; o.textContent = v;
                 if (drop.author === k) o.selected = true;
                 authorSel.appendChild(o);
             });
-            fields.appendChild(makeField('Автор', authorSel));
-
-            const urlInput = document.createElement('input');
-            urlInput.value = drop.caseUrl || '';
-            urlInput.className = 'drop-edit-caseurl';
-            fields.appendChild(makeField('Ссылка', urlInput));
-
-            const imgUrlInput = document.createElement('input');
-            imgUrlInput.value = drop.image || '';
-            imgUrlInput.className = 'drop-edit-image';
-            imgUrlInput.placeholder = 'URL фото скина';
-            fields.appendChild(makeField('Фото скина', imgUrlInput));
-
-            const caseImgUrlInput = document.createElement('input');
-            caseImgUrlInput.value = drop.caseImage || '';
-            caseImgUrlInput.className = 'drop-edit-caseimage';
-            caseImgUrlInput.placeholder = 'URL фото кейса';
-            fields.appendChild(makeField('Фото кейса', caseImgUrlInput));
-
+            fields.appendChild(fld('Автор', authorSel));
+            const urlIn = document.createElement('input'); urlIn.value = drop.caseUrl || '';
+            fields.appendChild(fld('Ссылка', urlIn));
+            const imgIn = document.createElement('input'); imgIn.value = drop.image || ''; imgIn.placeholder = 'URL фото скина';
+            fields.appendChild(fld('Фото скина', imgIn));
+            const caseImgIn = document.createElement('input'); caseImgIn.value = drop.caseImage || ''; caseImgIn.placeholder = 'URL фото кейса';
+            fields.appendChild(fld('Фото кейса', caseImgIn));
             row.appendChild(fields);
-
             const actions = document.createElement('div');
             actions.className = 'drop-edit-actions';
-
             const saveBtn = document.createElement('button');
-            saveBtn.className = 'admin-btn small';
-            saveBtn.innerText = '💾';
-            saveBtn.title = 'Сохранить';
+            saveBtn.className = 'admin-btn small'; saveBtn.innerText = '💾';
             saveBtn.onclick = async () => {
                 const idx = DROPS.findIndex(d => d.id === drop.id);
                 if (idx < 0) return;
-                DROPS[idx].name = nameInput.value.trim() || 'Без названия';
-                DROPS[idx].case = caseInput.value.trim();
-                DROPS[idx].price = priceInput.value.trim();
+                DROPS[idx].name = nameIn.value.trim() || 'Без названия';
+                DROPS[idx].case = caseIn.value.trim();
+                DROPS[idx].price = priceIn.value.trim();
                 DROPS[idx].rarity = raritySel.value;
                 DROPS[idx].author = authorSel.value;
-                DROPS[idx].caseUrl = urlInput.value.trim();
-                DROPS[idx].image = imgUrlInput.value.trim();
-                DROPS[idx].caseImage = caseImgUrlInput.value.trim();
+                DROPS[idx].caseUrl = urlIn.value.trim();
+                DROPS[idx].image = imgIn.value.trim();
+                DROPS[idx].caseImage = caseImgIn.value.trim();
                 await saveDrops();
-                renderDrops();
-                renderDropsAdmin();
-                alert('✅ Дроп сохранён');
+                renderDrops(); renderDropsAdmin();
+                alert('✅ Сохранено');
             };
             actions.appendChild(saveBtn);
-
-            const imgUploadBtn = document.createElement('button');
-            imgUploadBtn.className = 'admin-btn small';
-            imgUploadBtn.innerText = '📷';
-            const imgFileInput = document.createElement('input');
-            imgFileInput.type = 'file';
-            imgFileInput.accept = 'image/*';
-            imgFileInput.style.display = 'none';
-            imgFileInput.onchange = async (e) => {
-                const f = e.target.files[0];
-                if (!f) return;
-                const result = await compressImage(f, 400, 0.85);
-                imgUrlInput.value = result;
+            const imgBtn = document.createElement('button');
+            imgBtn.className = 'admin-btn small'; imgBtn.innerText = '📷';
+            const imgFi = document.createElement('input');
+            imgFi.type = 'file'; imgFi.accept = 'image/*'; imgFi.style.display = 'none';
+            imgFi.onchange = async (e) => {
+                const f = e.target.files[0]; if (!f) return;
+                const r = await compressImage(f, 400, 0.85);
+                imgIn.value = r;
                 thumb.innerHTML = '';
                 const im = document.createElement('img');
-                im.src = result;
+                im.src = r;
                 thumb.appendChild(im);
                 e.target.value = '';
             };
-            imgUploadBtn.onclick = () => imgFileInput.click();
-            actions.appendChild(imgUploadBtn);
-            actions.appendChild(imgFileInput);
-
+            imgBtn.onclick = () => imgFi.click();
+            actions.appendChild(imgBtn);
+            actions.appendChild(imgFi);
             const delBtn = document.createElement('button');
-            delBtn.className = 'admin-btn small danger';
-            delBtn.innerText = '🗑';
+            delBtn.className = 'admin-btn small danger'; delBtn.innerText = '🗑';
             delBtn.onclick = () => deleteDrop(drop.id);
             actions.appendChild(delBtn);
-
             row.appendChild(actions);
             list.appendChild(row);
         });
     }
 
-    // ===== ДЕМО ШАНСЫ =====
+    // ===== УЧЁТ =====
+    const DAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+    let tableData = { mega: {}, sergo: {} };
+    DAYS.forEach(d => {
+        tableData.mega[d] = { alik: '', zhidkiy: '' };
+        tableData.sergo[d] = { alik: '', zhidkiy: '' };
+    });
+    let hasUnsavedChanges = false;
+
+    function renderTable() {
+        const tbody = document.getElementById('tableBody');
+        tbody.innerHTML = '';
+        DAYS.forEach(day => {
+            const tr = document.createElement('tr');
+            const tdd = document.createElement('td');
+            tdd.innerText = day;
+            tr.appendChild(tdd);
+            ['mega', 'sergo'].forEach(ownerKey => {
+                const td = document.createElement('td');
+                const canEdit = currentUser && currentUser.key === ownerKey;
+                const pair = document.createElement('div');
+                pair.className = 'cell-pair';
+                pair.appendChild(createPersonInput(ownerKey, day, 'alik', 'Алик', canEdit));
+                pair.appendChild(createPersonInput(ownerKey, day, 'zhidkiy', 'Жидкий', canEdit));
+                td.appendChild(pair);
+                tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+        });
+        const totalTr = document.createElement('tr');
+        totalTr.className = 'total-row';
+        const tl = document.createElement('td');
+        tl.innerText = 'Сумма';
+        totalTr.appendChild(tl);
+        const mt = document.createElement('td');
+        const ms = document.createElement('span');
+        ms.className = 'total-value mega'; ms.id = 'total-mega'; ms.innerText = '0 ₽';
+        mt.appendChild(ms); totalTr.appendChild(mt);
+        const st = document.createElement('td');
+        const ss = document.createElement('span');
+        ss.className = 'total-value sergo'; ss.id = 'total-sergo'; ss.innerText = '0 ₽';
+        st.appendChild(ss); totalTr.appendChild(st);
+        tbody.appendChild(totalTr);
+        updateTotals();
+    }
+    function createPersonInput(ownerKey, day, personKey, personName, canEdit) {
+        const row = document.createElement('div');
+        row.className = 'cell-row';
+        const lbl = document.createElement('span');
+        lbl.className = 'label ' + personKey;
+        lbl.innerText = personName + ' — ';
+        row.appendChild(lbl);
+        const inp = document.createElement('input');
+        inp.type = 'text'; inp.className = 'price-input';
+        inp.placeholder = 'цена';
+        inp.value = tableData[ownerKey][day][personKey] || '';
+        inp.disabled = !canEdit;
+        inp.dataset.owner = ownerKey;
+        inp.dataset.day = day;
+        inp.dataset.person = personKey;
+        inp.addEventListener('input', onPriceInput);
+        row.appendChild(inp);
+        return row;
+    }
+    function onPriceInput(e) {
+        const i = e.target;
+        tableData[i.dataset.owner][i.dataset.day][i.dataset.person] = i.value;
+        updateTotals();
+        if (currentUser && currentUser.key === i.dataset.owner) {
+            hasUnsavedChanges = true;
+            const sf = document.getElementById('saveFloat');
+            if (sf) sf.classList.add('visible');
+        }
+    }
+    function parsePrice(s) {
+        if (!s) return 0;
+        const n = parseFloat(String(s).replace(/[^\d.,-]/g, '').replace(',', '.'));
+        return isNaN(n) ? 0 : n;
+    }
+    function updateTotals() {
+        let sm = 0, ss = 0;
+        DAYS.forEach(d => {
+            sm += parsePrice(tableData.mega[d].alik) + parsePrice(tableData.mega[d].zhidkiy);
+            ss += parsePrice(tableData.sergo[d].alik) + parsePrice(tableData.sergo[d].zhidkiy);
+        });
+        const me = document.getElementById('total-mega');
+        const se = document.getElementById('total-sergo');
+        if (me) me.innerText = sm + ' ₽';
+        if (se) se.innerText = ss + ' ₽';
+    }
+    async function loadTable() {
+        try {
+            const snap = await getDoc(doc(db, 'data', 'accounting'));
+            if (snap.exists() && snap.data().prices_v2) {
+                const cloud = snap.data().prices_v2;
+                if (cloud && cloud.mega && cloud.sergo) {
+                    DAYS.forEach(d => {
+                        ['mega', 'sergo'].forEach(o => {
+                            const src = cloud[o][d];
+                            if (src) tableData[o][d] = { alik: src.alik || '', zhidkiy: src.zhidkiy || '' };
+                        });
+                    });
+                }
+            }
+        } catch(e) {}
+        renderTable();
+    }
+    async function saveTable() {
+        if (!currentUser) return;
+        let cloud = { mega: {}, sergo: {} };
+        DAYS.forEach(d => {
+            cloud.mega[d] = { alik: '', zhidkiy: '' };
+            cloud.sergo[d] = { alik: '', zhidkiy: '' };
+        });
+        try {
+            const snap = await getDoc(doc(db, 'data', 'accounting'));
+            if (snap.exists() && snap.data().prices_v2) {
+                const c = snap.data().prices_v2;
+                DAYS.forEach(d => {
+                    ['mega', 'sergo'].forEach(o => {
+                        if (c[o] && c[o][d]) cloud[o][d] = { alik: c[o][d].alik || '', zhidkiy: c[o][d].zhidkiy || '' };
+                    });
+                });
+            }
+        } catch(e) {}
+        DAYS.forEach(d => {
+            cloud[currentUser.key][d] = {
+                alik: tableData[currentUser.key][d].alik,
+                zhidkiy: tableData[currentUser.key][d].zhidkiy
+            };
+        });
+        try { await setDoc(doc(db, 'data', 'accounting'), { prices_v2: cloud }, { merge: true }); } catch(e) {}
+    }
+    window.manualSave = async function() {
+        const b = document.getElementById('saveFloat');
+        b.innerHTML = '⏳...';
+        await saveTable();
+        b.innerHTML = '💾 Сохранить';
+        hasUnsavedChanges = false;
+        b.classList.remove('visible');
+        const t = document.getElementById('saveToast');
+        t.classList.add('visible');
+        setTimeout(() => t.classList.remove('visible'), 2000);
+    };
+
+    // ===== КАЛЕНДАРЬ =====
+    let skins = { mega: {}, sergo: {} };
+    let pendingSkins = {};
+    let currentDate = { mega: new Date(), sergo: new Date() };
+    currentDate.mega.setDate(1); currentDate.sergo.setDate(1);
+    const MONTHS = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+    const CAL_DAYS = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+
+    window.switchPlayer = function(k, btn) {
+        document.querySelectorAll('.player-view').forEach(v => v.classList.remove('active'));
+        document.querySelectorAll('.player-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById('player-' + k).classList.add('active');
+        btn.classList.add('active');
+    };
+    function loadSkins() {
+        onSnapshot(doc(db, 'data', 'skins'), (snap) => {
+            if (snap.exists()) {
+                const d = snap.data();
+                skins.mega = d.mega || {};
+                skins.sergo = d.sergo || {};
+            } else skins = { mega: {}, sergo: {} };
+            renderCalendar('mega'); renderCalendar('sergo');
+        });
+    }
+    async function saveSkins() {
+        try { await setDoc(doc(db, 'data', 'skins'), skins); } catch(e) {}
+    }
+    function dateKey(y, m, d) { return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`; }
+    function pendingKey(p, dk, pk) { return p + '|' + dk + '|' + pk; }
+    function renderCalendar(playerKey) {
+        const y = currentDate[playerKey].getFullYear();
+        const m = currentDate[playerKey].getMonth();
+        document.getElementById('calTitle-' + playerKey).innerText = `${MONTHS[m]} ${y}`;
+        const cal = document.getElementById('calendar-' + playerKey);
+        cal.innerHTML = '';
+        CAL_DAYS.forEach(d => {
+            const el = document.createElement('div');
+            el.className = 'cal-dayname'; el.innerText = d;
+            cal.appendChild(el);
+        });
+        let firstDay = new Date(y, m, 1).getDay();
+        firstDay = firstDay === 0 ? 6 : firstDay - 1;
+        const daysInMonth = new Date(y, m + 1, 0).getDate();
+        const today = new Date();
+        for (let i = 0; i < firstDay; i++) {
+            const e = document.createElement('div');
+            e.className = 'cal-cell empty';
+            cal.appendChild(e);
+        }
+        for (let d = 1; d <= daysInMonth; d++) {
+            const cell = document.createElement('div');
+            cell.className = 'cal-cell';
+            if (currentUser && playerKey !== currentUser.key) cell.classList.add('locked');
+            if (d === today.getDate() && m === today.getMonth() && y === today.getFullYear()) cell.classList.add('today');
+            const de = document.createElement('div');
+            de.className = 'cal-date'; de.innerText = d;
+            cell.appendChild(de);
+            const k = dateKey(y, m, d);
+            cell.appendChild(createPersonBlock(playerKey, 'alik', 'Алик', k));
+            cell.appendChild(createPersonBlock(playerKey, 'zhidkiy', 'Жидкий', k));
+            cal.appendChild(cell);
+        }
+    }
+    function createPersonBlock(playerKey, personKey, personName, dk) {
+        const wrap = document.createElement('div');
+        wrap.className = 'cal-person';
+        const n = document.createElement('div');
+        n.className = 'cal-person-name ' + personKey;
+        n.innerText = personName;
+        wrap.appendChild(n);
+        const box = document.createElement('div');
+        box.className = 'skin-box';
+        const pk = pendingKey(playerKey, dk, personKey);
+        const savedSrc = skins[playerKey][dk] && skins[playerKey][dk][personKey];
+        const pendSrc = pendingSkins[pk];
+        const imgSrc = pendSrc || savedSrc;
+        const canEdit = currentUser && playerKey === currentUser.key;
+        if (imgSrc) {
+            box.classList.add('has-image');
+            const im = document.createElement('img');
+            im.src = imgSrc;
+            im.onclick = (e) => { e.stopPropagation(); openModal(imgSrc, false); };
+            box.appendChild(im);
+            if (savedSrc && canEdit) {
+                const rm = document.createElement('button');
+                rm.className = 'skin-remove';
+                rm.innerText = '×';
+                rm.onclick = (e) => {
+                    e.stopPropagation();
+                    if (!confirm('Удалить?')) return;
+                    delete skins[playerKey][dk][personKey];
+                    if (!Object.keys(skins[playerKey][dk]).length) delete skins[playerKey][dk];
+                    saveSkins();
+                };
+                box.appendChild(rm);
+            }
+            if (pendSrc && canEdit) {
+                box.classList.add('pending');
+                const sv = document.createElement('button');
+                sv.className = 'skin-save';
+                sv.innerText = '💾';
+                sv.onclick = (e) => {
+                    e.stopPropagation();
+                    if (!skins[playerKey][dk]) skins[playerKey][dk] = {};
+                    skins[playerKey][dk][personKey] = pendSrc;
+                    delete pendingSkins[pk];
+                    saveSkins();
+                    renderCalendar(playerKey);
+                };
+                box.appendChild(sv);
+            }
+        } else {
+            const ph = document.createElement('div');
+            ph.className = 'placeholder';
+            ph.innerText = canEdit ? '+ скин' : '— пусто —';
+            box.appendChild(ph);
+        }
+        if (canEdit) {
+            const inp = document.createElement('input');
+            inp.type = 'file'; inp.accept = 'image/*';
+            inp.onchange = async (e) => {
+                const f = e.target.files[0];
+                if (!f) return;
+                pendingSkins[pk] = await compressImage(f, 512, 0.8);
+                renderCalendar(playerKey);
+            };
+            box.appendChild(inp);
+            box.onclick = (e) => {
+                if (e.target.tagName === 'IMG' || e.target.classList.contains('skin-remove') || e.target.classList.contains('skin-save')) return;
+                inp.click();
+            };
+        } else box.style.cursor = 'default';
+        wrap.appendChild(box);
+        return wrap;
+    }
+    window.changeMonth = function(k, d) {
+        currentDate[k].setMonth(currentDate[k].getMonth() + d);
+        renderCalendar(k);
+    };
+
+    // ===== ДЕМО =====
     const DEMO_BALANCE_KEY = 'demoChanceBalance_v2';
     const DEMO_CASE_COST = 1;
     let DEMO_CASES = [
@@ -929,7 +1227,6 @@
             {weapon:'Штык-нож M9', name:'Чистая вода', chance:0.072, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMW-J_uF1teBncCK9nBsijGTVpYL8JSLSMxhzDMYhTLUD4Re6ktTkMbvh5AyI394UmSv9hiJK63k_4O8CVaMm__eFkUifZn6YDkD1'},
             {weapon:'AWP', name:'Удар молнии', chance:0.02, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf_C9k4_upYLBjKf6UMWaH0dF6ueZhW2frwU1_sW2EmNyvc32RZwMpCpcjQ-EJ4xbtmt3gYezk4wzb3tpAy3mrkGoXubsGIfVN'},
             {weapon:'AK-47', name:'Неоновая революция', chance:0.25, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwiFO0PC7ZKhoNM-BD26e_uMisbBWQyC0nQlp4GmGydioIH3DPFMjDMd2QrQO5hDtkNK2Ne_htAXd3d0Uyiiriysb5zErvbh6fsb98Q'},
-            {weapon:'G3SG1', name:'Поток', chance:7.107, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIa-2lmxU-LR0dnuNm6E8Vl45Iv181z1fh7lk6nk9DRe_c24abZkIf6HDCmSkrh35uRvHXG1lkp_6zjUzY2gcimRP1N2XJJxTOYKuhDsxNC2YePi-UWA3IGWyCLX'},
             {weapon:'MP9', name:'Бегом за латте', chance:5.887, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL2zYXnrB1c_M2pO7dqcc-VAnKI_v5jovFlSha_nBovp3ODz9uoc3vGOgMmApp3QrFe5xftm9bjNOm24Afb3YlBn3mqjS8dvy1p_a9cBmtTF-_C'}
           ]},
         { id:'usp', name:'USP-S Шанс', icon:'🔫',
@@ -937,7 +1234,6 @@
           items:[
             {weapon:'USP-S', name:'Подтвержденное убийство', chance:0.008, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_uV_vO1WTCa9kxQ1vjiBpYL8JSLSMxghCMEjEeNe5hHpw9zhYuOz5VfcitpBmyqt3X9O6itrsesFUfYmrKzTkUifZqPQtnZK'},
             {weapon:'USP-S', name:'Предатель', chance:0.5, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSJ-OsG3SA0tF-se9uSi2-lBMYvjiBk5r0b3yQaABxCsdyR-dc4BS5l4DlYujntgCMi49AmCv5ii0buik54ucAVfI7uvqAawge80M'},
-            {weapon:'USP-S', name:'Извилины', chance:19.923, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_uh6sfJhTSiwniIqtjmMj4K3dinFPQAiDZNyQuAC50a5ltWxPuO0tFDd2toQzHj_iSoYvS5isewKBL1lpPPpl_fG8g'},
             {weapon:'USP-S', name:'Зубоскал', chance:9.5, image:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSM-CsA2KDydFlsedsWzChkBkYvjiBk5r0b3_FOFUmCcdxROUMshfrm93gNO7n7gOLg4pGni_6iytI7ys-t-pWVKQ7uvqAUs9mV0k'}
           ]},
         { id:'atelier', name:'Ателье колдовских колпаков', icon:'🧙',
@@ -951,25 +1247,23 @@
     ];
     let demoCurrentCase = 'rainy';
     let demoOpening = false;
-
     function getDemoBalance() {
         const n = Number(localStorage.getItem(DEMO_BALANCE_KEY));
         return Number.isFinite(n) && n >= 0 ? n : 1000;
     }
-    function setDemoBalance(value) {
-        const safe = Math.max(0, Math.floor(Number(value) || 0));
+    function setDemoBalance(v) {
+        const safe = Math.max(0, Math.floor(Number(v) || 0));
         localStorage.setItem(DEMO_BALANCE_KEY, String(safe));
         const msg = document.getElementById('demoBalanceMessage');
-        const addBtn = document.getElementById('demoAddBalanceBtn');
-        const openBtn = document.getElementById('demoOpenBtn');
+        const add = document.getElementById('demoAddBalanceBtn');
+        const op = document.getElementById('demoOpenBtn');
         const cost = Number(getDemoCase()?.cost ?? DEMO_CASE_COST) || 0;
         if (msg) msg.innerText = safe < cost ? 'Не хватает ₽' + (cost - safe).toFixed(2) : 'Баланс ₽' + safe.toFixed(2);
-        if (addBtn) addBtn.style.display = safe >= cost ? 'none' : 'inline-flex';
-        if (openBtn) { openBtn.disabled = demoOpening || safe < cost; openBtn.innerText = 'Открыть за ' + cost + ' ₽'; }
+        if (add) add.style.display = safe >= cost ? 'none' : 'inline-flex';
+        if (op) { op.disabled = demoOpening || safe < cost; op.innerText = 'Открыть за ' + cost + ' ₽'; }
     }
-    window.demoAddBalance = function() { setDemoBalance(getDemoBalance() + 100); };
+    window.demoAddBalance = () => setDemoBalance(getDemoBalance() + 100);
     function getDemoCase() { return DEMO_CASES.find(c => c.id === demoCurrentCase) || DEMO_CASES[0]; }
-
     function demoRarity(item) {
         const w = String(item.weapon || '').toLowerCase();
         if (/нож|перчат|агент|брелок|charm/.test(w)) return ['gold', 'Золотое качество'];
@@ -981,17 +1275,16 @@
         if (c <= 35) return ['lightblue', 'Промышленное'];
         return ['gray', 'Ширпотреб'];
     }
-
     function renderDemoCaseTabs() {
         const tabs = document.getElementById('demoCaseTabs');
         if (!tabs) return;
         tabs.innerHTML = '';
         DEMO_CASES.forEach(c => {
-            const btn = document.createElement('button');
-            btn.className = 'demo-case-tab' + (c.id === demoCurrentCase ? ' active' : '');
-            btn.innerHTML = '<div class="demo-case-tab-title">' + escapeHtml(c.icon + ' ' + c.name) + '</div>';
-            btn.onclick = () => { if (demoOpening) return; demoCurrentCase = c.id; renderDemoCase(); };
-            tabs.appendChild(btn);
+            const b = document.createElement('button');
+            b.className = 'demo-case-tab' + (c.id === demoCurrentCase ? ' active' : '');
+            b.innerHTML = '<div class="demo-case-tab-title">' + escapeHtml(c.icon + ' ' + c.name) + '</div>';
+            b.onclick = () => { if (demoOpening) return; demoCurrentCase = c.id; renderDemoCase(); };
+            tabs.appendChild(b);
         });
     }
     function makeFeatureCard(item) {
@@ -1006,13 +1299,13 @@
         document.getElementById('demoCaseName').innerText = c.name;
         document.getElementById('demoCaseIcon').innerText = c.icon;
         document.getElementById('demoCaseCover').innerHTML = '<img src="' + c.cover + '">';
-        const feature = document.getElementById('demoFeatureItems');
-        feature.innerHTML = '';
-        c.items.slice(0, 3).forEach(item => feature.appendChild(makeFeatureCard(item)));
+        const feat = document.getElementById('demoFeatureItems');
+        feat.innerHTML = '';
+        c.items.slice(0, 3).forEach(i => feat.appendChild(makeFeatureCard(i)));
         const cs = document.createElement('div');
         cs.className = 'demo-feature-center-slot';
-        feature.appendChild(cs);
-        c.items.slice(-3).forEach(item => feature.appendChild(makeFeatureCard(item)));
+        feat.appendChild(cs);
+        c.items.slice(-3).forEach(i => feat.appendChild(makeFeatureCard(i)));
         const items = document.getElementById('demoItems');
         items.innerHTML = '';
         c.items.forEach(item => {
@@ -1026,9 +1319,9 @@
         setDemoBalance(getDemoBalance());
         renderDemoCaseTabs();
     }
-    window.demoBackToCases = function() {
-        const tabs = document.getElementById('demoCaseTabs');
-        if (tabs) tabs.scrollIntoView({behavior: 'smooth', block: 'center'});
+    window.demoBackToCases = () => {
+        const t = document.getElementById('demoCaseTabs');
+        if (t) t.scrollIntoView({behavior: 'smooth', block: 'center'});
     };
     function pickDemoItem(items) {
         const total = items.reduce((s, i) => s + i.chance, 0);
@@ -1041,8 +1334,7 @@
         track.innerHTML = '';
         const seq = [];
         for (let i = 0; i < 34; i++) seq.push(c.items[Math.floor(Math.random() * c.items.length)]);
-        const wi = 29;
-        seq[wi] = winner;
+        seq[29] = winner;
         seq.forEach(item => {
             const el = document.createElement('div');
             const r = demoRarity(item);
@@ -1055,7 +1347,7 @@
         void track.offsetWidth;
         const iw = 132 + 8;
         const container = track.parentElement.getBoundingClientRect().width;
-        const target = -(wi * iw - container / 2 + 66);
+        const target = -(29 * iw - container / 2 + 66);
         track.style.transition = 'transform 2.8s cubic-bezier(.08,.72,.12,1)';
         track.style.transform = 'translateX(' + target + 'px)';
     }
@@ -1087,7 +1379,6 @@
     // ===== РЕДАКТОР КЕЙСОВ =====
     const DEMO_RARITIES = {gray:'Ширпотреб',lightblue:'Промышленное',blue:'Армейское',purple:'Запрещённое',pink:'Засекреченное',red:'Тайное',gold:'Золотое'};
     let caseEditorCurrentId = 'rainy';
-
     function caseRarity(it) {
         if (it && DEMO_RARITIES[it.rarity]) return it.rarity;
         const w = String(it && it.weapon || '').toLowerCase();
@@ -1120,7 +1411,7 @@
                     })) : base.items
                 };
             });
-        } catch(e) { console.warn(e); }
+        } catch(e) {}
     }
     async function saveEditableCases() {
         const items = DEMO_CASES.map(c => ({
@@ -1142,8 +1433,7 @@
         s.innerHTML = '';
         DEMO_CASES.forEach(c => {
             const o = document.createElement('option');
-            o.value = c.id;
-            o.textContent = c.icon + ' ' + c.name;
+            o.value = c.id; o.textContent = c.icon + ' ' + c.name;
             s.appendChild(o);
         });
         if (!DEMO_CASES.some(c => c.id === caseEditorCurrentId)) caseEditorCurrentId = DEMO_CASES[0].id;
@@ -1164,54 +1454,34 @@
             row.className = 'case-editor-item';
             const thumb = document.createElement('div');
             thumb.className = 'case-editor-thumb';
-            if (it.image) {
-                const im = document.createElement('img');
-                im.src = it.image;
-                thumb.appendChild(im);
-            } else thumb.innerText = '🎁';
-
-            function makeField(label) {
-                const w = document.createElement('div');
-                w.className = 'case-editor-field';
-                const l = document.createElement('div');
-                l.className = 'case-editor-label';
-                l.innerText = label;
-                w.appendChild(l);
-                return w;
-            }
-            const nw = makeField('Название');
-            const ni = document.createElement('input');
-            ni.className = 'editor-name';
-            ni.value = it.name || '';
-            nw.appendChild(ni);
-            const ww = makeField('Оружие');
-            const wi = document.createElement('input');
-            wi.className = 'editor-weapon-input';
-            wi.value = it.weapon || '';
-            ww.appendChild(wi);
-            const cw = makeField('Шанс %');
-            const ci = document.createElement('input');
-            ci.className = 'editor-chance-input';
-            ci.type = 'number'; ci.step = '0.001'; ci.min = '0';
-            ci.value = (it.chance != null ? it.chance : 0);
-            cw.appendChild(ci);
-            const rw = makeField('Качество');
-            const rs = document.createElement('select');
-            rs.className = 'editor-rarity-select';
+            if (it.image) { const im = document.createElement('img'); im.src = it.image; thumb.appendChild(im); } else thumb.innerText = '🎁';
+            const nw = document.createElement('div');
+            const nl = document.createElement('div'); nl.className = 'case-editor-label'; nl.innerText = 'Название';
+            const ni = document.createElement('input'); ni.className = 'editor-name'; ni.value = it.name || '';
+            nw.appendChild(nl); nw.appendChild(ni);
+            const ww = document.createElement('div');
+            const wl = document.createElement('div'); wl.className = 'case-editor-label'; wl.innerText = 'Оружие';
+            const wi = document.createElement('input'); wi.className = 'editor-weapon-input'; wi.value = it.weapon || '';
+            ww.appendChild(wl); ww.appendChild(wi);
+            const cw = document.createElement('div');
+            const cl = document.createElement('div'); cl.className = 'case-editor-label'; cl.innerText = 'Шанс %';
+            const ci = document.createElement('input'); ci.className = 'editor-chance-input'; ci.type = 'number'; ci.step = '0.001'; ci.min = '0'; ci.value = (it.chance != null ? it.chance : 0);
+            cw.appendChild(cl); cw.appendChild(ci);
+            const rw = document.createElement('div');
+            const rl = document.createElement('div'); rl.className = 'case-editor-label'; rl.innerText = 'Качество';
+            const rs = document.createElement('select'); rs.className = 'editor-rarity-select';
             Object.keys(DEMO_RARITIES).forEach(k => {
-                const o = document.createElement('option');
-                o.value = k; o.textContent = DEMO_RARITIES[k];
+                const o = document.createElement('option'); o.value = k; o.textContent = DEMO_RARITIES[k];
                 if (caseRarity(it) === k) o.selected = true;
                 rs.appendChild(o);
             });
-            rw.appendChild(rs);
-            const iw = makeField('Фото (URL)');
-            const ii = document.createElement('input');
-            ii.className = 'editor-image-input';
-            ii.value = it.image || '';
-            iw.appendChild(ii);
+            rw.appendChild(rl); rw.appendChild(rs);
+            const iw = document.createElement('div');
+            const il = document.createElement('div'); il.className = 'case-editor-label'; il.innerText = 'Фото (URL)';
+            const ii = document.createElement('input'); ii.className = 'editor-image-input'; ii.value = it.image || '';
+            iw.appendChild(il); iw.appendChild(ii);
             const del = document.createElement('button');
-            del.type = 'button'; del.className = 'case-editor-remove'; del.innerText = '×';
+            del.className = 'case-editor-remove'; del.innerText = '×';
             del.onclick = () => { c.items.splice(idx, 1); renderCaseEditorItems(c); };
             [thumb, nw, ww, cw, rw, iw, del].forEach(x => row.appendChild(x));
             list.appendChild(row);
@@ -1225,8 +1495,7 @@
         renderCaseEditorItems(c);
     };
     window.handleCaseCoverUpload = async e => {
-        const f = e.target.files[0];
-        if (!f) return;
+        const f = e.target.files[0]; if (!f) return;
         document.getElementById('caseEditorCover').value = await compressImage(f, 520, 0.84);
         e.target.value = '';
     };
@@ -1295,11 +1564,13 @@
     function showMainSite() {
         document.getElementById('loginOverlay').classList.add('hidden');
         document.getElementById('mainSite').style.display = 'flex';
-              renderUserBar();
-        // Админку видит и mega, и sergo
-        document.getElementById('adminTabBtn').style.display = '';
-        loadAdminFields();;
-
+        renderUserBar();
+        if (currentUser.key === 'mega') {
+            document.getElementById('adminTabBtn').style.display = '';
+            loadAdminFields();
+        } else document.getElementById('adminTabBtn').style.display = 'none';
+        loadTable();
+        loadSkins();
         initChat();
         initTyping();
         subscribeDrops();
@@ -1309,7 +1580,8 @@
         renderStickerPacksTabs();
         renderStickerGrid();
         renderPacksAdmin();
-
+        renderCalendar('mega');
+        renderCalendar('sergo');
         const saved = localStorage.getItem('activeTab') || 'accounting';
         const btn = document.querySelector(`.tab-btn[data-tab="${saved}"]`);
         if (btn) switchTab(saved, btn);
@@ -1341,6 +1613,7 @@
         if (name === 'chat') {
             const cm = document.getElementById('chatMessages');
             if (cm) cm.scrollTop = cm.scrollHeight;
+            markMessagesAsRead();
         }
     };
 
@@ -1356,11 +1629,11 @@
         onSnapshot(q, (snap) => {
             chatMessages.innerHTML = '';
             const ids = [];
-            snap.forEach(docSnap => {
-                const data = docSnap.data();
-                addMessageToDOM(docSnap.id, data);
-                ids.push(docSnap.id);
-                if (currentUser && data.author !== currentUser.login && !seenMessageIds.has(docSnap.id)) unreadFromOthers.add(docSnap.id);
+            snap.forEach(d => {
+                const data = d.data();
+                addMessageToDOM(d.id, data);
+                ids.push(d.id);
+                if (currentUser && data.author !== currentUser.login && !seenMessageIds.has(d.id)) unreadFromOthers.add(d.id);
             });
             if (localStorage.getItem('activeTab') === 'chat') markMessagesAsRead();
             ids.forEach(id => seenMessageIds.add(id));
@@ -1379,27 +1652,25 @@
         const av = document.createElement('div');
         av.className = 'msg-avatar' + (avatar ? '' : ' ' + authorKey);
         av.dataset.author = msg.author;
-        if (avatar) {
-            const img = document.createElement('img');
-            img.src = avatar;
-            av.appendChild(img);
-        } else av.innerText = (msg.author[0] || '?').toUpperCase();
+        if (avatar) { const im = document.createElement('img'); im.src = avatar; av.appendChild(im); }
+        else av.innerText = (msg.author[0] || '?').toUpperCase();
         div.appendChild(av);
         const body = document.createElement('div');
         body.className = 'msg-body';
-        body.innerHTML = `<div class="msg-author">${escapeHtml(msg.author)}</div>`;
+        const an = document.createElement('div');
+        an.className = 'msg-author';
+        an.innerText = msg.author;
+        body.appendChild(an);
         if (msg.type === 'sticker' && msg.sticker) {
             if (isVideo(msg.sticker)) {
                 const v = document.createElement('video');
-                v.className = 'msg-sticker';
-                v.src = msg.sticker;
+                v.className = 'msg-sticker'; v.src = msg.sticker;
                 v.autoplay = true; v.loop = true; v.muted = true; v.playsInline = true;
                 v.onclick = (e) => { e.stopPropagation(); openModal(msg.sticker, true); };
                 body.appendChild(v);
             } else {
                 const st = document.createElement('img');
-                st.className = 'msg-sticker';
-                st.src = msg.sticker;
+                st.className = 'msg-sticker'; st.src = msg.sticker;
                 st.onclick = (e) => { e.stopPropagation(); openModal(msg.sticker, false); };
                 body.appendChild(st);
             }
@@ -1407,14 +1678,13 @@
             body.appendChild(createVoicePlayer(msg.audio, msg.duration || 0));
         } else {
             const t = document.createElement('div');
-            t.className = 'msg-text';
-            t.innerText = msg.text || '';
+            t.className = 'msg-text'; t.innerText = msg.text || '';
             body.appendChild(t);
         }
-        const timeEl = document.createElement('div');
-        timeEl.className = 'msg-time';
-        if (msg.timestamp && msg.timestamp.toDate) timeEl.innerText = msg.timestamp.toDate().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
-        body.appendChild(timeEl);
+        const tm = document.createElement('div');
+        tm.className = 'msg-time';
+        if (msg.timestamp && msg.timestamp.toDate) tm.innerText = msg.timestamp.toDate().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+        body.appendChild(tm);
         if (currentUser && msg.author === currentUser.login) {
             const r = document.createElement('div');
             r.className = 'msg-read';
@@ -1426,8 +1696,7 @@
         const isOwn = currentUser && msg.author === currentUser.login;
         if (isAdmin || isOwn) {
             const del = document.createElement('button');
-            del.className = 'msg-delete';
-            del.innerText = '×';
+            del.className = 'msg-delete'; del.innerText = '×';
             del.onclick = (e) => {
                 e.stopPropagation();
                 if (confirm('Удалить?')) deleteDoc(doc(db, 'chat', msgId));
@@ -1440,13 +1709,12 @@
         if (!currentUser) return null;
         return currentUser.key === 'mega' ? 'sergo' : 'mega';
     }
-    function createVoicePlayer(src, duration) {
-        const wrap = document.createElement('div');
-        wrap.className = 'voice-player';
-        const playBtn = document.createElement('button');
-        playBtn.className = 'voice-play-btn';
-        playBtn.innerText = '▶';
-        wrap.appendChild(playBtn);
+    function createVoicePlayer(src, dur) {
+        const w = document.createElement('div');
+        w.className = 'voice-player';
+        const p = document.createElement('button');
+        p.className = 'voice-play-btn'; p.innerText = '▶';
+        w.appendChild(p);
         const wave = document.createElement('div');
         wave.className = 'voice-wave';
         const bars = [];
@@ -1454,62 +1722,57 @@
             const b = document.createElement('div');
             b.className = 'voice-wave-bar';
             b.style.height = (20 + Math.random() * 80) + '%';
-            wave.appendChild(b);
-            bars.push(b);
+            wave.appendChild(b); bars.push(b);
         }
-        wrap.appendChild(wave);
-        const dur = document.createElement('div');
-        dur.className = 'voice-duration';
-        dur.innerText = formatDur(duration);
-        wrap.appendChild(dur);
-        const audio = document.createElement('audio');
-        audio.src = src;
-        audio.preload = 'metadata';
-        audio.volume = window.currentVolume;
-        audio.style.display = 'none';
-        wrap.appendChild(audio);
-        let playing = false;
-        playBtn.onclick = (e) => {
+        w.appendChild(wave);
+        const d = document.createElement('div');
+        d.className = 'voice-duration'; d.innerText = formatDur(dur);
+        w.appendChild(d);
+        const a = document.createElement('audio');
+        a.src = src; a.preload = 'metadata'; a.volume = window.currentVolume; a.style.display = 'none';
+        w.appendChild(a);
+        let pl = false;
+        p.onclick = (e) => {
             e.stopPropagation();
-            if (playing) audio.pause();
+            if (pl) a.pause();
             else {
-                audio.volume = window.currentVolume;
-                document.querySelectorAll('audio').forEach(a => { if (a !== audio) a.pause(); });
-                audio.play();
+                a.volume = window.currentVolume;
+                document.querySelectorAll('audio').forEach(x => { if (x !== a) x.pause(); });
+                a.play();
             }
         };
-        audio.onplay = () => { playing = true; playBtn.innerText = '⏸'; };
-        audio.onpause = () => { playing = false; playBtn.innerText = '▶'; };
-        audio.onended = () => { playing = false; playBtn.innerText = '▶'; updateWave(0); };
-        audio.ontimeupdate = () => {
-            if (audio.duration) {
-                updateWave(audio.currentTime / audio.duration);
-                dur.innerText = formatDur(Math.max(0, Math.ceil(audio.duration - audio.currentTime)));
+        a.onplay = () => { pl = true; p.innerText = '⏸'; };
+        a.onpause = () => { pl = false; p.innerText = '▶'; };
+        a.onended = () => { pl = false; p.innerText = '▶'; upd(0); };
+        a.ontimeupdate = () => {
+            if (a.duration) {
+                upd(a.currentTime / a.duration);
+                d.innerText = formatDur(Math.max(0, Math.ceil(a.duration - a.currentTime)));
             }
         };
-        audio.onloadedmetadata = () => { dur.innerText = formatDur(Math.round(audio.duration)); };
-        function updateWave(p) {
+        a.onloadedmetadata = () => { d.innerText = formatDur(Math.round(a.duration)); };
+        function upd(p) {
             const n = Math.round(p * bars.length);
             bars.forEach((b, i) => i < n ? b.classList.add('played') : b.classList.remove('played'));
         }
         wave.onclick = (e) => {
             e.stopPropagation();
             const r = wave.getBoundingClientRect();
-            if (audio.duration) audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+            if (a.duration) a.currentTime = ((e.clientX - r.left) / r.width) * a.duration;
         };
-        return wrap;
+        return w;
     }
-    function formatDur(sec) {
-        sec = Math.max(0, Math.floor(sec));
-        return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
+    function formatDur(s) {
+        s = Math.max(0, Math.floor(s));
+        return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
     }
 
     // ===== ПЕЧАТАЕТ =====
-    let typingTimeout = null, typingClearTimeout = null;
+    let tTimeout = null, tClear = null;
     function initTyping() {
         onSnapshot(doc(db, 'data', 'typing'), (snap) => {
             const ind = document.getElementById('typingIndicator');
-            const nameEl = document.getElementById('typingName');
+            const n = document.getElementById('typingName');
             if (!ind) return;
             if (!snap.exists()) { ind.classList.remove('visible'); return; }
             const data = snap.data();
@@ -1519,7 +1782,7 @@
                 if (!info || !info.timestamp) continue;
                 const ts = info.timestamp.toDate ? info.timestamp.toDate().getTime() : info.timestamp;
                 if (now - ts < 3000) {
-                    nameEl.innerText = login;
+                    n.innerText = login;
                     ind.classList.add('visible');
                     return;
                 }
@@ -1529,8 +1792,8 @@
     }
     window.onTyping = function() {
         if (!currentUser) return;
-        clearTimeout(typingTimeout);
-        typingTimeout = setTimeout(async () => {
+        clearTimeout(tTimeout);
+        tTimeout = setTimeout(async () => {
             try {
                 const ref = doc(db, 'data', 'typing');
                 const snap = await getDoc(ref);
@@ -1539,8 +1802,8 @@
                 await setDoc(ref, cur);
             } catch(e) {}
         }, 200);
-        clearTimeout(typingClearTimeout);
-        typingClearTimeout = setTimeout(() => clearTypingStatus(), 2500);
+        clearTimeout(tClear);
+        tClear = setTimeout(() => clearTypingStatus(), 2500);
     };
     async function clearTypingStatus() {
         if (!currentUser) return;
@@ -1554,7 +1817,7 @@
         } catch(e) {}
     }
     async function markMessagesAsRead() {
-        if (!currentUser || unreadFromOthers.size === 0) return;
+        if (!currentUser || !unreadFromOthers.size) return;
         for (const id of Array.from(unreadFromOthers)) {
             try {
                 const ref = doc(db, 'chat', id);
@@ -1613,9 +1876,9 @@
     };
     function updateRecTime() {
         if (!isRecording) return;
-        const sec = Math.floor((Date.now() - recordStartTime) / 1000);
-        document.getElementById('recordTime').innerText = formatDur(sec);
-        if (sec >= 300) stopAndSendRecording();
+        const s = Math.floor((Date.now() - recordStartTime) / 1000);
+        document.getElementById('recordTime').innerText = formatDur(s);
+        if (s >= 300) stopAndSendRecording();
     }
     window.cancelRecording = function() {
         if (!isRecording || !mediaRecorder) return;
@@ -1639,16 +1902,16 @@
     async function sendVoice(blob, dur) {
         if (!currentUser) return;
         if (Math.round(blob.size / 1024) > 800) { alert('Слишком большое'); return; }
-        const reader = new FileReader();
-        reader.onloadend = async () => {
+        const r = new FileReader();
+        r.onloadend = async () => {
             try {
                 await addDoc(collection(db, 'chat'), {
-                    author: currentUser.login, type: 'voice', audio: reader.result,
+                    author: currentUser.login, type: 'voice', audio: r.result,
                     duration: Math.round(dur), readBy: [currentUser.key], timestamp: serverTimestamp()
                 });
             } catch(e) {}
         };
-        reader.readAsDataURL(blob);
+        r.readAsDataURL(blob);
     }
 
     // ===== СТИКЕРЫ =====
@@ -1662,42 +1925,35 @@
         if (!tabs) return;
         tabs.innerHTML = '';
         const names = Object.keys(STICKER_PACKS);
-        if (names.length === 0) {
-            tabs.innerHTML = '<div style="color:#666;font-size:12px;padding:6px;font-style:italic;">Нет паков</div>';
-            return;
-        }
+        if (!names.length) { tabs.innerHTML = '<div style="color:#666;font-size:12px;padding:6px;">Нет паков</div>'; return; }
         if (!currentChatPack || !STICKER_PACKS[currentChatPack]) currentChatPack = names[0];
         names.forEach(n => {
-            const btn = document.createElement('button');
-            btn.className = 'sticker-pack-tab' + (n === currentChatPack ? ' active' : '');
-            btn.innerText = n + ' (' + STICKER_PACKS[n].length + ')';
-            btn.onclick = () => { currentChatPack = n; renderStickerPacksTabs(); renderStickerGrid(); };
-            tabs.appendChild(btn);
+            const b = document.createElement('button');
+            b.className = 'sticker-pack-tab' + (n === currentChatPack ? ' active' : '');
+            b.innerText = n + ' (' + STICKER_PACKS[n].length + ')';
+            b.onclick = () => { currentChatPack = n; renderStickerPacksTabs(); renderStickerGrid(); };
+            tabs.appendChild(b);
         });
     }
     function renderStickerGrid() {
-        const grid = document.getElementById('stickerGrid');
-        if (!grid) return;
-        grid.innerHTML = '';
-        if (!currentChatPack || !STICKER_PACKS[currentChatPack] || STICKER_PACKS[currentChatPack].length === 0) {
-            grid.innerHTML = '<div class="sticker-empty">Пусто</div>';
-            return;
+        const g = document.getElementById('stickerGrid');
+        if (!g) return;
+        g.innerHTML = '';
+        if (!currentChatPack || !STICKER_PACKS[currentChatPack] || !STICKER_PACKS[currentChatPack].length) {
+            g.innerHTML = '<div class="sticker-empty">Пусто</div>'; return;
         }
         STICKER_PACKS[currentChatPack].forEach(src => {
-            const item = document.createElement('div');
-            item.className = 'sticker-item';
+            const i = document.createElement('div');
+            i.className = 'sticker-item';
             if (isVideo(src)) {
                 const v = document.createElement('video');
-                v.src = src;
-                v.autoplay = true; v.loop = true; v.muted = true; v.playsInline = true;
-                item.appendChild(v);
+                v.src = src; v.autoplay = true; v.loop = true; v.muted = true; v.playsInline = true;
+                i.appendChild(v);
             } else {
-                const im = document.createElement('img');
-                im.src = src;
-                item.appendChild(im);
+                const im = document.createElement('img'); im.src = src; i.appendChild(im);
             }
-            item.onclick = () => sendSticker(src);
-            grid.appendChild(item);
+            i.onclick = () => sendSticker(src);
+            g.appendChild(i);
         });
     }
     async function sendSticker(src) {
@@ -1710,153 +1966,118 @@
         } catch(e) {}
     }
     function processStickerFile(file) {
-        return new Promise((resolve, reject) => {
-            const isWebm = file.type === 'video/webm';
-            const isImage = file.type.startsWith('image/');
-            if (!isWebm && !isImage) return reject(new Error('bad format'));
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                if (isWebm) resolve(e.target.result);
+        return new Promise((res, rej) => {
+            const w = file.type === 'video/webm';
+            const i = file.type.startsWith('image/');
+            if (!w && !i) return rej(new Error('bad'));
+            const r = new FileReader();
+            r.onload = (e) => {
+                if (w) res(e.target.result);
                 else {
                     const img = new Image();
                     img.onload = () => {
-                        const canvas = document.createElement('canvas');
+                        const c = document.createElement('canvas');
                         const max = 256;
-                        let w = img.width, h = img.height;
-                        if (w > h && w > max) { h = Math.round(h * max / w); w = max; }
-                        else if (h > max) { w = Math.round(w * max / h); h = max; }
-                        canvas.width = w; canvas.height = h;
-                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                        resolve(file.type === 'image/png' ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg', 0.85));
+                        let W = img.width, H = img.height;
+                        if (W > H && W > max) { H = Math.round(H * max / W); W = max; }
+                        else if (H > max) { W = Math.round(W * max / H); H = max; }
+                        c.width = W; c.height = H;
+                        c.getContext('2d').drawImage(img, 0, 0, W, H);
+                        res(file.type === 'image/png' ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', 0.85));
                     };
                     img.src = e.target.result;
                 }
             };
-            reader.readAsDataURL(file);
+            r.readAsDataURL(file);
         });
     }
     window.createPack = async function() {
         const inp = document.getElementById('newPackName');
-        const name = inp.value.trim();
-        if (!name || STICKER_PACKS[name]) return;
-        STICKER_PACKS[name] = [];
+        const n = inp.value.trim();
+        if (!n || STICKER_PACKS[n]) return;
+        STICKER_PACKS[n] = [];
         inp.value = '';
         await saveAccounts();
-        renderPacksAdmin();
-        renderStickerPacksTabs();
-        renderStickerGrid();
+        renderPacksAdmin(); renderStickerPacksTabs(); renderStickerGrid();
     };
-    window.deletePack = async function(name) {
+    window.deletePack = async function(n) {
         if (!confirm('Удалить пак?')) return;
-        delete STICKER_PACKS[name];
+        delete STICKER_PACKS[n];
         await saveAccounts();
-        renderPacksAdmin();
-        renderStickerPacksTabs();
-        renderStickerGrid();
+        renderPacksAdmin(); renderStickerPacksTabs(); renderStickerGrid();
     };
-    window.uploadStickerToPack = async function(event, packName) {
-        const files = Array.from(event.target.files);
+    window.uploadStickerToPack = async function(e, n) {
+        const files = Array.from(e.target.files);
         if (!files.length) return;
-        if (!STICKER_PACKS[packName]) STICKER_PACKS[packName] = [];
-        const rem = MAX_STICKERS_PER_PACK - STICKER_PACKS[packName].length;
+        if (!STICKER_PACKS[n]) STICKER_PACKS[n] = [];
+        const rem = MAX_STICKERS_PER_PACK - STICKER_PACKS[n].length;
         for (const f of files.slice(0, rem)) {
-            try { STICKER_PACKS[packName].push(await processStickerFile(f)); } catch(e) {}
+            try { STICKER_PACKS[n].push(await processStickerFile(f)); } catch(err) {}
         }
         await saveAccounts();
-        renderPacksAdmin();
-        renderStickerPacksTabs();
-        renderStickerGrid();
-        event.target.value = '';
+        renderPacksAdmin(); renderStickerPacksTabs(); renderStickerGrid();
+        e.target.value = '';
     };
-    window.removeStickerFromPack = async function(packName, idx) {
+    window.removeStickerFromPack = async function(n, idx) {
         if (!confirm('Удалить?')) return;
-        STICKER_PACKS[packName].splice(idx, 1);
+        STICKER_PACKS[n].splice(idx, 1);
         await saveAccounts();
-        renderPacksAdmin();
-        renderStickerPacksTabs();
-        renderStickerGrid();
+        renderPacksAdmin(); renderStickerPacksTabs(); renderStickerGrid();
     };
     function renderPacksAdmin() {
         const list = document.getElementById('packsList');
         if (!list) return;
         list.innerHTML = '';
         const names = Object.keys(STICKER_PACKS);
-        if (names.length === 0) { list.innerHTML = '<p style="color:#666;font-style:italic;">Пока нет паков.</p>'; return; }
+        if (!names.length) { list.innerHTML = '<p style="color:#666;font-style:italic;">Пока нет паков.</p>'; return; }
         names.forEach(name => {
-            const stickers = STICKER_PACKS[name] || [];
+            const st = STICKER_PACKS[name] || [];
             const block = document.createElement('div');
             block.className = 'pack-block';
-            const header = document.createElement('div');
-            header.className = 'pack-header';
-            header.innerHTML = `<div class="pack-title">${escapeHtml(name)} <span class="pack-badge">${stickers.length} / ${MAX_STICKERS_PER_PACK}</span></div>`;
-            const actions = document.createElement('div');
-            actions.className = 'pack-header-actions';
-            const uploadBtn = document.createElement('button');
-            uploadBtn.className = 'admin-btn small';
-            uploadBtn.innerText = '📷 +';
+            const h = document.createElement('div');
+            h.className = 'pack-header';
+            h.innerHTML = `<div class="pack-title">${escapeHtml(name)} <span class="pack-badge">${st.length} / ${MAX_STICKERS_PER_PACK}</span></div>`;
+            const act = document.createElement('div');
+            act.className = 'pack-header-actions';
+            const ub = document.createElement('button');
+            ub.className = 'admin-btn small'; ub.innerText = '📷 +';
             const fi = document.createElement('input');
-            fi.type = 'file';
-            fi.accept = 'image/*,video/webm,.webm';
-            fi.multiple = true;
-            fi.style.display = 'none';
+            fi.type = 'file'; fi.accept = 'image/*,video/webm,.webm'; fi.multiple = true; fi.style.display = 'none';
             fi.onchange = (e) => uploadStickerToPack(e, name);
-            uploadBtn.onclick = () => fi.click();
-            const del = document.createElement('button');
-            del.className = 'admin-btn small danger';
-            del.innerText = '🗑';
-            del.onclick = () => deletePack(name);
-            actions.appendChild(uploadBtn);
-            actions.appendChild(fi);
-            actions.appendChild(del);
-            header.appendChild(actions);
-            block.appendChild(header);
-            const grid = document.createElement('div');
-            grid.className = 'pack-stickers';
-            if (stickers.length === 0) grid.innerHTML = '<div class="pack-empty">Пак пуст</div>';
-            else stickers.forEach((src, idx) => {
+            ub.onclick = () => fi.click();
+            const db = document.createElement('button');
+            db.className = 'admin-btn small danger'; db.innerText = '🗑';
+            db.onclick = () => deletePack(name);
+            act.appendChild(ub); act.appendChild(fi); act.appendChild(db);
+            h.appendChild(act);
+            block.appendChild(h);
+            const g = document.createElement('div');
+            g.className = 'pack-stickers';
+            if (!st.length) g.innerHTML = '<div class="pack-empty">Пак пуст</div>';
+            else st.forEach((src, idx) => {
                 const item = document.createElement('div');
                 item.className = 'sticker-admin-item';
                 if (isVideo(src)) {
                     const v = document.createElement('video');
-                    v.src = src;
-                    v.autoplay = true; v.loop = true; v.muted = true; v.playsInline = true;
+                    v.src = src; v.autoplay = true; v.loop = true; v.muted = true; v.playsInline = true;
                     item.appendChild(v);
                 } else {
-                    const im = document.createElement('img');
-                    im.src = src;
-                    item.appendChild(im);
+                    const im = document.createElement('img'); im.src = src; item.appendChild(im);
                 }
                 const rm = document.createElement('button');
-                rm.className = 'sticker-admin-remove';
-                rm.innerText = '×';
+                rm.className = 'sticker-admin-remove'; rm.innerText = '×';
                 rm.onclick = () => removeStickerFromPack(name, idx);
                 item.appendChild(rm);
-                grid.appendChild(item);
+                g.appendChild(item);
             });
-            block.appendChild(grid);
+            block.appendChild(g);
             list.appendChild(block);
         });
     }
 
     // ===== АДМИНКА =====
-      function loadAdminFields() {
-        if (!currentUser) return;
-        if (currentUser.key === 'mega') {
-            // Только mega может видеть поля аккаунтов и стикерпаки
-            let ml = 'MEGATEM41K', sl = 'Sergo Bulkin';
-            for (const [lg, acc] of Object.entries(ACCOUNTS)) {
-                if (acc.key === 'mega') ml = lg;
-                if (acc.key === 'sergo') sl = lg;
-            }
-            document.getElementById('login-mega').value = ml;
-            document.getElementById('login-sergo').value = sl;
-            document.getElementById('password-mega').value = '';
-            document.getElementById('password-sergo').value = '';
-            updateAvatarPreview('mega'); updateAvatarPreview('sergo');
-            renderPacksAdmin();
-        }
-        renderDropsAdmin();
-    }
+    function loadAdminFields() {
+        if (!currentUser || currentUser.key !== 'mega') return;
         let ml = 'MEGATEM41K', sl = 'Sergo Bulkin';
         for (const [lg, acc] of Object.entries(ACCOUNTS)) {
             if (acc.key === 'mega') ml = lg;
@@ -1866,81 +2087,81 @@
         document.getElementById('login-sergo').value = sl;
         document.getElementById('password-mega').value = '';
         document.getElementById('password-sergo').value = '';
-        updateAvatarPreview('mega'); updateAvatarPreview('sergo');
+        updateAvatarPreview('mega');
+        updateAvatarPreview('sergo');
         renderPacksAdmin();
         renderDropsAdmin();
     }
-    function updateAvatarPreview(key) {
-        const el = document.getElementById('preview-' + key);
-        const av = AVATARS[key];
+    function updateAvatarPreview(k) {
+        const el = document.getElementById('preview-' + k);
+        const av = AVATARS[k];
         if (av) { el.innerHTML = `<img src="${av}">`; el.style.background = 'none'; }
         else {
-            el.innerText = key === 'mega' ? 'M' : 'S';
-            el.style.background = key === 'mega' ? 'linear-gradient(135deg, #ff6b6b, #c62828)' : 'linear-gradient(135deg, #4fc3f7, #0288d1)';
+            el.innerText = k === 'mega' ? 'M' : 'S';
+            el.style.background = k === 'mega' ? 'linear-gradient(135deg, #ff6b6b, #c62828)' : 'linear-gradient(135deg, #4fc3f7, #0288d1)';
         }
     }
-    window.uploadAvatar = async function(event, key) {
-        const f = event.target.files[0];
-        if (!f) return;
-        AVATARS[key] = await compressImage(f, 200, 0.85);
+    window.uploadAvatar = async function(e, k) {
+        const f = e.target.files[0]; if (!f) return;
+        AVATARS[k] = await compressImage(f, 200, 0.85);
         await saveAccounts();
-        updateAvatarPreview(key);
-        if (currentUser && currentUser.key === key) renderUserBar();
+        updateAvatarPreview(k);
+        if (currentUser && currentUser.key === k) renderUserBar();
     };
-    window.removeAvatar = async function(key) {
-        if (!confirm('Удалить аватар?')) return;
-        AVATARS[key] = '';
+    window.removeAvatar = async function(k) {
+        if (!confirm('Удалить?')) return;
+        AVATARS[k] = '';
         await saveAccounts();
-        updateAvatarPreview(key);
-        if (currentUser && currentUser.key === key) renderUserBar();
+        updateAvatarPreview(k);
+        if (currentUser && currentUser.key === k) renderUserBar();
     };
-    window.saveAccount = async function(key) {
-        const li = document.getElementById('login-' + key);
-        const pi = document.getElementById('password-' + key);
-        const msg = document.getElementById('msg-' + key);
-        const newLogin = li.value.trim();
-        if (!newLogin) { msg.className = 'admin-msg err'; msg.innerText = 'Логин пустой'; return; }
-        let oldLogin = null;
-        for (const [lg, acc] of Object.entries(ACCOUNTS)) if (acc.key === key) oldLogin = lg;
-        if (newLogin !== oldLogin && ACCOUNTS[newLogin]) { msg.className = 'admin-msg err'; msg.innerText = 'Занято'; return; }
+    window.saveAccount = async function(k) {
+        const li = document.getElementById('login-' + k);
+        const pi = document.getElementById('password-' + k);
+        const msg = document.getElementById('msg-' + k);
+        const nl = li.value.trim();
+        if (!nl) { msg.className = 'admin-msg err'; msg.innerText = 'Пусто'; return; }
+        let old = null;
+        for (const [lg, acc] of Object.entries(ACCOUNTS)) if (acc.key === k) old = lg;
+        if (nl !== old && ACCOUNTS[nl]) { msg.className = 'admin-msg err'; msg.innerText = 'Занято'; return; }
         const na = {};
         for (const [lg, acc] of Object.entries(ACCOUNTS)) {
-            if (acc.key === key) na[newLogin] = { password: pi.value || acc.password, key: acc.key };
+            if (acc.key === k) na[nl] = { password: pi.value || acc.password, key: acc.key };
             else na[lg] = acc;
         }
         ACCOUNTS = na;
         await saveAccounts();
-        if (currentUser && currentUser.key === key) { currentUser.login = newLogin; saveSession(currentUser); renderUserBar(); }
+        if (currentUser && currentUser.key === k) { currentUser.login = nl; saveSession(currentUser); renderUserBar(); }
         pi.value = '';
         msg.className = 'admin-msg ok'; msg.innerText = '✅ Сохранено';
         setTimeout(() => msg.innerText = '', 2000);
     };
 
     // ===== УТИЛИТЫ =====
-    function findUserKeyByLogin(login) {
-        for (const [lg, acc] of Object.entries(ACCOUNTS)) if (lg === login) return acc.key;
+    function findUserKeyByLogin(l) {
+        for (const [lg, acc] of Object.entries(ACCOUNTS)) if (lg === l) return acc.key;
         return null;
     }
     function escapeHtml(s) {
         return String(s).replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
     }
-    function compressImage(file, maxSize = 512, quality = 0.8) {
-        return new Promise(resolve => {
+    function compressImage(f, maxSize = 512, quality = 0.8) {
+        return new Promise(res => {
             const r = new FileReader();
             r.onload = (e) => {
                 const img = new Image();
                 img.onload = () => {
                     const c = document.createElement('canvas');
-                    let w = img.width, h = img.height;
-                    if (w > h && w > maxSize) { h = Math.round(h * maxSize / w); w = maxSize; }
-                    else if (h > maxSize) { w = Math.round(w * maxSize / h); h = maxSize; }
-                    c.width = w; c.height = h;
-                    c.getContext('2d').drawImage(img, 0, 0, w, h);
-                    resolve(file.type === 'image/png' ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', quality));
+                    let W = img.width, H = img.height;
+                    if (W > H && W > maxSize) { H = Math.round(H * maxSize / W); W = maxSize; }
+                    else if (H > maxSize) { W = Math.round(W * maxSize / H); H = maxSize; }
+                    c.width = W; c.height = H;
+                    c.getContext('2d').drawImage(img, 0, 0, W, H);
+                    res(f.type === 'image/png' ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', quality));
                 };
                 img.src = e.target.result;
             };
-            r.readAsDataURL(file);
+            r.readAsDataURL(f);
         });
     }
     window.openModal = function(src, isVid) {
@@ -1948,13 +2169,10 @@
         c.innerHTML = '';
         if (isVid || isVideo(src)) {
             const v = document.createElement('video');
-            v.src = src;
-            v.autoplay = true; v.loop = true; v.muted = true; v.playsInline = true;
+            v.src = src; v.autoplay = true; v.loop = true; v.muted = true; v.playsInline = true;
             c.appendChild(v);
         } else {
-            const im = document.createElement('img');
-            im.src = src;
-            c.appendChild(im);
+            const im = document.createElement('img'); im.src = src; c.appendChild(im);
         }
         document.getElementById('modal').classList.add('active');
     };
@@ -1965,7 +2183,7 @@
     };
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-    // ===== ИНИЦИАЛИЗАЦИЯ =====
+    // ===== INIT =====
     async function init() {
         try { await loadAccounts(); } catch(e) {}
         try { await loadEditableCases(); } catch(e) {}
