@@ -1295,11 +1295,10 @@
     function showMainSite() {
         document.getElementById('loginOverlay').classList.add('hidden');
         document.getElementById('mainSite').style.display = 'flex';
-        renderUserBar();
-        if (currentUser.key === 'mega') {
-            document.getElementById('adminTabBtn').style.display = '';
-            loadAdminFields();
-        } else document.getElementById('adminTabBtn').style.display = 'none';
+              renderUserBar();
+        // Админку видит и mega, и sergo
+        document.getElementById('adminTabBtn').style.display = '';
+        loadAdminFields();;
 
         initChat();
         initTyping();
@@ -1840,8 +1839,24 @@
     }
 
     // ===== АДМИНКА =====
-    function loadAdminFields() {
-        if (!currentUser || currentUser.key !== 'mega') return;
+      function loadAdminFields() {
+        if (!currentUser) return;
+        if (currentUser.key === 'mega') {
+            // Только mega может видеть поля аккаунтов и стикерпаки
+            let ml = 'MEGATEM41K', sl = 'Sergo Bulkin';
+            for (const [lg, acc] of Object.entries(ACCOUNTS)) {
+                if (acc.key === 'mega') ml = lg;
+                if (acc.key === 'sergo') sl = lg;
+            }
+            document.getElementById('login-mega').value = ml;
+            document.getElementById('login-sergo').value = sl;
+            document.getElementById('password-mega').value = '';
+            document.getElementById('password-sergo').value = '';
+            updateAvatarPreview('mega'); updateAvatarPreview('sergo');
+            renderPacksAdmin();
+        }
+        renderDropsAdmin();
+    }
         let ml = 'MEGATEM41K', sl = 'Sergo Bulkin';
         for (const [lg, acc] of Object.entries(ACCOUNTS)) {
             if (acc.key === 'mega') ml = lg;
